@@ -1,0 +1,66 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Count 3 /Kids [4 0 R 6 0 R 8 0 R] >>
+endobj
+3 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+4 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R >> >> /Contents 5 0 R >>
+endobj
+5 0 obj
+<< /Length 308 >>
+stream
+BT /F1 12 Tf 50 785 Td 20 TL (INOVA - EXEMPLO FICTICIO DE DOCUMENTO GENOMICO) Tj
+T* (Nao usar para atendimento.) Tj
+T* (Paciente ficticio: Mariana Oliveira) Tj
+T* (Pagina 1 de 3) Tj
+T* (Escopo: demonstrar a organizacao de um laudo extenso.) Tj
+T* (Este documento nao representa um teste genomico real.) Tj ET
+endstream
+endobj
+6 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R >> >> /Contents 7 0 R >>
+endobj
+7 0 obj
+<< /Length 250 >>
+stream
+BT /F1 12 Tf 50 785 Td 20 TL (Pagina 2 de 3 - Achados do exemplo) Tj
+T* (Nao ha genes ou variantes moleculares reais neste documento.) Tj
+T* (Classificacao de variantes: nao disponivel.) Tj
+T* (Nao inferir predisposicoes, diagnostico ou risco.) Tj ET
+endstream
+endobj
+8 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R >> >> /Contents 9 0 R >>
+endobj
+9 0 obj
+<< /Length 293 >>
+stream
+BT /F1 12 Tf 50 785 Td 20 TL (Pagina 3 de 3 - Limitacoes) Tj
+T* (Cobertura tecnica: nao informada.) Tj
+T* (Qualidade do sequenciamento: nao informada.) Tj
+T* (Referencias e validacao laboratorial: nao disponiveis.) Tj
+T* (Conclusao: documento de teste de software, sem validade clinica.) Tj ET
+endstream
+endobj
+xref
+0 10
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000127 00000 n 
+0000000197 00000 n 
+0000000323 00000 n 
+0000000682 00000 n 
+0000000808 00000 n 
+0000001109 00000 n 
+0000001235 00000 n 
+trailer
+<< /Size 10 /Root 1 0 R >>
+startxref
+1579
+%%EOF

@@ -1,0 +1,60 @@
+import {
+  Activity,
+  CalendarDays,
+  Bell,
+  Dna,
+  Check,
+  ClipboardList,
+  FileText,
+  History,
+  LayoutDashboard,
+  LogOut,
+  Menu,
+  MapPin,
+  User,
+  X,
+} from "lucide-react";
+export const navigation = [
+  { id: "home", label: "Minha saúde", icon: LayoutDashboard },
+  { id: "agenda", label: "Minha agenda", icon: CalendarDays },
+  { id: "next", label: "Próximos passos", icon: Check },
+  { id: "alerts", label: "Avisos", icon: Bell },
+  { id: "results", label: "Meus resultados", icon: Activity },
+  { id: "orders", label: "Exames solicitados", icon: ClipboardList },
+  { id: "history", label: "Minha evolução", icon: History },
+  { id: "documents", label: "Meus documentos", icon: FileText },
+  { id: "genetics", label: "Minha genética", icon: Dna },
+  { id: "consultation", label: "Preparar consulta", icon: ClipboardList },
+  { id: "guidance", label: "Orientações do médico", icon: FileText },
+  { id: "preparation", label: "Preparo dos exames", icon: ClipboardList },
+  { id: "favorites", label: "Laboratórios favoritos", icon: MapPin },
+  { id: "timeline", label: "Linha do tempo", icon: History },
+  { id: "profile", label: "Meu perfil", icon: User },
+] as const;
+export const patientGroups = [
+  { label: "Comece aqui", ids: ["home", "agenda", "next", "alerts"] },
+  { label: "Minha consulta", ids: ["consultation", "guidance"] },
+  { label: "Meus exames", ids: ["orders", "preparation", "favorites", "results", "history"] },
+  { label: "Documentos e histórico", ids: ["documents", "genetics", "timeline"] },
+  { label: "Minha conta", ids: ["profile"] },
+];
+export const sectionHelp: Record<Section, string> = {
+  agenda: "Seu calendário de consultas, exames e retornos. Navegue pelos meses e confira cada dia.",
+  home: "Veja o que precisa de atenção e escolha seu próximo passo.",
+  next: "Confira as tarefas pendentes para organizar seu cuidado.",
+  alerts: "Veja atualizações sobre pedidos, envios e orientações do médico.",
+  consultation:
+    "Conte como você está, liste medicamentos e perguntas. Você pode gravar áudio e enviar anexos ao médico.",
+  guidance: "Leia as orientações que o médico publicou para você.",
+  orders: "Veja os exames pedidos pelo médico e consulte as opções de laboratório disponíveis.",
+  preparation: "Confira as instruções de preparo publicadas pelo médico para seus exames.",
+  favorites: "Guarde os laboratórios de sua preferência para encontrar seus contatos depois.",
+  results: "Consulte os resultados e os valores de referência disponíveis.",
+  history: "Acompanhe nos gráficos como seus resultados mudaram entre as coletas.",
+  documents: "Organize e abra seus PDFs. Para enviar ao médico, use Preparar consulta.",
+  genetics:
+    "Importe seu arquivo genético TXT e acompanhe sua revisão. Os scores de predisposição ainda estão pendentes.",
+  timeline: "Consulte a sequência de exames, envios e atualizações do seu cuidado.",
+  profile: "Confira seus dados e atualize as informações de contato nesta sessão.",
+};
+export type Section = (typeof navigation)[number]["id"];

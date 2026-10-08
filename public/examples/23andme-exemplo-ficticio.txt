@@ -1,0 +1,17 @@
+# INOVA: EXEMPLO FICTICIO. Nao representa uma pessoa ou teste real.
+# Formato de demonstracao compativel com TXT bruto 23andMe.
+# Reference human assembly build 37. plus (+) strand.
+# IDs, posicoes e genotipos sinteticos. Sem interpretacao clinica.
+# rsid	chromosome	position	genotype
+rs9000000001	1	100001	AA
+rs9000000002	1	100002	AG
+rs9000000003	2	100003	CC
+rs9000000004	2	100004	--
+rs9000000005	3	100005	TT
+rs9000000006	4	100006	CT
+rs9000000007	5	100007	GG
+rs9000000008	6	100008	AC
+rs9000000009	7	100009	II
+rs9000000010	X	100010	AG
+rs9000000011	Y	100011	--
+rs9000000012	MT	100012	A

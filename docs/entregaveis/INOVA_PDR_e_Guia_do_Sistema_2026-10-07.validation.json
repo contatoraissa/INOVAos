@@ -1,0 +1,153 @@
+{
+  "documentDate": "2026-10-07",
+  "htmlPages": 24,
+  "pdfPages": 24,
+  "bytes": 534055,
+  "overflow": [],
+  "measurements": [
+    {
+      "page": "page-1",
+      "title": "Do resultado à continuidade do cuidado",
+      "contentBottom": 851.109375,
+      "footerTop": 1068.5
+    },
+    {
+      "page": "page-2",
+      "title": "Mapa de leitura",
+      "contentBottom": 1008.078125,
+      "footerTop": 1068.5
+    },
+    {
+      "page": "page-3",
+      "title": "Visão do produto",
+      "contentBottom": 935.078125,
+      "footerTop": 1068.5
+    },
+    {
+      "page": "page-4",
+      "title": "Área médica · inventário",
+      "contentBottom": 937.25,
+      "footerTop": 1068.5
+    },
+    {
+      "page": "page-5",
+      "title": "Prontuário · todas as abas",
+      "contentBottom": 1005.65625,
+      "footerTop": 1068.5
+    },
+    {
+      "page": "page-6",
+      "title": "Começar pela área médica",
+      "contentBottom": 763.921875,
+      "footerTop": 1068.5
+    },
+    {
+      "page": "page-7",
+      "title": "Analisar laudos com IA",
+      "contentBottom": 860.171875,
+      "footerTop": 1068.5
+    },
+    {
+      "page": "page-8",
+      "title": "Solicitar exames ao paciente",
+      "contentBottom": 967.671875,
+      "footerTop": 1068.5
+    },
+    {
+      "page": "page-9",
+      "title": "Revisar envios e publicar orientações",
+      "contentBottom": 782.046875,
+      "footerTop": 1068.5
+    },
+    {
+      "page": "page-10",
+      "title": "Área do paciente · inventário",
+      "contentBottom": 1034.25,
+      "footerTop": 1068.5
+    },
+    {
+      "page": "page-11",
+      "title": "Consultar resultados e documentos",
+      "contentBottom": 881.109375,
+      "footerTop": 1068.5
+    },
+    {
+      "page": "page-12",
+      "title": "Preparar consulta por texto ou áudio",
+      "contentBottom": 932.734375,
+      "footerTop": 1068.5
+    },
+    {
+      "page": "page-13",
+      "title": "Pedidos e locais de preferência",
+      "contentBottom": 833.015625,
+      "footerTop": 1068.5
+    },
+    {
+      "page": "page-14",
+      "title": "Acompanhar o que acontece",
+      "contentBottom": 969.875,
+      "footerTop": 1068.5
+    },
+    {
+      "page": "page-15",
+      "title": "PDR · requisitos da área médica",
+      "contentBottom": 1040.890625,
+      "footerTop": 1068.5
+    },
+    {
+      "page": "page-16",
+      "title": "PDR · requisitos do paciente",
+      "contentBottom": 1007.34375,
+      "footerTop": 1068.5
+    },
+    {
+      "page": "page-17",
+      "title": "Regras, estados e retenção",
+      "contentBottom": 1046.96875,
+      "footerTop": 1068.5
+    },
+    {
+      "page": "page-18",
+      "title": "Arquitetura utilizada",
+      "contentBottom": 1016.234375,
+      "footerTop": 1068.5
+    },
+    {
+      "page": "page-19",
+      "title": "Validação e demonstração",
+      "contentBottom": 1003.0625,
+      "footerTop": 1068.5
+    },
+    {
+      "page": "page-20",
+      "title": "Pendências e próxima versão",
+      "contentBottom": 1035.828125,
+      "footerTop": 1068.5
+    },
+    {
+      "page": "page-21",
+      "title": "Arquivo bruto 23andMe no INOVA",
+      "contentBottom": 1001.359375,
+      "footerTop": 1068.5
+    },
+    {
+      "page": "page-22",
+      "title": "PDR · genética bruta",
+      "contentBottom": 1046.078125,
+      "footerTop": 1068.5
+    },
+    {
+      "page": "page-23",
+      "title": "Médico: fila, identidade e fechamento",
+      "contentBottom": 743.546875,
+      "footerTop": 1068.5
+    },
+    {
+      "page": "page-24",
+      "title": "Paciente: continuidade e clareza",
+      "contentBottom": 766.390625,
+      "footerTop": 1068.5
+    }
+  ]
+}
