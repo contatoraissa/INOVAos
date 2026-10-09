@@ -153,6 +153,19 @@ px.cmd tsc --noEmit`) passou.
 
 Atualizaï¿½ï¿½o do briefing da agenda: botï¿½o **Ler eventos futuros**, perï¿½odo de 30 dias a partir de hoje, eventos ativos ordenados por data e horï¿½rio e opï¿½ï¿½o **Dia selecionado**. A prï¿½via precede a autorizaï¿½ï¿½o para gerar com Gemini. Alteraï¿½ï¿½o restrita ao briefing da agenda.
 
-Pedidos liberados agora aparecem em Minha agenda como pendências. O paciente acessa o pedido e a S2, informa uma coleta combinada e abre a preparação para enviar resultados. Não há reserva externa ou cotação integrada. Cancelar o pedido cancela a coleta vinculada no INOVA. Funciona na demonstração; preserva o calendário aprovado e os demais fluxos.
+Pedidos liberados agora aparecem em Minha agenda como pendÃªncias. O paciente acessa o pedido e a S2, informa uma coleta combinada e abre a preparaÃ§Ã£o para enviar resultados. NÃ£o hÃ¡ reserva externa ou cotaÃ§Ã£o integrada. Cancelar o pedido cancela a coleta vinculada no INOVA. Funciona na demonstraÃ§Ã£o; preserva o calendÃ¡rio aprovado e os demais fluxos.
 
-Cotação de pedidos na S2: botão explícito Simular consulta de preços usa resposta local fictícia com três opções, calculadas pelos exames do pedido; nenhuma API real ou busca geográfica é executada. Sem reserva ou pagamento. scripts/simulate-s2-order.mjs cria/libera um pedido fictício reutilizável para Mariana, testa os valores e deixa o pedido disponível (até 24 horas ou reinício do servidor).
+CotaÃ§Ã£o de pedidos na S2: botÃ£o explÃ­cito Simular consulta de preÃ§os usa resposta local fictÃ­cia com trÃªs opÃ§Ãµes, calculadas pelos exames do pedido; nenhuma API real ou busca geogrÃ¡fica Ã© executada. Sem reserva ou pagamento. scripts/simulate-s2-order.mjs cria/libera um pedido fictÃ­cio reutilizÃ¡vel para Mariana, testa os valores e deixa o pedido disponÃ­vel (atÃ© 24 horas ou reinÃ­cio do servidor).
+
+
+## Portal administrativo INOVA ? 08/10/2026
+
+A rota `/admin-inova` recebeu sete ?reas no padr?o INOVA: vis?o geral, usu?rios, atividade, assinaturas, contatos e reativa??o, feedbacks e resumo com IA. Os portais cl?nicos aprovados de Rafael e Mariana foram preservados.
+
+Gr?ficos e totais derivam de 14 usu?rios fict?cios, com refer?ncia fixa em 08/10/2026. Conta habilitada/desativada, uso recente e satisfa??o s?o medidas distintas. Satisfa??o usa apenas a ?ltima nota expl?cita; falta de uso n?o significa descontentamento.
+
+Altera??es persistem no navegador em `inova-demo-admin-v2`, com migra??o dos registros anteriores e hist?rico local. Desativa??o exige motivo e confirma??o. Contatos s?o tarefas manuais, sem disparo de mensagens. Assinaturas e MRR s?o simula??es, sem cobran?a.
+
+O resumo Gemini exige consentimento e envia indicadores e refer?ncias an?nimas, sem nomes, e-mails, coment?rios livres ou prontu?rios. Recomenda??es n?o executam a??es. A chamada est? restrita ao desenvolvimento local. Autentica??o e autoriza??o administrativa de produ??o s?o necess?rias antes de conectar contas reais. Supabase n?o foi alterado.
+
+Valida??o: testes de regras, migra??o, privacidade, persist?ncia, fluxo no navegador e responsividade, TypeScript, ESLint, build e resumo real com Gemini.

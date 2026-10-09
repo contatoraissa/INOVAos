@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { AdminPortal } from "@/components/inova/AdminPortal";
+import { AdminWorkspacePortal as AdminPortal } from "@/components/inova/AdminWorkspacePortal";
 export const Route = createFileRoute("/admin-inova")({
   head: () => ({
     meta: [

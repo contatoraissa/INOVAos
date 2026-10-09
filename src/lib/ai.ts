@@ -7,8 +7,35 @@ import { patientResultsInput, explainPatientResults } from "./patient-results-ai
 import { briefingTarget } from "./agenda-briefing-contract";
 import { buildAgendaContext, generateAgendaBriefing } from "./agenda-briefing.server";
 import { z } from "zod";
+import { workspaceSchema } from "./admin-workspace";
+import { generateAdminSummary } from "./admin-ai.server";
 let active = 0;
 let attempts: number[] = [];
+export const summarizeAdmin = createServerFn({ method: "POST" })
+  .validator(z.object({ workspace: workspaceSchema, confirmed: z.literal(true) }))
+  .handler(async ({ data }) => {
+    if (!allowed())
+      throw new Error("Resumo administrativo disponível somente na demonstração local autorizada.");
+    const now = Date.now();
+    attempts = attempts.filter((at) => now - at < 60000);
+    if (active >= 2 || attempts.length >= 10)
+      throw new Error("Há muitas análises em andamento. Aguarde um minuto.");
+    attempts.push(now);
+    active++;
+    try {
+      const model = process.env["GEMINI_MODEL"] ?? "gemini-3.8-flash";
+      return {
+        summary: await generateAdminSummary(data.workspace, {
+          key: process.env["GEMINI_API_KEY"] ?? "",
+          model,
+        }),
+        model,
+        generatedAt: new Date().toISOString(),
+      };
+    } finally {
+      active--;
+    }
+  });
 export const getAgendaBriefingContext = createServerFn({ method: "GET" })
   .validator(briefingTarget)
   .handler(async ({ data }) => {

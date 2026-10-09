@@ -63,8 +63,14 @@ export function SalesPage() {
             <a href="#para-medicos">Para médicos</a>
             <a href="#como-funciona">Como funciona</a>
             <a href="#planos">Acesso e planos</a>
-            <Link to="/acesso" className="font-semibold text-brand-deep">
-              Entrar na conta
+            <Link to="/acesso" className="rounded-xl bg-brand px-4 py-2 font-semibold text-white">
+              Conta médica
+            </Link>
+            <Link
+              to="/acesso-paciente"
+              className="rounded-xl border border-brand/30 bg-white px-4 py-2 font-semibold text-brand-deep"
+            >
+              Conta paciente
             </Link>
           </div>
         </nav>
@@ -83,30 +89,41 @@ export function SalesPage() {
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
             <Link
-              to="/dashboard"
+              to="/acesso"
               className="inline-flex items-center gap-3 rounded-xl bg-brand px-6 py-3 font-semibold text-white"
             >
-              Ver demonstração médica <ArrowRight className="size-4" />
+              Entrar na conta médica <ArrowRight className="size-4" />
+            </Link>
+            <Link
+              to="/acesso-paciente"
+              className="inline-flex items-center gap-3 rounded-xl border border-brand/30 bg-white px-6 py-3 font-semibold text-brand-deep"
+            >
+              Entrar na conta paciente <ArrowRight className="size-4" />
+            </Link>
+          </div>
+          <div className="mt-5 flex flex-wrap items-center gap-x-5 gap-y-3 text-sm text-brand-deep">
+            <Link to="/dashboard" className="hover:underline">
+              Ver demonstração médica
             </Link>
             <a
               href={demoWhatsAppUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-3 rounded-xl bg-brand px-6 py-3 font-semibold text-white"
+              className="hover:underline"
             >
-              Agendar demonstração <ArrowRight className="size-4" />
+              Agendar demonstração
             </a>
-            <Link
-              to="/acesso-paciente"
-              className="rounded-xl border bg-white px-6 py-3 font-medium"
-            >
-              Sou paciente
-            </Link>
           </div>
           <p className="mt-5 text-xs text-muted-foreground">
             Demonstração médica agendada com a equipe · conta médica por assinatura · paciente
             gratuito
           </p>
+          <Link
+            to="/admin-inova"
+            className="mt-5 inline-block text-xs text-muted-foreground hover:text-brand-deep hover:underline"
+          >
+            Colaborador INOVA
+          </Link>
         </div>
         <div className="relative rounded-[2rem] border border-brand/20 bg-[#eaf5f7] p-5 sm:p-8">
           <div className="rounded-2xl border bg-white p-6 shadow-sm">
