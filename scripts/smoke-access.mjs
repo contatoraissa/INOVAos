@@ -66,7 +66,12 @@ try {
   for (const path of ["/acesso", "/acesso-paciente"]) {
     await command("Page.navigate", { url: base + path });
     await pause(1200);
-    if(path === "/acesso-paciente") assert.equal(await evaluate("document.documentElement.scrollHeight <= innerHeight + 1"), true, "Patient login fits desktop height");
+    if (path === "/acesso-paciente")
+      assert.equal(
+        await evaluate("document.documentElement.scrollHeight <= innerHeight + 1"),
+        true,
+        "Patient login fits desktop height",
+      );
     assert.equal(
       await evaluate(
         "[...document.querySelectorAll('button, a')].some(b=>b.textContent.includes('Entrar na conta'))",
@@ -85,22 +90,34 @@ try {
     await pause(150);
     assert.equal(await evaluate("document.forms.length"), 1);
     assert.equal(await evaluate("!!document.querySelector('[name=fullName]')"), true);
-    if(path === "/acesso-paciente") assert.equal(await evaluate("document.documentElement.scrollHeight <= innerHeight + 1"), true, "Patient signup fits desktop height");
+    if (path === "/acesso-paciente")
+      assert.equal(
+        await evaluate("document.documentElement.scrollHeight <= innerHeight + 1"),
+        true,
+        "Patient signup fits desktop height",
+      );
     await evaluate(
       "[...document.querySelectorAll('button, a')].find(b=>b.textContent.includes('Voltar para entrar')).click()",
     );
     await pause(100);
     assert.equal(await evaluate("!!document.querySelector('[name=fullName]')"), false);
   }
-  await command('Page.navigate',{url:base+'/acesso'}); await pause(900);
-  await evaluate("[...document.querySelectorAll('a')].find(a=>a.textContent.includes('Ver demonstração médica')).click()");
+  await command("Page.navigate", { url: base + "/acesso" });
+  await pause(900);
+  await evaluate(
+    "[...document.querySelectorAll('a')].find(a=>a.textContent.includes('Ver demonstração médica')).click()",
+  );
   await pause(1200);
-  assert.equal(await evaluate('location.pathname'), '/dashboard');
+  assert.equal(await evaluate("location.pathname"), "/dashboard");
   assert.equal(await evaluate("document.body.textContent.includes('Dr. Rafael Mendes')"), true);
-  for(const path of ['/dashboard','/patients','/results']) {
-    await command('Page.navigate',{url:base+path});await pause(900);
-    assert.equal(await evaluate('location.pathname'),path);
-    assert.equal(await evaluate("document.body.textContent.includes('Ambiente demonstrativo')"), true);
+  for (const path of ["/dashboard", "/patients", "/results"]) {
+    await command("Page.navigate", { url: base + path });
+    await pause(900);
+    assert.equal(await evaluate("location.pathname"), path);
+    assert.equal(
+      await evaluate("document.body.textContent.includes('Ambiente demonstrativo')"),
+      true,
+    );
   }
   await command("Page.navigate", { url: base + "/confirmar-email" });
   await pause(1200);

@@ -69,30 +69,58 @@ async function navigate(path, selector) {
   );
 }
 try {
-  await navigate('/agenda', 'button');
-  const id = await evaluate(`(async()=>{const api=await import('/src/lib/exam-orders.ts');const order=await api.createExamOrder({data:{requestId:"calendar-smoke-"+Date.now(),patientId:'mariana-oliveira',exams:['hemograma'],notes:'SIMULAÇÃO FICTÍCIA: teste do fluxo de coleta.'}});await api.releaseExamOrder({data:{id:order.id}});return order.id;})()`);
+  await navigate("/agenda", "button");
+  const id = await evaluate(
+    `(async()=>{const api=await import('/src/lib/exam-orders.ts');const order=await api.createExamOrder({data:{requestId:"calendar-smoke-"+Date.now(),patientId:'mariana-oliveira',exams:['hemograma'],notes:'SIMULAÇÃO FICTÍCIA: teste do fluxo de coleta.'}});await api.releaseExamOrder({data:{id:order.id}});return order.id;})()`,
+  );
   await evaluate("sessionStorage.setItem('inova-patient-demo','mariana-oliveira')");
-  await navigate('/portal-paciente', 'button');
-  await click('Minha agenda');
-  await wait("document.querySelector('[aria-label=\"Exames solicitados na agenda\"]')?.textContent.includes('Hemograma completo')");
-  assert.match(await evaluate("document.querySelector('[aria-label=\"Exames solicitados na agenda\"]').textContent"), /Aguardando realização/);
-  await click('Ver pedido e consultar valores');
+  await navigate("/portal-paciente", "button");
+  await click("Minha agenda");
+  await wait(
+    "document.querySelector('[aria-label=\"Exames solicitados na agenda\"]')?.textContent.includes('Hemograma completo')",
+  );
+  assert.match(
+    await evaluate(
+      "document.querySelector('[aria-label=\"Exames solicitados na agenda\"]').textContent",
+    ),
+    /Aguardando realização/,
+  );
+  await click("Ver pedido e consultar valores");
   await wait("document.body.textContent.includes('Enviar resultado PDF ao médico')");
-  assert.equal(await evaluate("[...document.querySelectorAll('a')].some(a=>a.href==='https://www.s2medica.com.br/')"), true);
-  await click('Minha agenda');
-  await click('Informar coleta');
-  await fill('#exam-collection-date', '2026-10-22');
-  await fill('#exam-collection-time', '09:00');
-  await fill('#exam-collection-lab', 'Laboratório fictício de teste');
-  await click('Salvar coleta na agenda');
-  await wait("document.querySelector('[aria-label=\"Exames solicitados na agenda\"]')?.textContent.includes('Coleta informada')");
-  const event = await evaluate(`(async()=>{const api=await import('/src/lib/agenda.ts');return (await api.listAgenda({data:{patientIds:['mariana-oliveira'],audience:'doctor'}})).find(e=>e.orderId===${JSON.stringify(id)});})()`);
-  assert.equal(event.date, '2026-10-22');
-  assert.equal(event.kind, 'Exame');
-  const duplicateRejected = await evaluate(`(async()=>{try{const api=await import('/src/lib/exam-orders.ts');await api.scheduleExamOrder({data:{orderId:${JSON.stringify(id)},date:'2026-10-23',time:'',laboratory:'Fictício'}});return false;}catch{return true;}})()`);
+  assert.equal(
+    await evaluate(
+      "[...document.querySelectorAll('a')].some(a=>a.href==='https://www.s2medica.com.br/')",
+    ),
+    true,
+  );
+  await click("Minha agenda");
+  await click("Informar coleta");
+  await fill("#exam-collection-date", "2026-10-22");
+  await fill("#exam-collection-time", "09:00");
+  await fill("#exam-collection-lab", "Laboratório fictício de teste");
+  await click("Salvar coleta na agenda");
+  await wait(
+    "document.querySelector('[aria-label=\"Exames solicitados na agenda\"]')?.textContent.includes('Coleta informada')",
+  );
+  const event = await evaluate(
+    `(async()=>{const api=await import('/src/lib/agenda.ts');return (await api.listAgenda({data:{patientIds:['mariana-oliveira'],audience:'doctor'}})).find(e=>e.orderId===${JSON.stringify(id)});})()`,
+  );
+  assert.equal(event.date, "2026-10-22");
+  assert.equal(event.kind, "Exame");
+  const duplicateRejected = await evaluate(
+    `(async()=>{try{const api=await import('/src/lib/exam-orders.ts');await api.scheduleExamOrder({data:{orderId:${JSON.stringify(id)},date:'2026-10-23',time:'',laboratory:'Fictício'}});return false;}catch{return true;}})()`,
+  );
   assert.equal(duplicateRejected, true);
-  await evaluate(`(async()=>{const api=await import('/src/lib/exam-orders.ts');await api.cancelExamOrder({data:{id:${JSON.stringify(id)}}});})()`);
-  const cancelled = await evaluate(`(async()=>{const api=await import('/src/lib/agenda.ts');return (await api.listAgenda({data:{patientIds:['mariana-oliveira'],audience:'patient'}})).find(e=>e.orderId===${JSON.stringify(id)});})()`);
-  assert.equal(cancelled.status, 'Cancelado');
-  console.log('PASS: released order in agenda, exact order navigation, S2 link, collection date, duplicate rejection, doctor visibility and cancellation');
-} finally { ws.close(); }
+  await evaluate(
+    `(async()=>{const api=await import('/src/lib/exam-orders.ts');await api.cancelExamOrder({data:{id:${JSON.stringify(id)}}});})()`,
+  );
+  const cancelled = await evaluate(
+    `(async()=>{const api=await import('/src/lib/agenda.ts');return (await api.listAgenda({data:{patientIds:['mariana-oliveira'],audience:'patient'}})).find(e=>e.orderId===${JSON.stringify(id)});})()`,
+  );
+  assert.equal(cancelled.status, "Cancelado");
+  console.log(
+    "PASS: released order in agenda, exact order navigation, S2 link, collection date, duplicate rejection, doctor visibility and cancellation",
+  );
+} finally {
+  ws.close();
+}

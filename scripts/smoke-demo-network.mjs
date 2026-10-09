@@ -69,18 +69,38 @@ async function navigate(path, selector) {
   );
 }
 try {
-  await navigate('/dashboard','main');
-  await wait("document.querySelector('[aria-label=\"Fila de trabalho médica\"]')?.textContent.includes('Envio aguardando revisão')");
-  assert.equal(await evaluate("document.querySelector('main').textContent.includes('Não foi possível carregar a fila')"),false);
-  await wait("document.querySelector('button[aria-label^=\"Notificações:\"]').textContent.trim()!==''");
-  await navigate('/acesso-paciente','button');
+  await navigate("/dashboard", "main");
+  await wait(
+    "document.querySelector('[aria-label=\"Fila de trabalho médica\"]')?.textContent.includes('Envio aguardando revisão')",
+  );
+  assert.equal(
+    await evaluate(
+      "document.querySelector('main').textContent.includes('Não foi possível carregar a fila')",
+    ),
+    false,
+  );
+  await wait(
+    "document.querySelector('button[aria-label^=\"Notificações:\"]').textContent.trim()!==''",
+  );
+  await navigate("/acesso-paciente", "button");
   await evaluate("sessionStorage.setItem('inova-patient-demo','mariana-oliveira')");
-  await navigate('/portal-paciente','button');
-  await click('Minha genética');
-  await wait("document.querySelector('[data-genetic-raw-panel]') && !document.querySelector('[data-genetic-raw-panel]').textContent.includes('Carregando genética')");
-  assert.equal(await evaluate("document.querySelector('[data-genetic-raw-panel] [role=alert]')?.textContent ?? ''"),'');
-  await click('Avisos');
+  await navigate("/portal-paciente", "button");
+  await click("Minha genética");
+  await wait(
+    "document.querySelector('[data-genetic-raw-panel]') && !document.querySelector('[data-genetic-raw-panel]').textContent.includes('Carregando genética')",
+  );
+  assert.equal(
+    await evaluate(
+      "document.querySelector('[data-genetic-raw-panel] [role=alert]')?.textContent ?? ''",
+    ),
+    "",
+  );
+  await click("Avisos");
   await wait("document.querySelector('main').textContent.includes('Sua preparação foi recebida')");
-  await navigate('/dashboard','main');
-  console.log('PASS: LAN 8081 physician queue and bell, genetics without server error, patient receipt notice.');
-} finally {ws.close();}
+  await navigate("/dashboard", "main");
+  console.log(
+    "PASS: LAN 8081 physician queue and bell, genetics without server error, patient receipt notice.",
+  );
+} finally {
+  ws.close();
+}

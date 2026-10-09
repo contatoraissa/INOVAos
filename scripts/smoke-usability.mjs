@@ -55,6 +55,9 @@ async function fill(selector, value) {
   );
 }
 async function click(label) {
+  await wait(
+    `[...document.querySelectorAll('button')].some(b=>b.textContent.trim()===${JSON.stringify(label)} && !b.disabled)`,
+  );
   await evaluate(
     `(()=>{const button=[...document.querySelectorAll('button')].find(item=>item.textContent.trim()===${JSON.stringify(label)});if(!button)throw new Error('Missing button');button.click();})()`,
   );
@@ -82,7 +85,7 @@ try {
   await evaluate(
     `(async()=>{const {patientDraft}=await import('/src/lib/patient-draft.ts');const existing=await patientDraft('mariana-oliveira','read');if(existing)await patientDraft(${JSON.stringify(backupKey)},'save',existing.value);await patientDraft('mariana-oliveira','remove');})()`,
   );
-  await evaluate('document.querySelector("form").requestSubmit()');
+  await click("Explorar demonstração gratuita");
   await wait('location.pathname==="/portal-paciente" && document.querySelector("nav")');
   await click("Preparar consulta");
   await fill("#symptoms", token);
@@ -187,7 +190,13 @@ try {
     `!document.querySelector('[aria-label="Fechamento da consulta"]').textContent.includes("Conferindo…")`,
   );
   await fill("#closing-plan", "Pendência fictícia " + token);
-  await evaluate(`document.querySelector('[aria-label="Fechamento da consulta"] input').click()`);
+  await wait(
+    `document.querySelector('#closing-plan').value===${JSON.stringify("Pendência fictícia " + token)}`,
+  );
+  await new Promise((resolve) => setTimeout(resolve, 100));
+  await evaluate(
+    `[...document.querySelectorAll('[aria-label="Fechamento da consulta"] label')].find(label=>label.textContent.includes('Conferi este resumo')).querySelector('input[type=checkbox]').click()`,
+  );
   await click("Registrar fechamento nesta sessão");
   await wait(
     `document.querySelector('[aria-label="Fechamento da consulta"]').textContent.includes("Fechamento registrado" )`,

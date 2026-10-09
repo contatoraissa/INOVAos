@@ -55,6 +55,9 @@ async function fill(selector, value) {
   );
 }
 async function click(label) {
+  await wait(
+    `[...document.querySelectorAll('button')].some(b=>b.textContent.trim()===${JSON.stringify(label)} && !b.disabled)`,
+  );
   await evaluate(
     `(()=>{const button=[...document.querySelectorAll('button')].find(item=>item.textContent.trim()===${JSON.stringify(label)});if(!button)throw new Error('Missing button');button.click();})()`,
   );
@@ -75,7 +78,7 @@ async function doctor() {
 }
 async function patient() {
   await navigate("/acesso-paciente", "#patient-email");
-  await evaluate('document.querySelector("form").requestSubmit()');
+  await click("Explorar demonstração gratuita");
   await wait('location.pathname==="/portal-paciente" && document.querySelector("nav")');
   await click("Exames solicitados");
   await wait(
@@ -143,7 +146,7 @@ const token = String(Date.now());
 const note = "Pedido care fictício " + token;
 const title = "Orientação de teste " + token;
 const prepTitle = "Preparo de teste " + token;
-const labName = "Unidade fictícia " + token;
+const labName = "Unidade Centro · exemplo S2";
 try {
   await command("Page.enable");
   await command("Runtime.enable");
@@ -206,11 +209,17 @@ try {
   );
   console.log("PASS: only published instructions appear with source, link and date");
   await section("Laboratórios favoritos");
-  await fill("#favorite-name", labName);
-  await fill("#favorite-cep", "01310-100");
-  await fill("#favorite-address", "Endereço demonstrativo em São Paulo");
-  await fill("#favorite-website", "https://example.com/");
-  await click("Salvar laboratório favorito");
+  // Use the approved S2 demonstration instead of the retired manual lab form.
+  await evaluate(
+    `[...document.querySelectorAll('main article')].find(a=>a.textContent.includes(${JSON.stringify(labName)}) && [...a.querySelectorAll('button')].some(b=>b.textContent.trim()==='Remover favorito'))?.querySelector('button')?.click()`,
+  );
+  await fill("#s2-demo-cep", "18035-000");
+  await click("Consultar opções");
+  await wait(`document.querySelector('[aria-label="Consulta demonstrativa S2 Labs"] article')`);
+  await evaluate(
+    `[...document.querySelectorAll('[aria-label="Consulta demonstrativa S2 Labs"] article')].find(a=>a.textContent.includes(${JSON.stringify(labName)})).querySelector('button').click()`,
+  );
+  await wait(`document.body.textContent.includes('Unidade demonstrativa adicionada')`);
   await wait(
     `document.querySelector('main article')?.textContent.includes(${JSON.stringify(labName)}) || [...document.querySelectorAll('main article')].some(item=>item.textContent.includes(${JSON.stringify(labName)}))`,
   );
@@ -225,7 +234,7 @@ try {
   await fill("#order-performed", "2026-10-06");
   await click("Guardar acompanhamento");
   await wait(`document.querySelector('main').textContent.includes('Acompanhamento salvo')`);
-  assert.equal(await evaluate(`document.querySelector('#order-cep').value`), "01310100");
+  assert.equal(await evaluate(`document.querySelector('#order-cep').value`), "18035000");
   await section("Próximos passos");
   assert.equal(
     await evaluate(`document.querySelector('main').textContent.includes('sem laudo vinculado')`),

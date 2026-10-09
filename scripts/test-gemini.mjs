@@ -193,3 +193,39 @@ test("Refuses invalid model paths and missing credentials", async () => {
     false,
   );
 });
+
+test("Compact provider schema still rejects oversized arrays, long text and out-of-document citations", async () => {
+  for (const invalid of [
+    { ...summary, scope: "x".repeat(2501) },
+    { ...summary, findings: Array.from({ length: 21 }, () => summary.findings[0]) },
+    { ...summary, findings: [{ ...summary.findings[0], page: summary.pages + 1 }] },
+    {
+      ...summary,
+      observations: Array.from({ length: 101 }, () => ({
+        name: "Exemplo",
+        value: "1",
+        unit: "",
+        reference: "",
+        collection: "",
+        flag: "sem_classificacao",
+        page: 1,
+        quote: "",
+      })),
+    },
+  ]) {
+    const result = await analyzeWithGemini(input, {
+      key: "test-secret",
+      model: "test-model",
+      fetcher: async () =>
+        new Response(
+          JSON.stringify({
+            candidates: [
+              { finishReason: "STOP", content: { parts: [{ text: JSON.stringify(invalid) }] } },
+            ],
+          }),
+        ),
+    });
+    assert.equal(result.ok, false);
+    assert.equal("summary" in result, false);
+  }
+});

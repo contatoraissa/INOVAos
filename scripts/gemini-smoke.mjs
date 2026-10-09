@@ -49,7 +49,17 @@ const safeFetch = async (url, options) => {
           : /billing|quota/i.test(message)
             ? "BILLING_OR_QUOTA"
             : "OTHER_PROVIDER_ERROR";
-    console.log(JSON.stringify({ providerStatus: response.status, reasons, category }));
+    console.log(
+      JSON.stringify({
+        providerStatus: response.status,
+        reasons,
+        category,
+        diagnostic: message
+          .replaceAll(process.env.GEMINI_API_KEY || "__no_key__", "[redacted]")
+          .replace(/AIza[\w-]+/g, "[redacted]")
+          .slice(0, 700),
+      }),
+    );
   }
   return response;
 };

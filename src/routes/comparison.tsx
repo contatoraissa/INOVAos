@@ -1,2 +1,20 @@
-import { createFileRoute } from "@tanstack/react-router"; import { AppShell } from "@/components/inova/AppShell"; import { ComparisonPage } from "@/components/inova/SecondaryPages";
-export const Route=createFileRoute("/comparison")({head:()=>({meta:[{title:"Comparar resultados — INOVA"},{name:"description",content:"Compare valores laboratoriais entre duas coletas."},{property:"og:title",content:"Comparar resultados — INOVA"},{property:"og:description",content:"Visualização objetiva da evolução dos valores."},{property:"og:type",content:"website"},{name:"twitter:card",content:"summary_large_image"}]}),component:()=> <AppShell><ComparisonPage/></AppShell>});
+import { createFileRoute } from "@tanstack/react-router";
+import { AppShell } from "@/components/inova/AppShell";
+import { ComparisonPage } from "@/components/inova/SecondaryPages";
+export const Route = createFileRoute("/comparison")({
+  head: () => ({
+    meta: [
+      { title: "Comparar resultados — INOVA" },
+      { name: "description", content: "Compare valores laboratoriais entre duas coletas." },
+      { property: "og:title", content: "Comparar resultados — INOVA" },
+      { property: "og:description", content: "Visualização objetiva da evolução dos valores." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+    ],
+  }),
+  component: () => (
+    <AppShell>
+      <ComparisonPage />
+    </AppShell>
+  ),
+});

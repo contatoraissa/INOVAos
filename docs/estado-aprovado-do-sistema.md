@@ -169,3 +169,20 @@ Altera??es persistem no navegador em `inova-demo-admin-v2`, com migra??o dos reg
 O resumo Gemini exige consentimento e envia indicadores e refer?ncias an?nimas, sem nomes, e-mails, coment?rios livres ou prontu?rios. Recomenda??es n?o executam a??es. A chamada est? restrita ao desenvolvimento local. Autentica??o e autoriza??o administrativa de produ??o s?o necess?rias antes de conectar contas reais. Supabase n?o foi alterado.
 
 Valida??o: testes de regras, migra??o, privacidade, persist?ncia, fluxo no navegador e responsividade, TypeScript, ESLint, build e resumo real com Gemini.
+
+## Verificação funcional — 09/10/2026
+
+Os portais demonstrativos de Rafael, Mariana e administração foram exercitados
+no navegador. Resultado: 76 testes de regras e contratos, 19 cenários de
+navegador, navegação em 16 rotas e 15 seções do paciente nas larguras de 1440 e
+390 px. TypeScript e build passaram; ESLint passou sem erros, com sete avisos
+existentes de Fast Refresh.
+
+Foram verificadas chamadas reais ao Gemini para seis fluxos, sempre com dados
+fictícios. A análise de PDF recebeu uma correção no esquema enviado ao provedor;
+os limites e a validação de citações permanecem no servidor. O layout aprovado
+foi preservado. Contas e prontuários reais do Supabase não foram alterados.
+
+O comando `npm.cmd run test:browser` executa a bateria local. Consulte
+[testes-funcionais-2026-10-09.md](testes-funcionais-2026-10-09.md) para evidências,
+pré-requisitos, comandos de repetição e limites do que foi verificado.

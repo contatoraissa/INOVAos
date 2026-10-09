@@ -75,7 +75,7 @@ async function doctor() {
 }
 async function patient() {
   await navigate("/acesso-paciente", "#patient-email");
-  await evaluate('document.querySelector("form").requestSubmit()');
+  await click("Explorar demonstração gratuita");
   await wait('location.pathname==="/portal-paciente" && document.querySelector("nav")');
   await click("Exames solicitados");
   await wait(

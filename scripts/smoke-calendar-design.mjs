@@ -68,26 +68,57 @@ async function navigate(path, selector) {
     `Object.keys(document.querySelector(${JSON.stringify(selector)}) || {}).some(key=>key.startsWith('__reactProps'))`,
   );
 }
-try{
-  await command('Emulation.setDeviceMetricsOverride',{width:1440,height:1050,deviceScaleFactor:1,mobile:false});
-  await navigate('/agenda','main');
-  assert.equal(await evaluate("document.querySelectorAll('[aria-label=\"Calendário mensal\"]').length"),1);
-  assert.equal(await evaluate("document.querySelectorAll('[aria-label=\"Calendário mensal\"] button').length"),42);
-  const heading=await evaluate("document.querySelector('main h2').textContent");
+try {
+  await command("Emulation.setDeviceMetricsOverride", {
+    width: 1440,
+    height: 1050,
+    deviceScaleFactor: 1,
+    mobile: false,
+  });
+  await navigate("/agenda", "main");
+  assert.equal(
+    await evaluate("document.querySelectorAll('[aria-label=\"Calendário mensal\"]').length"),
+    1,
+  );
+  assert.equal(
+    await evaluate("document.querySelectorAll('[aria-label=\"Calendário mensal\"] button').length"),
+    42,
+  );
+  const heading = await evaluate("document.querySelector('main h2').textContent");
   await evaluate("document.querySelector('[aria-label=\"Próximo mês\"]').click()");
   await wait(`document.querySelector('main h2').textContent!==${JSON.stringify(heading)}`);
   await evaluate("document.querySelector('[aria-label=\"Mês anterior\"]').click()");
   await wait(`document.querySelector('main h2').textContent===${JSON.stringify(heading)}`);
-  await click('Hoje');
-  await wait("document.querySelector('[aria-label=\"Calendário mensal\"] button[aria-pressed=true]')");
-  const selected=await evaluate("document.querySelector('[aria-label=\"Calendário mensal\"] button[aria-pressed=true]').getAttribute('aria-label')");
+  await click("Hoje");
+  await wait(
+    "document.querySelector('[aria-label=\"Calendário mensal\"] button[aria-pressed=true]')",
+  );
+  const selected = await evaluate(
+    "document.querySelector('[aria-label=\"Calendário mensal\"] button[aria-pressed=true]').getAttribute('aria-label')",
+  );
   await evaluate("document.querySelector('[aria-label=\"Próximo dia\"]').click()");
-  await wait(`document.querySelector('[aria-label=\"Calendário mensal\"] button[aria-pressed=true]').getAttribute('aria-label')!==${JSON.stringify(selected)}`);
-  await command('Emulation.setDeviceMetricsOverride',{width:390,height:844,deviceScaleFactor:1,mobile:true});
-  assert.equal(await evaluate('document.documentElement.scrollWidth<=innerWidth'),true);
-  await navigate('/acesso-paciente','button');await evaluate("sessionStorage.setItem('inova-patient-demo','mariana-oliveira')");
-  await navigate('/portal-paciente','button');await click('Minha agenda');
-  assert.equal(await evaluate("document.querySelectorAll('[aria-label=\"Calendário mensal\"]').length"),1);
-  assert.equal(await evaluate('document.documentElement.scrollWidth<=innerWidth'),true);
-  console.log('PASS: single monthly calendar, month/day navigation, Today, mobile doctor and patient.');
-}finally{ws.close();}
+  await wait(
+    `document.querySelector('[aria-label=\"Calendário mensal\"] button[aria-pressed=true]').getAttribute('aria-label')!==${JSON.stringify(selected)}`,
+  );
+  await command("Emulation.setDeviceMetricsOverride", {
+    width: 390,
+    height: 844,
+    deviceScaleFactor: 1,
+    mobile: true,
+  });
+  assert.equal(await evaluate("document.documentElement.scrollWidth<=innerWidth"), true);
+  await navigate("/acesso-paciente", "button");
+  await evaluate("sessionStorage.setItem('inova-patient-demo','mariana-oliveira')");
+  await navigate("/portal-paciente", "button");
+  await click("Minha agenda");
+  assert.equal(
+    await evaluate("document.querySelectorAll('[aria-label=\"Calendário mensal\"]').length"),
+    1,
+  );
+  assert.equal(await evaluate("document.documentElement.scrollWidth<=innerWidth"), true);
+  console.log(
+    "PASS: single monthly calendar, month/day navigation, Today, mobile doctor and patient.",
+  );
+} finally {
+  ws.close();
+}

@@ -68,24 +68,63 @@ async function navigate(path, selector) {
     `Object.keys(document.querySelector(${JSON.stringify(selector)}) || {}).some(key=>key.startsWith('__reactProps'))`,
   );
 }
-const title='SIMULAÇÃO: consulta com Dr. Rafael · '+Date.now();
+const title = "SIMULAÇÃO: consulta com Dr. Rafael · " + Date.now();
 try {
-  await navigate('/acesso-paciente','button');await evaluate("sessionStorage.setItem('inova-patient-demo','mariana-oliveira')");
-  await navigate('/portal-paciente','button');await click('Minha agenda');
-  assert.equal(await evaluate("document.querySelectorAll('[aria-label=\"Calendário mensal\"]').length"),1);
-  await click('Adicionar evento');await wait("document.querySelector('#agenda-title')");
-  await fill('#agenda-title',title);await fill('#agenda-date','2026-10-20');await fill('#agenda-notes','Evento fictício. Aguardando guia do convênio.');
-  await click('Salvar evento');await wait(`[...document.querySelectorAll('[data-agenda-event]')].some(e=>e.textContent.includes(${JSON.stringify(title)}))`);
-  const id=await evaluate(`[...document.querySelectorAll('[data-agenda-event]')].find(e=>e.textContent.includes(${JSON.stringify(title)})).dataset.agendaEvent`);
-  await navigate('/agenda','main');await wait(`document.querySelector('[data-agenda-event="${id}"]')`);
+  await navigate("/acesso-paciente", "button");
+  await evaluate("sessionStorage.setItem('inova-patient-demo','mariana-oliveira')");
+  await navigate("/portal-paciente", "button");
+  await click("Minha agenda");
+  assert.equal(
+    await evaluate("document.querySelectorAll('[aria-label=\"Calendário mensal\"]').length"),
+    1,
+  );
+  await click("Adicionar evento");
+  await wait("document.querySelector('#agenda-title')");
+  await fill("#agenda-title", title);
+  await fill("#agenda-date", "2026-10-20");
+  await fill("#agenda-notes", "Evento fictício. Aguardando guia do convênio.");
+  await click("Salvar evento");
+  await wait(
+    `[...document.querySelectorAll('[data-agenda-event]')].some(e=>e.textContent.includes(${JSON.stringify(title)}))`,
+  );
+  const id = await evaluate(
+    `[...document.querySelectorAll('[data-agenda-event]')].find(e=>e.textContent.includes(${JSON.stringify(title)})).dataset.agendaEvent`,
+  );
+  await navigate("/agenda", "main");
+  await wait(`document.querySelector('[data-agenda-event="${id}"]')`);
   await evaluate(`document.querySelector('[data-agenda-event="${id}"] button').click()`);
-  await wait(`document.querySelector('[data-agenda-event="${id}"]')?.textContent.includes('Confirmado')`);
-  await navigate('/portal-paciente','button');await click('Minha agenda');await wait(`document.querySelector('[data-agenda-event="${id}"]')?.textContent.includes('Confirmado')`);
-  await evaluate(`document.querySelector('[data-agenda-event="${id}"] button').click()`);await wait("document.querySelector('#agenda-cancel-reason')");
-  await click('Confirmar cancelamento');await wait(`document.querySelector('[data-agenda-event="${id}"]')?.textContent.includes('Cancelado')`);
-  await navigate('/agenda','main');await wait(`document.querySelector('[data-agenda-event="${id}"]')?.textContent.includes('Guia do convênio ainda não emitida')`);
-  await evaluate("document.querySelector('button[aria-label^=\"Notificações:\"]').click()");await wait("document.querySelector('[aria-label=\"Notificações do médico\"]')?.textContent.includes('Cancelado:')");
-  await command('Emulation.setDeviceMetricsOverride',{width:390,height:844,deviceScaleFactor:1,mobile:true});
-  assert.equal(await evaluate('document.documentElement.scrollWidth<=innerWidth'),true);
-  console.log('PASS: annual patient agenda, shared proposal/confirmation/cancellation, insurance reason, physician notification and mobile width.');
-}finally{ws.close();}
+  await wait(
+    `document.querySelector('[data-agenda-event="${id}"]')?.textContent.includes('Confirmado')`,
+  );
+  await navigate("/portal-paciente", "button");
+  await click("Minha agenda");
+  await wait(
+    `document.querySelector('[data-agenda-event="${id}"]')?.textContent.includes('Confirmado')`,
+  );
+  await evaluate(`document.querySelector('[data-agenda-event="${id}"] button').click()`);
+  await wait("document.querySelector('#agenda-cancel-reason')");
+  await click("Confirmar cancelamento");
+  await wait(
+    `document.querySelector('[data-agenda-event="${id}"]')?.textContent.includes('Cancelado')`,
+  );
+  await navigate("/agenda", "main");
+  await wait(
+    `document.querySelector('[data-agenda-event="${id}"]')?.textContent.includes('Guia do convênio ainda não emitida')`,
+  );
+  await evaluate("document.querySelector('button[aria-label^=\"Notificações:\"]').click()");
+  await wait(
+    "document.querySelector('[aria-label=\"Notificações do médico\"]')?.textContent.includes('Cancelado:')",
+  );
+  await command("Emulation.setDeviceMetricsOverride", {
+    width: 390,
+    height: 844,
+    deviceScaleFactor: 1,
+    mobile: true,
+  });
+  assert.equal(await evaluate("document.documentElement.scrollWidth<=innerWidth"), true);
+  console.log(
+    "PASS: annual patient agenda, shared proposal/confirmation/cancellation, insurance reason, physician notification and mobile width.",
+  );
+} finally {
+  ws.close();
+}

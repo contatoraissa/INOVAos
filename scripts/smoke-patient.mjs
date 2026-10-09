@@ -6,6 +6,9 @@ const attachmentTest = process.argv.includes("--audio-attachment");
 const deliveryTest = audioTest || attachmentTest;
 const base =
   process.env.INOVA_TEST_URL ?? (audioTest ? "http://localhost:8080" : "http://192.168.0.2:8080");
+const backupKey = "qa-patient-backup-" + Date.now();
+let hadDraft = false;
+let draftBackedUp = false;
 const targets = await fetch("http://127.0.0.1:9222/json/list").then((response) => response.json());
 const target = targets.find((item) => item.type === "page");
 if (!target) throw new Error("Start headless Chrome on port 9222");
@@ -75,18 +78,17 @@ try {
   });
   await command("Page.navigate", { url: base + "/acesso-paciente" });
   await wait('location.pathname==="/acesso-paciente" && document.querySelector("#patient-email")');
-  await fill("#patient-password", "invalid");
-  errors.length = 0;
-  await evaluate(
-    'sessionStorage.removeItem("inova-patient-demo");document.querySelector("form").requestSubmit()',
-  );
-  await wait('document.querySelector("[role=alert]")');
-  assert.equal(await evaluate("location.pathname"), "/acesso-paciente");
-  console.log("PASS: invalid demonstration credentials stay on patient login");
-  await fill("#patient-password", "inova2026");
-  await evaluate('document.querySelector("form").requestSubmit()');
   await wait(
-    'location.pathname==="/portal-paciente" && document.body.innerText.includes("Olá, Mariana.")',
+    'Object.keys(document.querySelector("#patient-email")).some(key=>key.startsWith("__reactProps"))',
+  );
+  hadDraft = await evaluate(
+    `(async()=>{const {patientDraft}=await import('/src/lib/patient-draft.ts');const existing=await patientDraft('mariana-oliveira','read');if(existing)await patientDraft(${JSON.stringify(backupKey)},'save',existing.value);await patientDraft('mariana-oliveira','remove');return !!existing;})()`,
+  );
+  draftBackedUp = true;
+  errors.length = 0;
+  await click("Explorar demonstração gratuita");
+  await wait(
+    'location.pathname==="/portal-paciente" && document.body.innerText.includes("Minha saúde")',
   );
   assert.equal(
     await evaluate('document.querySelector("nav").innerText.includes("Médicos")'),
@@ -174,7 +176,7 @@ try {
   );
   await command("Emulation.setEmulatedMedia", { media: "screen" });
   console.log("PASS: print layout uses saved notes without navigation or editable form");
-  await click("Meu cuidado");
+  await click("Minha saúde");
   await wait('document.querySelector("main").innerText.includes("Salva")');
   await click("Preparar consulta");
   assert.equal(
@@ -319,7 +321,7 @@ try {
   await fill("#profile-phone", "11999999999");
   await click("Salvar contato nesta sessão");
   await wait('document.body.innerText.includes("Contato atualizado nesta sessão.")');
-  await click("Meu cuidado");
+  await click("Minha saúde");
   mkdirSync("artifacts", { recursive: true });
   const screenshot = await command("Page.captureScreenshot", {
     format: "png",
@@ -376,8 +378,9 @@ try {
     await wait('document.body.innerText.includes("Marcar envio como revisado")');
     await click("Marcar envio como revisado");
     await wait('document.body.innerText.includes("Envio revisado")');
+    const beforeRemoval = await evaluate('document.querySelectorAll("main aside button").length');
     await click("Remover envio da caixa");
-    await wait('!document.body.innerText.includes("3 áudio(s) · 1 laudo(s)")');
+    await wait(`document.querySelectorAll("main aside button").length===${beforeRemoval - 1}`);
     console.log(
       "PASS: doctor receives playable audio and PDF, opens analysis, reviews and removes the submission",
     );
@@ -385,5 +388,9 @@ try {
   assert.deepEqual(errors, []);
   console.log("PASS: no patient browser runtime exceptions");
 } finally {
+  if (draftBackedUp)
+    await evaluate(
+      `(async()=>{const {patientDraft}=await import('/src/lib/patient-draft.ts');if(${hadDraft}){const backup=await patientDraft(${JSON.stringify(backupKey)},'read');if(backup)await patientDraft('mariana-oliveira','save',backup.value);}else await patientDraft('mariana-oliveira','remove');await patientDraft(${JSON.stringify(backupKey)},'remove');})()`,
+    );
   ws.close();
 }

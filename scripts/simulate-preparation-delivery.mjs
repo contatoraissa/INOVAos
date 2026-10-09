@@ -68,28 +68,53 @@ async function navigate(path, selector) {
     `Object.keys(document.querySelector(${JSON.stringify(selector)}) || {}).some(key=>key.startsWith('__reactProps'))`,
   );
 }
-const message='SIMULAÇÃO FICTÍCIA: Olá, Dr. Rafael! Gostaria de conversar sobre como tenho me sentido e conferir meus exames. Estou enviando o laudo fictício do laboratório para nossa próxima consulta.';
-const filename='Laudo-laboratorio-SIMULACAO-FICTICIA.pdf';
+const message =
+  "SIMULAÇÃO FICTÍCIA: Olá, Dr. Rafael! Gostaria de conversar sobre como tenho me sentido e conferir meus exames. Estou enviando o laudo fictício do laboratório para nossa próxima consulta.";
+const filename = "Laudo-laboratorio-SIMULACAO-FICTICIA.pdf";
 try {
-  await command('Runtime.enable');
-  await navigate('/acesso-paciente','button');
+  await command("Runtime.enable");
+  await navigate("/acesso-paciente", "button");
   await evaluate("sessionStorage.setItem('inova-patient-demo','mariana-oliveira')");
-  await navigate('/portal-paciente','button');
-  await click('Preparar consulta');
-  await fill('#symptoms',message);
-  await evaluate(`(async()=>{const response=await fetch('/examples/laudo-laboratorial-ficticio.pdf');if(!response.ok)throw new Error('PDF indisponível');const transfer=new DataTransfer();transfer.items.add(new File([await response.blob()],${JSON.stringify(filename)},{type:'application/pdf'}));const input=document.querySelector('input[aria-label="Adicionar laudo à preparação"]');input.files=transfer.files;input.dispatchEvent(new Event('change',{bubbles:true}));})()`);
-  await wait(`[...document.querySelectorAll('label')].some(l=>l.textContent.includes(${JSON.stringify(filename)}))`);
-  await evaluate(`[...document.querySelectorAll('label')].find(l=>l.textContent.includes(${JSON.stringify(filename)})).querySelector('input').click()`);
-  await evaluate("[...document.querySelectorAll('label')].find(l=>l.textContent.includes('Confirmo que as respostas')).querySelector('input').click()");
-  await click('Revisar antes de enviar');
+  await navigate("/portal-paciente", "button");
+  await click("Preparar consulta");
+  await fill("#symptoms", message);
+  await evaluate(
+    `(async()=>{const response=await fetch('/examples/laudo-laboratorial-ficticio.pdf');if(!response.ok)throw new Error('PDF indisponível');const transfer=new DataTransfer();transfer.items.add(new File([await response.blob()],${JSON.stringify(filename)},{type:'application/pdf'}));const input=document.querySelector('input[aria-label="Adicionar laudo à preparação"]');input.files=transfer.files;input.dispatchEvent(new Event('change',{bubbles:true}));})()`,
+  );
+  await wait(
+    `[...document.querySelectorAll('label')].some(l=>l.textContent.includes(${JSON.stringify(filename)}))`,
+  );
+  await evaluate(
+    `[...document.querySelectorAll('label')].find(l=>l.textContent.includes(${JSON.stringify(filename)})).querySelector('input').click()`,
+  );
+  await evaluate(
+    "[...document.querySelectorAll('label')].find(l=>l.textContent.includes('Confirmo que as respostas')).querySelector('input').click()",
+  );
+  await click("Revisar antes de enviar");
   await wait("document.querySelector('[role=dialog]')");
-  assert.equal(await evaluate(`document.querySelector('[role=dialog]').textContent.includes(${JSON.stringify(filename)})`),true);
-  await click('Confirmar envio ao médico');
-  await wait("document.querySelector('main').textContent.includes('Recebido na caixa demonstrativa do médico')");
-  await navigate('/patients/mariana-oliveira','main button');
-  await click('Envios do paciente');
+  assert.equal(
+    await evaluate(
+      `document.querySelector('[role=dialog]').textContent.includes(${JSON.stringify(filename)})`,
+    ),
+    true,
+  );
+  await click("Confirmar envio ao médico");
+  await wait(
+    "document.querySelector('main').textContent.includes('Recebido na caixa demonstrativa do médico')",
+  );
+  await navigate("/patients/mariana-oliveira", "main button");
+  await click("Envios do paciente");
   await wait(`document.querySelector('main').textContent.includes(${JSON.stringify(message)})`);
-  assert.equal(await evaluate(`document.querySelector('main').textContent.includes(${JSON.stringify(filename)})`),true);
-  console.log('PASS: patient message and fictional laboratory PDF delivered to physician. Left pending for review.');
+  assert.equal(
+    await evaluate(
+      `document.querySelector('main').textContent.includes(${JSON.stringify(filename)})`,
+    ),
+    true,
+  );
+  console.log(
+    "PASS: patient message and fictional laboratory PDF delivered to physician. Left pending for review.",
+  );
   console.log(await evaluate("document.querySelector('main').innerText"));
-} finally {ws.close();}
+} finally {
+  ws.close();
+}

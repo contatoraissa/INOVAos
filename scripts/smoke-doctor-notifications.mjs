@@ -69,28 +69,53 @@ async function navigate(path, selector) {
   );
 }
 try {
-  await navigate('/results','main');
-  await wait("document.querySelector('button[aria-label^=\"Notificações:\"]').textContent.trim()!==''");
+  await navigate("/results", "main");
+  await wait(
+    "document.querySelector('button[aria-label^=\"Notificações:\"]').textContent.trim()!==''",
+  );
   await evaluate("document.querySelector('button[aria-label^=\"Notificações:\"]').click()");
-  await wait("document.querySelector('[aria-label=\"Notificações do médico\"]')?.textContent.includes('Nova preparação recebida')");
-  assert.equal(await evaluate("document.querySelector('[aria-label=\"Notificações do médico\"]').textContent.includes('1 PDF(s)')"),true);
+  await wait(
+    "document.querySelector('[aria-label=\"Notificações do médico\"]')?.textContent.includes('Nova preparação recebida')",
+  );
+  assert.equal(
+    await evaluate(
+      "document.querySelector('[aria-label=\"Notificações do médico\"]').textContent.includes('1 PDF(s)')",
+    ),
+    true,
+  );
   await evaluate("document.querySelector('[aria-label=\"Notificações do médico\"] a').click()");
-  await wait("location.pathname==='/patients/mariana-oliveira' && document.querySelector('main').textContent.includes('Laudo-laboratorio-SIMULACAO-FICTICIA.pdf')");
-  assert.equal(await evaluate("document.querySelector('main').textContent.includes('Aguardando revisão')"),true);
-  await navigate('/results','main');
+  await wait(
+    "location.pathname==='/patients/mariana-oliveira' && document.querySelector('main').textContent.includes('Laudo-laboratorio-SIMULACAO-FICTICIA.pdf')",
+  );
+  assert.equal(
+    await evaluate("document.querySelector('main').textContent.includes('Aguardando revisão')"),
+    true,
+  );
+  await navigate("/results", "main");
   await evaluate("document.querySelector('button[aria-label^=\"Notificações:\"]').click()");
   await wait("document.querySelector('[aria-label=\"Notificações do médico\"]')");
-  await click('Marcar como lidas');
+  await click("Marcar como lidas");
   await wait("document.querySelector('button[aria-label=\"Notificações: 0 não lidas\"]')");
-  await navigate('/results','main');
+  await navigate("/results", "main");
   await wait("document.querySelector('button[aria-label=\"Notificações: 0 não lidas\"]')");
   // Leave the demonstration receipt unread for the user to inspect.
   await evaluate("localStorage.removeItem('inova-demo-doctor-read-notices-v1')");
-  await navigate('/results','main');
-  await wait("document.querySelector('button[aria-label^=\"Notificações:\"]').textContent.trim()!==''");
-  await command('Emulation.setDeviceMetricsOverride',{width:390,height:844,deviceScaleFactor:1,mobile:true});
+  await navigate("/results", "main");
+  await wait(
+    "document.querySelector('button[aria-label^=\"Notificações:\"]').textContent.trim()!==''",
+  );
+  await command("Emulation.setDeviceMetricsOverride", {
+    width: 390,
+    height: 844,
+    deviceScaleFactor: 1,
+    mobile: true,
+  });
   await evaluate("document.querySelector('button[aria-label^=\"Notificações:\"]').click()");
   await wait("document.querySelector('[aria-label=\"Notificações do médico\"]')");
-  assert.equal(await evaluate('document.documentElement.scrollWidth<=innerWidth'),true);
-  console.log('PASS: unread badge, received PDF notice, direct navigation, reading independent of review, persistence and mobile overflow.');
-} finally {ws.close();}
+  assert.equal(await evaluate("document.documentElement.scrollWidth<=innerWidth"), true);
+  console.log(
+    "PASS: unread badge, received PDF notice, direct navigation, reading independent of review, persistence and mobile overflow.",
+  );
+} finally {
+  ws.close();
+}

@@ -44,42 +44,43 @@ export const summarySchema = z
   });
 export type DocumentSummary = z.infer<typeof summarySchema>;
 const str = { type: "string" };
-const page = { type: ["integer", "null"], minimum: 1, maximum: 1000 };
+// Keep the provider grammar compact; summarySchema enforces all bounds after generation.
+// Large nested length constraints can exceed Gemini's structured-output state limit.
+const page = { type: ["integer", "null"] };
 const evidenceJson = {
   type: "object",
   properties: {
     page,
-    title: { ...str, minLength: 1, maxLength: 180 },
-    text: { ...str, minLength: 1, maxLength: 2000 },
-    quote: { ...str, maxLength: 800 },
+    title: str,
+    text: str,
+    quote: str,
   },
   required: ["page", "title", "text", "quote"],
 };
 export const summaryJsonSchema = {
   type: "object",
   properties: {
-    subjectName: { type: ["string", "null"], maxLength: 200 },
-    pages: { type: "integer", minimum: 1, maximum: 1000 },
-    scope: { ...str, minLength: 1, maxLength: 2500 },
-    findings: { type: "array", items: evidenceJson, maxItems: 20 },
-    limitations: { type: "array", items: evidenceJson, maxItems: 15 },
+    subjectName: { type: ["string", "null"] },
+    pages: { type: "integer" },
+    scope: str,
+    findings: { type: "array", items: evidenceJson },
+    limitations: { type: "array", items: evidenceJson },
     observations: {
       type: "array",
-      maxItems: 100,
       items: {
         type: "object",
         properties: {
-          name: { ...str, minLength: 1, maxLength: 180 },
-          value: { ...str, maxLength: 120 },
-          unit: { ...str, maxLength: 100 },
-          reference: { ...str, maxLength: 300 },
-          collection: { ...str, maxLength: 100 },
+          name: str,
+          value: str,
+          unit: str,
+          reference: str,
+          collection: str,
           flag: {
             type: "string",
             enum: ["reportado_alterado", "reportado_critico", "sem_classificacao"],
           },
           page,
-          quote: { ...str, maxLength: 800 },
+          quote: str,
         },
         required: ["name", "value", "unit", "reference", "collection", "flag", "page", "quote"],
       },

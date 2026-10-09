@@ -98,11 +98,12 @@ try {
   await wait('document.body.innerText.includes("Resultados ainda indisponíveis")');
   console.log("PASS: new patient has no borrowed clinical history");
   await navigate("/doctors");
-  await fill('input[aria-label="Pesquisar médico"]', "Camila");
-  await wait('document.querySelectorAll("main article").length===1');
-  await button("Ver perfil");
-  await wait('document.querySelector("[role=dialog]")?.textContent.includes("234567/SP")');
-  console.log("PASS: doctor search and profile");
+  await wait('document.querySelector("h1")?.textContent==="Meu perfil profissional"');
+  assert.equal(
+    await evaluate('document.querySelector("#profile-name").value'),
+    "Dr. Rafael Mendes",
+  );
+  console.log("PASS: physician professional profile");
   await navigate("/results");
   const count = await evaluate('document.querySelectorAll("tbody tr").length');
   await button("30 dias");

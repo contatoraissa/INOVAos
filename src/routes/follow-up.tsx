@@ -1,2 +1,20 @@
-import { createFileRoute } from "@tanstack/react-router"; import { AppShell } from "@/components/inova/AppShell"; import { FollowUpPage } from "@/components/inova/SecondaryPages";
-export const Route=createFileRoute("/follow-up")({head:()=>({meta:[{title:"Acompanhamento — INOVA"},{name:"description",content:"Acompanhe movimentações recentes dos pacientes."},{property:"og:title",content:"Acompanhamento — INOVA"},{property:"og:description",content:"Pacientes com atualizações laboratoriais recentes."},{property:"og:type",content:"website"},{name:"twitter:card",content:"summary_large_image"}]}),component:()=> <AppShell><FollowUpPage/></AppShell>});
+import { createFileRoute } from "@tanstack/react-router";
+import { AppShell } from "@/components/inova/AppShell";
+import { FollowUpPage } from "@/components/inova/SecondaryPages";
+export const Route = createFileRoute("/follow-up")({
+  head: () => ({
+    meta: [
+      { title: "Acompanhamento — INOVA" },
+      { name: "description", content: "Acompanhe movimentações recentes dos pacientes." },
+      { property: "og:title", content: "Acompanhamento — INOVA" },
+      { property: "og:description", content: "Pacientes com atualizações laboratoriais recentes." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+    ],
+  }),
+  component: () => (
+    <AppShell>
+      <FollowUpPage />
+    </AppShell>
+  ),
+});

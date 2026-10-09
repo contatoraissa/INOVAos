@@ -31,29 +31,85 @@ const evaluate = async (expression) => {
 };
 const pause = (ms) => new Promise((r) => setTimeout(r, ms));
 const base = process.env.INOVA_TEST_URL ?? "http://192.168.0.2:8080";
-const keys = ['inova-demo-doctor-profile-v1', 'inova-demo-doctor-settings-v1'];
+const keys = ["inova-demo-doctor-profile-v1", "inova-demo-doctor-settings-v1"];
 let backup;
-const navigate = async path => { await command('Page.navigate', {url:base+path}); await pause(3000); };
-const click = async text => { await evaluate(`Array.from(document.querySelectorAll('button')).find(b=>b.textContent.trim()===${JSON.stringify(text)}).click()`); await pause(200); };
+const navigate = async (path) => {
+  await command("Page.navigate", { url: base + path });
+  const selector =
+    path === "/doctors"
+      ? "#profile-name"
+      : path === "/settings"
+        ? "#settings-results"
+        : "main button";
+  for (let attempt = 0; attempt < 150; attempt++) {
+    if (
+      await evaluate(
+        `location.pathname===${JSON.stringify(path)} && Object.keys(document.querySelector(${JSON.stringify(selector)}) || {}).some(key=>key.startsWith('__reactProps'))`,
+      )
+    )
+      return;
+    await pause(200);
+  }
+  throw new Error("Page did not become interactive: " + path);
+};
+const click = async (text) => {
+  await evaluate(
+    `Array.from(document.querySelectorAll('button')).find(b=>b.textContent.trim()===${JSON.stringify(text)}).click()`,
+  );
+  await pause(200);
+};
 try {
-  await navigate('/doctors');
+  await navigate("/doctors");
   backup = await evaluate(`(${JSON.stringify(keys)}).map(k=>localStorage.getItem(k))`);
-  assert.equal(await evaluate("document.querySelector('h1').textContent"), 'Meu perfil profissional');
-  await evaluate(`(()=>{const input=document.querySelector('#profile-name');Object.getOwnPropertyDescriptor(HTMLInputElement.prototype,'value').set.call(input,'Dr. Rafael Teste');input.dispatchEvent(new Event('input',{bubbles:true}));})()`);
-  await pause(200); await click('Salvar perfil'); await navigate('/doctors');
-  assert.equal(await evaluate("document.querySelector('#profile-name').value"), 'Dr. Rafael Teste');
-  await navigate('/settings');
-  const before=await evaluate("document.querySelector('#settings-results').getAttribute('aria-checked')");
-  await evaluate("document.querySelector('#settings-results').click()"); await pause(200);
-  await click('Salvar alterações'); await navigate('/settings');
-  assert.notEqual(await evaluate("document.querySelector('#settings-results').getAttribute('aria-checked')"), before);
-  await evaluate("document.querySelector('#settings-results').click()"); await pause(200); await click('Cancelar alterações');
-  assert.notEqual(await evaluate("document.querySelector('#settings-results').getAttribute('aria-checked')"), before);
-  await command('Emulation.setDeviceMetricsOverride',{width:390,height:844,deviceScaleFactor:1,mobile:true});
-  for (const path of ['/settings','/doctors']) { await navigate(path); assert.equal(await evaluate('document.documentElement.scrollWidth<=innerWidth'),true); }
-  await navigate('/dashboard'); assert.equal(await evaluate("document.body.textContent.includes('Dr. Rafael Mendes')"),true);
-  console.log('PASS: profile and settings save/reload, cancel edits, both mobile widths, unchanged dashboard identity.');
+  assert.equal(
+    await evaluate("document.querySelector('h1').textContent"),
+    "Meu perfil profissional",
+  );
+  await evaluate(
+    `(()=>{const input=document.querySelector('#profile-name');Object.getOwnPropertyDescriptor(HTMLInputElement.prototype,'value').set.call(input,'Dr. Rafael Teste');input.dispatchEvent(new Event('input',{bubbles:true}));})()`,
+  );
+  await pause(200);
+  await click("Salvar perfil");
+  await navigate("/doctors");
+  assert.equal(await evaluate("document.querySelector('#profile-name').value"), "Dr. Rafael Teste");
+  await navigate("/settings");
+  const before = await evaluate(
+    "document.querySelector('#settings-results').getAttribute('aria-checked')",
+  );
+  await evaluate("document.querySelector('#settings-results').click()");
+  await pause(200);
+  await click("Salvar alterações");
+  await navigate("/settings");
+  assert.notEqual(
+    await evaluate("document.querySelector('#settings-results').getAttribute('aria-checked')"),
+    before,
+  );
+  await evaluate("document.querySelector('#settings-results').click()");
+  await pause(200);
+  await click("Cancelar alterações");
+  assert.notEqual(
+    await evaluate("document.querySelector('#settings-results').getAttribute('aria-checked')"),
+    before,
+  );
+  await command("Emulation.setDeviceMetricsOverride", {
+    width: 390,
+    height: 844,
+    deviceScaleFactor: 1,
+    mobile: true,
+  });
+  for (const path of ["/settings", "/doctors"]) {
+    await navigate(path);
+    assert.equal(await evaluate("document.documentElement.scrollWidth<=innerWidth"), true);
+  }
+  await navigate("/dashboard");
+  assert.equal(await evaluate("document.body.textContent.includes('Dr. Rafael Mendes')"), true);
+  console.log(
+    "PASS: profile and settings save/reload, cancel edits, both mobile widths, unchanged dashboard identity.",
+  );
 } finally {
-  if(backup) await evaluate(`(${JSON.stringify(keys)}).forEach((k,i)=>{const v=${JSON.stringify(backup)}[i];if(v===null)localStorage.removeItem(k);else localStorage.setItem(k,v);})`);
+  if (backup)
+    await evaluate(
+      `(${JSON.stringify(keys)}).forEach((k,i)=>{const v=${JSON.stringify(backup)}[i];if(v===null)localStorage.removeItem(k);else localStorage.setItem(k,v);})`,
+    );
   ws.close();
 }

@@ -55,6 +55,9 @@ async function fill(selector, value) {
   );
 }
 async function click(label) {
+  await wait(
+    `[...document.querySelectorAll('button')].some(b=>b.textContent.trim()===${JSON.stringify(label)} && !b.disabled)`,
+  );
   await evaluate(
     `(()=>{const button=[...document.querySelectorAll('button')].find(item=>item.textContent.trim()===${JSON.stringify(label)});if(!button)throw new Error('Missing button');button.click();})()`,
   );
@@ -75,7 +78,7 @@ async function doctor() {
 }
 async function patient() {
   await navigate("/acesso-paciente", "#patient-email");
-  await evaluate('document.querySelector("form").requestSubmit()');
+  await click("Explorar demonstração gratuita");
   await wait('location.pathname==="/portal-paciente" && document.querySelector("nav")');
   await click("Exames solicitados");
   await wait(
@@ -139,20 +142,36 @@ try {
   );
   console.log("PASS: released order appears with the right exams, doctor and notes");
   await fill("#order-cep", "123");
-  await click("Consultar preços");
+  await click("Simular consulta de preços");
   await wait('document.querySelector("[role=alert]")?.textContent.includes("8 dígitos")');
   await fill("#order-cep", "01310-100");
-  await click("Consultar preços");
-  await wait(
-    'document.querySelector("main").innerText.includes("Consulta de preços ainda não conectada")',
+  await click("Simular consulta de preços");
+  await wait('document.querySelector("main").innerText.includes("SIMULAÇÃO: cotação fictícia")');
+  await click("Explorar exames e laboratórios");
+  await wait('document.querySelector("[role=dialog]")?.textContent.includes("R$")');
+  assert.equal(
+    await evaluate('document.querySelector("[role=dialog]").textContent.includes("R$")'),
+    true,
   );
-  assert.equal(await evaluate('document.querySelector("main").innerText.includes("R$")'), false);
+  await command("Input.dispatchKeyEvent", {
+    type: "keyDown",
+    key: "Escape",
+    code: "Escape",
+    windowsVirtualKeyCode: 27,
+  });
+  await command("Input.dispatchKeyEvent", {
+    type: "keyUp",
+    key: "Escape",
+    code: "Escape",
+    windowsVirtualKeyCode: 27,
+  });
+  await wait('!document.querySelector("[role=dialog]")');
   assert.equal(
     await evaluate('document.querySelector("a[href=\\"https://www.s2medica.com.br/\\"]").search'),
     "",
   );
   console.log(
-    "PASS: CEP validation and disconnected S2 state without fictional prices or patient data in external link",
+    "PASS: CEP validation, explicitly simulated S2 prices and external link without patient data",
   );
   mkdirSync("artifacts", { recursive: true });
   const screenshot = await command("Page.captureScreenshot", {
@@ -187,7 +206,7 @@ try {
   assert.equal(await evaluate('document.querySelector("#order-cep").disabled'), true);
   assert.equal(
     await evaluate(
-      '[...document.querySelectorAll("button")].find(button=>button.textContent.trim()==="Consultar preços").disabled',
+      '[...document.querySelectorAll("button")].find(button=>button.textContent.trim()==="Simular consulta de preços").disabled',
     ),
     true,
   );

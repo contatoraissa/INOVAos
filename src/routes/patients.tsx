@@ -1,2 +1,26 @@
-import { createFileRoute } from "@tanstack/react-router"; import { AppShell } from "@/components/inova/AppShell"; import { PatientsPage } from "@/components/inova/PatientsPage";
-export const Route=createFileRoute("/patients")({head:()=>({meta:[{title:"Pacientes — INOVA"},{name:"description",content:"Consulte pacientes e seus históricos laboratoriais consolidados."},{property:"og:title",content:"Pacientes — INOVA"},{property:"og:description",content:"Históricos laboratoriais organizados para apoio médico."},{property:"og:type",content:"website"},{name:"twitter:card",content:"summary_large_image"}]}),component:()=> <AppShell><PatientsPage /></AppShell>});
+import { createFileRoute } from "@tanstack/react-router";
+import { AppShell } from "@/components/inova/AppShell";
+import { PatientsPage } from "@/components/inova/PatientsPage";
+export const Route = createFileRoute("/patients")({
+  head: () => ({
+    meta: [
+      { title: "Pacientes — INOVA" },
+      {
+        name: "description",
+        content: "Consulte pacientes e seus históricos laboratoriais consolidados.",
+      },
+      { property: "og:title", content: "Pacientes — INOVA" },
+      {
+        property: "og:description",
+        content: "Históricos laboratoriais organizados para apoio médico.",
+      },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+    ],
+  }),
+  component: () => (
+    <AppShell>
+      <PatientsPage />
+    </AppShell>
+  ),
+});
