@@ -1,0 +1,55 @@
+{
+  "at": "2026-10-10T13:21:55.547Z",
+  "brandFontsLoaded": true,
+  "slides": [
+    {
+      "slide": 1,
+      "width": 1080,
+      "height": 1350,
+      "overflow": false,
+      "contentBottom": 1124.21875,
+      "footerTop": 1259
+    },
+    {
+      "slide": 2,
+      "width": 1080,
+      "height": 1350,
+      "overflow": false,
+      "contentBottom": 1234.59375,
+      "footerTop": 1259
+    },
+    {
+      "slide": 3,
+      "width": 1080,
+      "height": 1350,
+      "overflow": false,
+      "contentBottom": 1219.765625,
+      "footerTop": 1259
+    },
+    {
+      "slide": 4,
+      "width": 1080,
+      "height": 1350,
+      "overflow": false,
+      "contentBottom": 1188.4375,
+      "footerTop": 1259
+    },
+    {
+      "slide": 5,
+      "width": 1080,
+      "height": 1350,
+      "overflow": false,
+      "contentBottom": 1231.03125,
+      "footerTop": 1259
+    },
+    {
+      "slide": 6,
+      "width": 1080,
+      "height": 1350,
+      "overflow": false,
+      "contentBottom": 1215.59375,
+      "footerTop": 1259
+    }
+  ],
+  "examples": "Fictional demonstration data; no diagnosis or prescription."
+}

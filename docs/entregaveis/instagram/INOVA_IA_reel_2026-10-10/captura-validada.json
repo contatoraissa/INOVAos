@@ -1,0 +1,36 @@
+{
+  "actualScreencast": true,
+  "liveGeminiVerified": true,
+  "fictionalDataOnly": true,
+  "isolatedBrowser": true,
+  "width": 720,
+  "height": 1100,
+  "generated": "Mariana Oliveira\n\nA paciente relatou que deseja revisar seus exames e discutir seu acompanhamento. O médico anotou que a consulta de acompanhamento é para apresentação do INOVA e que pretende revisar o relato e laudo enviados pela paciente. Esta é uma demonstração fictícia.\n\nSuspeitas registradas\n\nNenhuma suspeita médica identificada nos textos.\n\nPontos para conferir\n\nRevisar o relato e laudo enviados pela paciente (1 PDF anexo).\nConfirmar o que mudou nas últimas coletas.\nDefinir os próximos passos do acompanhamento.\n\nInformações faltantes\n\nO conteúdo do PDF anexo (relato e laudo da paciente) não foi analisado.\nAbrir envios do paciente",
+  "clips": [
+    {
+      "name": "01-assistente",
+      "duration": 3.335,
+      "frames": 49
+    },
+    {
+      "name": "02-contexto",
+      "duration": 4.661,
+      "frames": 50
+    },
+    {
+      "name": "03-gerar",
+      "duration": 4.467,
+      "frames": 51
+    },
+    {
+      "name": "04-resumo",
+      "duration": 5.669,
+      "frames": 47
+    },
+    {
+      "name": "05-revisao",
+      "duration": 4.789,
+      "frames": 48
+    }
+  ]
+}

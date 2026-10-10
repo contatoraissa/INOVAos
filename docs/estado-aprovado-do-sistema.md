@@ -1,4 +1,25 @@
-# Referência para continuidade — 08/10/2026
+# Referência para continuidade — atualizado em 10/10/2026
+
+## Ponto de retomada atual
+
+O usuário pediu em 10/10 para salvar todo o trabalho e registrar o estado antes
+de iniciar novas atividades. Leia também
+[ponto-de-retomada-2026-10-10.md](ponto-de-retomada-2026-10-10.md), que reúne os
+acessos, a identidade visual atual, os materiais entregues e as pendências.
+
+A referência visual continua sendo os portais de demonstração de Rafael e
+Mariana. O logo compartilhado foi atualizado por escolha explícita do usuário
+para IN/VA com infinito vetorial ciano; preservar essa versão também nas artes.
+O portal administrativo permanece separado. O vínculo de contas reais está
+implementado em código, mas sua migração SQL ainda não foi instalada no Supabase
+remoto. Não confundir a demonstração funcional com ativação remota concluída.
+
+A entrega de vídeo mais recente mostra somente médico e paciente, com IA,
+narração e legendas embutidas, em
+`docs/entregaveis/instagram/INOVA_portais_completos_2026-10-10/`.
+Os vídeos anteriores são histórico de criação; o usuário pediu uma versão mais
+completa. Preservar todos os materiais sem apresentar esses ensaios como a
+versão principal.
 
 ## Decisão aprovada pelo usuário
 
@@ -9,7 +30,8 @@ partir dos componentes de demonstração existentes e preservar seu layout,
 organização, gráficos, cores, cartões e recursos. Não recriar uma interface
 simplificada nem confundir dados fictícios com dados da conta autenticada.
 
-Este documento registra o estado do código conferido em 08/10/2026; não é uma
+Este documento reúne registros do código e das verificações de 08 a 10/10/2026;
+cada seção informa o momento e os limites da respectiva validação. Não é uma
 garantia de funcionamento ponta a ponta de todos os serviços externos.
 
 ## Objetivo do INOVA
@@ -87,12 +109,12 @@ escores clínicos de predisposição.
 - Página inicial do paciente: **Minha saúde**, panorama, resultados recentes,
   genética/genômica, cuidado indicado, busca/acessibilidade, próximos passos,
   atalhos, domínios genéticos, banner de preparação, contadores e última coleta.
-- Menu completo: Minha saúde, Próximos passos, Avisos, Preparar consulta,
+- Menu completo: Minha saúde, Minha agenda, Próximos passos, Avisos, Preparar consulta,
   Orientações do médico, Meus resultados, Exames solicitados, Minha evolução,
   Preparo dos exames, Laboratórios favoritos, Meus documentos, Minha genética,
   Linha do tempo e Meu perfil.
 - Área médica: visão geral, pacientes, novo paciente, resultados, histórico,
-  comparação, médicos, acompanhamento, indicadores e configurações. O detalhe
+  comparação, agenda, meu perfil, acompanhamento, meus relatórios e configurações. O detalhe
   do paciente mantém as seções de consulta, envios, resultados, laudos,
   genética/genômica e documentos.
 
@@ -136,8 +158,7 @@ executados automaticamente: produzem alterações no banco remoto.
 ## Verificação e cuidados para próximas sessões
 
 - Em 08/10, revisão dos componentes e rotas; 14 testes de genética/contrato de
-  consulta passaram. A verificação TypeScript (
-px.cmd tsc --noEmit`) passou.
+  consulta passaram. A verificação TypeScript (`npx.cmd tsc --noEmit`) passou.
 - Em 07/10, o teste de navegador `scripts/smoke-access.mjs` confirmou o clique
   em Ver demonstração médica, o dashboard Rafael e rotas médicas sem login.
   Não confundir essa evidência anterior com inspeção visual ao vivo em 08/10.
@@ -151,24 +172,24 @@ px.cmd tsc --noEmit`) passou.
   limitar a mudança ao que o usuário solicitar. Não houve alteração funcional
   durante esta revisão; apenas registro de continuidade.
 
-Atualiza��o do briefing da agenda: bot�o **Ler eventos futuros**, per�odo de 30 dias a partir de hoje, eventos ativos ordenados por data e hor�rio e op��o **Dia selecionado**. A pr�via precede a autoriza��o para gerar com Gemini. Altera��o restrita ao briefing da agenda.
+Atualização do briefing da agenda: botão **Ler eventos futuros**, período de 30 dias a partir de hoje, eventos ativos ordenados por data e horário e opção **Dia selecionado**. A prévia precede a autorização para gerar com Gemini. Alteração restrita ao briefing da agenda.
 
 Pedidos liberados agora aparecem em Minha agenda como pendências. O paciente acessa o pedido e a S2, informa uma coleta combinada e abre a preparação para enviar resultados. Não há reserva externa ou cotação integrada. Cancelar o pedido cancela a coleta vinculada no INOVA. Funciona na demonstração; preserva o calendário aprovado e os demais fluxos.
 
 Cotação de pedidos na S2: botão explícito Simular consulta de preços usa resposta local fictícia com três opções, calculadas pelos exames do pedido; nenhuma API real ou busca geográfica é executada. Sem reserva ou pagamento. scripts/simulate-s2-order.mjs cria/libera um pedido fictício reutilizável para Mariana, testa os valores e deixa o pedido disponível (até 24 horas ou reinício do servidor).
 
 
-## Portal administrativo INOVA ? 08/10/2026
+## Portal administrativo INOVA — 08/10/2026
 
-A rota `/admin-inova` recebeu sete ?reas no padr?o INOVA: vis?o geral, usu?rios, atividade, assinaturas, contatos e reativa??o, feedbacks e resumo com IA. Os portais cl?nicos aprovados de Rafael e Mariana foram preservados.
+A rota `/admin-inova` recebeu sete áreas no padrão INOVA: visão geral, usuários, atividade, assinaturas, contatos e reativação, feedbacks e resumo com IA. Os portais clínicos aprovados de Rafael e Mariana foram preservados.
 
-Gr?ficos e totais derivam de 14 usu?rios fict?cios, com refer?ncia fixa em 08/10/2026. Conta habilitada/desativada, uso recente e satisfa??o s?o medidas distintas. Satisfa??o usa apenas a ?ltima nota expl?cita; falta de uso n?o significa descontentamento.
+Gráficos e totais derivam de 14 usuários fictícios, com referência fixa em 08/10/2026. Conta habilitada/desativada, uso recente e satisfação são medidas distintas. Satisfação usa apenas a última nota explícita; falta de uso não significa descontentamento.
 
-Altera??es persistem no navegador em `inova-demo-admin-v2`, com migra??o dos registros anteriores e hist?rico local. Desativa??o exige motivo e confirma??o. Contatos s?o tarefas manuais, sem disparo de mensagens. Assinaturas e MRR s?o simula??es, sem cobran?a.
+Alterações persistem no navegador em `inova-demo-admin-v2`, com migração dos registros anteriores e histórico local. Desativação exige motivo e confirmação. Contatos são tarefas manuais, sem disparo de mensagens. Assinaturas e MRR são simulações, sem cobrança.
 
-O resumo Gemini exige consentimento e envia indicadores e refer?ncias an?nimas, sem nomes, e-mails, coment?rios livres ou prontu?rios. Recomenda??es n?o executam a??es. A chamada est? restrita ao desenvolvimento local. Autentica??o e autoriza??o administrativa de produ??o s?o necess?rias antes de conectar contas reais. Supabase n?o foi alterado.
+O resumo Gemini exige consentimento e envia indicadores e referências anônimas, sem nomes, e-mails, comentários livres ou prontuários. Recomendações não executam ações. A chamada está restrita ao desenvolvimento local. Autenticação e autorização administrativa de produção são necessárias antes de conectar contas reais. Supabase não foi alterado.
 
-Valida??o: testes de regras, migra??o, privacidade, persist?ncia, fluxo no navegador e responsividade, TypeScript, ESLint, build e resumo real com Gemini.
+Validação: testes de regras, migração, privacidade, persistência, fluxo no navegador e responsividade, TypeScript, ESLint, build e resumo real com Gemini.
 
 ## Verificação funcional — 09/10/2026
 
@@ -231,3 +252,11 @@ corrigir a espera de hidratação no teste. O novo fluxo de login/cadastro/heran
 foi exercitado com respostas controladas; o SQL foi testado em PostgreSQL local.
 O SQL `supabase/INOVA_VINCULO_PACIENTE_SQL_EDITOR.sql` ainda precisa ser aplicado
 ao Supabase remoto. Não afirmar que a migração ou o ciclo remoto já foi validado.
+
+### Padronização do logo — 10/10/2026
+
+Após comparar as peças de Instagram com o logo anterior do aplicativo, o usuário
+optou por adotar no sistema a versão usada nas artes: letras IN/VA e infinito
+vetorial em ciano. O componente compartilhado `Logo.tsx` usa a mesma curva das
+artes, definida em `src/data/inova-brand.ts`. A versão compacta usa esse símbolo;
+os links, layouts e recursos dos portais continuam preservados.

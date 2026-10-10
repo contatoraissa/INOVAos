@@ -1,0 +1,31 @@
+{
+  "width": 1080,
+  "height": 1920,
+  "fps": 24,
+  "seconds": 24,
+  "frames": 576,
+  "fontCheck": true,
+  "scenes": [
+    {
+      "index": 0,
+      "bottom": 1298.1875,
+      "footerTop": 1652
+    },
+    {
+      "index": 1,
+      "bottom": 1383.390625,
+      "footerTop": 1652
+    },
+    {
+      "index": 2,
+      "bottom": 1238.59375,
+      "footerTop": 1652
+    },
+    {
+      "index": 3,
+      "bottom": 1254.390625,
+      "footerTop": 1652
+    }
+  ],
+  "audio": false
+}

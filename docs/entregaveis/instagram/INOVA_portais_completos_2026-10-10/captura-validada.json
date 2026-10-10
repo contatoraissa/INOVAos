@@ -1,0 +1,3833 @@
+{
+  "date": "2026-10-10",
+  "onlyDoctorAndPatient": true,
+  "liveRecordings": [
+    {
+      "id": "m01",
+      "duration": 4.44,
+      "frames": [
+        {
+          "file": "frame-00000.jpg",
+          "at": 0.034
+        },
+        {
+          "file": "frame-00001.jpg",
+          "at": 1.297
+        },
+        {
+          "file": "frame-00002.jpg",
+          "at": 1.303
+        },
+        {
+          "file": "frame-00003.jpg",
+          "at": 1.315
+        },
+        {
+          "file": "frame-00004.jpg",
+          "at": 1.335
+        },
+        {
+          "file": "frame-00005.jpg",
+          "at": 1.349
+        },
+        {
+          "file": "frame-00006.jpg",
+          "at": 1.367
+        },
+        {
+          "file": "frame-00007.jpg",
+          "at": 1.381
+        },
+        {
+          "file": "frame-00008.jpg",
+          "at": 1.399
+        },
+        {
+          "file": "frame-00009.jpg",
+          "at": 1.416
+        },
+        {
+          "file": "frame-00010.jpg",
+          "at": 1.44
+        },
+        {
+          "file": "frame-00011.jpg",
+          "at": 1.452
+        },
+        {
+          "file": "frame-00012.jpg",
+          "at": 1.464
+        },
+        {
+          "file": "frame-00013.jpg",
+          "at": 1.48
+        },
+        {
+          "file": "frame-00014.jpg",
+          "at": 1.5
+        },
+        {
+          "file": "frame-00015.jpg",
+          "at": 1.517
+        },
+        {
+          "file": "frame-00016.jpg",
+          "at": 1.53
+        },
+        {
+          "file": "frame-00017.jpg",
+          "at": 1.547
+        },
+        {
+          "file": "frame-00018.jpg",
+          "at": 1.567
+        },
+        {
+          "file": "frame-00019.jpg",
+          "at": 1.583
+        },
+        {
+          "file": "frame-00020.jpg",
+          "at": 1.597
+        },
+        {
+          "file": "frame-00021.jpg",
+          "at": 1.617
+        },
+        {
+          "file": "frame-00022.jpg",
+          "at": 2.593
+        }
+      ],
+      "title": "Seu dia, com mais clareza",
+      "role": "Médico"
+    },
+    {
+      "id": "m02",
+      "duration": 4.394,
+      "frames": [
+        {
+          "file": "frame-00000.jpg",
+          "at": 0.038
+        },
+        {
+          "file": "frame-00001.jpg",
+          "at": 1.29
+        },
+        {
+          "file": "frame-00002.jpg",
+          "at": 1.305
+        },
+        {
+          "file": "frame-00003.jpg",
+          "at": 1.322
+        },
+        {
+          "file": "frame-00004.jpg",
+          "at": 1.338
+        },
+        {
+          "file": "frame-00005.jpg",
+          "at": 1.36
+        },
+        {
+          "file": "frame-00006.jpg",
+          "at": 1.377
+        },
+        {
+          "file": "frame-00007.jpg",
+          "at": 1.392
+        },
+        {
+          "file": "frame-00008.jpg",
+          "at": 1.404
+        },
+        {
+          "file": "frame-00009.jpg",
+          "at": 1.426
+        },
+        {
+          "file": "frame-00010.jpg",
+          "at": 1.44
+        },
+        {
+          "file": "frame-00011.jpg",
+          "at": 1.455
+        },
+        {
+          "file": "frame-00012.jpg",
+          "at": 1.473
+        },
+        {
+          "file": "frame-00013.jpg",
+          "at": 1.489
+        },
+        {
+          "file": "frame-00014.jpg",
+          "at": 1.508
+        },
+        {
+          "file": "frame-00015.jpg",
+          "at": 1.522
+        },
+        {
+          "file": "frame-00016.jpg",
+          "at": 1.541
+        },
+        {
+          "file": "frame-00017.jpg",
+          "at": 1.556
+        },
+        {
+          "file": "frame-00018.jpg",
+          "at": 2.594
+        }
+      ],
+      "title": "Sua carteira de pacientes",
+      "role": "Médico"
+    },
+    {
+      "id": "m03",
+      "duration": 4.297,
+      "frames": [
+        {
+          "file": "frame-00000.jpg",
+          "at": 0.02
+        },
+        {
+          "file": "frame-00001.jpg",
+          "at": 1.297
+        },
+        {
+          "file": "frame-00002.jpg",
+          "at": 1.317
+        },
+        {
+          "file": "frame-00003.jpg",
+          "at": 1.332
+        },
+        {
+          "file": "frame-00004.jpg",
+          "at": 1.35
+        },
+        {
+          "file": "frame-00005.jpg",
+          "at": 1.366
+        },
+        {
+          "file": "frame-00006.jpg",
+          "at": 1.383
+        },
+        {
+          "file": "frame-00007.jpg",
+          "at": 1.399
+        },
+        {
+          "file": "frame-00008.jpg",
+          "at": 1.416
+        },
+        {
+          "file": "frame-00009.jpg",
+          "at": 1.441
+        },
+        {
+          "file": "frame-00010.jpg",
+          "at": 1.449
+        },
+        {
+          "file": "frame-00011.jpg",
+          "at": 1.465
+        },
+        {
+          "file": "frame-00012.jpg",
+          "at": 2.423
+        }
+      ],
+      "title": "Cadastro organizado",
+      "role": "Médico"
+    },
+    {
+      "id": "m04",
+      "duration": 4.094,
+      "frames": [
+        {
+          "file": "frame-00000.jpg",
+          "at": 0.025
+        },
+        {
+          "file": "frame-00001.jpg",
+          "at": 2.6
+        }
+      ],
+      "title": "Novos resultados",
+      "role": "Médico"
+    },
+    {
+      "id": "m05",
+      "duration": 4.095,
+      "frames": [
+        {
+          "file": "frame-00000.jpg",
+          "at": 0.031
+        },
+        {
+          "file": "frame-00001.jpg",
+          "at": 2.595
+        }
+      ],
+      "title": "Histórico de exames",
+      "role": "Médico"
+    },
+    {
+      "id": "m06",
+      "duration": 4.341,
+      "frames": [
+        {
+          "file": "frame-00000.jpg",
+          "at": 0.019
+        },
+        {
+          "file": "frame-00001.jpg",
+          "at": 1.292
+        },
+        {
+          "file": "frame-00002.jpg",
+          "at": 1.307
+        },
+        {
+          "file": "frame-00003.jpg",
+          "at": 1.326
+        },
+        {
+          "file": "frame-00004.jpg",
+          "at": 1.343
+        },
+        {
+          "file": "frame-00005.jpg",
+          "at": 1.359
+        },
+        {
+          "file": "frame-00006.jpg",
+          "at": 1.377
+        },
+        {
+          "file": "frame-00007.jpg",
+          "at": 1.393
+        },
+        {
+          "file": "frame-00008.jpg",
+          "at": 1.412
+        },
+        {
+          "file": "frame-00009.jpg",
+          "at": 1.425
+        },
+        {
+          "file": "frame-00010.jpg",
+          "at": 1.442
+        },
+        {
+          "file": "frame-00011.jpg",
+          "at": 1.458
+        },
+        {
+          "file": "frame-00012.jpg",
+          "at": 1.475
+        },
+        {
+          "file": "frame-00013.jpg",
+          "at": 1.49
+        },
+        {
+          "file": "frame-00014.jpg",
+          "at": 2.597
+        }
+      ],
+      "title": "Comparar para acompanhar",
+      "role": "Médico"
+    },
+    {
+      "id": "m07",
+      "duration": 4.459,
+      "frames": [
+        {
+          "file": "frame-00000.jpg",
+          "at": 0.035
+        },
+        {
+          "file": "frame-00001.jpg",
+          "at": 1.302
+        },
+        {
+          "file": "frame-00002.jpg",
+          "at": 1.319
+        },
+        {
+          "file": "frame-00003.jpg",
+          "at": 1.336
+        },
+        {
+          "file": "frame-00004.jpg",
+          "at": 1.352
+        },
+        {
+          "file": "frame-00005.jpg",
+          "at": 1.367
+        },
+        {
+          "file": "frame-00006.jpg",
+          "at": 1.386
+        },
+        {
+          "file": "frame-00007.jpg",
+          "at": 1.404
+        },
+        {
+          "file": "frame-00008.jpg",
+          "at": 1.42
+        },
+        {
+          "file": "frame-00009.jpg",
+          "at": 1.436
+        },
+        {
+          "file": "frame-00010.jpg",
+          "at": 1.453
+        },
+        {
+          "file": "frame-00011.jpg",
+          "at": 1.469
+        },
+        {
+          "file": "frame-00012.jpg",
+          "at": 1.49
+        },
+        {
+          "file": "frame-00013.jpg",
+          "at": 1.502
+        },
+        {
+          "file": "frame-00014.jpg",
+          "at": 1.52
+        },
+        {
+          "file": "frame-00015.jpg",
+          "at": 1.536
+        },
+        {
+          "file": "frame-00016.jpg",
+          "at": 1.554
+        },
+        {
+          "file": "frame-00017.jpg",
+          "at": 1.583
+        },
+        {
+          "file": "frame-00018.jpg",
+          "at": 1.592
+        },
+        {
+          "file": "frame-00019.jpg",
+          "at": 1.62
+        },
+        {
+          "file": "frame-00020.jpg",
+          "at": 1.628
+        },
+        {
+          "file": "frame-00021.jpg",
+          "at": 1.636
+        },
+        {
+          "file": "frame-00022.jpg",
+          "at": 2.179
+        }
+      ],
+      "title": "Agenda compartilhada",
+      "role": "Médico"
+    },
+    {
+      "id": "m08",
+      "duration": 4.005,
+      "frames": [
+        {
+          "file": "frame-00000.jpg",
+          "at": 0.024
+        },
+        {
+          "file": "frame-00001.jpg",
+          "at": 0.034
+        },
+        {
+          "file": "frame-00002.jpg",
+          "at": 0.052
+        },
+        {
+          "file": "frame-00003.jpg",
+          "at": 0.071
+        },
+        {
+          "file": "frame-00004.jpg",
+          "at": 0.088
+        },
+        {
+          "file": "frame-00005.jpg",
+          "at": 0.103
+        },
+        {
+          "file": "frame-00006.jpg",
+          "at": 0.121
+        },
+        {
+          "file": "frame-00007.jpg",
+          "at": 0.138
+        },
+        {
+          "file": "frame-00008.jpg",
+          "at": 0.155
+        },
+        {
+          "file": "frame-00009.jpg",
+          "at": 0.171
+        },
+        {
+          "file": "frame-00010.jpg",
+          "at": 0.188
+        },
+        {
+          "file": "frame-00011.jpg",
+          "at": 0.201
+        },
+        {
+          "file": "frame-00012.jpg",
+          "at": 0.212
+        },
+        {
+          "file": "frame-00013.jpg",
+          "at": 0.23
+        },
+        {
+          "file": "frame-00014.jpg",
+          "at": 0.244
+        },
+        {
+          "file": "frame-00015.jpg",
+          "at": 0.259
+        },
+        {
+          "file": "frame-00016.jpg",
+          "at": 2.101
+        }
+      ],
+      "title": "Eventos e cancelamentos",
+      "role": "Médico"
+    },
+    {
+      "id": "m11",
+      "duration": 4.465,
+      "frames": [
+        {
+          "file": "frame-00000.jpg",
+          "at": 0.026
+        },
+        {
+          "file": "frame-00001.jpg",
+          "at": 1.1
+        },
+        {
+          "file": "frame-00002.jpg",
+          "at": 1.307
+        },
+        {
+          "file": "frame-00003.jpg",
+          "at": 1.325
+        },
+        {
+          "file": "frame-00004.jpg",
+          "at": 1.341
+        },
+        {
+          "file": "frame-00005.jpg",
+          "at": 1.358
+        },
+        {
+          "file": "frame-00006.jpg",
+          "at": 1.375
+        },
+        {
+          "file": "frame-00007.jpg",
+          "at": 1.393
+        },
+        {
+          "file": "frame-00008.jpg",
+          "at": 1.406
+        },
+        {
+          "file": "frame-00009.jpg",
+          "at": 1.424
+        },
+        {
+          "file": "frame-00010.jpg",
+          "at": 1.441
+        },
+        {
+          "file": "frame-00011.jpg",
+          "at": 1.456
+        },
+        {
+          "file": "frame-00012.jpg",
+          "at": 1.475
+        },
+        {
+          "file": "frame-00013.jpg",
+          "at": 1.491
+        },
+        {
+          "file": "frame-00014.jpg",
+          "at": 1.509
+        },
+        {
+          "file": "frame-00015.jpg",
+          "at": 1.524
+        },
+        {
+          "file": "frame-00016.jpg",
+          "at": 1.542
+        },
+        {
+          "file": "frame-00017.jpg",
+          "at": 1.557
+        },
+        {
+          "file": "frame-00018.jpg",
+          "at": 1.574
+        },
+        {
+          "file": "frame-00019.jpg",
+          "at": 1.591
+        },
+        {
+          "file": "frame-00020.jpg",
+          "at": 1.607
+        },
+        {
+          "file": "frame-00021.jpg",
+          "at": 1.625
+        },
+        {
+          "file": "frame-00022.jpg",
+          "at": 1.639
+        }
+      ],
+      "title": "Prontuário por paciente",
+      "role": "Médico"
+    },
+    {
+      "id": "m12",
+      "duration": 4.468,
+      "frames": [
+        {
+          "file": "frame-00000.jpg",
+          "at": 0.021
+        },
+        {
+          "file": "frame-00001.jpg",
+          "at": 1.296
+        },
+        {
+          "file": "frame-00002.jpg",
+          "at": 1.311
+        },
+        {
+          "file": "frame-00003.jpg",
+          "at": 1.328
+        },
+        {
+          "file": "frame-00004.jpg",
+          "at": 1.343
+        },
+        {
+          "file": "frame-00005.jpg",
+          "at": 1.362
+        },
+        {
+          "file": "frame-00006.jpg",
+          "at": 1.378
+        },
+        {
+          "file": "frame-00007.jpg",
+          "at": 1.397
+        },
+        {
+          "file": "frame-00008.jpg",
+          "at": 1.41
+        },
+        {
+          "file": "frame-00009.jpg",
+          "at": 1.428
+        },
+        {
+          "file": "frame-00010.jpg",
+          "at": 1.445
+        },
+        {
+          "file": "frame-00011.jpg",
+          "at": 1.461
+        },
+        {
+          "file": "frame-00012.jpg",
+          "at": 1.476
+        },
+        {
+          "file": "frame-00013.jpg",
+          "at": 1.494
+        },
+        {
+          "file": "frame-00014.jpg",
+          "at": 1.511
+        },
+        {
+          "file": "frame-00015.jpg",
+          "at": 1.526
+        },
+        {
+          "file": "frame-00016.jpg",
+          "at": 1.544
+        },
+        {
+          "file": "frame-00017.jpg",
+          "at": 1.563
+        },
+        {
+          "file": "frame-00018.jpg",
+          "at": 1.579
+        },
+        {
+          "file": "frame-00019.jpg",
+          "at": 1.593
+        },
+        {
+          "file": "frame-00020.jpg",
+          "at": 1.612
+        },
+        {
+          "file": "frame-00021.jpg",
+          "at": 1.628
+        }
+      ],
+      "title": "Resumo da consulta",
+      "role": "Médico"
+    },
+    {
+      "id": "m13",
+      "duration": 4.474,
+      "frames": [
+        {
+          "file": "frame-00000.jpg",
+          "at": 0.023
+        },
+        {
+          "file": "frame-00001.jpg",
+          "at": 1.295
+        },
+        {
+          "file": "frame-00002.jpg",
+          "at": 1.311
+        },
+        {
+          "file": "frame-00003.jpg",
+          "at": 1.327
+        },
+        {
+          "file": "frame-00004.jpg",
+          "at": 1.345
+        },
+        {
+          "file": "frame-00005.jpg",
+          "at": 1.361
+        },
+        {
+          "file": "frame-00006.jpg",
+          "at": 1.38
+        },
+        {
+          "file": "frame-00007.jpg",
+          "at": 1.394
+        },
+        {
+          "file": "frame-00008.jpg",
+          "at": 1.411
+        },
+        {
+          "file": "frame-00009.jpg",
+          "at": 1.428
+        },
+        {
+          "file": "frame-00010.jpg",
+          "at": 1.444
+        },
+        {
+          "file": "frame-00011.jpg",
+          "at": 1.46
+        },
+        {
+          "file": "frame-00012.jpg",
+          "at": 1.478
+        },
+        {
+          "file": "frame-00013.jpg",
+          "at": 1.494
+        },
+        {
+          "file": "frame-00014.jpg",
+          "at": 1.512
+        },
+        {
+          "file": "frame-00015.jpg",
+          "at": 1.527
+        },
+        {
+          "file": "frame-00016.jpg",
+          "at": 1.545
+        },
+        {
+          "file": "frame-00017.jpg",
+          "at": 1.562
+        },
+        {
+          "file": "frame-00018.jpg",
+          "at": 1.577
+        },
+        {
+          "file": "frame-00019.jpg",
+          "at": 1.594
+        },
+        {
+          "file": "frame-00020.jpg",
+          "at": 1.61
+        },
+        {
+          "file": "frame-00021.jpg",
+          "at": 1.627
+        }
+      ],
+      "title": "Mensagens, áudios e PDFs",
+      "role": "Médico"
+    },
+    {
+      "id": "m14",
+      "duration": 3.697,
+      "frames": [
+        {
+          "file": "frame-00000.jpg",
+          "at": 0.022
+        },
+        {
+          "file": "frame-00001.jpg",
+          "at": 0.444
+        },
+        {
+          "file": "frame-00002.jpg",
+          "at": 0.46
+        },
+        {
+          "file": "frame-00003.jpg",
+          "at": 0.475
+        },
+        {
+          "file": "frame-00004.jpg",
+          "at": 0.493
+        },
+        {
+          "file": "frame-00005.jpg",
+          "at": 0.509
+        },
+        {
+          "file": "frame-00006.jpg",
+          "at": 0.525
+        },
+        {
+          "file": "frame-00007.jpg",
+          "at": 0.542
+        },
+        {
+          "file": "frame-00008.jpg",
+          "at": 0.559
+        },
+        {
+          "file": "frame-00009.jpg",
+          "at": 0.578
+        },
+        {
+          "file": "frame-00010.jpg",
+          "at": 0.596
+        },
+        {
+          "file": "frame-00011.jpg",
+          "at": 0.61
+        },
+        {
+          "file": "frame-00012.jpg",
+          "at": 0.626
+        },
+        {
+          "file": "frame-00013.jpg",
+          "at": 0.644
+        },
+        {
+          "file": "frame-00014.jpg",
+          "at": 0.659
+        },
+        {
+          "file": "frame-00015.jpg",
+          "at": 0.678
+        },
+        {
+          "file": "frame-00016.jpg",
+          "at": 0.728
+        },
+        {
+          "file": "frame-00017.jpg",
+          "at": 0.746
+        },
+        {
+          "file": "frame-00018.jpg",
+          "at": 0.791
+        },
+        {
+          "file": "frame-00019.jpg",
+          "at": 0.809
+        },
+        {
+          "file": "frame-00020.jpg",
+          "at": 0.844
+        },
+        {
+          "file": "frame-00021.jpg",
+          "at": 0.854
+        },
+        {
+          "file": "frame-00022.jpg",
+          "at": 0.885
+        },
+        {
+          "file": "frame-00023.jpg",
+          "at": 0.904
+        },
+        {
+          "file": "frame-00024.jpg",
+          "at": 0.921
+        },
+        {
+          "file": "frame-00025.jpg",
+          "at": 0.934
+        },
+        {
+          "file": "frame-00026.jpg",
+          "at": 0.949
+        },
+        {
+          "file": "frame-00027.jpg",
+          "at": 0.965
+        },
+        {
+          "file": "frame-00028.jpg",
+          "at": 0.982
+        },
+        {
+          "file": "frame-00029.jpg",
+          "at": 1
+        },
+        {
+          "file": "frame-00030.jpg",
+          "at": 1.014
+        },
+        {
+          "file": "frame-00031.jpg",
+          "at": 1.029
+        },
+        {
+          "file": "frame-00032.jpg",
+          "at": 1.239
+        },
+        {
+          "file": "frame-00033.jpg",
+          "at": 1.245
+        },
+        {
+          "file": "frame-00034.jpg",
+          "at": 1.262
+        },
+        {
+          "file": "frame-00035.jpg",
+          "at": 1.276
+        },
+        {
+          "file": "frame-00036.jpg",
+          "at": 1.294
+        },
+        {
+          "file": "frame-00037.jpg",
+          "at": 1.31
+        },
+        {
+          "file": "frame-00038.jpg",
+          "at": 1.326
+        },
+        {
+          "file": "frame-00039.jpg",
+          "at": 1.344
+        },
+        {
+          "file": "frame-00040.jpg",
+          "at": 1.36
+        },
+        {
+          "file": "frame-00041.jpg",
+          "at": 1.377
+        },
+        {
+          "file": "frame-00042.jpg",
+          "at": 1.394
+        },
+        {
+          "file": "frame-00043.jpg",
+          "at": 1.409
+        },
+        {
+          "file": "frame-00044.jpg",
+          "at": 1.427
+        }
+      ],
+      "title": "Notificações de novos envios",
+      "role": "Médico"
+    },
+    {
+      "id": "m15",
+      "duration": 4.461,
+      "frames": [
+        {
+          "file": "frame-00000.jpg",
+          "at": 0.024
+        },
+        {
+          "file": "frame-00001.jpg",
+          "at": 1.307
+        },
+        {
+          "file": "frame-00002.jpg",
+          "at": 1.322
+        },
+        {
+          "file": "frame-00003.jpg",
+          "at": 1.341
+        },
+        {
+          "file": "frame-00004.jpg",
+          "at": 1.356
+        },
+        {
+          "file": "frame-00005.jpg",
+          "at": 1.374
+        },
+        {
+          "file": "frame-00006.jpg",
+          "at": 1.39
+        },
+        {
+          "file": "frame-00007.jpg",
+          "at": 1.408
+        },
+        {
+          "file": "frame-00008.jpg",
+          "at": 1.421
+        },
+        {
+          "file": "frame-00009.jpg",
+          "at": 1.438
+        },
+        {
+          "file": "frame-00010.jpg",
+          "at": 1.456
+        },
+        {
+          "file": "frame-00011.jpg",
+          "at": 1.472
+        },
+        {
+          "file": "frame-00012.jpg",
+          "at": 1.486
+        },
+        {
+          "file": "frame-00013.jpg",
+          "at": 1.506
+        },
+        {
+          "file": "frame-00014.jpg",
+          "at": 1.522
+        },
+        {
+          "file": "frame-00015.jpg",
+          "at": 1.538
+        },
+        {
+          "file": "frame-00016.jpg",
+          "at": 1.553
+        },
+        {
+          "file": "frame-00017.jpg",
+          "at": 1.573
+        },
+        {
+          "file": "frame-00018.jpg",
+          "at": 1.588
+        },
+        {
+          "file": "frame-00019.jpg",
+          "at": 1.604
+        },
+        {
+          "file": "frame-00020.jpg",
+          "at": 1.62
+        },
+        {
+          "file": "frame-00021.jpg",
+          "at": 1.638
+        },
+        {
+          "file": "frame-00022.jpg",
+          "at": 1.732
+        }
+      ],
+      "title": "Solicitação de exames",
+      "role": "Médico"
+    },
+    {
+      "id": "m16",
+      "duration": 4.417,
+      "frames": [
+        {
+          "file": "frame-00000.jpg",
+          "at": 0.019
+        },
+        {
+          "file": "frame-00001.jpg",
+          "at": 1.294
+        },
+        {
+          "file": "frame-00002.jpg",
+          "at": 1.31
+        },
+        {
+          "file": "frame-00003.jpg",
+          "at": 1.328
+        },
+        {
+          "file": "frame-00004.jpg",
+          "at": 1.344
+        },
+        {
+          "file": "frame-00005.jpg",
+          "at": 1.361
+        },
+        {
+          "file": "frame-00006.jpg",
+          "at": 1.376
+        },
+        {
+          "file": "frame-00007.jpg",
+          "at": 1.393
+        },
+        {
+          "file": "frame-00008.jpg",
+          "at": 1.409
+        },
+        {
+          "file": "frame-00009.jpg",
+          "at": 1.426
+        },
+        {
+          "file": "frame-00010.jpg",
+          "at": 1.443
+        },
+        {
+          "file": "frame-00011.jpg",
+          "at": 1.46
+        },
+        {
+          "file": "frame-00012.jpg",
+          "at": 1.477
+        },
+        {
+          "file": "frame-00013.jpg",
+          "at": 1.496
+        },
+        {
+          "file": "frame-00014.jpg",
+          "at": 1.51
+        },
+        {
+          "file": "frame-00015.jpg",
+          "at": 1.526
+        },
+        {
+          "file": "frame-00016.jpg",
+          "at": 1.543
+        },
+        {
+          "file": "frame-00017.jpg",
+          "at": 1.561
+        },
+        {
+          "file": "frame-00018.jpg",
+          "at": 1.578
+        },
+        {
+          "file": "frame-00019.jpg",
+          "at": 1.594
+        }
+      ],
+      "title": "Orientações ao paciente",
+      "role": "Médico"
+    },
+    {
+      "id": "m17",
+      "duration": 4.469,
+      "frames": [
+        {
+          "file": "frame-00000.jpg",
+          "at": 0.02
+        },
+        {
+          "file": "frame-00001.jpg",
+          "at": 1.305
+        },
+        {
+          "file": "frame-00002.jpg",
+          "at": 1.321
+        },
+        {
+          "file": "frame-00003.jpg",
+          "at": 1.336
+        },
+        {
+          "file": "frame-00004.jpg",
+          "at": 1.353
+        },
+        {
+          "file": "frame-00005.jpg",
+          "at": 1.37
+        },
+        {
+          "file": "frame-00006.jpg",
+          "at": 1.388
+        },
+        {
+          "file": "frame-00007.jpg",
+          "at": 1.403
+        },
+        {
+          "file": "frame-00008.jpg",
+          "at": 1.419
+        },
+        {
+          "file": "frame-00009.jpg",
+          "at": 1.436
+        },
+        {
+          "file": "frame-00010.jpg",
+          "at": 1.453
+        },
+        {
+          "file": "frame-00011.jpg",
+          "at": 1.469
+        },
+        {
+          "file": "frame-00012.jpg",
+          "at": 1.486
+        },
+        {
+          "file": "frame-00013.jpg",
+          "at": 1.503
+        },
+        {
+          "file": "frame-00014.jpg",
+          "at": 1.52
+        },
+        {
+          "file": "frame-00015.jpg",
+          "at": 1.536
+        },
+        {
+          "file": "frame-00016.jpg",
+          "at": 1.553
+        },
+        {
+          "file": "frame-00017.jpg",
+          "at": 1.57
+        },
+        {
+          "file": "frame-00018.jpg",
+          "at": 1.585
+        },
+        {
+          "file": "frame-00019.jpg",
+          "at": 1.602
+        },
+        {
+          "file": "frame-00020.jpg",
+          "at": 1.62
+        },
+        {
+          "file": "frame-00021.jpg",
+          "at": 1.636
+        }
+      ],
+      "title": "Resultados do paciente",
+      "role": "Médico"
+    },
+    {
+      "id": "m18",
+      "duration": 4.442,
+      "frames": [
+        {
+          "file": "frame-00000.jpg",
+          "at": 0.019
+        },
+        {
+          "file": "frame-00001.jpg",
+          "at": 1.292
+        },
+        {
+          "file": "frame-00002.jpg",
+          "at": 1.306
+        },
+        {
+          "file": "frame-00003.jpg",
+          "at": 1.319
+        },
+        {
+          "file": "frame-00004.jpg",
+          "at": 1.336
+        },
+        {
+          "file": "frame-00005.jpg",
+          "at": 1.354
+        },
+        {
+          "file": "frame-00006.jpg",
+          "at": 1.368
+        },
+        {
+          "file": "frame-00007.jpg",
+          "at": 1.386
+        },
+        {
+          "file": "frame-00008.jpg",
+          "at": 1.4
+        },
+        {
+          "file": "frame-00009.jpg",
+          "at": 1.426
+        },
+        {
+          "file": "frame-00010.jpg",
+          "at": 1.437
+        },
+        {
+          "file": "frame-00011.jpg",
+          "at": 1.452
+        },
+        {
+          "file": "frame-00012.jpg",
+          "at": 1.466
+        },
+        {
+          "file": "frame-00013.jpg",
+          "at": 1.486
+        },
+        {
+          "file": "frame-00014.jpg",
+          "at": 1.501
+        },
+        {
+          "file": "frame-00015.jpg",
+          "at": 1.518
+        },
+        {
+          "file": "frame-00016.jpg",
+          "at": 1.533
+        },
+        {
+          "file": "frame-00017.jpg",
+          "at": 1.553
+        },
+        {
+          "file": "frame-00018.jpg",
+          "at": 1.567
+        },
+        {
+          "file": "frame-00019.jpg",
+          "at": 1.584
+        },
+        {
+          "file": "frame-00020.jpg",
+          "at": 1.6
+        },
+        {
+          "file": "frame-00021.jpg",
+          "at": 1.617
+        }
+      ],
+      "title": "Evolução entre coletas",
+      "role": "Médico"
+    },
+    {
+      "id": "m19",
+      "duration": 4.42,
+      "frames": [
+        {
+          "file": "frame-00000.jpg",
+          "at": 0.021
+        },
+        {
+          "file": "frame-00001.jpg",
+          "at": 1.297
+        },
+        {
+          "file": "frame-00002.jpg",
+          "at": 1.312
+        },
+        {
+          "file": "frame-00003.jpg",
+          "at": 1.328
+        },
+        {
+          "file": "frame-00004.jpg",
+          "at": 1.346
+        },
+        {
+          "file": "frame-00005.jpg",
+          "at": 1.363
+        },
+        {
+          "file": "frame-00006.jpg",
+          "at": 1.382
+        },
+        {
+          "file": "frame-00007.jpg",
+          "at": 1.396
+        },
+        {
+          "file": "frame-00008.jpg",
+          "at": 1.412
+        },
+        {
+          "file": "frame-00009.jpg",
+          "at": 1.431
+        },
+        {
+          "file": "frame-00010.jpg",
+          "at": 1.446
+        },
+        {
+          "file": "frame-00011.jpg",
+          "at": 1.463
+        },
+        {
+          "file": "frame-00012.jpg",
+          "at": 1.482
+        },
+        {
+          "file": "frame-00013.jpg",
+          "at": 1.5
+        },
+        {
+          "file": "frame-00014.jpg",
+          "at": 1.515
+        },
+        {
+          "file": "frame-00015.jpg",
+          "at": 1.53
+        },
+        {
+          "file": "frame-00016.jpg",
+          "at": 1.546
+        },
+        {
+          "file": "frame-00017.jpg",
+          "at": 1.563
+        },
+        {
+          "file": "frame-00018.jpg",
+          "at": 1.578
+        }
+      ],
+      "title": "Histórico familiar",
+      "role": "Médico"
+    },
+    {
+      "id": "m20",
+      "duration": 4.098,
+      "frames": [
+        {
+          "file": "frame-00000.jpg",
+          "at": 0.025
+        },
+        {
+          "file": "frame-00001.jpg",
+          "at": 1.742
+        },
+        {
+          "file": "frame-00002.jpg",
+          "at": 1.76
+        },
+        {
+          "file": "frame-00003.jpg",
+          "at": 1.774
+        },
+        {
+          "file": "frame-00004.jpg",
+          "at": 1.791
+        },
+        {
+          "file": "frame-00005.jpg",
+          "at": 1.809
+        },
+        {
+          "file": "frame-00006.jpg",
+          "at": 1.826
+        },
+        {
+          "file": "frame-00007.jpg",
+          "at": 1.843
+        },
+        {
+          "file": "frame-00008.jpg",
+          "at": 1.86
+        },
+        {
+          "file": "frame-00009.jpg",
+          "at": 1.873
+        },
+        {
+          "file": "frame-00010.jpg",
+          "at": 1.891
+        },
+        {
+          "file": "frame-00011.jpg",
+          "at": 1.908
+        },
+        {
+          "file": "frame-00012.jpg",
+          "at": 1.928
+        },
+        {
+          "file": "frame-00013.jpg",
+          "at": 1.945
+        },
+        {
+          "file": "frame-00014.jpg",
+          "at": 1.962
+        },
+        {
+          "file": "frame-00015.jpg",
+          "at": 1.978
+        },
+        {
+          "file": "frame-00016.jpg",
+          "at": 1.995
+        },
+        {
+          "file": "frame-00017.jpg",
+          "at": 2.016
+        },
+        {
+          "file": "frame-00018.jpg",
+          "at": 2.029
+        },
+        {
+          "file": "frame-00019.jpg",
+          "at": 2.046
+        },
+        {
+          "file": "frame-00020.jpg",
+          "at": 3.113
+        },
+        {
+          "file": "frame-00021.jpg",
+          "at": 3.123
+        },
+        {
+          "file": "frame-00022.jpg",
+          "at": 3.141
+        },
+        {
+          "file": "frame-00023.jpg",
+          "at": 3.157
+        },
+        {
+          "file": "frame-00024.jpg",
+          "at": 3.178
+        },
+        {
+          "file": "frame-00025.jpg",
+          "at": 3.19
+        },
+        {
+          "file": "frame-00026.jpg",
+          "at": 3.207
+        },
+        {
+          "file": "frame-00027.jpg",
+          "at": 3.223
+        },
+        {
+          "file": "frame-00028.jpg",
+          "at": 3.24
+        },
+        {
+          "file": "frame-00029.jpg",
+          "at": 3.256
+        },
+        {
+          "file": "frame-00030.jpg",
+          "at": 3.273
+        },
+        {
+          "file": "frame-00031.jpg",
+          "at": 3.29
+        },
+        {
+          "file": "frame-00032.jpg",
+          "at": 3.307
+        },
+        {
+          "file": "frame-00033.jpg",
+          "at": 3.322
+        }
+      ],
+      "title": "Laudos e análise com IA",
+      "role": "Médico"
+    },
+    {
+      "id": "m21",
+      "duration": 4.458,
+      "frames": [
+        {
+          "file": "frame-00000.jpg",
+          "at": 0.022
+        },
+        {
+          "file": "frame-00001.jpg",
+          "at": 1.307
+        },
+        {
+          "file": "frame-00002.jpg",
+          "at": 1.319
+        },
+        {
+          "file": "frame-00003.jpg",
+          "at": 1.336
+        },
+        {
+          "file": "frame-00004.jpg",
+          "at": 1.356
+        },
+        {
+          "file": "frame-00005.jpg",
+          "at": 1.371
+        },
+        {
+          "file": "frame-00006.jpg",
+          "at": 1.386
+        },
+        {
+          "file": "frame-00007.jpg",
+          "at": 1.405
+        },
+        {
+          "file": "frame-00008.jpg",
+          "at": 1.42
+        },
+        {
+          "file": "frame-00009.jpg",
+          "at": 1.439
+        },
+        {
+          "file": "frame-00010.jpg",
+          "at": 1.454
+        },
+        {
+          "file": "frame-00011.jpg",
+          "at": 1.471
+        },
+        {
+          "file": "frame-00012.jpg",
+          "at": 1.487
+        },
+        {
+          "file": "frame-00013.jpg",
+          "at": 1.504
+        },
+        {
+          "file": "frame-00014.jpg",
+          "at": 1.519
+        },
+        {
+          "file": "frame-00015.jpg",
+          "at": 1.537
+        },
+        {
+          "file": "frame-00016.jpg",
+          "at": 1.554
+        },
+        {
+          "file": "frame-00017.jpg",
+          "at": 1.572
+        },
+        {
+          "file": "frame-00018.jpg",
+          "at": 1.587
+        },
+        {
+          "file": "frame-00019.jpg",
+          "at": 1.602
+        },
+        {
+          "file": "frame-00020.jpg",
+          "at": 1.621
+        },
+        {
+          "file": "frame-00021.jpg",
+          "at": 1.637
+        }
+      ],
+      "title": "Arquivos genéticos",
+      "role": "Médico"
+    },
+    {
+      "id": "m22",
+      "duration": 4.321,
+      "frames": [
+        {
+          "file": "frame-00000.jpg",
+          "at": 0.019
+        },
+        {
+          "file": "frame-00001.jpg",
+          "at": 1.294
+        },
+        {
+          "file": "frame-00002.jpg",
+          "at": 1.312
+        },
+        {
+          "file": "frame-00003.jpg",
+          "at": 1.327
+        },
+        {
+          "file": "frame-00004.jpg",
+          "at": 1.342
+        },
+        {
+          "file": "frame-00005.jpg",
+          "at": 1.361
+        },
+        {
+          "file": "frame-00006.jpg",
+          "at": 1.377
+        },
+        {
+          "file": "frame-00007.jpg",
+          "at": 1.395
+        },
+        {
+          "file": "frame-00008.jpg",
+          "at": 1.409
+        },
+        {
+          "file": "frame-00009.jpg",
+          "at": 1.427
+        },
+        {
+          "file": "frame-00010.jpg",
+          "at": 1.444
+        },
+        {
+          "file": "frame-00011.jpg",
+          "at": 1.461
+        },
+        {
+          "file": "frame-00012.jpg",
+          "at": 1.475
+        }
+      ],
+      "title": "Laudos genômicos",
+      "role": "Médico"
+    },
+    {
+      "id": "m23",
+      "duration": 4.439,
+      "frames": [
+        {
+          "file": "frame-00000.jpg",
+          "at": 0.021
+        },
+        {
+          "file": "frame-00001.jpg",
+          "at": 1.281
+        },
+        {
+          "file": "frame-00002.jpg",
+          "at": 1.297
+        },
+        {
+          "file": "frame-00003.jpg",
+          "at": 1.316
+        },
+        {
+          "file": "frame-00004.jpg",
+          "at": 1.331
+        },
+        {
+          "file": "frame-00005.jpg",
+          "at": 1.346
+        },
+        {
+          "file": "frame-00006.jpg",
+          "at": 1.364
+        },
+        {
+          "file": "frame-00007.jpg",
+          "at": 1.382
+        },
+        {
+          "file": "frame-00008.jpg",
+          "at": 1.406
+        },
+        {
+          "file": "frame-00009.jpg",
+          "at": 1.416
+        },
+        {
+          "file": "frame-00010.jpg",
+          "at": 1.431
+        },
+        {
+          "file": "frame-00011.jpg",
+          "at": 1.447
+        },
+        {
+          "file": "frame-00012.jpg",
+          "at": 1.465
+        },
+        {
+          "file": "frame-00013.jpg",
+          "at": 1.479
+        },
+        {
+          "file": "frame-00014.jpg",
+          "at": 1.496
+        },
+        {
+          "file": "frame-00015.jpg",
+          "at": 1.516
+        },
+        {
+          "file": "frame-00016.jpg",
+          "at": 1.532
+        },
+        {
+          "file": "frame-00017.jpg",
+          "at": 1.547
+        },
+        {
+          "file": "frame-00018.jpg",
+          "at": 1.563
+        },
+        {
+          "file": "frame-00019.jpg",
+          "at": 1.581
+        },
+        {
+          "file": "frame-00020.jpg",
+          "at": 1.597
+        },
+        {
+          "file": "frame-00021.jpg",
+          "at": 1.612
+        }
+      ],
+      "title": "Biblioteca de documentos",
+      "role": "Médico"
+    },
+    {
+      "id": "m24",
+      "duration": 4.468,
+      "frames": [
+        {
+          "file": "frame-00000.jpg",
+          "at": 0.028
+        },
+        {
+          "file": "frame-00001.jpg",
+          "at": 1.313
+        },
+        {
+          "file": "frame-00002.jpg",
+          "at": 1.329
+        },
+        {
+          "file": "frame-00003.jpg",
+          "at": 1.349
+        },
+        {
+          "file": "frame-00004.jpg",
+          "at": 1.36
+        },
+        {
+          "file": "frame-00005.jpg",
+          "at": 1.379
+        },
+        {
+          "file": "frame-00006.jpg",
+          "at": 1.394
+        },
+        {
+          "file": "frame-00007.jpg",
+          "at": 1.409
+        },
+        {
+          "file": "frame-00008.jpg",
+          "at": 1.427
+        },
+        {
+          "file": "frame-00009.jpg",
+          "at": 1.445
+        },
+        {
+          "file": "frame-00010.jpg",
+          "at": 1.459
+        },
+        {
+          "file": "frame-00011.jpg",
+          "at": 1.476
+        },
+        {
+          "file": "frame-00012.jpg",
+          "at": 1.497
+        },
+        {
+          "file": "frame-00013.jpg",
+          "at": 1.509
+        },
+        {
+          "file": "frame-00014.jpg",
+          "at": 1.526
+        },
+        {
+          "file": "frame-00015.jpg",
+          "at": 1.542
+        },
+        {
+          "file": "frame-00016.jpg",
+          "at": 1.559
+        },
+        {
+          "file": "frame-00017.jpg",
+          "at": 1.578
+        },
+        {
+          "file": "frame-00018.jpg",
+          "at": 1.592
+        },
+        {
+          "file": "frame-00019.jpg",
+          "at": 1.609
+        },
+        {
+          "file": "frame-00020.jpg",
+          "at": 1.625
+        },
+        {
+          "file": "frame-00021.jpg",
+          "at": 1.643
+        },
+        {
+          "file": "frame-00022.jpg",
+          "at": 2.42
+        }
+      ],
+      "title": "Acompanhamento contínuo",
+      "role": "Médico"
+    },
+    {
+      "id": "m25",
+      "duration": 4.458,
+      "frames": [
+        {
+          "file": "frame-00000.jpg",
+          "at": 0.02
+        },
+        {
+          "file": "frame-00001.jpg",
+          "at": 1.297
+        },
+        {
+          "file": "frame-00002.jpg",
+          "at": 1.312
+        },
+        {
+          "file": "frame-00003.jpg",
+          "at": 1.334
+        },
+        {
+          "file": "frame-00004.jpg",
+          "at": 1.346
+        },
+        {
+          "file": "frame-00005.jpg",
+          "at": 1.367
+        },
+        {
+          "file": "frame-00006.jpg",
+          "at": 1.378
+        },
+        {
+          "file": "frame-00007.jpg",
+          "at": 1.395
+        },
+        {
+          "file": "frame-00008.jpg",
+          "at": 1.413
+        },
+        {
+          "file": "frame-00009.jpg",
+          "at": 1.429
+        },
+        {
+          "file": "frame-00010.jpg",
+          "at": 1.444
+        },
+        {
+          "file": "frame-00011.jpg",
+          "at": 1.463
+        },
+        {
+          "file": "frame-00012.jpg",
+          "at": 1.478
+        },
+        {
+          "file": "frame-00013.jpg",
+          "at": 1.496
+        },
+        {
+          "file": "frame-00014.jpg",
+          "at": 1.511
+        },
+        {
+          "file": "frame-00015.jpg",
+          "at": 1.528
+        },
+        {
+          "file": "frame-00016.jpg",
+          "at": 1.544
+        },
+        {
+          "file": "frame-00017.jpg",
+          "at": 1.563
+        },
+        {
+          "file": "frame-00018.jpg",
+          "at": 1.578
+        },
+        {
+          "file": "frame-00019.jpg",
+          "at": 1.594
+        },
+        {
+          "file": "frame-00020.jpg",
+          "at": 1.618
+        },
+        {
+          "file": "frame-00021.jpg",
+          "at": 1.628
+        },
+        {
+          "file": "frame-00022.jpg",
+          "at": 2.608
+        }
+      ],
+      "title": "Meus relatórios",
+      "role": "Médico"
+    },
+    {
+      "id": "m26",
+      "duration": 4.465,
+      "frames": [
+        {
+          "file": "frame-00000.jpg",
+          "at": 0.026
+        },
+        {
+          "file": "frame-00001.jpg",
+          "at": 1.291
+        },
+        {
+          "file": "frame-00002.jpg",
+          "at": 1.313
+        },
+        {
+          "file": "frame-00003.jpg",
+          "at": 1.331
+        },
+        {
+          "file": "frame-00004.jpg",
+          "at": 1.345
+        },
+        {
+          "file": "frame-00005.jpg",
+          "at": 1.359
+        },
+        {
+          "file": "frame-00006.jpg",
+          "at": 1.379
+        },
+        {
+          "file": "frame-00007.jpg",
+          "at": 1.395
+        },
+        {
+          "file": "frame-00008.jpg",
+          "at": 1.41
+        },
+        {
+          "file": "frame-00009.jpg",
+          "at": 1.426
+        },
+        {
+          "file": "frame-00010.jpg",
+          "at": 1.445
+        },
+        {
+          "file": "frame-00011.jpg",
+          "at": 1.46
+        },
+        {
+          "file": "frame-00012.jpg",
+          "at": 1.476
+        },
+        {
+          "file": "frame-00013.jpg",
+          "at": 1.494
+        },
+        {
+          "file": "frame-00014.jpg",
+          "at": 1.508
+        },
+        {
+          "file": "frame-00015.jpg",
+          "at": 1.528
+        },
+        {
+          "file": "frame-00016.jpg",
+          "at": 1.543
+        },
+        {
+          "file": "frame-00017.jpg",
+          "at": 1.559
+        },
+        {
+          "file": "frame-00018.jpg",
+          "at": 1.576
+        },
+        {
+          "file": "frame-00019.jpg",
+          "at": 1.593
+        },
+        {
+          "file": "frame-00020.jpg",
+          "at": 1.61
+        },
+        {
+          "file": "frame-00021.jpg",
+          "at": 1.625
+        },
+        {
+          "file": "frame-00022.jpg",
+          "at": 2.616
+        }
+      ],
+      "title": "Perfil e preferências",
+      "role": "Médico"
+    },
+    {
+      "id": "m27",
+      "duration": 4.46,
+      "frames": [
+        {
+          "file": "frame-00000.jpg",
+          "at": 0.032
+        },
+        {
+          "file": "frame-00001.jpg",
+          "at": 1.299
+        },
+        {
+          "file": "frame-00002.jpg",
+          "at": 1.314
+        },
+        {
+          "file": "frame-00003.jpg",
+          "at": 1.335
+        },
+        {
+          "file": "frame-00004.jpg",
+          "at": 1.351
+        },
+        {
+          "file": "frame-00005.jpg",
+          "at": 1.366
+        },
+        {
+          "file": "frame-00006.jpg",
+          "at": 1.379
+        },
+        {
+          "file": "frame-00007.jpg",
+          "at": 1.396
+        },
+        {
+          "file": "frame-00008.jpg",
+          "at": 1.419
+        },
+        {
+          "file": "frame-00009.jpg",
+          "at": 1.429
+        },
+        {
+          "file": "frame-00010.jpg",
+          "at": 1.447
+        },
+        {
+          "file": "frame-00011.jpg",
+          "at": 1.463
+        },
+        {
+          "file": "frame-00012.jpg",
+          "at": 1.483
+        },
+        {
+          "file": "frame-00013.jpg",
+          "at": 1.497
+        },
+        {
+          "file": "frame-00014.jpg",
+          "at": 1.513
+        },
+        {
+          "file": "frame-00015.jpg",
+          "at": 1.535
+        },
+        {
+          "file": "frame-00016.jpg",
+          "at": 1.548
+        },
+        {
+          "file": "frame-00017.jpg",
+          "at": 1.566
+        },
+        {
+          "file": "frame-00018.jpg",
+          "at": 1.579
+        },
+        {
+          "file": "frame-00019.jpg",
+          "at": 1.596
+        },
+        {
+          "file": "frame-00020.jpg",
+          "at": 1.614
+        },
+        {
+          "file": "frame-00021.jpg",
+          "at": 1.629
+        },
+        {
+          "file": "frame-00022.jpg",
+          "at": 2.595
+        }
+      ],
+      "title": "Configurações",
+      "role": "Médico"
+    },
+    {
+      "id": "p01",
+      "duration": 4.474,
+      "frames": [
+        {
+          "file": "frame-00000.jpg",
+          "at": 0.021
+        },
+        {
+          "file": "frame-00001.jpg",
+          "at": 1.299
+        },
+        {
+          "file": "frame-00002.jpg",
+          "at": 1.316
+        },
+        {
+          "file": "frame-00003.jpg",
+          "at": 1.333
+        },
+        {
+          "file": "frame-00004.jpg",
+          "at": 1.348
+        },
+        {
+          "file": "frame-00005.jpg",
+          "at": 1.367
+        },
+        {
+          "file": "frame-00006.jpg",
+          "at": 1.389
+        },
+        {
+          "file": "frame-00007.jpg",
+          "at": 1.409
+        },
+        {
+          "file": "frame-00008.jpg",
+          "at": 1.421
+        },
+        {
+          "file": "frame-00009.jpg",
+          "at": 1.45
+        },
+        {
+          "file": "frame-00010.jpg",
+          "at": 1.453
+        },
+        {
+          "file": "frame-00011.jpg",
+          "at": 1.482
+        },
+        {
+          "file": "frame-00012.jpg",
+          "at": 1.484
+        },
+        {
+          "file": "frame-00013.jpg",
+          "at": 1.5
+        },
+        {
+          "file": "frame-00014.jpg",
+          "at": 1.517
+        },
+        {
+          "file": "frame-00015.jpg",
+          "at": 1.535
+        },
+        {
+          "file": "frame-00016.jpg",
+          "at": 1.548
+        },
+        {
+          "file": "frame-00017.jpg",
+          "at": 1.565
+        },
+        {
+          "file": "frame-00018.jpg",
+          "at": 1.583
+        },
+        {
+          "file": "frame-00019.jpg",
+          "at": 1.613
+        },
+        {
+          "file": "frame-00020.jpg",
+          "at": 1.616
+        },
+        {
+          "file": "frame-00021.jpg",
+          "at": 1.633
+        },
+        {
+          "file": "frame-00022.jpg",
+          "at": 1.95
+        }
+      ],
+      "title": "Minha saúde, em perspectiva",
+      "role": "Paciente"
+    },
+    {
+      "id": "p02",
+      "duration": 4.477,
+      "frames": [
+        {
+          "file": "frame-00000.jpg",
+          "at": 0.02
+        },
+        {
+          "file": "frame-00001.jpg",
+          "at": 1.304
+        },
+        {
+          "file": "frame-00002.jpg",
+          "at": 1.313
+        },
+        {
+          "file": "frame-00003.jpg",
+          "at": 1.329
+        },
+        {
+          "file": "frame-00004.jpg",
+          "at": 1.344
+        },
+        {
+          "file": "frame-00005.jpg",
+          "at": 1.362
+        },
+        {
+          "file": "frame-00006.jpg",
+          "at": 1.378
+        },
+        {
+          "file": "frame-00007.jpg",
+          "at": 1.397
+        },
+        {
+          "file": "frame-00008.jpg",
+          "at": 1.412
+        },
+        {
+          "file": "frame-00009.jpg",
+          "at": 1.435
+        },
+        {
+          "file": "frame-00010.jpg",
+          "at": 1.445
+        },
+        {
+          "file": "frame-00011.jpg",
+          "at": 1.462
+        },
+        {
+          "file": "frame-00012.jpg",
+          "at": 1.478
+        },
+        {
+          "file": "frame-00013.jpg",
+          "at": 1.496
+        },
+        {
+          "file": "frame-00014.jpg",
+          "at": 1.513
+        },
+        {
+          "file": "frame-00015.jpg",
+          "at": 1.53
+        },
+        {
+          "file": "frame-00016.jpg",
+          "at": 1.545
+        },
+        {
+          "file": "frame-00017.jpg",
+          "at": 1.573
+        },
+        {
+          "file": "frame-00018.jpg",
+          "at": 1.585
+        },
+        {
+          "file": "frame-00019.jpg",
+          "at": 1.596
+        },
+        {
+          "file": "frame-00020.jpg",
+          "at": 1.613
+        },
+        {
+          "file": "frame-00021.jpg",
+          "at": 1.63
+        }
+      ],
+      "title": "Minha agenda",
+      "role": "Paciente"
+    },
+    {
+      "id": "p03",
+      "duration": 4.104,
+      "frames": [
+        {
+          "file": "frame-00000.jpg",
+          "at": 0.022
+        }
+      ],
+      "title": "Próximos passos",
+      "role": "Paciente"
+    },
+    {
+      "id": "p04",
+      "duration": 4.264,
+      "frames": [
+        {
+          "file": "frame-00000.jpg",
+          "at": 0.023
+        },
+        {
+          "file": "frame-00001.jpg",
+          "at": 1.315
+        },
+        {
+          "file": "frame-00002.jpg",
+          "at": 1.332
+        },
+        {
+          "file": "frame-00003.jpg",
+          "at": 1.346
+        },
+        {
+          "file": "frame-00004.jpg",
+          "at": 1.363
+        },
+        {
+          "file": "frame-00005.jpg",
+          "at": 1.385
+        },
+        {
+          "file": "frame-00006.jpg",
+          "at": 1.398
+        },
+        {
+          "file": "frame-00007.jpg",
+          "at": 1.413
+        },
+        {
+          "file": "frame-00008.jpg",
+          "at": 1.43
+        },
+        {
+          "file": "frame-00009.jpg",
+          "at": 1.446
+        }
+      ],
+      "title": "Avisos e atualizações",
+      "role": "Paciente"
+    },
+    {
+      "id": "p05",
+      "duration": 4.964,
+      "frames": [
+        {
+          "file": "frame-00000.jpg",
+          "at": 0.021
+        },
+        {
+          "file": "frame-00001.jpg",
+          "at": 0.456
+        },
+        {
+          "file": "frame-00002.jpg",
+          "at": 1.152
+        },
+        {
+          "file": "frame-00003.jpg",
+          "at": 1.169
+        },
+        {
+          "file": "frame-00004.jpg",
+          "at": 2.01
+        },
+        {
+          "file": "frame-00005.jpg",
+          "at": 2.055
+        },
+        {
+          "file": "frame-00006.jpg",
+          "at": 2.103
+        },
+        {
+          "file": "frame-00007.jpg",
+          "at": 2.531
+        },
+        {
+          "file": "frame-00008.jpg",
+          "at": 2.548
+        },
+        {
+          "file": "frame-00009.jpg",
+          "at": 2.564
+        },
+        {
+          "file": "frame-00010.jpg",
+          "at": 2.58
+        },
+        {
+          "file": "frame-00011.jpg",
+          "at": 2.597
+        },
+        {
+          "file": "frame-00012.jpg",
+          "at": 2.614
+        },
+        {
+          "file": "frame-00013.jpg",
+          "at": 2.631
+        },
+        {
+          "file": "frame-00014.jpg",
+          "at": 2.648
+        },
+        {
+          "file": "frame-00015.jpg",
+          "at": 2.663
+        },
+        {
+          "file": "frame-00016.jpg",
+          "at": 2.681
+        },
+        {
+          "file": "frame-00017.jpg",
+          "at": 2.698
+        },
+        {
+          "file": "frame-00018.jpg",
+          "at": 2.714
+        },
+        {
+          "file": "frame-00019.jpg",
+          "at": 2.731
+        },
+        {
+          "file": "frame-00020.jpg",
+          "at": 2.749
+        }
+      ],
+      "title": "Preparar a consulta",
+      "role": "Paciente"
+    },
+    {
+      "id": "p06",
+      "duration": 4.477,
+      "frames": [
+        {
+          "file": "frame-00000.jpg",
+          "at": 0.041
+        },
+        {
+          "file": "frame-00001.jpg",
+          "at": 0.527
+        },
+        {
+          "file": "frame-00002.jpg",
+          "at": 0.533
+        },
+        {
+          "file": "frame-00003.jpg",
+          "at": 0.538
+        },
+        {
+          "file": "frame-00004.jpg",
+          "at": 0.562
+        },
+        {
+          "file": "frame-00005.jpg",
+          "at": 0.584
+        },
+        {
+          "file": "frame-00006.jpg",
+          "at": 0.6
+        },
+        {
+          "file": "frame-00007.jpg",
+          "at": 0.617
+        },
+        {
+          "file": "frame-00008.jpg",
+          "at": 0.667
+        },
+        {
+          "file": "frame-00009.jpg",
+          "at": 0.67
+        },
+        {
+          "file": "frame-00010.jpg",
+          "at": 0.674
+        },
+        {
+          "file": "frame-00011.jpg",
+          "at": 1.503
+        },
+        {
+          "file": "frame-00012.jpg",
+          "at": 1.561
+        },
+        {
+          "file": "frame-00013.jpg",
+          "at": 1.579
+        },
+        {
+          "file": "frame-00014.jpg",
+          "at": 1.595
+        },
+        {
+          "file": "frame-00015.jpg",
+          "at": 1.614
+        },
+        {
+          "file": "frame-00016.jpg",
+          "at": 1.635
+        },
+        {
+          "file": "frame-00017.jpg",
+          "at": 1.706
+        },
+        {
+          "file": "frame-00018.jpg",
+          "at": 1.72
+        },
+        {
+          "file": "frame-00019.jpg",
+          "at": 1.727
+        },
+        {
+          "file": "frame-00020.jpg",
+          "at": 1.748
+        },
+        {
+          "file": "frame-00021.jpg",
+          "at": 1.756
+        },
+        {
+          "file": "frame-00022.jpg",
+          "at": 1.77
+        },
+        {
+          "file": "frame-00023.jpg",
+          "at": 1.82
+        },
+        {
+          "file": "frame-00024.jpg",
+          "at": 1.826
+        },
+        {
+          "file": "frame-00025.jpg",
+          "at": 1.835
+        },
+        {
+          "file": "frame-00026.jpg",
+          "at": 1.848
+        },
+        {
+          "file": "frame-00027.jpg",
+          "at": 1.861
+        },
+        {
+          "file": "frame-00028.jpg",
+          "at": 1.879
+        },
+        {
+          "file": "frame-00029.jpg",
+          "at": 1.933
+        },
+        {
+          "file": "frame-00030.jpg",
+          "at": 1.937
+        },
+        {
+          "file": "frame-00031.jpg",
+          "at": 1.941
+        }
+      ],
+      "title": "Enviar ao médico",
+      "role": "Paciente"
+    },
+    {
+      "id": "p07",
+      "duration": 4.087,
+      "frames": [
+        {
+          "file": "frame-00000.jpg",
+          "at": 0.019
+        }
+      ],
+      "title": "Orientações do médico",
+      "role": "Paciente"
+    },
+    {
+      "id": "p08",
+      "duration": 4.464,
+      "frames": [
+        {
+          "file": "frame-00000.jpg",
+          "at": 0.024
+        },
+        {
+          "file": "frame-00001.jpg",
+          "at": 1.297
+        },
+        {
+          "file": "frame-00002.jpg",
+          "at": 1.314
+        },
+        {
+          "file": "frame-00003.jpg",
+          "at": 1.331
+        },
+        {
+          "file": "frame-00004.jpg",
+          "at": 1.347
+        },
+        {
+          "file": "frame-00005.jpg",
+          "at": 1.366
+        },
+        {
+          "file": "frame-00006.jpg",
+          "at": 1.379
+        },
+        {
+          "file": "frame-00007.jpg",
+          "at": 1.407
+        },
+        {
+          "file": "frame-00008.jpg",
+          "at": 1.425
+        },
+        {
+          "file": "frame-00009.jpg",
+          "at": 1.435
+        },
+        {
+          "file": "frame-00010.jpg",
+          "at": 1.456
+        },
+        {
+          "file": "frame-00011.jpg",
+          "at": 1.468
+        },
+        {
+          "file": "frame-00012.jpg",
+          "at": 1.48
+        },
+        {
+          "file": "frame-00013.jpg",
+          "at": 1.498
+        },
+        {
+          "file": "frame-00014.jpg",
+          "at": 1.513
+        },
+        {
+          "file": "frame-00015.jpg",
+          "at": 1.53
+        },
+        {
+          "file": "frame-00016.jpg",
+          "at": 1.547
+        },
+        {
+          "file": "frame-00017.jpg",
+          "at": 1.565
+        },
+        {
+          "file": "frame-00018.jpg",
+          "at": 1.579
+        },
+        {
+          "file": "frame-00019.jpg",
+          "at": 1.596
+        },
+        {
+          "file": "frame-00020.jpg",
+          "at": 1.612
+        },
+        {
+          "file": "frame-00021.jpg",
+          "at": 1.63
+        }
+      ],
+      "title": "Meus resultados",
+      "role": "Paciente"
+    },
+    {
+      "id": "p09",
+      "duration": 4.495,
+      "frames": [
+        {
+          "file": "frame-00000.jpg",
+          "at": 0.049
+        },
+        {
+          "file": "frame-00001.jpg",
+          "at": 1.442
+        },
+        {
+          "file": "frame-00002.jpg",
+          "at": 1.452
+        },
+        {
+          "file": "frame-00003.jpg",
+          "at": 1.469
+        },
+        {
+          "file": "frame-00004.jpg",
+          "at": 1.485
+        },
+        {
+          "file": "frame-00005.jpg",
+          "at": 1.504
+        },
+        {
+          "file": "frame-00006.jpg",
+          "at": 1.518
+        },
+        {
+          "file": "frame-00007.jpg",
+          "at": 1.535
+        },
+        {
+          "file": "frame-00008.jpg",
+          "at": 1.555
+        },
+        {
+          "file": "frame-00009.jpg",
+          "at": 1.568
+        },
+        {
+          "file": "frame-00010.jpg",
+          "at": 1.584
+        },
+        {
+          "file": "frame-00011.jpg",
+          "at": 1.602
+        },
+        {
+          "file": "frame-00012.jpg",
+          "at": 1.617
+        },
+        {
+          "file": "frame-00013.jpg",
+          "at": 1.631
+        },
+        {
+          "file": "frame-00014.jpg",
+          "at": 1.655
+        },
+        {
+          "file": "frame-00015.jpg",
+          "at": 1.673
+        },
+        {
+          "file": "frame-00016.jpg",
+          "at": 1.683
+        }
+      ],
+      "title": "Entenda com IA",
+      "role": "Paciente"
+    },
+    {
+      "id": "p10",
+      "duration": 4.455,
+      "frames": [
+        {
+          "file": "frame-00000.jpg",
+          "at": 0.023
+        },
+        {
+          "file": "frame-00001.jpg",
+          "at": 1.298
+        },
+        {
+          "file": "frame-00002.jpg",
+          "at": 1.313
+        },
+        {
+          "file": "frame-00003.jpg",
+          "at": 1.326
+        },
+        {
+          "file": "frame-00004.jpg",
+          "at": 1.344
+        },
+        {
+          "file": "frame-00005.jpg",
+          "at": 1.361
+        },
+        {
+          "file": "frame-00006.jpg",
+          "at": 1.374
+        },
+        {
+          "file": "frame-00007.jpg",
+          "at": 1.393
+        },
+        {
+          "file": "frame-00008.jpg",
+          "at": 1.409
+        },
+        {
+          "file": "frame-00009.jpg",
+          "at": 1.428
+        },
+        {
+          "file": "frame-00010.jpg",
+          "at": 1.439
+        },
+        {
+          "file": "frame-00011.jpg",
+          "at": 1.455
+        },
+        {
+          "file": "frame-00012.jpg",
+          "at": 1.475
+        },
+        {
+          "file": "frame-00013.jpg",
+          "at": 1.489
+        },
+        {
+          "file": "frame-00014.jpg",
+          "at": 1.506
+        },
+        {
+          "file": "frame-00015.jpg",
+          "at": 1.523
+        },
+        {
+          "file": "frame-00016.jpg",
+          "at": 1.55
+        },
+        {
+          "file": "frame-00017.jpg",
+          "at": 1.6
+        },
+        {
+          "file": "frame-00018.jpg",
+          "at": 1.607
+        },
+        {
+          "file": "frame-00019.jpg",
+          "at": 1.615
+        },
+        {
+          "file": "frame-00020.jpg",
+          "at": 1.626
+        }
+      ],
+      "title": "Exames solicitados",
+      "role": "Paciente"
+    },
+    {
+      "id": "p11",
+      "duration": 4.779,
+      "frames": [
+        {
+          "file": "frame-00000.jpg",
+          "at": 0.026
+        },
+        {
+          "file": "frame-00001.jpg",
+          "at": 0.064
+        },
+        {
+          "file": "frame-00002.jpg",
+          "at": 0.088
+        },
+        {
+          "file": "frame-00003.jpg",
+          "at": 0.113
+        },
+        {
+          "file": "frame-00004.jpg",
+          "at": 0.135
+        },
+        {
+          "file": "frame-00005.jpg",
+          "at": 0.162
+        },
+        {
+          "file": "frame-00006.jpg",
+          "at": 0.185
+        },
+        {
+          "file": "frame-00007.jpg",
+          "at": 0.207
+        },
+        {
+          "file": "frame-00008.jpg",
+          "at": 0.224
+        },
+        {
+          "file": "frame-00009.jpg",
+          "at": 0.237
+        },
+        {
+          "file": "frame-00010.jpg",
+          "at": 0.247
+        },
+        {
+          "file": "frame-00011.jpg",
+          "at": 0.559
+        },
+        {
+          "file": "frame-00012.jpg",
+          "at": 1.096
+        },
+        {
+          "file": "frame-00013.jpg",
+          "at": 1.37
+        },
+        {
+          "file": "frame-00014.jpg",
+          "at": 1.382
+        },
+        {
+          "file": "frame-00015.jpg",
+          "at": 1.397
+        },
+        {
+          "file": "frame-00016.jpg",
+          "at": 1.413
+        },
+        {
+          "file": "frame-00017.jpg",
+          "at": 1.435
+        },
+        {
+          "file": "frame-00018.jpg",
+          "at": 1.448
+        },
+        {
+          "file": "frame-00019.jpg",
+          "at": 1.466
+        },
+        {
+          "file": "frame-00020.jpg",
+          "at": 1.48
+        },
+        {
+          "file": "frame-00021.jpg",
+          "at": 1.498
+        },
+        {
+          "file": "frame-00022.jpg",
+          "at": 1.513
+        },
+        {
+          "file": "frame-00023.jpg",
+          "at": 1.53
+        },
+        {
+          "file": "frame-00024.jpg",
+          "at": 1.546
+        },
+        {
+          "file": "frame-00025.jpg",
+          "at": 1.566
+        },
+        {
+          "file": "frame-00026.jpg",
+          "at": 1.578
+        },
+        {
+          "file": "frame-00027.jpg",
+          "at": 2.579
+        },
+        {
+          "file": "frame-00028.jpg",
+          "at": 2.598
+        },
+        {
+          "file": "frame-00029.jpg",
+          "at": 2.613
+        },
+        {
+          "file": "frame-00030.jpg",
+          "at": 2.633
+        },
+        {
+          "file": "frame-00031.jpg",
+          "at": 2.647
+        },
+        {
+          "file": "frame-00032.jpg",
+          "at": 2.664
+        },
+        {
+          "file": "frame-00033.jpg",
+          "at": 2.682
+        },
+        {
+          "file": "frame-00034.jpg",
+          "at": 2.701
+        },
+        {
+          "file": "frame-00035.jpg",
+          "at": 2.713
+        },
+        {
+          "file": "frame-00036.jpg",
+          "at": 2.732
+        },
+        {
+          "file": "frame-00037.jpg",
+          "at": 2.748
+        },
+        {
+          "file": "frame-00038.jpg",
+          "at": 2.764
+        },
+        {
+          "file": "frame-00039.jpg",
+          "at": 2.781
+        },
+        {
+          "file": "frame-00040.jpg",
+          "at": 2.796
+        },
+        {
+          "file": "frame-00041.jpg",
+          "at": 2.815
+        },
+        {
+          "file": "frame-00042.jpg",
+          "at": 2.833
+        },
+        {
+          "file": "frame-00043.jpg",
+          "at": 2.849
+        },
+        {
+          "file": "frame-00044.jpg",
+          "at": 2.864
+        },
+        {
+          "file": "frame-00045.jpg",
+          "at": 2.883
+        },
+        {
+          "file": "frame-00046.jpg",
+          "at": 2.894
+        },
+        {
+          "file": "frame-00047.jpg",
+          "at": 2.91
+        }
+      ],
+      "title": "Comparar laboratórios",
+      "role": "Paciente"
+    },
+    {
+      "id": "p12",
+      "duration": 4.474,
+      "frames": [
+        {
+          "file": "frame-00000.jpg",
+          "at": 0.025
+        },
+        {
+          "file": "frame-00001.jpg",
+          "at": 1.298
+        },
+        {
+          "file": "frame-00002.jpg",
+          "at": 1.313
+        },
+        {
+          "file": "frame-00003.jpg",
+          "at": 1.328
+        },
+        {
+          "file": "frame-00004.jpg",
+          "at": 1.346
+        },
+        {
+          "file": "frame-00005.jpg",
+          "at": 1.363
+        },
+        {
+          "file": "frame-00006.jpg",
+          "at": 1.379
+        },
+        {
+          "file": "frame-00007.jpg",
+          "at": 1.394
+        },
+        {
+          "file": "frame-00008.jpg",
+          "at": 1.413
+        },
+        {
+          "file": "frame-00009.jpg",
+          "at": 1.431
+        },
+        {
+          "file": "frame-00010.jpg",
+          "at": 1.448
+        },
+        {
+          "file": "frame-00011.jpg",
+          "at": 1.463
+        },
+        {
+          "file": "frame-00012.jpg",
+          "at": 1.478
+        },
+        {
+          "file": "frame-00013.jpg",
+          "at": 1.496
+        },
+        {
+          "file": "frame-00014.jpg",
+          "at": 1.512
+        },
+        {
+          "file": "frame-00015.jpg",
+          "at": 1.529
+        },
+        {
+          "file": "frame-00016.jpg",
+          "at": 1.548
+        },
+        {
+          "file": "frame-00017.jpg",
+          "at": 1.565
+        },
+        {
+          "file": "frame-00018.jpg",
+          "at": 1.577
+        },
+        {
+          "file": "frame-00019.jpg",
+          "at": 1.595
+        },
+        {
+          "file": "frame-00020.jpg",
+          "at": 1.612
+        },
+        {
+          "file": "frame-00021.jpg",
+          "at": 1.628
+        }
+      ],
+      "title": "Minha evolução",
+      "role": "Paciente"
+    },
+    {
+      "id": "p13",
+      "duration": 4.107,
+      "frames": [
+        {
+          "file": "frame-00000.jpg",
+          "at": 0.028
+        }
+      ],
+      "title": "Preparo dos exames",
+      "role": "Paciente"
+    },
+    {
+      "id": "p14",
+      "duration": 4.097,
+      "frames": [
+        {
+          "file": "frame-00000.jpg",
+          "at": 0.022
+        }
+      ],
+      "title": "Laboratórios favoritos",
+      "role": "Paciente"
+    },
+    {
+      "id": "p15",
+      "duration": 4.477,
+      "frames": [
+        {
+          "file": "frame-00000.jpg",
+          "at": 0.022
+        },
+        {
+          "file": "frame-00001.jpg",
+          "at": 1.319
+        },
+        {
+          "file": "frame-00002.jpg",
+          "at": 1.339
+        },
+        {
+          "file": "frame-00003.jpg",
+          "at": 1.353
+        },
+        {
+          "file": "frame-00004.jpg",
+          "at": 1.371
+        },
+        {
+          "file": "frame-00005.jpg",
+          "at": 1.382
+        },
+        {
+          "file": "frame-00006.jpg",
+          "at": 1.402
+        },
+        {
+          "file": "frame-00007.jpg",
+          "at": 1.416
+        },
+        {
+          "file": "frame-00008.jpg",
+          "at": 1.439
+        },
+        {
+          "file": "frame-00009.jpg",
+          "at": 1.459
+        },
+        {
+          "file": "frame-00010.jpg",
+          "at": 1.475
+        },
+        {
+          "file": "frame-00011.jpg",
+          "at": 1.486
+        },
+        {
+          "file": "frame-00012.jpg",
+          "at": 1.503
+        },
+        {
+          "file": "frame-00013.jpg",
+          "at": 1.52
+        },
+        {
+          "file": "frame-00014.jpg",
+          "at": 1.535
+        },
+        {
+          "file": "frame-00015.jpg",
+          "at": 1.551
+        },
+        {
+          "file": "frame-00016.jpg",
+          "at": 1.566
+        },
+        {
+          "file": "frame-00017.jpg",
+          "at": 1.597
+        },
+        {
+          "file": "frame-00018.jpg",
+          "at": 1.604
+        },
+        {
+          "file": "frame-00019.jpg",
+          "at": 1.619
+        },
+        {
+          "file": "frame-00020.jpg",
+          "at": 1.63
+        },
+        {
+          "file": "frame-00021.jpg",
+          "at": 1.652
+        }
+      ],
+      "title": "Meus documentos",
+      "role": "Paciente"
+    },
+    {
+      "id": "p16",
+      "duration": 4.498,
+      "frames": [
+        {
+          "file": "frame-00000.jpg",
+          "at": 0.025
+        },
+        {
+          "file": "frame-00001.jpg",
+          "at": 1.325
+        },
+        {
+          "file": "frame-00002.jpg",
+          "at": 1.343
+        },
+        {
+          "file": "frame-00003.jpg",
+          "at": 1.362
+        },
+        {
+          "file": "frame-00004.jpg",
+          "at": 1.388
+        },
+        {
+          "file": "frame-00005.jpg",
+          "at": 1.395
+        },
+        {
+          "file": "frame-00006.jpg",
+          "at": 1.41
+        },
+        {
+          "file": "frame-00007.jpg",
+          "at": 1.438
+        },
+        {
+          "file": "frame-00008.jpg",
+          "at": 1.445
+        },
+        {
+          "file": "frame-00009.jpg",
+          "at": 1.462
+        },
+        {
+          "file": "frame-00010.jpg",
+          "at": 1.473
+        },
+        {
+          "file": "frame-00011.jpg",
+          "at": 1.51
+        },
+        {
+          "file": "frame-00012.jpg",
+          "at": 1.529
+        },
+        {
+          "file": "frame-00013.jpg",
+          "at": 1.54
+        },
+        {
+          "file": "frame-00014.jpg",
+          "at": 1.547
+        },
+        {
+          "file": "frame-00015.jpg",
+          "at": 1.58
+        },
+        {
+          "file": "frame-00016.jpg",
+          "at": 1.589
+        },
+        {
+          "file": "frame-00017.jpg",
+          "at": 1.624
+        },
+        {
+          "file": "frame-00018.jpg",
+          "at": 1.652
+        },
+        {
+          "file": "frame-00019.jpg",
+          "at": 1.66
+        },
+        {
+          "file": "frame-00020.jpg",
+          "at": 1.666
+        }
+      ],
+      "title": "Minha genética",
+      "role": "Paciente"
+    },
+    {
+      "id": "p17",
+      "duration": 4.471,
+      "frames": [
+        {
+          "file": "frame-00000.jpg",
+          "at": 0.026
+        },
+        {
+          "file": "frame-00001.jpg",
+          "at": 1.303
+        },
+        {
+          "file": "frame-00002.jpg",
+          "at": 1.338
+        },
+        {
+          "file": "frame-00003.jpg",
+          "at": 1.345
+        },
+        {
+          "file": "frame-00004.jpg",
+          "at": 1.354
+        },
+        {
+          "file": "frame-00005.jpg",
+          "at": 1.376
+        },
+        {
+          "file": "frame-00006.jpg",
+          "at": 1.393
+        },
+        {
+          "file": "frame-00007.jpg",
+          "at": 1.406
+        },
+        {
+          "file": "frame-00008.jpg",
+          "at": 1.425
+        },
+        {
+          "file": "frame-00009.jpg",
+          "at": 1.44
+        },
+        {
+          "file": "frame-00010.jpg",
+          "at": 1.452
+        },
+        {
+          "file": "frame-00011.jpg",
+          "at": 1.469
+        },
+        {
+          "file": "frame-00012.jpg",
+          "at": 1.489
+        },
+        {
+          "file": "frame-00013.jpg",
+          "at": 1.505
+        },
+        {
+          "file": "frame-00014.jpg",
+          "at": 1.518
+        },
+        {
+          "file": "frame-00015.jpg",
+          "at": 1.537
+        },
+        {
+          "file": "frame-00016.jpg",
+          "at": 1.552
+        },
+        {
+          "file": "frame-00017.jpg",
+          "at": 1.573
+        },
+        {
+          "file": "frame-00018.jpg",
+          "at": 1.593
+        },
+        {
+          "file": "frame-00019.jpg",
+          "at": 1.606
+        },
+        {
+          "file": "frame-00020.jpg",
+          "at": 1.623
+        },
+        {
+          "file": "frame-00021.jpg",
+          "at": 1.635
+        }
+      ],
+      "title": "Linha do tempo",
+      "role": "Paciente"
+    },
+    {
+      "id": "p18",
+      "duration": 4.095,
+      "frames": [
+        {
+          "file": "frame-00000.jpg",
+          "at": 0.018
+        }
+      ],
+      "title": "Meu perfil e acessibilidade",
+      "role": "Paciente"
+    },
+    {
+      "id": "p19",
+      "duration": 4.464,
+      "frames": [
+        {
+          "file": "frame-00000.jpg",
+          "at": 0.026
+        },
+        {
+          "file": "frame-00001.jpg",
+          "at": 1.296
+        },
+        {
+          "file": "frame-00002.jpg",
+          "at": 1.315
+        },
+        {
+          "file": "frame-00003.jpg",
+          "at": 1.329
+        },
+        {
+          "file": "frame-00004.jpg",
+          "at": 1.347
+        },
+        {
+          "file": "frame-00005.jpg",
+          "at": 1.373
+        },
+        {
+          "file": "frame-00006.jpg",
+          "at": 1.387
+        },
+        {
+          "file": "frame-00007.jpg",
+          "at": 1.399
+        },
+        {
+          "file": "frame-00008.jpg",
+          "at": 1.418
+        },
+        {
+          "file": "frame-00009.jpg",
+          "at": 1.433
+        },
+        {
+          "file": "frame-00010.jpg",
+          "at": 1.45
+        },
+        {
+          "file": "frame-00011.jpg",
+          "at": 1.469
+        },
+        {
+          "file": "frame-00012.jpg",
+          "at": 1.493
+        },
+        {
+          "file": "frame-00013.jpg",
+          "at": 1.502
+        },
+        {
+          "file": "frame-00014.jpg",
+          "at": 1.518
+        },
+        {
+          "file": "frame-00015.jpg",
+          "at": 1.536
+        },
+        {
+          "file": "frame-00016.jpg",
+          "at": 1.549
+        },
+        {
+          "file": "frame-00017.jpg",
+          "at": 1.568
+        },
+        {
+          "file": "frame-00018.jpg",
+          "at": 1.591
+        },
+        {
+          "file": "frame-00019.jpg",
+          "at": 1.611
+        },
+        {
+          "file": "frame-00020.jpg",
+          "at": 1.628
+        },
+        {
+          "file": "frame-00021.jpg",
+          "at": 1.684
+        }
+      ],
+      "title": "Cuidado conectado, com IA",
+      "role": "Paciente"
+    }
+  ],
+  "facts": [
+    {
+      "id": "p09",
+      "liveAI": true,
+      "generatedText": "Gerado pelo Gemini · gemini-2.5-flash · 10/10/2026, 13:02:58 · não revisado pelo médicoResumo para vocêOlá! Seus resultados fictícios do INOVA de Set/26 estão prontos. Vamos ver o que cada marcador significa, lembrando que estas são explicações gerais e não um diagnóstico. É importante conversar com seu médico para entender como esses resultados se encaixam na sua saúde.HemoglobinaA hemoglobina é uma proteína presente nas células vermelhas do sangue, responsável por transportar oxigênio para todo o corpo. Seu resultado de Hemoglobina em Set/26 foi de 13.8 g/dL. A referência para adultos do sexo feminino é de 11,6 a 15,0 g/dL.GlicemiaA glicemia mede o nível de açúcar no seu sangue. Seu resultado de Glicemia em Set/26 foi de 92 mg/dL. Para classificar este resultado, seria necessário saber se você estava em jejum de pelo menos 8 horas, o que não foi informado. A referência para glicemia em jejum é menor que 100 mg/dL.Colesterol LDLO Colesterol LDL é conhecido como 'colesterol ruim'. Seu resultado de Colesterol LDL em Set/26 foi de 108 mg/dL. A meta para o Colesterol LDL é individual e definida pelo seu médico, considerando seu histórico e risco cardiovascular.Vitamina DA Vitamina D é importante para a saúde dos ossos e outras funções do corpo. Seu resultado de Vitamina D em Set/26 foi de 34.6 ng/mL. A referência para adultos até 65 anos na população geral é de 20 a 60 ng/mL.O que ainda precisa ser confirmadoJejum não informado: Isso impede a classificação da glicemia.Gestação, sintomas, doenças e medicamentos não informados: Essas informações são importantes para a interpretação de alguns resultados, como Hemoglobina, Glicemia, Colesterol LDL e Vitamina D.Método e intervalos do laboratório não informados: As referências fornecidas são para consulta e podem não ser idênticas aos intervalos do seu laboratório.Períodos históricos sem dia exato de coleta; idade somente na última coleta: Isso limita a análise de tendências ao longo do tempo.Perguntas para sua consultaComo meus resultados se relacionam com meu histórico de saúde e estilo de vida?Existe alguma meta específica para o meu Colesterol LDL, considerando meu perfil de saúde?Preciso fazer algum acompanhamento ou exame adicional com base nestes resultados?Há algo que eu deva saber sobre a Vitamina D e a Hemoglobina no meu caso?"
+    },
+    {
+      "id": "p09",
+      "url": "/portal-paciente",
+      "section": "Meus resultados",
+      "title": "Entenda com IA"
+    },
+    {
+      "id": "p10",
+      "url": "/portal-paciente",
+      "section": "Exames solicitados",
+      "title": "Exames solicitados"
+    },
+    {
+      "id": "p11",
+      "url": "/portal-paciente",
+      "section": "Exames solicitados",
+      "title": "Comparar laboratórios"
+    },
+    {
+      "id": "p12",
+      "url": "/portal-paciente",
+      "section": "Minha evolução",
+      "title": "Minha evolução"
+    },
+    {
+      "id": "p13",
+      "url": "/portal-paciente",
+      "section": "Preparo dos exames",
+      "title": "Preparo dos exames"
+    },
+    {
+      "id": "p14",
+      "url": "/portal-paciente",
+      "section": "Laboratórios favoritos",
+      "title": "Laboratórios favoritos"
+    },
+    {
+      "id": "p15",
+      "url": "/portal-paciente",
+      "section": "Meus documentos",
+      "title": "Meus documentos"
+    },
+    {
+      "id": "p16",
+      "url": "/portal-paciente",
+      "section": "Minha genética",
+      "title": "Minha genética"
+    },
+    {
+      "id": "p17",
+      "url": "/portal-paciente",
+      "section": "Linha do tempo",
+      "title": "Linha do tempo"
+    },
+    {
+      "id": "p18",
+      "url": "/portal-paciente",
+      "section": "Meu perfil",
+      "title": "Meu perfil e acessibilidade"
+    },
+    {
+      "id": "p19",
+      "url": "/portal-paciente",
+      "section": "Minha saúde",
+      "title": "Cuidado conectado, com IA"
+    },
+    {
+      "id": "m20",
+      "liveAI": true,
+      "generatedText": "Conferência de identidade obrigatóriaPaciente selecionado: Mariana OliveiraIdentidade no laudo: Mariana OliveiraConfira se o documento pertence ao paciente selecionado. Nenhum resultado foi adicionado automaticamente ao histórico.Conferi a identidade no documento original e confirmo que este laudo pertence ao paciente selecionado. O nome extraído pela IA pode conter erros.Laudo fictício para teste de software, contendo resultados laboratoriais simulados e limitações explícitas.Achados e escopoPropósito do LaudoEste é um laudo fictício para teste de software e não deve ser usado para atendimento ou decisão clínica.Conferir fonte sugerida · p. 1Natureza dos DadosOs dados apresentados são inteiramente fictícios.Conferir fonte sugerida · p. 2Limitações e pontos de revisãoFaixas de ReferênciaNão há faixas de referência clinicamente validadas neste exemplo.Conferir fonte sugerida · p. 2Classificação de Valor CríticoNão há classificação de valor crítico neste documento.Conferir fonte sugerida · p. 2Informações Técnicas AusentesO método analítico e o laboratório executor não foram informados.Conferir fonte sugerida · p. 2Diagnóstico e CondutaNenhum diagnóstico ou conduta terapêutica é estabelecido neste documento.Conferir fonte sugerida · p. 2Resultados extraídos · conferir no originalGlicemia: 92 mg/dLReferência: Não informado · p. 1Hemoglobina: 13,8 g/dLReferência: Não informado · p. 1LDL: 108 mg/dLReferência: Não informado · p. 1Vitamina D: 34,6 ng/mLReferência: Não informado · p. 1Marcar síntese como revisada"
+    },
+    {
+      "id": "m20",
+      "url": "/patients/mariana-oliveira",
+      "section": "Laudos laboratoriais",
+      "title": "Laudos e análise com IA"
+    },
+    {
+      "id": "m20",
+      "liveAI": true,
+      "generatedText": "Conferência de identidade obrigatóriaPaciente selecionado: Mariana OliveiraIdentidade no laudo: Mariana OliveiraConfira se o documento pertence ao paciente selecionado. Nenhum resultado foi adicionado automaticamente ao histórico.Conferi a identidade no documento original e confirmo que este laudo pertence ao paciente selecionado. O nome extraído pela IA pode conter erros.Laudo fictício para teste de software, não deve ser usado para atendimento ou decisão clínica.Achados e escopoResultados LaboratoriaisGlicemia: 92 mg/dL. Hemoglobina: 13,8 g/dL. LDL: 108 mg/dL. Vitamina D: 34,6 ng/mL.Conferir fonte sugerida · p. 1Limitações e pontos de revisãoLimitações do ExemploNão há faixas de referência clinicamente validadas neste exemplo. Não há classificação de valor crítico neste documento. Método analítico e laboratório executor não informados. Nenhum diagnóstico ou conduta terapêutica é estabelecido. Os dados são inteiramente fictícios.Conferir fonte sugerida · p. 2Resultados extraídos · conferir no originalGlicemia: 92 mg/dLReferência: não informada · p. 1Hemoglobina: 13,8 g/dLReferência: não informada · p. 1LDL: 108 mg/dLReferência: não informada · p. 1Vitamina D: 34,6 ng/mLReferência: não informada · p. 1Marcar síntese como revisada"
+    },
+    {
+      "id": "m20",
+      "url": "/patients/mariana-oliveira",
+      "section": "Laudos laboratoriais",
+      "title": "Laudos e análise com IA"
+    }
+  ]
+}

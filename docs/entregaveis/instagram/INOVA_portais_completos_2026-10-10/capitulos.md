@@ -1,0 +1,48 @@
+# INOVA — capítulos do vídeo completo
+
+- **00:00** · Médico · Seu dia, com mais clareza
+- **00:12** · Médico · Sua carteira de pacientes
+- **00:21** · Médico · Cadastro organizado
+- **00:31** · Médico · Novos resultados
+- **00:39** · Médico · Histórico de exames
+- **00:47** · Médico · Comparar para acompanhar
+- **00:55** · Médico · Agenda compartilhada
+- **01:07** · Médico · Eventos e cancelamentos
+- **01:18** · Médico · Prepare seu dia com IA
+- **01:30** · Médico · IA com revisão médica
+- **01:40** · Médico · Prontuário por paciente
+- **01:50** · Médico · Resumo da consulta
+- **02:00** · Médico · Mensagens, áudios e PDFs
+- **02:09** · Médico · Notificações de novos envios
+- **02:17** · Médico · Solicitação de exames
+- **02:26** · Médico · Orientações ao paciente
+- **02:35** · Médico · Resultados do paciente
+- **02:45** · Médico · Evolução entre coletas
+- **02:53** · Médico · Histórico familiar
+- **03:02** · Médico · Laudos e análise com IA
+- **03:13** · Médico · Arquivos genéticos
+- **03:23** · Médico · Laudos genômicos
+- **03:33** · Médico · Biblioteca de documentos
+- **03:42** · Médico · Acompanhamento contínuo
+- **03:51** · Médico · Meus relatórios
+- **04:00** · Médico · Perfil e preferências
+- **04:11** · Médico · Configurações
+- **04:20** · Paciente · Minha saúde, em perspectiva
+- **04:30** · Paciente · Minha agenda
+- **04:40** · Paciente · Próximos passos
+- **04:49** · Paciente · Avisos e atualizações
+- **04:57** · Paciente · Preparar a consulta
+- **05:07** · Paciente · Enviar ao médico
+- **05:16** · Paciente · Orientações do médico
+- **05:25** · Paciente · Meus resultados
+- **05:35** · Paciente · Entenda com IA
+- **05:46** · Paciente · Exames solicitados
+- **05:56** · Paciente · Comparar laboratórios
+- **06:08** · Paciente · Minha evolução
+- **06:17** · Paciente · Preparo dos exames
+- **06:26** · Paciente · Laboratórios favoritos
+- **06:35** · Paciente · Meus documentos
+- **06:46** · Paciente · Minha genética
+- **06:56** · Paciente · Linha do tempo
+- **07:06** · Paciente · Meu perfil e acessibilidade
+- **07:16** · Paciente · Cuidado conectado, com IA

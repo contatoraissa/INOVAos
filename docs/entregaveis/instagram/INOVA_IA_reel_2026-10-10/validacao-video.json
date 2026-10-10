@@ -1,0 +1,66 @@
+{
+  "actualInterfaceRecording": true,
+  "liveGeminiGeneration": true,
+  "width": 1080,
+  "height": 1920,
+  "fps": 24,
+  "seconds": 35.375,
+  "syntheticNarration": {
+    "language": "pt-BR",
+    "voice": "Microsoft Maria Desktop"
+  },
+  "audioCodec": "AAC",
+  "videoCodec": "H264",
+  "fullMp4DecodePassed": true,
+  "clips": [
+    {
+      "id": "01-assistente",
+      "title": "Inteligência artificial.\nCuidado em perspectiva.",
+      "subtitle": "Seu assistente antes da consulta.",
+      "narration": "A inteligência artificial do INOVA prepara o contexto antes da consulta.",
+      "audioSeconds": 4.860166288737717,
+      "seconds": 5.666666666666667,
+      "start": 0
+    },
+    {
+      "id": "02-contexto",
+      "title": "Agenda e relatos.\nContexto para revisar.",
+      "subtitle": "Informações do paciente, reunidas.",
+      "narration": "O médico reúne os compromissos da agenda e os relatos enviados pelos pacientes.",
+      "audioSeconds": 5.236314772822709,
+      "seconds": 6.041666666666667,
+      "start": 5.666666666666667
+    },
+    {
+      "id": "03-gerar",
+      "title": "Autorize. Gere.\nVeja o resumo com IA.",
+      "subtitle": "A geração começa após a autorização.",
+      "narration": "Após a autorização, a inteligência artificial gera um resumo das informações disponíveis.",
+      "audioSeconds": 6.139111447047955,
+      "seconds": 6.958333333333333,
+      "start": 11.708333333333334
+    },
+    {
+      "id": "04-resumo",
+      "title": "O que conferir.\nO que ainda falta.",
+      "subtitle": "Um resumo para apoiar sua revisão.",
+      "narration": "Veja os pontos para conferir e as informações que ainda faltam. Tudo organizado para revisão.",
+      "audioSeconds": 6.699823633156965,
+      "seconds": 7.5,
+      "start": 18.666666666666668
+    },
+    {
+      "id": "05-revisao",
+      "title": "A IA organiza.\nO médico decide.",
+      "subtitle": "Conheça a demonstração do INOVA.",
+      "narration": "O médico confere os registros originais e mantém a decisão clínica. Conheça o INOVA. Cuidado em perspectiva.",
+      "audioSeconds": 8.368657092466616,
+      "seconds": 9.208333333333334,
+      "start": 26.166666666666668
+    }
+  ],
+  "audioLevelCheck": {
+    "meanDb": -22.6,
+    "peakDb": -3.2
+  }
+}

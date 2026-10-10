@@ -1,0 +1,32 @@
+[
+  {
+    "id": "01-assistente",
+    "title": "Inteligência artificial.\nCuidado em perspectiva.",
+    "subtitle": "Seu assistente antes da consulta.",
+    "narration": "A inteligência artificial do INOVA prepara o contexto antes da consulta."
+  },
+  {
+    "id": "02-contexto",
+    "title": "Agenda e relatos.\nContexto para revisar.",
+    "subtitle": "Informações do paciente, reunidas.",
+    "narration": "O médico reúne os compromissos da agenda e os relatos enviados pelos pacientes."
+  },
+  {
+    "id": "03-gerar",
+    "title": "Autorize. Gere.\nVeja o resumo com IA.",
+    "subtitle": "A geração começa após a autorização.",
+    "narration": "Após a autorização, a inteligência artificial gera um resumo das informações disponíveis."
+  },
+  {
+    "id": "04-resumo",
+    "title": "O que conferir.\nO que ainda falta.",
+    "subtitle": "Um resumo para apoiar sua revisão.",
+    "narration": "Veja os pontos para conferir e as informações que ainda faltam. Tudo organizado para revisão."
+  },
+  {
+    "id": "05-revisao",
+    "title": "A IA organiza.\nO médico decide.",
+    "subtitle": "Conheça a demonstração do INOVA.",
+    "narration": "O médico confere os registros originais e mantém a decisão clínica. Conheça o INOVA. Cuidado em perspectiva."
+  }
+]

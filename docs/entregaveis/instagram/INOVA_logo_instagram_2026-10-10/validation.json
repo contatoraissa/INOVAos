@@ -1,0 +1,41 @@
+[
+  {
+    "file": "INOVA-foto-perfil.png",
+    "dimensions": [
+      1080,
+      1080
+    ],
+    "fontLoaded": true,
+    "left": 209.203125,
+    "top": 469,
+    "right": 870.78125,
+    "bottom": 611,
+    "width": 661.578125
+  },
+  {
+    "file": "INOVA-foto-perfil-azul.png",
+    "dimensions": [
+      1080,
+      1080
+    ],
+    "fontLoaded": true,
+    "left": 209.203125,
+    "top": 469,
+    "right": 870.78125,
+    "bottom": 611,
+    "width": 661.578125
+  },
+  {
+    "file": "INOVA-logo-transparente.png",
+    "dimensions": [
+      1440,
+      480
+    ],
+    "fontLoaded": true,
+    "left": 389.203125,
+    "top": 169,
+    "right": 1050.78125,
+    "bottom": 311,
+    "width": 661.578125
+  }
+]

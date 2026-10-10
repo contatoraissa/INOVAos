@@ -1,0 +1,67 @@
+{
+  "demo": true,
+  "isolatedBrowser": true,
+  "localOnly": true,
+  "message": "Olá, Dr. Rafael! Gostaria de conversar sobre meu acompanhamento e conferir os exames que estou enviando para nossa próxima consulta. Exemplo fictício.",
+  "filename": "Laudo-exemplo-INOVA.pdf",
+  "deliveryVerified": true,
+  "pdfOpened": true,
+  "captures": [
+    {
+      "name": "01-mensagem-paciente",
+      "path": "/portal-paciente",
+      "x": 276.5,
+      "y": 683.25,
+      "width": 772,
+      "height": 770
+    },
+    {
+      "name": "02-pdf-selecionado",
+      "path": "/portal-paciente",
+      "x": 301.5,
+      "y": 1655.25,
+      "width": 722,
+      "height": 434
+    },
+    {
+      "name": "03-revisao-envio",
+      "path": "/portal-paciente",
+      "x": 372,
+      "y": 1087.5,
+      "width": 696,
+      "height": 723
+    },
+    {
+      "name": "04-envio-confirmado",
+      "path": "/portal-paciente",
+      "x": 301.5,
+      "y": 1845.25,
+      "width": 722,
+      "height": 486
+    },
+    {
+      "name": "05-notificacao-medico",
+      "path": "/dashboard",
+      "x": 889,
+      "y": 40,
+      "width": 384,
+      "height": 480
+    },
+    {
+      "name": "06-envio-recebido",
+      "path": "/patients/mariana-oliveira",
+      "x": 556,
+      "y": 881,
+      "width": 841,
+      "height": 683
+    },
+    {
+      "name": "07-laudo-aberto",
+      "path": "/patients/mariana-oliveira",
+      "x": 556,
+      "y": 881,
+      "width": 841,
+      "height": 900
+    }
+  ]
+}

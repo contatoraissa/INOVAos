@@ -1,0 +1,13 @@
+{
+  "date": "2026-10-10",
+  "onlyDoctorAndPatient": true,
+  "chapters": 46,
+  "burnedInSubtitles": true,
+  "timedWordBoundaries": true,
+  "captionCues": 140,
+  "narratedWords": 1012,
+  "seconds": 449.7083333333332,
+  "fullDecodePassed": true,
+  "width": 1080,
+  "height": 1920
+}

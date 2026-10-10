@@ -1,0 +1,655 @@
+1
+00:00:00,307 --> 00:00:03,818
+O INOVA conecta médico e paciente, com
+inteligência artificial
+
+2
+00:00:03,818 --> 00:00:06,292
+para apoiar a preparação da consulta.
+
+3
+00:00:06,292 --> 00:00:09,162
+Na visão geral, o médico acompanha envios,
+pedidos e
+
+4
+00:00:09,162 --> 00:00:12,167
+orientações que precisam da sua atenção.
+
+5
+00:00:12,723 --> 00:00:16,250
+Encontre pacientes por nome, CPF ou
+nascimento.
+
+6
+00:00:16,250 --> 00:00:19,139
+Os filtros ajudam a localizar cadastros
+recentes e novos
+
+7
+00:00:19,139 --> 00:00:20,875
+resultados.
+
+8
+00:00:21,428 --> 00:00:25,008
+No cadastro, registre CPF, e-mail,
+telefone e os dados
+
+9
+00:00:25,008 --> 00:00:28,585
+do paciente. Essas informações organizam o
+perfil que será
+
+10
+00:00:28,585 --> 00:00:30,833
+acompanhado pelo médico.
+
+11
+00:00:31,389 --> 00:00:34,027
+Os novos resultados ficam reunidos em uma
+lista com
+
+12
+00:00:34,027 --> 00:00:37,191
+filtros de período. Abra o paciente para
+preparar a
+
+13
+00:00:37,191 --> 00:00:39,292
+revisão dos exames.
+
+14
+00:00:39,846 --> 00:00:43,156
+O histórico reúne as coletas anteriores
+dos pacientes.
+
+15
+00:00:43,156 --> 00:00:47,083
+Consulte o período, o exame e o perfil
+correspondente.
+
+16
+00:00:47,638 --> 00:00:50,463
+Compare resultados de diferentes coletas.
+
+17
+00:00:50,463 --> 00:00:53,226
+Os gráficos ajudam a visualizar mudanças e
+a acompanhar
+
+18
+00:00:53,226 --> 00:00:55,625
+os valores ao longo do tempo.
+
+19
+00:00:56,180 --> 00:00:59,271
+Navegue pelos meses e dias, filtre
+pacientes e consulte
+
+20
+00:00:59,271 --> 00:01:03,885
+os compromissos. Propostas, confirmações,
+previsões de resultado e
+
+21
+00:01:03,885 --> 00:01:07,375
+cancelamentos aparecem com estados
+diferentes.
+
+22
+00:01:07,931 --> 00:01:11,274
+Inclua consultas, exames e retornos na
+agenda.
+
+23
+00:01:11,274 --> 00:01:15,007
+Ao cancelar, registre o motivo, como uma
+guia pendente.
+
+24
+00:01:15,007 --> 00:01:17,750
+O histórico permanece disponível.
+
+25
+00:01:18,305 --> 00:01:21,707
+A inteligência artificial prepara um
+briefing dos pacientes previstos
+
+26
+00:01:21,707 --> 00:01:26,407
+na agenda. Ela organiza os relatos
+enviados, suspeitas registradas,
+
+27
+00:01:26,407 --> 00:01:29,792
+pontos para conferir e informações que
+faltam.
+
+28
+00:01:30,346 --> 00:01:33,869
+A análise dos textos exige autorização
+antes do envio.
+
+29
+00:01:33,869 --> 00:01:35,937
+O médico confere o resumo e abre os envios
+
+30
+00:01:35,937 --> 00:01:40,000
+originais. A decisão continua com o
+profissional.
+
+31
+00:01:40,557 --> 00:01:44,397
+Cada paciente tem seu próprio histórico,
+resultados, documentos e
+
+32
+00:01:44,397 --> 00:01:48,275
+informações de acompanhamento. As abas
+organizam o atendimento em
+
+33
+00:01:48,275 --> 00:01:50,125
+um único perfil.
+
+34
+00:01:50,680 --> 00:01:53,248
+O resumo reúne informações para preparar e
+revisar a
+
+35
+00:01:53,248 --> 00:01:57,801
+consulta. Consulte pendências e organize o
+fechamento, com orientações
+
+36
+00:01:57,801 --> 00:01:59,875
+e próximos passos.
+
+37
+00:02:00,430 --> 00:02:03,869
+O médico recebe os relatos, áudios e PDFs
+enviados
+
+38
+00:02:03,869 --> 00:02:07,146
+na preparação. Pode abrir os documentos e
+registrar a
+
+39
+00:02:07,146 --> 00:02:09,333
+revisão de cada envio.
+
+40
+00:02:09,887 --> 00:02:12,601
+O sininho avisa sobre novas preparações e
+mudanças da
+
+41
+00:02:12,601 --> 00:02:15,627
+agenda. Abra a notificação para chegar ao
+envio do
+
+42
+00:02:15,627 --> 00:02:17,208
+paciente.
+
+43
+00:02:17,765 --> 00:02:21,150
+Selecione os exames, registre observações
+e revise o pedido
+
+44
+00:02:21,150 --> 00:02:24,202
+antes de liberar. O paciente passa a
+consultar o
+
+45
+00:02:24,202 --> 00:02:26,292
+pedido no seu portal.
+
+46
+00:02:26,845 --> 00:02:29,532
+Escreva e revise as orientações da
+consulta antes de
+
+47
+00:02:29,532 --> 00:02:33,093
+publicar. O paciente consegue consultar o
+que foi combinado
+
+48
+00:02:33,093 --> 00:02:35,250
+para seu acompanhamento.
+
+49
+00:02:35,807 --> 00:02:39,969
+Consulte os marcadores da coleta, suas
+unidades e referências.
+
+50
+00:02:39,969 --> 00:02:42,893
+A leitura dos resultados permanece ligada
+ao contexto de
+
+51
+00:02:42,893 --> 00:02:44,750
+cada paciente.
+
+52
+00:02:45,303 --> 00:02:48,259
+No histórico individual, acompanhe as
+coletas e a evolução
+
+53
+00:02:48,259 --> 00:02:51,641
+dos marcadores. A comparação permite
+conferir o que mudou
+
+54
+00:02:51,641 --> 00:02:53,542
+entre os períodos.
+
+55
+00:02:54,097 --> 00:02:56,669
+Registre e consulte o histórico familiar
+no perfil do
+
+56
+00:02:56,669 --> 00:03:02,125
+paciente. Essa informação acrescenta
+contexto à revisão dos resultados.
+
+57
+00:03:02,682 --> 00:03:05,222
+Abra o laudo original em PDF e solicite
+uma
+
+58
+00:03:05,222 --> 00:03:08,269
+análise assistida por inteligência
+artificial.
+
+59
+00:03:08,269 --> 00:03:10,874
+Confira os achados no documento e revise a
+síntese
+
+60
+00:03:10,874 --> 00:03:12,917
+antes de utilizá-la.
+
+61
+00:03:13,474 --> 00:03:16,570
+Importe o arquivo genético em formato TXT
+e acompanhe
+
+62
+00:03:16,570 --> 00:03:18,670
+suas versões e marcadores.
+
+63
+00:03:18,670 --> 00:03:21,734
+Os escores de predisposição ainda não
+estão configurados nesta
+
+64
+00:03:21,734 --> 00:03:23,458
+demonstração.
+
+65
+00:03:24,013 --> 00:03:26,585
+Os laudos genômicos em PDF têm uma área
+própria
+
+66
+00:03:26,585 --> 00:03:29,027
+para consulta e análise assistida.
+
+67
+00:03:29,027 --> 00:03:33,333
+O documento original continua disponível
+para a revisão profissional.
+
+68
+00:03:33,886 --> 00:03:37,112
+Organize os documentos por tipo, encontre
+arquivos pelo nome
+
+69
+00:03:37,112 --> 00:03:38,687
+e abra o original.
+
+70
+00:03:38,687 --> 00:03:42,167
+Os laudos ficam associados ao perfil do
+paciente.
+
+71
+00:03:42,723 --> 00:03:45,460
+A área de acompanhamento reúne pacientes e
+situações que
+
+72
+00:03:45,460 --> 00:03:48,305
+precisam de revisão. Use os filtros e abra
+o
+
+73
+00:03:48,305 --> 00:03:51,083
+perfil para continuar o atendimento.
+
+74
+00:03:51,641 --> 00:03:54,099
+Veja gráficos da sua carteira e da
+atividade de
+
+75
+00:03:54,099 --> 00:03:57,896
+acompanhamento. Filtre o período, confira
+envios e revisões e
+
+76
+00:03:57,896 --> 00:03:59,875
+imprima o relatório.
+
+77
+00:04:00,428 --> 00:04:04,470
+No seu perfil, organize dados
+profissionais, CRM, contatos e
+
+78
+00:04:04,470 --> 00:04:08,439
+informações do consultório. As
+configurações reúnem preferências de
+
+79
+00:04:08,439 --> 00:04:11,708
+notificações, leitura e acompanhamento.
+
+80
+00:04:12,263 --> 00:04:15,191
+Ajuste as preferências demonstrativas e
+confira a prévia de
+
+81
+00:04:15,191 --> 00:04:20,042
+visualização. Essas escolhas ficam salvas
+neste navegador.
+
+82
+00:04:20,597 --> 00:04:24,664
+No INOVA Paciente, a pessoa participa do
+próprio acompanhamento.
+
+83
+00:04:24,664 --> 00:04:28,365
+Minha saúde reúne resultados recentes,
+avisos e próximos passos
+
+84
+00:04:28,365 --> 00:04:30,667
+para conversar com o médico.
+
+85
+00:04:31,223 --> 00:04:34,725
+O paciente consulta a agenda compartilhada
+e acompanha consultas,
+
+86
+00:04:34,725 --> 00:04:38,133
+exames e retornos. Pode propor eventos e
+registrar o
+
+87
+00:04:38,133 --> 00:04:40,500
+motivo de um cancelamento.
+
+88
+00:04:41,055 --> 00:04:44,735
+Confira os pedidos de exames e as
+orientações disponíveis.
+
+89
+00:04:44,735 --> 00:04:46,927
+Essa área ajuda a entender o que ainda
+precisa
+
+90
+00:04:46,927 --> 00:04:49,333
+ser feito no acompanhamento.
+
+91
+00:04:49,890 --> 00:04:53,598
+Os avisos reúnem novidades dos pedidos,
+envios e agenda.
+
+92
+00:04:53,598 --> 00:04:57,292
+O sininho facilita encontrar o que mudou
+no acompanhamento.
+
+93
+00:04:57,851 --> 00:05:01,426
+Antes da consulta, conte seus sintomas,
+medicamentos em uso
+
+94
+00:05:01,426 --> 00:05:04,722
+e dúvidas. Também é possível gravar ou
+anexar áudios
+
+95
+00:05:04,722 --> 00:05:07,250
+e selecionar laudos em PDF.
+
+96
+00:05:07,806 --> 00:05:10,753
+Revise o conteúdo e confirme o envio ao
+médico.
+
+97
+00:05:10,753 --> 00:05:13,433
+A preparação aparece na caixa do
+profissional, com o
+
+98
+00:05:13,433 --> 00:05:15,875
+status do envio e da revisão.
+
+99
+00:05:16,430 --> 00:05:20,435
+Consulte as orientações publicadas pelo
+médico após a revisão.
+
+100
+00:05:20,435 --> 00:05:22,969
+O que foi combinado fica disponível para
+acompanhar os
+
+101
+00:05:22,969 --> 00:05:24,958
+próximos passos.
+
+102
+00:05:25,516 --> 00:05:29,170
+Abra os resultados, confira os valores,
+unidades e referências
+
+103
+00:05:29,170 --> 00:05:32,985
+da coleta. O histórico ajuda a levar
+informações organizadas
+
+104
+00:05:32,985 --> 00:05:34,833
+para a consulta.
+
+105
+00:05:35,388 --> 00:05:38,347
+A inteligência artificial também ajuda o
+paciente a entender
+
+106
+00:05:38,347 --> 00:05:40,894
+os resultados em linguagem simples.
+
+107
+00:05:40,894 --> 00:05:44,220
+Com autorização, ela explica os marcadores
+e sugere perguntas
+
+108
+00:05:44,220 --> 00:05:46,542
+para conversar com o médico.
+
+109
+00:05:47,097 --> 00:05:49,539
+O paciente vê os exames liberados pelo
+médico e
+
+110
+00:05:49,539 --> 00:05:51,797
+consulta os detalhes do pedido.
+
+111
+00:05:51,797 --> 00:05:54,832
+Depois da coleta, pode enviar o PDF do
+resultado
+
+112
+00:05:54,832 --> 00:05:56,542
+para a revisão.
+
+113
+00:05:57,095 --> 00:05:59,946
+O fluxo de cotação permite explorar exames
+e comparar
+
+114
+00:05:59,946 --> 00:06:02,703
+laboratórios por localização e valores.
+
+115
+00:06:02,703 --> 00:06:05,423
+Nesta demonstração, os preços e a
+integração com a
+
+116
+00:06:05,423 --> 00:06:07,792
+S2 são simulados.
+
+117
+00:06:08,345 --> 00:06:11,372
+Os gráficos mostram a evolução dos
+marcadores nas diferentes
+
+118
+00:06:11,372 --> 00:06:14,808
+coletas. O paciente visualiza as mudanças
+e pode pedir
+
+119
+00:06:14,808 --> 00:06:17,417
+uma explicação assistida por IA.
+
+120
+00:06:17,972 --> 00:06:21,735
+Consulte as informações de preparo
+associadas aos exames.
+
+121
+00:06:21,735 --> 00:06:23,889
+Confirme com o laboratório e com o médico
+as
+
+122
+00:06:23,889 --> 00:06:26,375
+instruções para sua coleta.
+
+123
+00:06:26,931 --> 00:06:31,244
+Guarde laboratórios de preferência para
+encontrar seus contatos depois.
+
+124
+00:06:31,244 --> 00:06:35,500
+A consulta por CEP apresenta opções e
+cotações ilustrativas.
+
+125
+00:06:36,055 --> 00:06:39,546
+Adicione PDFs, escolha o tipo de documento
+e encontre
+
+126
+00:06:39,546 --> 00:06:42,686
+arquivos pelo nome. Abra o original e
+selecione os
+
+127
+00:06:42,686 --> 00:06:45,875
+documentos que deseja enviar na
+preparação.
+
+128
+00:06:46,432 --> 00:06:49,409
+Envie o TXT genético e acompanhe o arquivo
+vinculado
+
+129
+00:06:49,409 --> 00:06:53,413
+ao seu perfil. Os quatro domínios
+organizam a revisão.
+
+130
+00:06:53,413 --> 00:06:56,708
+Eles ainda não calculam predisposição
+clínica.
+
+131
+00:06:57,265 --> 00:07:00,289
+A linha do tempo organiza exames, pedidos,
+envios e
+
+132
+00:07:00,289 --> 00:07:03,685
+revisões em sequência. Pesquise e filtre
+os eventos para
+
+133
+00:07:03,685 --> 00:07:06,417
+entender o histórico do acompanhamento.
+
+134
+00:07:06,972 --> 00:07:09,796
+Confira seus dados de perfil e contatos.
+
+135
+00:07:09,796 --> 00:07:12,321
+A busca do portal e os recursos de
+acessibilidade
+
+136
+00:07:12,321 --> 00:07:15,833
+ajudam a encontrar informações e ajustar a
+leitura.
+
+137
+00:07:16,389 --> 00:07:20,620
+Médico e paciente conectados, com
+documentos, resultados, agenda e
+
+138
+00:07:20,620 --> 00:07:23,399
+inteligência artificial no acompanhamento.
+
+139
+00:07:23,399 --> 00:07:25,633
+Conheça a demonstração INOVA.
+
+140
+00:07:25,633 --> 00:07:29,458
+Todos os exemplos deste vídeo usam dados
+fictícios.

@@ -1,0 +1,9 @@
+A inteligência artificial do INOVA ajuda o médico a chegar à consulta com as informações organizadas.
+
+Neste vídeo, mostramos a IA funcionando na demonstração: agenda e relatos entram no contexto; após autorização, o assistente gera um resumo com pontos para conferir e informações faltantes. O médico pode abrir os registros originais para revisar.
+
+O briefing organiza textos e contagens de anexos; não analisa o conteúdo dos PDFs e áudios. A decisão clínica permanece com o médico. Perfis e informações fictícios.
+
+Quer conhecer? Envie INOVA por mensagem.
+
+#INOVA #InteligenciaArtificial #SaudeDigital #TecnologiaEmSaude #CuidadoConectado

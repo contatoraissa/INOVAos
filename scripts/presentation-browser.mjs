@@ -1,7 +1,7 @@
 // Dedicated CDP tab for capturing and printing deliverables, separate from the app.
-export async function presentationBrowser() {
-  const target = await fetch("http://127.0.0.1:9222/json/new?about:blank", { method: "PUT" }).then(
-    (r) => r.json(),
+export async function presentationBrowser(base = "http://127.0.0.1:9222") {
+  const target = await fetch(base + "/json/new?about:blank", { method: "PUT" }).then((r) =>
+    r.json(),
   );
   const socket = new WebSocket(target.webSocketDebuggerUrl);
   await new Promise((resolve, reject) => {
@@ -73,7 +73,7 @@ export async function presentationBrowser() {
         socket.addEventListener("close", resolve, { once: true });
         socket.close();
       });
-      await fetch("http://127.0.0.1:9222/json/close/" + target.id);
+      await fetch(base + "/json/close/" + target.id);
     },
   };
 }

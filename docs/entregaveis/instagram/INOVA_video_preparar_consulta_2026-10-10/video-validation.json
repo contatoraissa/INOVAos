@@ -1,0 +1,55 @@
+{
+  "width": 1080,
+  "height": 1920,
+  "fps": 24,
+  "seconds": 37,
+  "frames": 888,
+  "audio": false,
+  "fontCheck": true,
+  "actualDemoCaptures": true,
+  "validations": [
+    {
+      "scene": 0,
+      "contentBottom": 1413.984375,
+      "footerTop": 1689
+    },
+    {
+      "scene": 1,
+      "contentBottom": 1537.984375,
+      "footerTop": 1689
+    },
+    {
+      "scene": 2,
+      "contentBottom": 1537.984375,
+      "footerTop": 1689
+    },
+    {
+      "scene": 3,
+      "contentBottom": 1537.984375,
+      "footerTop": 1689
+    },
+    {
+      "scene": 4,
+      "contentBottom": 1537.984375,
+      "footerTop": 1689
+    },
+    {
+      "scene": 5,
+      "contentBottom": 1537.984375,
+      "footerTop": 1689
+    },
+    {
+      "scene": 6,
+      "contentBottom": 1537.984375,
+      "footerTop": 1689
+    },
+    {
+      "scene": 7,
+      "contentBottom": 1362.984375,
+      "footerTop": 1689
+    }
+  ],
+  "all888SourceFramesDecoded": true,
+  "mp4Decoded": true,
+  "shutdownDamagedFramesRecovered": 261
+}

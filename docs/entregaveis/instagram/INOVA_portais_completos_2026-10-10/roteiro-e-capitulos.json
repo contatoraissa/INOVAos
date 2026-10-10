@@ -1,0 +1,1922 @@
+{
+  "seconds": 449.7083333333332,
+  "scenes": [
+    {
+      "id": "m01",
+      "role": "Médico",
+      "title": "Seu dia, com mais clareza",
+      "path": "/dashboard",
+      "phrases": [
+        "O INOVA conecta médico e paciente, com inteligência artificial para apoiar a preparação da consulta.",
+        "Na visão geral, o médico acompanha envios, pedidos e orientações que precisam da sua atenção."
+      ],
+      "seconds": 12.416666666666666,
+      "start": 0,
+      "index": 0,
+      "cues": [
+        {
+          "start": 0.30666666666666664,
+          "end": 3.8177777777777777,
+          "text": "O INOVA conecta médico e paciente, com inteligência artificial",
+          "lines": [
+            "O INOVA conecta médico e paciente, com",
+            "inteligência artificial"
+          ]
+        },
+        {
+          "start": 3.8177777777777777,
+          "end": 6.291759259259258,
+          "text": "para apoiar a preparação da consulta.",
+          "lines": [
+            "para apoiar a preparação da consulta."
+          ]
+        },
+        {
+          "start": 6.291759259259258,
+          "end": 9.162222222222221,
+          "text": "Na visão geral, o médico acompanha envios, pedidos e",
+          "lines": [
+            "Na visão geral, o médico acompanha envios,",
+            "pedidos e"
+          ]
+        },
+        {
+          "start": 9.162222222222221,
+          "end": 12.166666666666666,
+          "text": "orientações que precisam da sua atenção.",
+          "lines": [
+            "orientações que precisam da sua atenção."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "m02",
+      "role": "Médico",
+      "title": "Sua carteira de pacientes",
+      "path": "/patients",
+      "phrases": [
+        "Encontre pacientes por nome, CPF ou nascimento.",
+        "Os filtros ajudam a localizar cadastros recentes e novos resultados."
+      ],
+      "seconds": 8.708333333333334,
+      "start": 12.416666666666666,
+      "index": 1,
+      "cues": [
+        {
+          "start": 0.3058333333333333,
+          "end": 3.8331018518518514,
+          "text": "Encontre pacientes por nome, CPF ou nascimento.",
+          "lines": [
+            "Encontre pacientes por nome, CPF ou",
+            "nascimento."
+          ]
+        },
+        {
+          "start": 3.8331018518518514,
+          "end": 6.722407407407406,
+          "text": "Os filtros ajudam a localizar cadastros recentes e novos",
+          "lines": [
+            "Os filtros ajudam a localizar cadastros",
+            "recentes e novos"
+          ]
+        },
+        {
+          "start": 6.722407407407406,
+          "end": 8.458333333333334,
+          "text": "resultados.",
+          "lines": [
+            "resultados."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "m03",
+      "role": "Médico",
+      "title": "Cadastro organizado",
+      "path": "/patients/new",
+      "phrases": [
+        "No cadastro, registre CPF, e-mail, telefone e os dados do paciente.",
+        "Essas informações organizam o perfil que será acompanhado pelo médico."
+      ],
+      "seconds": 9.958333333333334,
+      "start": 21.125,
+      "index": 2,
+      "cues": [
+        {
+          "start": 0.30287037037037035,
+          "end": 3.8825925925925917,
+          "text": "No cadastro, registre CPF, e-mail, telefone e os dados",
+          "lines": [
+            "No cadastro, registre CPF, e-mail,",
+            "telefone e os dados"
+          ]
+        },
+        {
+          "start": 3.8825925925925917,
+          "end": 7.460324074074074,
+          "text": "do paciente. Essas informações organizam o perfil que será",
+          "lines": [
+            "do paciente. Essas informações organizam o",
+            "perfil que será"
+          ]
+        },
+        {
+          "start": 7.460324074074074,
+          "end": 9.708333333333334,
+          "text": "acompanhado pelo médico.",
+          "lines": [
+            "acompanhado pelo médico."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "m04",
+      "role": "Médico",
+      "title": "Novos resultados",
+      "path": "/results",
+      "phrases": [
+        "Os novos resultados ficam reunidos em uma lista com filtros de período.",
+        "Abra o paciente para preparar a revisão dos exames."
+      ],
+      "seconds": 8.458333333333334,
+      "start": 31.083333333333336,
+      "index": 3,
+      "cues": [
+        {
+          "start": 0.30537037037037035,
+          "end": 2.9437037037037035,
+          "text": "Os novos resultados ficam reunidos em uma lista com",
+          "lines": [
+            "Os novos resultados ficam reunidos em uma",
+            "lista com"
+          ]
+        },
+        {
+          "start": 2.9437037037037035,
+          "end": 6.107222222222222,
+          "text": "filtros de período. Abra o paciente para preparar a",
+          "lines": [
+            "filtros de período. Abra o paciente para",
+            "preparar a"
+          ]
+        },
+        {
+          "start": 6.107222222222222,
+          "end": 8.208333333333334,
+          "text": "revisão dos exames.",
+          "lines": [
+            "revisão dos exames."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "m05",
+      "role": "Médico",
+      "title": "Histórico de exames",
+      "path": "/history",
+      "phrases": [
+        "O histórico reúne as coletas anteriores dos pacientes.",
+        "Consulte o período, o exame e o perfil correspondente."
+      ],
+      "seconds": 7.791666666666667,
+      "start": 39.54166666666667,
+      "index": 4,
+      "cues": [
+        {
+          "start": 0.3045833333333333,
+          "end": 3.6144444444444437,
+          "text": "O histórico reúne as coletas anteriores dos pacientes.",
+          "lines": [
+            "O histórico reúne as coletas anteriores",
+            "dos pacientes."
+          ]
+        },
+        {
+          "start": 3.6144444444444437,
+          "end": 7.541666666666667,
+          "text": "Consulte o período, o exame e o perfil correspondente.",
+          "lines": [
+            "Consulte o período, o exame e o perfil",
+            "correspondente."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "m06",
+      "role": "Médico",
+      "title": "Comparar para acompanhar",
+      "path": "/comparison",
+      "phrases": [
+        "Compare resultados de diferentes coletas.",
+        "Os gráficos ajudam a visualizar mudanças e a acompanhar os valores ao longo do tempo."
+      ],
+      "seconds": 8.541666666666666,
+      "start": 47.333333333333336,
+      "index": 5,
+      "cues": [
+        {
+          "start": 0.3050462962962963,
+          "end": 3.129398148148148,
+          "text": "Compare resultados de diferentes coletas.",
+          "lines": [
+            "Compare resultados de diferentes coletas."
+          ]
+        },
+        {
+          "start": 3.129398148148148,
+          "end": 5.893148148148147,
+          "text": "Os gráficos ajudam a visualizar mudanças e a acompanhar",
+          "lines": [
+            "Os gráficos ajudam a visualizar mudanças e",
+            "a acompanhar"
+          ]
+        },
+        {
+          "start": 5.893148148148147,
+          "end": 8.291666666666666,
+          "text": "os valores ao longo do tempo.",
+          "lines": [
+            "os valores ao longo do tempo."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "m07",
+      "role": "Médico",
+      "title": "Agenda compartilhada",
+      "path": "/agenda",
+      "scroll": 620,
+      "phrases": [
+        "Navegue pelos meses e dias, filtre pacientes e consulte os compromissos.",
+        "Propostas, confirmações, previsões de resultado e cancelamentos aparecem com estados diferentes."
+      ],
+      "seconds": 11.75,
+      "start": 55.875,
+      "index": 6,
+      "cues": [
+        {
+          "start": 0.3048148148148148,
+          "end": 3.395555555555555,
+          "text": "Navegue pelos meses e dias, filtre pacientes e consulte",
+          "lines": [
+            "Navegue pelos meses e dias, filtre",
+            "pacientes e consulte"
+          ]
+        },
+        {
+          "start": 3.395555555555555,
+          "end": 8.010370370370369,
+          "text": "os compromissos. Propostas, confirmações, previsões de resultado e",
+          "lines": [
+            "os compromissos. Propostas, confirmações,",
+            "previsões de resultado e"
+          ]
+        },
+        {
+          "start": 8.010370370370369,
+          "end": 11.5,
+          "text": "cancelamentos aparecem com estados diferentes.",
+          "lines": [
+            "cancelamentos aparecem com estados",
+            "diferentes."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "m08",
+      "role": "Médico",
+      "title": "Eventos e cancelamentos",
+      "path": "/agenda",
+      "action": "event",
+      "phrases": [
+        "Inclua consultas, exames e retornos na agenda.",
+        "Ao cancelar, registre o motivo, como uma guia pendente. O histórico permanece disponível."
+      ],
+      "seconds": 10.375,
+      "start": 67.625,
+      "index": 7,
+      "cues": [
+        {
+          "start": 0.3058333333333333,
+          "end": 3.648518518518518,
+          "text": "Inclua consultas, exames e retornos na agenda.",
+          "lines": [
+            "Inclua consultas, exames e retornos na",
+            "agenda."
+          ]
+        },
+        {
+          "start": 3.648518518518518,
+          "end": 7.382361111111111,
+          "text": "Ao cancelar, registre o motivo, como uma guia pendente.",
+          "lines": [
+            "Ao cancelar, registre o motivo, como uma",
+            "guia pendente."
+          ]
+        },
+        {
+          "start": 7.382361111111111,
+          "end": 10.125,
+          "text": "O histórico permanece disponível.",
+          "lines": [
+            "O histórico permanece disponível."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "m09",
+      "role": "Médico",
+      "title": "Prepare seu dia com IA",
+      "reuse": "04-resumo",
+      "phrases": [
+        "A inteligência artificial prepara um briefing dos pacientes previstos na agenda.",
+        "Ela organiza os relatos enviados, suspeitas registradas, pontos para conferir e informações que faltam."
+      ],
+      "seconds": 12.041666666666666,
+      "start": 78,
+      "index": 8,
+      "cues": [
+        {
+          "start": 0.3045833333333333,
+          "end": 3.706666666666666,
+          "text": "A inteligência artificial prepara um briefing dos pacientes previstos",
+          "lines": [
+            "A inteligência artificial prepara um",
+            "briefing dos pacientes previstos"
+          ]
+        },
+        {
+          "start": 3.706666666666666,
+          "end": 8.406666666666666,
+          "text": "na agenda. Ela organiza os relatos enviados, suspeitas registradas,",
+          "lines": [
+            "na agenda. Ela organiza os relatos",
+            "enviados, suspeitas registradas,"
+          ]
+        },
+        {
+          "start": 8.406666666666666,
+          "end": 11.791666666666666,
+          "text": "pontos para conferir e informações que faltam.",
+          "lines": [
+            "pontos para conferir e informações que",
+            "faltam."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "m10",
+      "role": "Médico",
+      "title": "IA com revisão médica",
+      "reuse": "05-revisao",
+      "phrases": [
+        "A análise dos textos exige autorização antes do envio.",
+        "O médico confere o resumo e abre os envios originais. A decisão continua com o profissional."
+      ],
+      "seconds": 10.208333333333334,
+      "start": 90.04166666666667,
+      "index": 9,
+      "cues": [
+        {
+          "start": 0.3045833333333333,
+          "end": 3.827592592592592,
+          "text": "A análise dos textos exige autorização antes do envio.",
+          "lines": [
+            "A análise dos textos exige autorização",
+            "antes do envio."
+          ]
+        },
+        {
+          "start": 3.827592592592592,
+          "end": 5.895555555555555,
+          "text": "O médico confere o resumo e abre os envios",
+          "lines": [
+            "O médico confere o resumo e abre os envios"
+          ]
+        },
+        {
+          "start": 5.895555555555555,
+          "end": 9.958333333333334,
+          "text": "originais. A decisão continua com o profissional.",
+          "lines": [
+            "originais. A decisão continua com o",
+            "profissional."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "m11",
+      "role": "Médico",
+      "title": "Prontuário por paciente",
+      "tab": "Visão geral",
+      "phrases": [
+        "Cada paciente tem seu próprio histórico, resultados, documentos e informações de acompanhamento.",
+        "As abas organizam o atendimento em um único perfil."
+      ],
+      "seconds": 10.125,
+      "start": 100.25,
+      "index": 10,
+      "cues": [
+        {
+          "start": 0.307037037037037,
+          "end": 4.147407407407407,
+          "text": "Cada paciente tem seu próprio histórico, resultados, documentos e",
+          "lines": [
+            "Cada paciente tem seu próprio histórico,",
+            "resultados, documentos e"
+          ]
+        },
+        {
+          "start": 4.147407407407407,
+          "end": 8.025185185185185,
+          "text": "informações de acompanhamento. As abas organizam o atendimento em",
+          "lines": [
+            "informações de acompanhamento. As abas",
+            "organizam o atendimento em"
+          ]
+        },
+        {
+          "start": 8.025185185185185,
+          "end": 9.875,
+          "text": "um único perfil.",
+          "lines": [
+            "um único perfil."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "m12",
+      "role": "Médico",
+      "title": "Resumo da consulta",
+      "tab": "Resumo da consulta",
+      "phrases": [
+        "O resumo reúne informações para preparar e revisar a consulta.",
+        "Consulte pendências e organize o fechamento, com orientações e próximos passos."
+      ],
+      "seconds": 9.75,
+      "start": 110.375,
+      "index": 11,
+      "cues": [
+        {
+          "start": 0.30537037037037035,
+          "end": 2.872916666666666,
+          "text": "O resumo reúne informações para preparar e revisar a",
+          "lines": [
+            "O resumo reúne informações para preparar e",
+            "revisar a"
+          ]
+        },
+        {
+          "start": 2.872916666666666,
+          "end": 7.425925925925925,
+          "text": "consulta. Consulte pendências e organize o fechamento, com orientações",
+          "lines": [
+            "consulta. Consulte pendências e organize o",
+            "fechamento, com orientações"
+          ]
+        },
+        {
+          "start": 7.425925925925925,
+          "end": 9.5,
+          "text": "e próximos passos.",
+          "lines": [
+            "e próximos passos."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "m13",
+      "role": "Médico",
+      "title": "Mensagens, áudios e PDFs",
+      "tab": "Envios do paciente",
+      "phrases": [
+        "O médico recebe os relatos, áudios e PDFs enviados na preparação.",
+        "Pode abrir os documentos e registrar a revisão de cada envio."
+      ],
+      "seconds": 9.458333333333334,
+      "start": 120.125,
+      "index": 12,
+      "cues": [
+        {
+          "start": 0.30537037037037035,
+          "end": 3.7437037037037033,
+          "text": "O médico recebe os relatos, áudios e PDFs enviados",
+          "lines": [
+            "O médico recebe os relatos, áudios e PDFs",
+            "enviados"
+          ]
+        },
+        {
+          "start": 3.7437037037037033,
+          "end": 7.020879629629628,
+          "text": "na preparação. Pode abrir os documentos e registrar a",
+          "lines": [
+            "na preparação. Pode abrir os documentos e",
+            "registrar a"
+          ]
+        },
+        {
+          "start": 7.020879629629628,
+          "end": 9.208333333333334,
+          "text": "revisão de cada envio.",
+          "lines": [
+            "revisão de cada envio."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "m14",
+      "role": "Médico",
+      "title": "Notificações de novos envios",
+      "path": "/dashboard",
+      "action": "bell",
+      "phrases": [
+        "O sininho avisa sobre novas preparações e mudanças da agenda.",
+        "Abra a notificação para chegar ao envio do paciente."
+      ],
+      "seconds": 7.875,
+      "start": 129.58333333333334,
+      "index": 13,
+      "cues": [
+        {
+          "start": 0.3034722222222222,
+          "end": 3.017777777777778,
+          "text": "O sininho avisa sobre novas preparações e mudanças da",
+          "lines": [
+            "O sininho avisa sobre novas preparações e",
+            "mudanças da"
+          ]
+        },
+        {
+          "start": 3.017777777777778,
+          "end": 6.043703703703703,
+          "text": "agenda. Abra a notificação para chegar ao envio do",
+          "lines": [
+            "agenda. Abra a notificação para chegar ao",
+            "envio do"
+          ]
+        },
+        {
+          "start": 6.043703703703703,
+          "end": 7.625,
+          "text": "paciente.",
+          "lines": [
+            "paciente."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "m15",
+      "role": "Médico",
+      "title": "Solicitação de exames",
+      "tab": "Solicitar exames",
+      "phrases": [
+        "Selecione os exames, registre observações e revise o pedido antes de liberar.",
+        "O paciente passa a consultar o pedido no seu portal."
+      ],
+      "seconds": 9.083333333333334,
+      "start": 137.45833333333334,
+      "index": 14,
+      "cues": [
+        {
+          "start": 0.30652777777777773,
+          "end": 3.691851851851852,
+          "text": "Selecione os exames, registre observações e revise o pedido",
+          "lines": [
+            "Selecione os exames, registre observações",
+            "e revise o pedido"
+          ]
+        },
+        {
+          "start": 3.691851851851852,
+          "end": 6.743703703703703,
+          "text": "antes de liberar. O paciente passa a consultar o",
+          "lines": [
+            "antes de liberar. O paciente passa a",
+            "consultar o"
+          ]
+        },
+        {
+          "start": 6.743703703703703,
+          "end": 8.833333333333334,
+          "text": "pedido no seu portal.",
+          "lines": [
+            "pedido no seu portal."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "m16",
+      "role": "Médico",
+      "title": "Orientações ao paciente",
+      "tab": "Orientações ao paciente",
+      "phrases": [
+        "Escreva e revise as orientações da consulta antes de publicar.",
+        "O paciente consegue consultar o que foi combinado para seu acompanhamento."
+      ],
+      "seconds": 8.958333333333334,
+      "start": 146.54166666666669,
+      "index": 15,
+      "cues": [
+        {
+          "start": 0.3034722222222222,
+          "end": 2.990277777777777,
+          "text": "Escreva e revise as orientações da consulta antes de",
+          "lines": [
+            "Escreva e revise as orientações da",
+            "consulta antes de"
+          ]
+        },
+        {
+          "start": 2.990277777777777,
+          "end": 6.55111111111111,
+          "text": "publicar. O paciente consegue consultar o que foi combinado",
+          "lines": [
+            "publicar. O paciente consegue consultar o",
+            "que foi combinado"
+          ]
+        },
+        {
+          "start": 6.55111111111111,
+          "end": 8.708333333333334,
+          "text": "para seu acompanhamento.",
+          "lines": [
+            "para seu acompanhamento."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "m17",
+      "role": "Médico",
+      "title": "Resultados do paciente",
+      "tab": "Resultados",
+      "phrases": [
+        "Consulte os marcadores da coleta, suas unidades e referências.",
+        "A leitura dos resultados permanece ligada ao contexto de cada paciente."
+      ],
+      "seconds": 9.5,
+      "start": 155.50000000000003,
+      "index": 16,
+      "cues": [
+        {
+          "start": 0.307037037037037,
+          "end": 4.469259259259259,
+          "text": "Consulte os marcadores da coleta, suas unidades e referências.",
+          "lines": [
+            "Consulte os marcadores da coleta, suas",
+            "unidades e referências."
+          ]
+        },
+        {
+          "start": 4.469259259259259,
+          "end": 7.393101851851852,
+          "text": "A leitura dos resultados permanece ligada ao contexto de",
+          "lines": [
+            "A leitura dos resultados permanece ligada",
+            "ao contexto de"
+          ]
+        },
+        {
+          "start": 7.393101851851852,
+          "end": 9.25,
+          "text": "cada paciente.",
+          "lines": [
+            "cada paciente."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "m18",
+      "role": "Médico",
+      "title": "Evolução entre coletas",
+      "tab": "Histórico",
+      "phrases": [
+        "No histórico individual, acompanhe as coletas e a evolução dos marcadores.",
+        "A comparação permite conferir o que mudou entre os períodos."
+      ],
+      "seconds": 8.791666666666666,
+      "start": 165.00000000000003,
+      "index": 17,
+      "cues": [
+        {
+          "start": 0.30287037037037035,
+          "end": 3.2585185185185184,
+          "text": "No histórico individual, acompanhe as coletas e a evolução",
+          "lines": [
+            "No histórico individual, acompanhe as",
+            "coletas e a evolução"
+          ]
+        },
+        {
+          "start": 3.2585185185185184,
+          "end": 6.641342592592593,
+          "text": "dos marcadores. A comparação permite conferir o que mudou",
+          "lines": [
+            "dos marcadores. A comparação permite",
+            "conferir o que mudou"
+          ]
+        },
+        {
+          "start": 6.641342592592593,
+          "end": 8.541666666666666,
+          "text": "entre os períodos.",
+          "lines": [
+            "entre os períodos."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "m19",
+      "role": "Médico",
+      "title": "Histórico familiar",
+      "tab": "Histórico familiar",
+      "phrases": [
+        "Registre e consulte o histórico familiar no perfil do paciente.",
+        "Essa informação acrescenta contexto à revisão dos resultados."
+      ],
+      "seconds": 8.583333333333334,
+      "start": 173.79166666666669,
+      "index": 18,
+      "cues": [
+        {
+          "start": 0.30546296296296294,
+          "end": 2.8774537037037033,
+          "text": "Registre e consulte o histórico familiar no perfil do",
+          "lines": [
+            "Registre e consulte o histórico familiar",
+            "no perfil do"
+          ]
+        },
+        {
+          "start": 2.8774537037037033,
+          "end": 8.333333333333334,
+          "text": "paciente. Essa informação acrescenta contexto à revisão dos resultados.",
+          "lines": [
+            "paciente. Essa informação acrescenta",
+            "contexto à revisão dos resultados."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "m20",
+      "role": "Médico",
+      "title": "Laudos e análise com IA",
+      "tab": "Laudos laboratoriais",
+      "action": "lab",
+      "phrases": [
+        "Abra o laudo original em PDF e solicite uma análise assistida por inteligência artificial.",
+        "Confira os achados no documento e revise a síntese antes de utilizá-la."
+      ],
+      "seconds": 10.791666666666666,
+      "start": 182.37500000000003,
+      "index": 19,
+      "cues": [
+        {
+          "start": 0.3073611111111111,
+          "end": 2.847407407407407,
+          "text": "Abra o laudo original em PDF e solicite uma",
+          "lines": [
+            "Abra o laudo original em PDF e solicite",
+            "uma"
+          ]
+        },
+        {
+          "start": 2.847407407407407,
+          "end": 5.893935185185185,
+          "text": "análise assistida por inteligência artificial.",
+          "lines": [
+            "análise assistida por inteligência",
+            "artificial."
+          ]
+        },
+        {
+          "start": 5.893935185185185,
+          "end": 8.49925925925926,
+          "text": "Confira os achados no documento e revise a síntese",
+          "lines": [
+            "Confira os achados no documento e revise a",
+            "síntese"
+          ]
+        },
+        {
+          "start": 8.49925925925926,
+          "end": 10.541666666666666,
+          "text": "antes de utilizá-la.",
+          "lines": [
+            "antes de utilizá-la."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "m21",
+      "role": "Médico",
+      "title": "Arquivos genéticos",
+      "tab": "Genética",
+      "phrases": [
+        "Importe o arquivo genético em formato TXT e acompanhe suas versões e marcadores.",
+        "Os escores de predisposição ainda não estão configurados nesta demonstração."
+      ],
+      "seconds": 10.541666666666666,
+      "start": 193.16666666666669,
+      "index": 20,
+      "cues": [
+        {
+          "start": 0.3073611111111111,
+          "end": 3.403472222222222,
+          "text": "Importe o arquivo genético em formato TXT e acompanhe",
+          "lines": [
+            "Importe o arquivo genético em formato TXT",
+            "e acompanhe"
+          ]
+        },
+        {
+          "start": 3.403472222222222,
+          "end": 5.503472222222221,
+          "text": "suas versões e marcadores.",
+          "lines": [
+            "suas versões e marcadores."
+          ]
+        },
+        {
+          "start": 5.503472222222221,
+          "end": 8.566944444444443,
+          "text": "Os escores de predisposição ainda não estão configurados nesta",
+          "lines": [
+            "Os escores de predisposição ainda não",
+            "estão configurados nesta"
+          ]
+        },
+        {
+          "start": 8.566944444444443,
+          "end": 10.291666666666666,
+          "text": "demonstração.",
+          "lines": [
+            "demonstração."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "m22",
+      "role": "Médico",
+      "title": "Laudos genômicos",
+      "tab": "Genômica",
+      "phrases": [
+        "Os laudos genômicos em PDF têm uma área própria para consulta e análise assistida.",
+        "O documento original continua disponível para a revisão profissional."
+      ],
+      "seconds": 9.875,
+      "start": 203.70833333333334,
+      "index": 21,
+      "cues": [
+        {
+          "start": 0.3045833333333333,
+          "end": 2.876296296296296,
+          "text": "Os laudos genômicos em PDF têm uma área própria",
+          "lines": [
+            "Os laudos genômicos em PDF têm uma área",
+            "própria"
+          ]
+        },
+        {
+          "start": 2.876296296296296,
+          "end": 5.318888888888888,
+          "text": "para consulta e análise assistida.",
+          "lines": [
+            "para consulta e análise assistida."
+          ]
+        },
+        {
+          "start": 5.318888888888888,
+          "end": 9.625,
+          "text": "O documento original continua disponível para a revisão profissional.",
+          "lines": [
+            "O documento original continua disponível",
+            "para a revisão profissional."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "m23",
+      "role": "Médico",
+      "title": "Biblioteca de documentos",
+      "tab": "Documentos",
+      "phrases": [
+        "Organize os documentos por tipo, encontre arquivos pelo nome e abra o original.",
+        "Os laudos ficam associados ao perfil do paciente."
+      ],
+      "seconds": 8.833333333333334,
+      "start": 213.58333333333334,
+      "index": 22,
+      "cues": [
+        {
+          "start": 0.30287037037037035,
+          "end": 3.528888888888888,
+          "text": "Organize os documentos por tipo, encontre arquivos pelo nome",
+          "lines": [
+            "Organize os documentos por tipo, encontre",
+            "arquivos pelo nome"
+          ]
+        },
+        {
+          "start": 3.528888888888888,
+          "end": 5.103472222222222,
+          "text": "e abra o original.",
+          "lines": [
+            "e abra o original."
+          ]
+        },
+        {
+          "start": 5.103472222222222,
+          "end": 8.583333333333334,
+          "text": "Os laudos ficam associados ao perfil do paciente.",
+          "lines": [
+            "Os laudos ficam associados ao perfil do",
+            "paciente."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "m24",
+      "role": "Médico",
+      "title": "Acompanhamento contínuo",
+      "path": "/follow-up",
+      "phrases": [
+        "A área de acompanhamento reúne pacientes e situações que precisam de revisão.",
+        "Use os filtros e abra o perfil para continuar o atendimento."
+      ],
+      "seconds": 8.916666666666666,
+      "start": 222.41666666666669,
+      "index": 23,
+      "cues": [
+        {
+          "start": 0.3058333333333333,
+          "end": 3.043703703703703,
+          "text": "A área de acompanhamento reúne pacientes e situações que",
+          "lines": [
+            "A área de acompanhamento reúne pacientes e",
+            "situações que"
+          ]
+        },
+        {
+          "start": 3.043703703703703,
+          "end": 5.888148148148148,
+          "text": "precisam de revisão. Use os filtros e abra o",
+          "lines": [
+            "precisam de revisão. Use os filtros e abra",
+            "o"
+          ]
+        },
+        {
+          "start": 5.888148148148148,
+          "end": 8.666666666666666,
+          "text": "perfil para continuar o atendimento.",
+          "lines": [
+            "perfil para continuar o atendimento."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "m25",
+      "role": "Médico",
+      "title": "Meus relatórios",
+      "path": "/indicators",
+      "phrases": [
+        "Veja gráficos da sua carteira e da atividade de acompanhamento.",
+        "Filtre o período, confira envios e revisões e imprima o relatório."
+      ],
+      "seconds": 8.791666666666666,
+      "start": 231.33333333333334,
+      "index": 24,
+      "cues": [
+        {
+          "start": 0.30763888888888885,
+          "end": 2.7659259259259255,
+          "text": "Veja gráficos da sua carteira e da atividade de",
+          "lines": [
+            "Veja gráficos da sua carteira e da",
+            "atividade de"
+          ]
+        },
+        {
+          "start": 2.7659259259259255,
+          "end": 6.562222222222222,
+          "text": "acompanhamento. Filtre o período, confira envios e revisões e",
+          "lines": [
+            "acompanhamento. Filtre o período, confira",
+            "envios e revisões e"
+          ]
+        },
+        {
+          "start": 6.562222222222222,
+          "end": 8.541666666666666,
+          "text": "imprima o relatório.",
+          "lines": [
+            "imprima o relatório."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "m26",
+      "role": "Médico",
+      "title": "Perfil e preferências",
+      "path": "/doctors",
+      "phrases": [
+        "No seu perfil, organize dados profissionais, CRM, contatos e informações do consultório.",
+        "As configurações reúnem preferências de notificações, leitura e acompanhamento."
+      ],
+      "seconds": 11.833333333333334,
+      "start": 240.125,
+      "index": 25,
+      "cues": [
+        {
+          "start": 0.30287037037037035,
+          "end": 4.345185185185185,
+          "text": "No seu perfil, organize dados profissionais, CRM, contatos e",
+          "lines": [
+            "No seu perfil, organize dados",
+            "profissionais, CRM, contatos e"
+          ]
+        },
+        {
+          "start": 4.345185185185185,
+          "end": 8.314074074074075,
+          "text": "informações do consultório. As configurações reúnem preferências de",
+          "lines": [
+            "informações do consultório. As",
+            "configurações reúnem preferências de"
+          ]
+        },
+        {
+          "start": 8.314074074074075,
+          "end": 11.583333333333334,
+          "text": "notificações, leitura e acompanhamento.",
+          "lines": [
+            "notificações, leitura e acompanhamento."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "m27",
+      "role": "Médico",
+      "title": "Configurações",
+      "path": "/settings",
+      "phrases": [
+        "Ajuste as preferências demonstrativas e confira a prévia de visualização.",
+        "Essas escolhas ficam salvas neste navegador."
+      ],
+      "seconds": 8.333333333333334,
+      "start": 251.95833333333334,
+      "index": 26,
+      "cues": [
+        {
+          "start": 0.3045833333333333,
+          "end": 3.2325925925925922,
+          "text": "Ajuste as preferências demonstrativas e confira a prévia de",
+          "lines": [
+            "Ajuste as preferências demonstrativas e",
+            "confira a prévia de"
+          ]
+        },
+        {
+          "start": 3.2325925925925922,
+          "end": 8.083333333333334,
+          "text": "visualização. Essas escolhas ficam salvas neste navegador.",
+          "lines": [
+            "visualização. Essas escolhas ficam salvas",
+            "neste navegador."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "p01",
+      "role": "Paciente",
+      "title": "Minha saúde, em perspectiva",
+      "section": "Minha saúde",
+      "phrases": [
+        "No INOVA Paciente, a pessoa participa do próprio acompanhamento.",
+        "Minha saúde reúne resultados recentes, avisos e próximos passos para conversar com o médico."
+      ],
+      "seconds": 10.625,
+      "start": 260.2916666666667,
+      "index": 27,
+      "cues": [
+        {
+          "start": 0.30537037037037035,
+          "end": 4.3725,
+          "text": "No INOVA Paciente, a pessoa participa do próprio acompanhamento.",
+          "lines": [
+            "No INOVA Paciente, a pessoa participa do",
+            "próprio acompanhamento."
+          ]
+        },
+        {
+          "start": 4.3725,
+          "end": 8.073333333333332,
+          "text": "Minha saúde reúne resultados recentes, avisos e próximos passos",
+          "lines": [
+            "Minha saúde reúne resultados recentes,",
+            "avisos e próximos passos"
+          ]
+        },
+        {
+          "start": 8.073333333333332,
+          "end": 10.375,
+          "text": "para conversar com o médico.",
+          "lines": [
+            "para conversar com o médico."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "p02",
+      "role": "Paciente",
+      "title": "Minha agenda",
+      "section": "Minha agenda",
+      "scroll": 540,
+      "phrases": [
+        "O paciente consulta a agenda compartilhada e acompanha consultas, exames e retornos.",
+        "Pode propor eventos e registrar o motivo de um cancelamento."
+      ],
+      "seconds": 9.833333333333334,
+      "start": 270.9166666666667,
+      "index": 28,
+      "cues": [
+        {
+          "start": 0.3058333333333333,
+          "end": 3.8079629629629625,
+          "text": "O paciente consulta a agenda compartilhada e acompanha consultas,",
+          "lines": [
+            "O paciente consulta a agenda compartilhada",
+            "e acompanha consultas,"
+          ]
+        },
+        {
+          "start": 3.8079629629629625,
+          "end": 7.216342592592592,
+          "text": "exames e retornos. Pode propor eventos e registrar o",
+          "lines": [
+            "exames e retornos. Pode propor eventos e",
+            "registrar o"
+          ]
+        },
+        {
+          "start": 7.216342592592592,
+          "end": 9.583333333333334,
+          "text": "motivo de um cancelamento.",
+          "lines": [
+            "motivo de um cancelamento."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "p03",
+      "role": "Paciente",
+      "title": "Próximos passos",
+      "section": "Próximos passos",
+      "phrases": [
+        "Confira os pedidos de exames e as orientações disponíveis.",
+        "Essa área ajuda a entender o que ainda precisa ser feito no acompanhamento."
+      ],
+      "seconds": 8.833333333333334,
+      "start": 280.75,
+      "index": 29,
+      "cues": [
+        {
+          "start": 0.3050462962962963,
+          "end": 3.984814814814814,
+          "text": "Confira os pedidos de exames e as orientações disponíveis.",
+          "lines": [
+            "Confira os pedidos de exames e as",
+            "orientações disponíveis."
+          ]
+        },
+        {
+          "start": 3.984814814814814,
+          "end": 6.177037037037036,
+          "text": "Essa área ajuda a entender o que ainda precisa",
+          "lines": [
+            "Essa área ajuda a entender o que ainda",
+            "precisa"
+          ]
+        },
+        {
+          "start": 6.177037037037036,
+          "end": 8.583333333333334,
+          "text": "ser feito no acompanhamento.",
+          "lines": [
+            "ser feito no acompanhamento."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "p04",
+      "role": "Paciente",
+      "title": "Avisos e atualizações",
+      "section": "Avisos",
+      "phrases": [
+        "Os avisos reúnem novidades dos pedidos, envios e agenda.",
+        "O sininho facilita encontrar o que mudou no acompanhamento."
+      ],
+      "seconds": 7.958333333333333,
+      "start": 289.5833333333333,
+      "index": 30,
+      "cues": [
+        {
+          "start": 0.3062962962962963,
+          "end": 4.0145833333333325,
+          "text": "Os avisos reúnem novidades dos pedidos, envios e agenda.",
+          "lines": [
+            "Os avisos reúnem novidades dos pedidos,",
+            "envios e agenda."
+          ]
+        },
+        {
+          "start": 4.0145833333333325,
+          "end": 7.708333333333333,
+          "text": "O sininho facilita encontrar o que mudou no acompanhamento.",
+          "lines": [
+            "O sininho facilita encontrar o que mudou",
+            "no acompanhamento."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "p05",
+      "role": "Paciente",
+      "title": "Preparar a consulta",
+      "section": "Preparar consulta",
+      "action": "preparation",
+      "phrases": [
+        "Antes da consulta, conte seus sintomas, medicamentos em uso e dúvidas.",
+        "Também é possível gravar ou anexar áudios e selecionar laudos em PDF."
+      ],
+      "seconds": 9.958333333333334,
+      "start": 297.54166666666663,
+      "index": 31,
+      "cues": [
+        {
+          "start": 0.3091203703703703,
+          "end": 3.884444444444444,
+          "text": "Antes da consulta, conte seus sintomas, medicamentos em uso",
+          "lines": [
+            "Antes da consulta, conte seus sintomas,",
+            "medicamentos em uso"
+          ]
+        },
+        {
+          "start": 3.884444444444444,
+          "end": 7.18074074074074,
+          "text": "e dúvidas. Também é possível gravar ou anexar áudios",
+          "lines": [
+            "e dúvidas. Também é possível gravar ou",
+            "anexar áudios"
+          ]
+        },
+        {
+          "start": 7.18074074074074,
+          "end": 9.708333333333334,
+          "text": "e selecionar laudos em PDF.",
+          "lines": [
+            "e selecionar laudos em PDF."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "p06",
+      "role": "Paciente",
+      "title": "Enviar ao médico",
+      "section": "Preparar consulta",
+      "action": "send",
+      "phrases": [
+        "Revise o conteúdo e confirme o envio ao médico.",
+        "A preparação aparece na caixa do profissional, com o status do envio e da revisão."
+      ],
+      "seconds": 8.625,
+      "start": 307.49999999999994,
+      "index": 32,
+      "cues": [
+        {
+          "start": 0.3062962962962963,
+          "end": 3.252731481481481,
+          "text": "Revise o conteúdo e confirme o envio ao médico.",
+          "lines": [
+            "Revise o conteúdo e confirme o envio ao",
+            "médico."
+          ]
+        },
+        {
+          "start": 3.252731481481481,
+          "end": 5.932592592592592,
+          "text": "A preparação aparece na caixa do profissional, com o",
+          "lines": [
+            "A preparação aparece na caixa do",
+            "profissional, com o"
+          ]
+        },
+        {
+          "start": 5.932592592592592,
+          "end": 8.375,
+          "text": "status do envio e da revisão.",
+          "lines": [
+            "status do envio e da revisão."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "p07",
+      "role": "Paciente",
+      "title": "Orientações do médico",
+      "section": "Orientações do médico",
+      "phrases": [
+        "Consulte as orientações publicadas pelo médico após a revisão.",
+        "O que foi combinado fica disponível para acompanhar os próximos passos."
+      ],
+      "seconds": 9.083333333333334,
+      "start": 316.12499999999994,
+      "index": 33,
+      "cues": [
+        {
+          "start": 0.3050462962962963,
+          "end": 4.309537037037037,
+          "text": "Consulte as orientações publicadas pelo médico após a revisão.",
+          "lines": [
+            "Consulte as orientações publicadas pelo",
+            "médico após a revisão."
+          ]
+        },
+        {
+          "start": 4.309537037037037,
+          "end": 6.843703703703703,
+          "text": "O que foi combinado fica disponível para acompanhar os",
+          "lines": [
+            "O que foi combinado fica disponível para",
+            "acompanhar os"
+          ]
+        },
+        {
+          "start": 6.843703703703703,
+          "end": 8.833333333333334,
+          "text": "próximos passos.",
+          "lines": [
+            "próximos passos."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "p08",
+      "role": "Paciente",
+      "title": "Meus resultados",
+      "section": "Meus resultados",
+      "phrases": [
+        "Abra os resultados, confira os valores, unidades e referências da coleta.",
+        "O histórico ajuda a levar informações organizadas para a consulta."
+      ],
+      "seconds": 9.875,
+      "start": 325.20833333333326,
+      "index": 34,
+      "cues": [
+        {
+          "start": 0.3073611111111111,
+          "end": 3.9614351851851843,
+          "text": "Abra os resultados, confira os valores, unidades e referências",
+          "lines": [
+            "Abra os resultados, confira os valores,",
+            "unidades e referências"
+          ]
+        },
+        {
+          "start": 3.9614351851851843,
+          "end": 7.777037037037036,
+          "text": "da coleta. O histórico ajuda a levar informações organizadas",
+          "lines": [
+            "da coleta. O histórico ajuda a levar",
+            "informações organizadas"
+          ]
+        },
+        {
+          "start": 7.777037037037036,
+          "end": 9.625,
+          "text": "para a consulta.",
+          "lines": [
+            "para a consulta."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "p09",
+      "role": "Paciente",
+      "title": "Entenda com IA",
+      "section": "Meus resultados",
+      "action": "patient-ai",
+      "phrases": [
+        "A inteligência artificial também ajuda o paciente a entender os resultados em linguagem simples.",
+        "Com autorização, ela explica os marcadores e sugere perguntas para conversar com o médico."
+      ],
+      "seconds": 11.708333333333334,
+      "start": 335.08333333333326,
+      "index": 35,
+      "cues": [
+        {
+          "start": 0.3045833333333333,
+          "end": 3.2640277777777778,
+          "text": "A inteligência artificial também ajuda o paciente a entender",
+          "lines": [
+            "A inteligência artificial também ajuda o",
+            "paciente a entender"
+          ]
+        },
+        {
+          "start": 3.2640277777777778,
+          "end": 5.81037037037037,
+          "text": "os resultados em linguagem simples.",
+          "lines": [
+            "os resultados em linguagem simples."
+          ]
+        },
+        {
+          "start": 5.81037037037037,
+          "end": 9.136296296296296,
+          "text": "Com autorização, ela explica os marcadores e sugere perguntas",
+          "lines": [
+            "Com autorização, ela explica os marcadores",
+            "e sugere perguntas"
+          ]
+        },
+        {
+          "start": 9.136296296296296,
+          "end": 11.458333333333334,
+          "text": "para conversar com o médico.",
+          "lines": [
+            "para conversar com o médico."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "p10",
+      "role": "Paciente",
+      "title": "Exames solicitados",
+      "section": "Exames solicitados",
+      "phrases": [
+        "O paciente vê os exames liberados pelo médico e consulta os detalhes do pedido.",
+        "Depois da coleta, pode enviar o PDF do resultado para a revisão."
+      ],
+      "seconds": 10,
+      "start": 346.7916666666666,
+      "index": 36,
+      "cues": [
+        {
+          "start": 0.3058333333333333,
+          "end": 2.7474074074074073,
+          "text": "O paciente vê os exames liberados pelo médico e",
+          "lines": [
+            "O paciente vê os exames liberados pelo",
+            "médico e"
+          ]
+        },
+        {
+          "start": 2.7474074074074073,
+          "end": 5.0058333333333325,
+          "text": "consulta os detalhes do pedido.",
+          "lines": [
+            "consulta os detalhes do pedido."
+          ]
+        },
+        {
+          "start": 5.0058333333333325,
+          "end": 8.04,
+          "text": "Depois da coleta, pode enviar o PDF do resultado",
+          "lines": [
+            "Depois da coleta, pode enviar o PDF do",
+            "resultado"
+          ]
+        },
+        {
+          "start": 8.04,
+          "end": 9.75,
+          "text": "para a revisão.",
+          "lines": [
+            "para a revisão."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "p11",
+      "role": "Paciente",
+      "title": "Comparar laboratórios",
+      "section": "Exames solicitados",
+      "action": "s2",
+      "phrases": [
+        "O fluxo de cotação permite explorar exames e comparar laboratórios por localização e valores.",
+        "Nesta demonstração, os preços e a integração com a S2 são simulados."
+      ],
+      "seconds": 11.25,
+      "start": 356.7916666666666,
+      "index": 37,
+      "cues": [
+        {
+          "start": 0.3034722222222222,
+          "end": 3.1548148148148147,
+          "text": "O fluxo de cotação permite explorar exames e comparar",
+          "lines": [
+            "O fluxo de cotação permite explorar exames",
+            "e comparar"
+          ]
+        },
+        {
+          "start": 3.1548148148148147,
+          "end": 5.911481481481481,
+          "text": "laboratórios por localização e valores.",
+          "lines": [
+            "laboratórios por localização e valores."
+          ]
+        },
+        {
+          "start": 5.911481481481481,
+          "end": 8.631388888888889,
+          "text": "Nesta demonstração, os preços e a integração com a",
+          "lines": [
+            "Nesta demonstração, os preços e a",
+            "integração com a"
+          ]
+        },
+        {
+          "start": 8.631388888888889,
+          "end": 11,
+          "text": "S2 são simulados.",
+          "lines": [
+            "S2 são simulados."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "p12",
+      "role": "Paciente",
+      "title": "Minha evolução",
+      "section": "Minha evolução",
+      "scroll": 500,
+      "phrases": [
+        "Os gráficos mostram a evolução dos marcadores nas diferentes coletas.",
+        "O paciente visualiza as mudanças e pode pedir uma explicação assistida por IA."
+      ],
+      "seconds": 9.625,
+      "start": 368.0416666666666,
+      "index": 38,
+      "cues": [
+        {
+          "start": 0.3034722222222222,
+          "end": 3.3307407407407403,
+          "text": "Os gráficos mostram a evolução dos marcadores nas diferentes",
+          "lines": [
+            "Os gráficos mostram a evolução dos",
+            "marcadores nas diferentes"
+          ]
+        },
+        {
+          "start": 3.3307407407407403,
+          "end": 6.765925925925925,
+          "text": "coletas. O paciente visualiza as mudanças e pode pedir",
+          "lines": [
+            "coletas. O paciente visualiza as mudanças",
+            "e pode pedir"
+          ]
+        },
+        {
+          "start": 6.765925925925925,
+          "end": 9.375,
+          "text": "uma explicação assistida por IA.",
+          "lines": [
+            "uma explicação assistida por IA."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "p13",
+      "role": "Paciente",
+      "title": "Preparo dos exames",
+      "section": "Preparo dos exames",
+      "phrases": [
+        "Consulte as informações de preparo associadas aos exames.",
+        "Confirme com o laboratório e com o médico as instruções para sua coleta."
+      ],
+      "seconds": 8.958333333333334,
+      "start": 377.6666666666666,
+      "index": 39,
+      "cues": [
+        {
+          "start": 0.3050462962962963,
+          "end": 4.068009259259259,
+          "text": "Consulte as informações de preparo associadas aos exames.",
+          "lines": [
+            "Consulte as informações de preparo",
+            "associadas aos exames."
+          ]
+        },
+        {
+          "start": 4.068009259259259,
+          "end": 6.22199074074074,
+          "text": "Confirme com o laboratório e com o médico as",
+          "lines": [
+            "Confirme com o laboratório e com o médico",
+            "as"
+          ]
+        },
+        {
+          "start": 6.22199074074074,
+          "end": 8.708333333333334,
+          "text": "instruções para sua coleta.",
+          "lines": [
+            "instruções para sua coleta."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "p14",
+      "role": "Paciente",
+      "title": "Laboratórios favoritos",
+      "section": "Laboratórios favoritos",
+      "phrases": [
+        "Guarde laboratórios de preferência para encontrar seus contatos depois.",
+        "A consulta por CEP apresenta opções e cotações ilustrativas."
+      ],
+      "seconds": 9.125,
+      "start": 386.6249999999999,
+      "index": 40,
+      "cues": [
+        {
+          "start": 0.3062962962962963,
+          "end": 4.619398148148148,
+          "text": "Guarde laboratórios de preferência para encontrar seus contatos depois.",
+          "lines": [
+            "Guarde laboratórios de preferência para",
+            "encontrar seus contatos depois."
+          ]
+        },
+        {
+          "start": 4.619398148148148,
+          "end": 8.875,
+          "text": "A consulta por CEP apresenta opções e cotações ilustrativas.",
+          "lines": [
+            "A consulta por CEP apresenta opções e",
+            "cotações ilustrativas."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "p15",
+      "role": "Paciente",
+      "title": "Meus documentos",
+      "section": "Meus documentos",
+      "action": "document",
+      "phrases": [
+        "Adicione PDFs, escolha o tipo de documento e encontre arquivos pelo nome.",
+        "Abra o original e selecione os documentos que deseja enviar na preparação."
+      ],
+      "seconds": 10.375,
+      "start": 395.7499999999999,
+      "index": 41,
+      "cues": [
+        {
+          "start": 0.3045833333333333,
+          "end": 3.7955555555555556,
+          "text": "Adicione PDFs, escolha o tipo de documento e encontre",
+          "lines": [
+            "Adicione PDFs, escolha o tipo de documento",
+            "e encontre"
+          ]
+        },
+        {
+          "start": 3.7955555555555556,
+          "end": 6.9362962962962955,
+          "text": "arquivos pelo nome. Abra o original e selecione os",
+          "lines": [
+            "arquivos pelo nome. Abra o original e",
+            "selecione os"
+          ]
+        },
+        {
+          "start": 6.9362962962962955,
+          "end": 10.125,
+          "text": "documentos que deseja enviar na preparação.",
+          "lines": [
+            "documentos que deseja enviar na",
+            "preparação."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "p16",
+      "role": "Paciente",
+      "title": "Minha genética",
+      "section": "Minha genética",
+      "phrases": [
+        "Envie o TXT genético e acompanhe o arquivo vinculado ao seu perfil.",
+        "Os quatro domínios organizam a revisão. Eles ainda não calculam predisposição clínica."
+      ],
+      "seconds": 10.833333333333334,
+      "start": 406.1249999999999,
+      "index": 42,
+      "cues": [
+        {
+          "start": 0.3073611111111111,
+          "end": 3.2844444444444436,
+          "text": "Envie o TXT genético e acompanhe o arquivo vinculado",
+          "lines": [
+            "Envie o TXT genético e acompanhe o arquivo",
+            "vinculado"
+          ]
+        },
+        {
+          "start": 3.2844444444444436,
+          "end": 7.2877777777777775,
+          "text": "ao seu perfil. Os quatro domínios organizam a revisão.",
+          "lines": [
+            "ao seu perfil. Os quatro domínios",
+            "organizam a revisão."
+          ]
+        },
+        {
+          "start": 7.2877777777777775,
+          "end": 10.583333333333334,
+          "text": "Eles ainda não calculam predisposição clínica.",
+          "lines": [
+            "Eles ainda não calculam predisposição",
+            "clínica."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "p17",
+      "role": "Paciente",
+      "title": "Linha do tempo",
+      "section": "Linha do tempo",
+      "phrases": [
+        "A linha do tempo organiza exames, pedidos, envios e revisões em sequência.",
+        "Pesquise e filtre os eventos para entender o histórico do acompanhamento."
+      ],
+      "seconds": 9.708333333333334,
+      "start": 416.9583333333332,
+      "index": 43,
+      "cues": [
+        {
+          "start": 0.3062962962962963,
+          "end": 3.330601851851851,
+          "text": "A linha do tempo organiza exames, pedidos, envios e",
+          "lines": [
+            "A linha do tempo organiza exames, pedidos,",
+            "envios e"
+          ]
+        },
+        {
+          "start": 3.330601851851851,
+          "end": 6.727083333333332,
+          "text": "revisões em sequência. Pesquise e filtre os eventos para",
+          "lines": [
+            "revisões em sequência. Pesquise e filtre",
+            "os eventos para"
+          ]
+        },
+        {
+          "start": 6.727083333333332,
+          "end": 9.458333333333334,
+          "text": "entender o histórico do acompanhamento.",
+          "lines": [
+            "entender o histórico do acompanhamento."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "p18",
+      "role": "Paciente",
+      "title": "Meu perfil e acessibilidade",
+      "section": "Meu perfil",
+      "phrases": [
+        "Confira seus dados de perfil e contatos.",
+        "A busca do portal e os recursos de acessibilidade ajudam a encontrar informações e ajustar a leitura."
+      ],
+      "seconds": 9.416666666666666,
+      "start": 426.6666666666665,
+      "index": 44,
+      "cues": [
+        {
+          "start": 0.3050462962962963,
+          "end": 3.1295833333333327,
+          "text": "Confira seus dados de perfil e contatos.",
+          "lines": [
+            "Confira seus dados de perfil e contatos."
+          ]
+        },
+        {
+          "start": 3.1295833333333327,
+          "end": 5.654814814814815,
+          "text": "A busca do portal e os recursos de acessibilidade",
+          "lines": [
+            "A busca do portal e os recursos de",
+            "acessibilidade"
+          ]
+        },
+        {
+          "start": 5.654814814814815,
+          "end": 9.166666666666666,
+          "text": "ajudam a encontrar informações e ajustar a leitura.",
+          "lines": [
+            "ajudam a encontrar informações e ajustar a",
+            "leitura."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "p19",
+      "role": "Paciente",
+      "title": "Cuidado conectado, com IA",
+      "section": "Minha saúde",
+      "phrases": [
+        "Médico e paciente conectados, com documentos, resultados, agenda e inteligência artificial no acompanhamento.",
+        "Conheça a demonstração INOVA. Todos os exemplos deste vídeo usam dados fictícios."
+      ],
+      "seconds": 13.625,
+      "start": 436.0833333333332,
+      "index": 45,
+      "cues": [
+        {
+          "start": 0.3058333333333333,
+          "end": 4.536296296296296,
+          "text": "Médico e paciente conectados, com documentos, resultados, agenda e",
+          "lines": [
+            "Médico e paciente conectados, com",
+            "documentos, resultados, agenda e"
+          ]
+        },
+        {
+          "start": 4.536296296296296,
+          "end": 7.316157407407407,
+          "text": "inteligência artificial no acompanhamento.",
+          "lines": [
+            "inteligência artificial no acompanhamento."
+          ]
+        },
+        {
+          "start": 7.316157407407407,
+          "end": 9.549490740740739,
+          "text": "Conheça a demonstração INOVA.",
+          "lines": [
+            "Conheça a demonstração INOVA."
+          ]
+        },
+        {
+          "start": 9.549490740740739,
+          "end": 13.375,
+          "text": "Todos os exemplos deste vídeo usam dados fictícios.",
+          "lines": [
+            "Todos os exemplos deste vídeo usam dados",
+            "fictícios."
+          ]
+        }
+      ]
+    }
+  ]
+}

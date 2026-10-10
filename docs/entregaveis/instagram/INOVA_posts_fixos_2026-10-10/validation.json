@@ -1,0 +1,137 @@
+{
+  "at": "2026-10-10T13:39:30.538Z",
+  "brand": "Shared application infinity SVG; Manrope and DM Sans; navy and cyan",
+  "examples": "Demonstration product. No real patient data, clinical diagnosis, certification or invented traction.",
+  "slides": [
+    {
+      "post": "post-01-conheca-o-inova",
+      "slide": 1,
+      "width": 1080,
+      "height": 1350,
+      "overflow": false,
+      "bottom": 1117.734375,
+      "footerTop": 1260,
+      "path": "M80 40C62 15 48 9 32 13C2 21 2 59 32 67C48 71 62 65 80 40C98 15 112 9 128 13C158 21 158 59 128 67C112 71 98 65 80 40Z"
+    },
+    {
+      "post": "post-01-conheca-o-inova",
+      "slide": 2,
+      "width": 1080,
+      "height": 1350,
+      "overflow": false,
+      "bottom": 1233.515625,
+      "footerTop": 1260,
+      "path": "M80 40C62 15 48 9 32 13C2 21 2 59 32 67C48 71 62 65 80 40C98 15 112 9 128 13C158 21 158 59 128 67C112 71 98 65 80 40Z"
+    },
+    {
+      "post": "post-01-conheca-o-inova",
+      "slide": 3,
+      "width": 1080,
+      "height": 1350,
+      "overflow": false,
+      "bottom": 1159.921875,
+      "footerTop": 1260,
+      "path": "M80 40C62 15 48 9 32 13C2 21 2 59 32 67C48 71 62 65 80 40C98 15 112 9 128 13C158 21 158 59 128 67C112 71 98 65 80 40Z"
+    },
+    {
+      "post": "post-01-conheca-o-inova",
+      "slide": 4,
+      "width": 1080,
+      "height": 1350,
+      "overflow": false,
+      "bottom": 1127.078125,
+      "footerTop": 1260,
+      "path": "M80 40C62 15 48 9 32 13C2 21 2 59 32 67C48 71 62 65 80 40C98 15 112 9 128 13C158 21 158 59 128 67C112 71 98 65 80 40Z"
+    },
+    {
+      "post": "post-02-por-que-o-inova",
+      "slide": 1,
+      "width": 1080,
+      "height": 1350,
+      "overflow": false,
+      "bottom": 1111.5625,
+      "footerTop": 1260,
+      "path": "M80 40C62 15 48 9 32 13C2 21 2 59 32 67C48 71 62 65 80 40C98 15 112 9 128 13C158 21 158 59 128 67C112 71 98 65 80 40Z"
+    },
+    {
+      "post": "post-02-por-que-o-inova",
+      "slide": 2,
+      "width": 1080,
+      "height": 1350,
+      "overflow": false,
+      "bottom": 1160.78125,
+      "footerTop": 1260,
+      "path": "M80 40C62 15 48 9 32 13C2 21 2 59 32 67C48 71 62 65 80 40C98 15 112 9 128 13C158 21 158 59 128 67C112 71 98 65 80 40Z"
+    },
+    {
+      "post": "post-02-por-que-o-inova",
+      "slide": 3,
+      "width": 1080,
+      "height": 1350,
+      "overflow": false,
+      "bottom": 1219.921875,
+      "footerTop": 1260,
+      "path": "M80 40C62 15 48 9 32 13C2 21 2 59 32 67C48 71 62 65 80 40C98 15 112 9 128 13C158 21 158 59 128 67C112 71 98 65 80 40Z"
+    },
+    {
+      "post": "post-02-por-que-o-inova",
+      "slide": 4,
+      "width": 1080,
+      "height": 1350,
+      "overflow": false,
+      "bottom": 1014.671875,
+      "footerTop": 1260,
+      "path": "M80 40C62 15 48 9 32 13C2 21 2 59 32 67C48 71 62 65 80 40C98 15 112 9 128 13C158 21 158 59 128 67C112 71 98 65 80 40Z"
+    },
+    {
+      "post": "post-03-inova-na-pratica",
+      "slide": 1,
+      "width": 1080,
+      "height": 1350,
+      "overflow": false,
+      "bottom": 996.96875,
+      "footerTop": 1260,
+      "path": "M80 40C62 15 48 9 32 13C2 21 2 59 32 67C48 71 62 65 80 40C98 15 112 9 128 13C158 21 158 59 128 67C112 71 98 65 80 40Z"
+    },
+    {
+      "post": "post-03-inova-na-pratica",
+      "slide": 2,
+      "width": 1080,
+      "height": 1350,
+      "overflow": false,
+      "bottom": 1236.375,
+      "footerTop": 1260,
+      "path": "M80 40C62 15 48 9 32 13C2 21 2 59 32 67C48 71 62 65 80 40C98 15 112 9 128 13C158 21 158 59 128 67C112 71 98 65 80 40Z"
+    },
+    {
+      "post": "post-03-inova-na-pratica",
+      "slide": 3,
+      "width": 1080,
+      "height": 1350,
+      "overflow": false,
+      "bottom": 1160.1875,
+      "footerTop": 1260,
+      "path": "M80 40C62 15 48 9 32 13C2 21 2 59 32 67C48 71 62 65 80 40C98 15 112 9 128 13C158 21 158 59 128 67C112 71 98 65 80 40Z"
+    },
+    {
+      "post": "post-03-inova-na-pratica",
+      "slide": 4,
+      "width": 1080,
+      "height": 1350,
+      "overflow": false,
+      "bottom": 1159.921875,
+      "footerTop": 1260,
+      "path": "M80 40C62 15 48 9 32 13C2 21 2 59 32 67C48 71 62 65 80 40C98 15 112 9 128 13C158 21 158 59 128 67C112 71 98 65 80 40Z"
+    },
+    {
+      "post": "post-03-inova-na-pratica",
+      "slide": 5,
+      "width": 1080,
+      "height": 1350,
+      "overflow": false,
+      "bottom": 1234.078125,
+      "footerTop": 1260,
+      "path": "M80 40C62 15 48 9 32 13C2 21 2 59 32 67C48 71 62 65 80 40C98 15 112 9 128 13C158 21 158 59 128 67C112 71 98 65 80 40Z"
+    }
+  ]
+}
