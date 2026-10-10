@@ -134,7 +134,7 @@ export function ComparisonPage() {
     </Page>
   );
 }
-export function HistoryPage() {
+export function HistoryPage({ account = false }: { account?: boolean }) {
   const [query, setQuery] = useState("");
   const { patients } = usePatientDirectory();
   const navigate = useNavigate();
@@ -169,7 +169,11 @@ export function HistoryPage() {
                   variant="outline"
                   size="sm"
                   onClick={() =>
-                    navigate({ to: "/patients/$patientId", params: { patientId: p.id } })
+                    navigate({
+                      to: "/patients/$patientId",
+                      params: { patientId: p.id },
+                      search: account ? { workspace: "account" } : {},
+                    })
                   }
                 >
                   Abrir histórico
@@ -183,7 +187,7 @@ export function HistoryPage() {
 }
 
 export { DoctorsPage } from "./DoctorsPage";
-export function FollowUpPage() {
+export function FollowUpPage({ account = false }: { account?: boolean }) {
   const { patients } = usePatientDirectory();
   return (
     <Page
@@ -201,7 +205,11 @@ export function FollowUpPage() {
             <p className="mt-1 text-sm text-muted-foreground">{p.exam}</p>
             <p className="mt-4 text-xs text-muted-foreground">Última atualização · {p.updated}</p>
             <Button asChild variant="outline" size="sm" className="mt-4">
-              <Link to="/patients/$patientId" params={{ patientId: p.id }}>
+              <Link
+                to="/patients/$patientId"
+                params={{ patientId: p.id }}
+                search={account ? { workspace: "account" } : {}}
+              >
                 Ver evolução
               </Link>
             </Button>

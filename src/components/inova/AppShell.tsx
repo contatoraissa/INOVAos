@@ -31,7 +31,7 @@ import { signOutAccount } from "@/lib/account-session";
 
 import { cn } from "@/lib/utils";
 
-const groups = [
+const doctorNavigationGroups = [
   {
     label: "Atendimento",
     links: [
@@ -77,20 +77,7 @@ export function DemoAppShell({
 }) {
   const directory = usePatientDirectory();
   const patients = account?.patients ?? directory.patients;
-  const scopedGroups = account
-    ? [
-        {
-          label: "Atendimento",
-          links: groups[0].links.filter(
-            (item) => item.to === "/patients" || item.to === "/patients/new",
-          ),
-        },
-        {
-          label: "Minha conta",
-          links: [{ to: "/minha-conta" as const, text: "Dados da conta", icon: Settings }],
-        },
-      ]
-    : groups;
+  const scopedGroups = doctorNavigationGroups;
   const [query, setQuery] = useState("");
   const [collapsed, setCollapsed] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -113,7 +100,7 @@ export function DemoAppShell({
       >
         <div className="flex h-20 items-center justify-between border-b border-sidebar-border px-5">
           <Link
-            to={account ? "/patients" : "/dashboard"}
+            to="/dashboard"
             search={account ? { workspace: "account" } : {}}
             aria-label="INOVA · voltar ao início do médico"
             onClick={() => setMobileOpen(false)}

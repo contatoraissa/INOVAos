@@ -5,8 +5,23 @@ import { getAiStatus, getAgendaBriefingContext, summarizeAgenda } from "@/lib/ai
 import type { BriefingContext } from "@/lib/agenda-briefing-contract";
 import { Button } from "@/components/ui/button";
 import { usePatientDirectory } from "./patient-directory";
-export function AgendaBriefing({ date, revision }: { date: string; revision: string }) {
-  const { patients } = usePatientDirectory();
+import {
+  getRealAiStatus,
+  getRealAgendaBriefingContext,
+  summarizeRealAgenda,
+} from "@/lib/real-workspace-ai";
+export function AgendaBriefing({
+  date,
+  revision,
+  accountPatients,
+}: {
+  date: string;
+  revision: string;
+  accountPatients?: { id: string; name: string }[] | undefined;
+}) {
+  const directory = usePatientDirectory();
+  const patients = accountPatients ?? directory.patients;
+  const real = Boolean(accountPatients);
   const ids = JSON.stringify(patients.map((p) => p.id));
   const [mode, setMode] = useState<"day" | "upcoming">("day");
   const [context, setContext] = useState<BriefingContext | null>(null);
@@ -15,7 +30,11 @@ export function AgendaBriefing({ date, revision }: { date: string; revision: str
   const [busy, setBusy] = useState(false);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
-  const [status, setStatus] = useState<Awaited<ReturnType<typeof getAiStatus>> | null>(null);
+  const [status, setStatus] = useState<{
+    available: boolean;
+    model: string | null;
+    message: string;
+  } | null>(null);
   const current = useRef("");
   const key = date + ids + revision + mode;
   useEffect(() => {
@@ -27,8 +46,10 @@ export function AgendaBriefing({ date, revision }: { date: string; revision: str
     setError("");
     setContext(null);
     void Promise.all([
-      getAgendaBriefingContext({ data: { date, patientIds: JSON.parse(ids), mode } }),
-      getAiStatus(),
+      (real ? getRealAgendaBriefingContext : getAgendaBriefingContext)({
+        data: { date, patientIds: JSON.parse(ids), mode },
+      }),
+      (real ? getRealAiStatus : getAiStatus)(),
     ])
       .then(([ctx, info]) => {
         if (alive) {
@@ -46,14 +67,14 @@ export function AgendaBriefing({ date, revision }: { date: string; revision: str
       alive = false;
       current.current = "";
     };
-  }, [date, ids, key, mode]);
+  }, [date, ids, key, mode, real]);
   async function generate() {
     if (!consent || busy) return;
     setBusy(true);
     setError("");
     const requestKey = key;
     try {
-      const output = await summarizeAgenda({
+      const output = await (real ? summarizeRealAgenda : summarizeAgenda)({
         data: { date, patientIds: JSON.parse(ids), mode, confirmed: true },
       });
       if (current.current === requestKey) setResult(output);
@@ -179,9 +200,9 @@ export function AgendaBriefing({ date, revision }: { date: string; revision: str
                 disabled={busy}
                 onChange={(e) => setConsent(e.target.checked)}
               />
-              Autorizo enviar ao Gemini os textos fictícios exibidos acima, horários, status e
-              contagens de anexos. Identificadores de conta e CPF não são incluídos; os textos
-              livres são enviados como estão.
+              Autorizo enviar ao Gemini os textos {real ? "do prontuário" : "fictícios"} exibidos
+              acima, horários, status e contagens de anexos. Identificadores de conta e CPF não são
+              incluídos; os textos livres são enviados como estão.
             </label>
             <Button
               className="mt-4"
@@ -251,6 +272,7 @@ export function AgendaBriefing({ date, revision }: { date: string; revision: str
                     <Link
                       to="/patients/$patientId"
                       params={{ patientId: source.patientId }}
+                      search={real ? { workspace: "account" } : {}}
                       hash="Envios do paciente"
                     >
                       Abrir envios do paciente

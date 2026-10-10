@@ -1,15 +1,22 @@
 import { useQuery } from "@tanstack/react-query";
 import { Link } from "@tanstack/react-router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { getMedicalPatient } from "@/lib/medical-workspace";
-import { listMedicalReports, uploadMedicalReport } from "@/lib/medical-reports";
+import { listMedicalReports } from "@/lib/medical-reports";
 import { listConsultationEntries } from "@/lib/real-consultation";
-import { MAX_PDF_BYTES } from "@/lib/ai-contract";
 import { PatientNavigation, tabs } from "./PatientNavigation";
 import { AccountResults, AccountDocuments } from "./AccountClinicalPanels";
-import { RealConsultation } from "./RealConsultation";
 import { Button } from "@/components/ui/button";
 import { EmptyState, StatusBadge } from "./Page";
+import { AccountComparison } from "./AccountComparison";
+import { AccountReportReview } from "./AccountReportReview";
+import { GeneticRawPanel } from "./GeneticRawPanel";
+import { AccountConsultationSummary } from "./AccountConsultationSummary";
+import { AccountHistory, AccountHistorySummary } from "./AccountResultPanels";
+import { DoctorExamOrders } from "./DoctorExamOrders";
+import { DoctorGuidance } from "./DoctorGuidance";
+import { AccountPreparationInbox } from "./AccountPreparationInbox";
+import { AccountFamilyContext } from "./AccountFamilyContext";
 
 export function AccountPatientDetail({ patientId, userId }: { patientId: string; userId: string }) {
   const patient = useQuery({
@@ -30,33 +37,21 @@ export function AccountPatientDetail({ patientId, userId }: { patientId: string;
     retry: false,
   });
   const [tab, setTab] = useState<(typeof tabs)[number]>("Resumo da consulta");
-  const [uploading, setUploading] = useState(false);
-  const [error, setError] = useState("");
-  async function upload(file: File) {
-    setError("");
-    setUploading(true);
-    try {
-      if (
-        file.size > MAX_PDF_BYTES ||
-        new TextDecoder().decode(await file.slice(0, 5).arrayBuffer()) !== "%PDF-"
-      )
-        throw new Error("Escolha um PDF válido de até 8 MB.");
-      const pdf = await new Promise<string>((resolve, reject) => {
-        const reader = new FileReader();
-        reader.onload = () => resolve(String(reader.result).split(",")[1]!);
-        reader.onerror = () => reject(new Error("Não foi possível ler o PDF."));
-        reader.readAsDataURL(file);
-      });
-      await uploadMedicalReport({
-        data: { patientId, filename: file.name, kind: "Laboratorial", pdf },
-      });
-      await reports.refetch();
-    } catch (cause) {
-      setError(cause instanceof Error ? cause.message : "Não foi possível adicionar o laudo.");
-    } finally {
-      setUploading(false);
-    }
-  }
+  const [selectedReport, setSelectedReport] = useState("");
+  useEffect(() => {
+    const select = () => {
+      let hash = "";
+      try {
+        hash = decodeURIComponent(window.location.hash.slice(1));
+      } catch {
+        return;
+      }
+      if (tabs.includes(hash as (typeof tabs)[number])) setTab(hash as (typeof tabs)[number]);
+    };
+    select();
+    window.addEventListener("hashchange", select);
+    return () => window.removeEventListener("hashchange", select);
+  }, []);
   if (patient.isPending) return <p role="status">Carregando prontuário…</p>;
   if (!patient.data)
     return (
@@ -68,6 +63,21 @@ export function AccountPatientDetail({ patientId, userId }: { patientId: string;
   const profile = patient.data;
   const list = reports.data?.reports ?? [];
   const results = reports.data?.results ?? [];
+  const birthday = new Date(profile.birth + "T12:00:00");
+  const today = new Date();
+  const age =
+    today.getFullYear() -
+    birthday.getFullYear() -
+    (today.getMonth() < birthday.getMonth() ||
+    (today.getMonth() === birthday.getMonth() && today.getDate() < birthday.getDate())
+      ? 1
+      : 0);
+  const lastUpdate = [
+    ...list.map((r) => r.created_at),
+    ...(entries.data ?? []).map((e) => e.updated_at),
+  ]
+    .sort()
+    .at(-1);
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
@@ -92,10 +102,20 @@ export function AccountPatientDetail({ patientId, userId }: { patientId: string;
           <div>
             <h1 className="font-display text-2xl font-semibold">{profile.name}</h1>
             <p className="mt-1 text-xs text-muted-foreground">
-              CPF {profile.cpf} · Nascimento: {profile.birth.split("-").reverse().join("/")}
+              {profile.sex === "f"
+                ? "Feminino"
+                : profile.sex === "m"
+                  ? "Masculino"
+                  : "Sexo não informado"}{" "}
+              · {Number.isFinite(age) && age >= 0 ? `${age} anos · ` : ""}CPF {profile.cpf}
             </p>
           </div>
           <StatusBadge fresh>Prontuário da sua conta</StatusBadge>
+          {lastUpdate && (
+            <span className="ml-auto rounded-full border bg-muted/30 px-3 py-2 text-xs text-muted-foreground">
+              Atualização: {new Date(lastUpdate).toLocaleDateString("pt-BR")}
+            </span>
+          )}
         </div>
         <PatientNavigation value={tab} onChange={setTab} />
       </section>
@@ -104,23 +124,23 @@ export function AccountPatientDetail({ patientId, userId }: { patientId: string;
           {reports.error?.message ?? entries.error?.message}
         </p>
       )}
+      <div hidden={tab !== "Resumo da consulta"}>
+        <AccountConsultationSummary
+          patientId={patientId}
+          patientName={profile.name}
+          birth={profile.birth}
+          reports={list}
+          results={results}
+          entries={entries.data ?? []}
+          onNavigate={setTab}
+          onRefresh={() => {
+            void reports.refetch();
+            void entries.refetch();
+          }}
+        />
+      </div>
       {tab === "Resumo da consulta" && (
         <>
-          <div className="grid gap-4 sm:grid-cols-3">
-            {[
-              { label: "Resultados registrados", count: results.length },
-              { label: "Laudos no prontuário", count: list.length },
-              {
-                label: "Envios do paciente",
-                count: entries.data?.filter((entry) => entry.kind === "preparation").length ?? 0,
-              },
-            ].map((item) => (
-              <section key={item.label} className="surface p-5">
-                <p className="text-xs text-muted-foreground">{item.label}</p>
-                <p className="mt-3 text-3xl font-semibold">{item.count}</p>
-              </section>
-            ))}
-          </div>
           <section className="surface p-5">
             <h2 className="font-semibold">Dados cadastrados</h2>
             <p className="mt-3 break-words text-sm">
@@ -135,58 +155,79 @@ export function AccountPatientDetail({ patientId, userId }: { patientId: string;
               {profile.notes || "Nenhuma observação registrada."}
             </p>
           </section>
-          <AccountResults results={results} />
         </>
       )}
-      {["Resultados", "Visão geral"].includes(tab) && <AccountResults results={results} />}
-      {["Histórico", "Comparação"].includes(tab) && <AccountResults results={results} charts />}
-      {tab === "Envios do paciente" && (
-        <RealConsultation patientId={patientId} kind="preparation" />
-      )}
-      {tab === "Solicitar exames" && <RealConsultation patientId={patientId} kind="order" />}
-      {tab === "Orientações ao paciente" && (
-        <RealConsultation patientId={patientId} kind="guidance" />
-      )}
-      {tab === "Histórico familiar" && <RealConsultation patientId={patientId} kind="family" />}
-      {["Laudos laboratoriais", "Documentos", "Genética", "Genômica"].includes(tab) && (
+      {tab === "Resultados" && <AccountResults results={results} name={profile.name} />}
+      {tab === "Visão geral" && (
         <>
-          {tab === "Laudos laboratoriais" && (
-            <section className="surface p-5">
-              <h2 className="font-semibold">Adicionar laudo ao prontuário</h2>
-              <p className="mt-2 text-xs text-muted-foreground">
-                O PDF fica associado a este paciente. A liberação para o portal depende da revisão
-                médica.
-              </p>
-              <input
-                type="file"
-                accept="application/pdf,.pdf"
-                disabled={uploading}
-                aria-label="Adicionar PDF ao prontuário"
-                className="mt-4 max-w-full text-sm"
-                onChange={(event) => {
-                  const file = event.target.files?.[0];
-                  if (file) void upload(file);
-                  event.target.value = "";
-                }}
-              />
-              {uploading && <p role="status">Salvando PDF…</p>}
-              {error && (
-                <p role="alert" className="mt-3 text-sm text-destructive">
-                  {error}
-                </p>
-              )}
-            </section>
-          )}
+          <div>
+            <p className="eyebrow">Histórico de saúde</p>
+            <h2 className="mt-2 font-display text-2xl font-semibold">Histórico de saúde</h2>
+            <p className="mt-2 text-sm text-muted-foreground">
+              Acompanhe os valores mais recentes e sua evolução ao longo das coletas disponíveis.
+            </p>
+          </div>
+          <AccountResults results={results} name={profile.name} birth={profile.birth} charts />
+          <AccountHistorySummary results={results} />
+        </>
+      )}
+      {tab === "Histórico" && <AccountHistory results={results} name={profile.name} />}
+      {tab === "Comparação" && <AccountComparison results={results} />}
+      {tab === "Envios do paciente" && (
+        <AccountPreparationInbox
+          patientId={patientId}
+          userId={userId}
+          onNavigate={(kind, id) => {
+            setSelectedReport(id ?? "");
+            setTab(kind);
+          }}
+        />
+      )}
+      {tab === "Solicitar exames" && <DoctorExamOrders patientId={patientId} account />}
+      {tab === "Orientações ao paciente" && <DoctorGuidance patientId={patientId} account />}
+      {tab === "Histórico familiar" && (
+        <AccountFamilyContext
+          patientId={patientId}
+          entries={entries.data ?? []}
+          onHistory={() => setTab("Histórico")}
+        />
+      )}
+      {tab === "Genética" && <GeneticRawPanel account patientId={patientId} audience="doctor" />}
+      {["Laudos laboratoriais", "Genética", "Genômica"].includes(tab) && (
+        <AccountReportReview
+          key={tab}
+          patientId={patientId}
+          patientName={profile.name}
+          userId={userId}
+          reports={list}
+          initialReportId={selectedReport}
+          kind={
+            tab === "Laudos laboratoriais"
+              ? "Laboratorial"
+              : tab === "Genética"
+                ? "Genética"
+                : "Genômica"
+          }
+          refresh={reports.refetch}
+        />
+      )}
+      {tab === "Documentos" && (
+        <>
+          <GeneticRawPanel
+            account
+            patientId={patientId}
+            audience="doctor"
+            compact
+            onOpen={() => setTab("Genética")}
+          />
           <AccountDocuments
             patientId={patientId}
             doctor
-            reports={list.filter(
-              (report) =>
-                tab === "Documentos" ||
-                (tab === "Laudos laboratoriais"
-                  ? report.kind === "Laboratorial"
-                  : report.kind === tab),
-            )}
+            reports={list}
+            onNavigate={(kind, id) => {
+              setSelectedReport(id);
+              setTab(kind);
+            }}
           />
         </>
       )}

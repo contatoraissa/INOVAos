@@ -200,6 +200,19 @@ try {
   );
   await wait(`document.querySelector('[data-order-id="${id}"]').textContent.includes('Cancelado')`);
   await patient();
+  await wait('document.querySelector("main aside button")');
+  // The initial selection can differ when the demonstration already has other orders.
+  const orderButtons = await evaluate('document.querySelectorAll("main aside button").length');
+  for (let i = 0; i < orderButtons; i++) {
+    await evaluate(`document.querySelectorAll('main aside button')[${i}].click()`);
+    await new Promise((resolve) => setTimeout(resolve, 150));
+    if (
+      await evaluate(
+        'document.querySelector("main").innerText.includes(' + JSON.stringify(note) + ")",
+      )
+    )
+      break;
+  }
   await wait(
     'document.querySelector("main").innerText.includes("Este pedido foi cancelado pelo médico")',
   );

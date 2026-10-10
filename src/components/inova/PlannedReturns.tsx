@@ -10,6 +10,13 @@ import {
 } from "@/lib/care";
 import { createSessionId } from "@/lib/session-id";
 import { localDay, type PlannedReturn } from "@/lib/return-contract";
+import { returnTarget } from "@/lib/return-contract";
+import {
+  listConsultationEntries,
+  saveConsultationEntry,
+  transitionConsultationEntry,
+} from "@/lib/real-consultation";
+import { accountReturns, emptyConsultationPayload } from "@/lib/account-care-adapters";
 
 const day = (value: string) => value.split("-").reverse().join("/");
 export function PatientPlannedReturns({ records }: { records: PlannedReturn[] }) {
@@ -60,9 +67,11 @@ export function PatientPlannedReturns({ records }: { records: PlannedReturn[] })
 export function DoctorPlannedReturns({
   patientId,
   onChange,
+  account = false,
 }: {
   patientId: string;
   onChange?: () => void;
+  account?: boolean;
 }) {
   const [mode, setMode] = useState("days");
   const [date, setDate] = useState("");
@@ -79,7 +88,13 @@ export function DoctorPlannedReturns({
   const request = useRef({ signature: "", id: "" });
   useEffect(() => {
     let current = true;
-    void getDoctorWork({ data: { patientIds: [patientId] } })
+    void (
+      account
+        ? listConsultationEntries({ data: { patientId } }).then((entries) => [
+            { returns: accountReturns(entries), returnPersistence: "supabase" },
+          ])
+        : getDoctorWork({ data: { patientIds: [patientId] } })
+    )
       .then((result) => {
         if (current) {
           setRecords(result[0]?.returns ?? []);
@@ -94,7 +109,14 @@ export function DoctorPlannedReturns({
     return () => {
       current = false;
     };
-  }, [patientId]);
+  }, [patientId, account]);
+  async function accountChange(id: string, status: "published" | "cancelled") {
+    await transitionConsultationEntry({ data: { patientId, id, status, confirmed: true } });
+    const records = accountReturns(await listConsultationEntries({ data: { patientId } }));
+    const item = records.find((r) => r.id === id);
+    if (!item) throw new Error("Atualize os retornos para conferir este registro.");
+    return item;
+  }
   async function perform(action: () => Promise<PlannedReturn>) {
     setBusy(true);
     setError("");
@@ -121,9 +143,25 @@ export function DoctorPlannedReturns({
     const signature = JSON.stringify(fields);
     if (request.current.signature !== signature)
       request.current = { signature, id: createSessionId() };
-    await perform(() =>
-      createPlannedReturn({ data: { ...fields, requestId: request.current.id } }),
-    );
+    await perform(async () => {
+      if (!account)
+        return createPlannedReturn({ data: { ...fields, requestId: request.current.id } });
+      const target = returnTarget({ ...fields, requestId: request.current.id }, Date.now());
+      const saved = await saveConsultationEntry({
+        data: {
+          patientId,
+          kind: "return",
+          requestId: request.current.id,
+          confirmed: true,
+          payload: { ...emptyConsultationPayload(), title, text: notes, date: target },
+        },
+      });
+      const item = accountReturns(await listConsultationEntries({ data: { patientId } })).find(
+        (r) => r.id === (saved as { id: string }).id,
+      );
+      if (!item) throw new Error("Atualize os retornos para conferir o rascunho salvo.");
+      return item;
+    });
   }
   return (
     <section className="surface p-6" aria-label="Planejar retorno do paciente">
@@ -256,7 +294,9 @@ export function DoctorPlannedReturns({
                   disabled={busy || !confirmed[item.id]}
                   onClick={() => {
                     void perform(() =>
-                      publishPlannedReturn({ data: { id: item.id, confirmed: true } }),
+                      account
+                        ? accountChange(item.id, "published")
+                        : publishPlannedReturn({ data: { id: item.id, confirmed: true } }),
                     );
                   }}
                 >
@@ -272,7 +312,12 @@ export function DoctorPlannedReturns({
                   disabled={busy}
                   onClick={() => {
                     if (cancelId !== item.id) setCancelId(item.id);
-                    else void perform(() => cancelPlannedReturn({ data: { id: item.id } }));
+                    else
+                      void perform(() =>
+                        account
+                          ? accountChange(item.id, "cancelled")
+                          : cancelPlannedReturn({ data: { id: item.id } }),
+                      );
                   }}
                 >
                   {cancelId === item.id

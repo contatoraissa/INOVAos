@@ -11,8 +11,12 @@ A referência visual continua sendo os portais de demonstração de Rafael e
 Mariana. O logo compartilhado foi atualizado por escolha explícita do usuário
 para IN/VA com infinito vetorial ciano; preservar essa versão também nas artes.
 O portal administrativo permanece separado. O vínculo de contas reais está
-implementado em código, mas sua migração SQL ainda não foi instalada no Supabase
-remoto. Não confundir a demonstração funcional com ativação remota concluída.
+conectado às telas completas com `?workspace=account`. Em 10/10, após o usuário
+executar o SQL de portais completos, consultas de estrutura confirmaram agenda,
+preferências e os quatro RPCs novos no Supabase remoto. Leia
+[paridade-portais-reais.md](paridade-portais-reais.md) para escopo e validação.
+Não confundir testes de interface com respostas controladas com um ciclo de
+login, envio e liberação executado em contas reais.
 
 A entrega de vídeo mais recente mostra somente médico e paciente, com IA,
 narração e legendas embutidas, em
@@ -22,6 +26,28 @@ completa. Preservar todos os materiais sem apresentar esses ensaios como a
 versão principal.
 
 ## Decisão aprovada pelo usuário
+
+### Evolução autorizada das contas reais — 10/10/2026
+
+Depois do checkpoint, o usuário pediu os portais reais completos com a mesma
+interface das demonstrações. O médico agora utiliza os onze destinos do menu
+e as treze abas do prontuário; o paciente utiliza as quinze seções. A origem dos
+dados depende da sessão: real no Supabase, demonstrativa nos acessos anteriores.
+O login médico autorizado abre a visão geral, preservando `workspace=account`.
+
+Agenda, notificações, preferências, preparação, pedidos, orientações, resultados,
+PDFs e genética TXT estão conectados às contas reais. IA médica/paciente exige
+consentimento e autorização do servidor; a busca S2 comercial continua externa.
+O administrador permanece demonstrativo. As tabelas/RPCs novos foram confirmados
+remotamente após o usuário executar o SQL, sem criar eventos ou ler prontuários.
+
+Há 99 testes de regras aprovados, incluindo permissões e migração PostgreSQL;
+o teste de paridade percorre todos os menus/abas com respostas sintéticas,
+confere mensagem/PDF/sininho e agenda compartilhada. TypeScript, lint e build
+passam. Consulte `paridade-portais-reais.md` e o relatório de regressão para
+os limites. Esta atualização substitui as pendências de integração da primeira
+etapa registradas mais adiante, sem transformar testes controlados em evidência
+de um ciclo executado com credenciais reais.
 
 Em 07/10/2026, o usuário aprovou o retorno às interfaces de demonstração:
 “ufa, voltou como era antes”. As implementações alternativas do paciente e do

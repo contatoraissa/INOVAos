@@ -55,6 +55,9 @@ async function fill(selector, value) {
   );
 }
 async function click(label) {
+  await wait(
+    `[...document.querySelectorAll('button')].some(item=>item.textContent.trim()===${JSON.stringify(label)}&&!item.disabled)`,
+  );
   await evaluate(
     `(()=>{const button=[...document.querySelectorAll('button')].find(item=>item.textContent.trim()===${JSON.stringify(label)});if(!button)throw new Error('Missing button');button.click();})()`,
   );

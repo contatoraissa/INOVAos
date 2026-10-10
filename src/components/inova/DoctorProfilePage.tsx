@@ -27,8 +27,26 @@ const defaults = {
   clinic: "Clínica Vida",
   address: "",
 };
-export function DoctorProfilePage() {
-  const state = useDemoPreferences("inova-demo-doctor-profile-v1", defaults, schema);
+export function DoctorProfilePage({
+  account,
+}: {
+  account?: { name: string; email: string; subscription: string | null };
+}) {
+  const state = useDemoPreferences(
+    "inova-demo-doctor-profile-v1",
+    account
+      ? {
+          ...defaults,
+          name: account.name,
+          email: account.email,
+          crm: "",
+          specialty: "",
+          clinic: "",
+        }
+      : defaults,
+    schema,
+    account ? "profile" : undefined,
+  );
   const update = (field: keyof typeof defaults, value: string) =>
     state.setForm((form) => ({ ...form, [field]: value }));
   return (
@@ -47,7 +65,7 @@ export function DoctorProfilePage() {
             {state.form.specialty} · CRM {state.form.crm}
           </p>
         </div>
-        <StatusBadge>Perfil demonstrativo</StatusBadge>
+        <StatusBadge>{account ? "Perfil da sua conta" : "Perfil demonstrativo"}</StatusBadge>
       </section>
       {state.storageError && (
         <p role="alert" className="surface p-4 text-sm text-destructive">
@@ -130,8 +148,9 @@ export function DoctorProfilePage() {
                 ))}
               </div>
               <p className="mt-5 text-xs leading-relaxed text-muted-foreground">
-                Dados fictícios de demonstração. O CRM não é verificado nesta página; o e-mail de
-                contato não altera credenciais de acesso.
+                {account
+                  ? "Confira seus dados profissionais. Alterar o e-mail de contato não altera suas credenciais de acesso."
+                  : "Dados fictícios de demonstração. O CRM não é verificado nesta página; o e-mail de contato não altera credenciais de acesso."}
               </p>
             </section>
             <section className="surface p-6">
@@ -174,7 +193,11 @@ export function DoctorProfilePage() {
                 Minha assinatura
               </h2>
               <div className="mt-5">
-                <StatusBadge>Sem cobrança · demonstração</StatusBadge>
+                <StatusBadge>
+                  {account
+                    ? `Situação: ${account.subscription ?? "Sem assinatura registrada"}`
+                    : "Sem cobrança · demonstração"}
+                </StatusBadge>
               </div>
               <p className="mt-5 font-display text-2xl font-semibold">Plano médico</p>
               <p className="mt-2 text-sm text-muted-foreground">Oferta apresentada no sistema</p>
@@ -191,8 +214,9 @@ export function DoctorProfilePage() {
                 </p>
               </div>
               <p className="mt-4 text-xs leading-relaxed text-muted-foreground">
-                Este perfil não possui contratação ativa, faturas ou cobrança. Valores exibidos
-                apenas para apresentar a oferta.
+                {account
+                  ? "A situação acima vem da sua conta. Consulte os detalhes de acesso para conferir seu cadastro e plano."
+                  : "Este perfil não possui contratação ativa, faturas ou cobrança. Valores exibidos apenas para apresentar a oferta."}
               </p>
             </section>
             <section className="surface p-6">
@@ -201,7 +225,9 @@ export function DoctorProfilePage() {
                 Notificações, visualização e acompanhamento ficam em Configurações.
               </p>
               <Button asChild variant="outline" className="mt-4">
-                <Link to="/settings">Abrir configurações</Link>
+                <Link to="/settings" search={account ? { workspace: "account" } : {}}>
+                  Abrir configurações
+                </Link>
               </Button>
             </section>
           </aside>
@@ -212,7 +238,9 @@ export function DoctorProfilePage() {
               ? "Carregando perfil…"
               : state.dirty
                 ? "Você tem alterações não salvas."
-                : "Perfil demonstrativo · salvo apenas neste navegador."}
+                : account
+                  ? "Perfil salvo na sua conta."
+                  : "Perfil demonstrativo · salvo apenas neste navegador."}
           </p>
           <div className="flex gap-2">
             <Button

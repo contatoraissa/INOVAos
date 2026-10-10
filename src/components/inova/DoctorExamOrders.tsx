@@ -12,12 +12,24 @@ import {
   releaseExamOrder,
 } from "@/lib/exam-orders";
 import type { ExamOrder } from "@/lib/exam-order-contract";
+import {
+  listConsultationEntries,
+  saveConsultationEntry,
+  transitionConsultationEntry,
+} from "@/lib/real-consultation";
+import { accountOrders, emptyConsultationPayload } from "@/lib/account-care-adapters";
 const orderStatus = {
   draft: "Rascunho",
   released: "Liberado ao paciente",
   cancelled: "Cancelado",
 };
-export function DoctorExamOrders({ patientId }: { patientId: string }) {
+export function DoctorExamOrders({
+  patientId,
+  account = false,
+}: {
+  patientId: string;
+  account?: boolean;
+}) {
   const [orders, setOrders] = useState<ExamOrder[]>([]);
   const [query, setQuery] = useState("");
   const [chosen, setChosen] = useState<string[]>([]);
@@ -28,11 +40,15 @@ export function DoctorExamOrders({ patientId }: { patientId: string }) {
   const request = useRef({ signature: "", id: "" });
   const refresh = useCallback(async () => {
     try {
-      setOrders(await listExamOrders({ data: { patientId, audience: "doctor" } }));
+      setOrders(
+        account
+          ? accountOrders(await listConsultationEntries({ data: { patientId } }))
+          : await listExamOrders({ data: { patientId, audience: "doctor" } }),
+      );
     } catch {
       setError("Não foi possível buscar os pedidos. Confira o servidor e tente novamente.");
     }
-  }, [patientId]);
+  }, [patientId, account]);
   useEffect(() => {
     void refresh();
   }, [refresh]);
@@ -46,9 +62,25 @@ export function DoctorExamOrders({ patientId }: { patientId: string }) {
       const signature = JSON.stringify({ patientId, chosen, notes });
       if (request.current.signature !== signature)
         request.current = { signature, id: createSessionId() };
-      await createExamOrder({
-        data: { requestId: request.current.id, patientId, exams: chosen, notes },
-      });
+      if (account)
+        await saveConsultationEntry({
+          data: {
+            patientId,
+            requestId: request.current.id,
+            kind: "order",
+            confirmed: true,
+            payload: {
+              ...emptyConsultationPayload(),
+              title: "Pedido de exames",
+              text: notes,
+              exams: chosen.map((id) => orderExams.find((exam) => exam.id === id)!.name),
+            },
+          },
+        });
+      else
+        await createExamOrder({
+          data: { requestId: request.current.id, patientId, exams: chosen, notes },
+        });
       setChosen([]);
       setNotes("");
       request.current = { signature: "", id: "" };
@@ -66,7 +98,16 @@ export function DoctorExamOrders({ patientId }: { patientId: string }) {
     setError("");
     setMessage("");
     try {
-      if (action === "release") await releaseExamOrder({ data: { id } });
+      if (account)
+        await transitionConsultationEntry({
+          data: {
+            patientId,
+            id,
+            status: action === "release" ? "published" : "cancelled",
+            confirmed: true,
+          },
+        });
+      else if (action === "release") await releaseExamOrder({ data: { id } });
       else await cancelExamOrder({ data: { id } });
       await refresh();
       setMessage(
@@ -106,9 +147,9 @@ export function DoctorExamOrders({ patientId }: { patientId: string }) {
         </Button>
       </div>
       <p className="rounded-xl border border-border bg-white p-4 text-xs leading-relaxed text-muted-foreground">
-        Solicitações demonstrativas, sem assinatura ou validade de pedido médico. Os pedidos ficam
-        temporariamente no servidor por até 24 horas ou até reiniciar. Preços e agendamento da S2
-        ainda não estão conectados.
+        {account
+          ? "Pedidos salvos neste prontuário. Confira os exames antes de liberar para o paciente. Assinatura eletrônica, preços e agendamento da S2 ainda não estão conectados."
+          : "Solicitações demonstrativas, sem assinatura ou validade de pedido médico. Os pedidos ficam temporariamente no servidor por até 24 horas ou até reiniciar. Preços e agendamento da S2 ainda não estão conectados."}
       </p>
       {error && (
         <p role="alert" className="text-sm text-destructive">
@@ -123,7 +164,7 @@ export function DoctorExamOrders({ patientId }: { patientId: string }) {
       <form onSubmit={create} className="grid items-start gap-5 xl:grid-cols-[minmax(0,1fr)_320px]">
         <section className="surface p-5">
           <label htmlFor="search-order-exams" className="label">
-            Buscar no catálogo demonstrativo INOVA
+            {account ? "Buscar no catálogo INOVA" : "Buscar no catálogo demonstrativo INOVA"}
           </label>
           <div className="relative">
             <Search className="absolute left-3 top-3 size-4 text-muted-foreground" />
@@ -245,7 +286,9 @@ export function DoctorExamOrders({ patientId }: { patientId: string }) {
                 </p>
               )}
               <p className="mt-3 text-xs text-muted-foreground">
-                {order.doctorName} · CRM {order.doctorCrm}
+                {account
+                  ? "Registrado na sua conta médica"
+                  : `${order.doctorName} · CRM ${order.doctorCrm}`}
               </p>
               <div className="mt-4 flex flex-wrap gap-3">
                 {order.status === "draft" && (

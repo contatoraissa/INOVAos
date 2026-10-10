@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import type { PatientCareData } from "./usePatientCare";
+import type { PreparationReceipt } from "@/lib/preparation-contract";
 
 const date = (value: string) => new Date(value).toLocaleString("pt-BR");
 export function PatientSubmissionStatus({
@@ -7,11 +8,19 @@ export function PatientSubmissionStatus({
   loading,
   onRefresh,
   onGuidance,
+  account = false,
 }: {
-  data: PatientCareData | null;
+  data: {
+    submissions: (Omit<PreparationReceipt, "audios" | "documents"> & {
+      audios: unknown[];
+      documents: { name: string }[];
+    })[];
+    guidance: PatientCareData["guidance"];
+  } | null;
   loading: boolean;
   onRefresh: () => void;
   onGuidance: () => void;
+  account?: boolean;
 }) {
   return (
     <section className="surface p-5 print:hidden" aria-label="Status dos meus envios">
@@ -92,8 +101,10 @@ export function PatientSubmissionStatus({
         </>
       )}
       <p className="mt-4 text-xs leading-relaxed text-muted-foreground">
-        Recebimento não significa leitura. Revisão não significa resposta. Os envios ficam
-        disponíveis por até 24 horas ou até o servidor demonstrativo reiniciar.
+        Recebimento não significa leitura. Revisão não significa resposta.{" "}
+        {account
+          ? "Os envios permanecem vinculados ao seu prontuário."
+          : "Os envios ficam disponíveis por até 24 horas ou até o servidor demonstrativo reiniciar."}
       </p>
     </section>
   );

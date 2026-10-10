@@ -9,7 +9,7 @@ const dateValue = (text: string) => {
   const parts = text.split("/").map(Number);
   return parts.length === 3 ? Date.UTC(parts[2] ?? 0, (parts[1] ?? 1) - 1, parts[0] ?? 1) : NaN;
 };
-export function NewResultsPage() {
+export function NewResultsPage({ account = false }: { account?: boolean }) {
   const { patients } = usePatientDirectory();
   const [range, setRange] = useState(0);
   const [query, setQuery] = useState("");
@@ -29,7 +29,7 @@ export function NewResultsPage() {
   return (
     <Page
       title="Novos resultados"
-      description={`${fresh.length} pacientes com resultados novos na demonstração. Abra o paciente para preparar a revisão.`}
+      description={`${fresh.length} pacientes com resultados novos ${account ? "na sua conta" : "na demonstração"}. Abra o paciente para preparar a revisão.`}
     >
       <div className="toolbar">
         <div className="relative min-w-0 flex-1">
@@ -61,7 +61,7 @@ export function NewResultsPage() {
       </div>
       <p className="text-xs text-muted-foreground">
         {rows.length} resultados na seleção · referência do período:{" "}
-        {reference ?? "sem datas disponíveis"} (dados fictícios).
+        {reference ?? "sem datas disponíveis"} {account ? "(seus laudos)." : "(dados fictícios)."}
       </p>
       {rows.length ? (
         <section className="surface overflow-x-auto">
@@ -86,7 +86,11 @@ export function NewResultsPage() {
                   </td>
                   <td>
                     <Button asChild variant="outline" size="sm">
-                      <Link to="/patients/$patientId" params={{ patientId: patient.id }}>
+                      <Link
+                        to="/patients/$patientId"
+                        params={{ patientId: patient.id }}
+                        search={account ? { workspace: "account" } : {}}
+                      >
                         Preparar consulta
                         <ArrowRight />
                       </Link>
@@ -106,7 +110,7 @@ export function NewResultsPage() {
       <div className="rounded-xl bg-brand-soft p-4 text-sm text-muted-foreground">
         <FileText className="mb-2 size-4 text-brand-deep" />
         Laudos PDF podem ser consultados e analisados nas abas do paciente. A lista acima representa
-        a base demonstrativa.
+        {account ? "os laudos vinculados à sua conta." : "a base demonstrativa."}
       </div>
     </Page>
   );

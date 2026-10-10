@@ -7,6 +7,11 @@ import { authorize } from "./real-consultation";
 import { databaseConfig, databaseRequest } from "./supabase.server";
 import { parseRawGenetics } from "./genetic-raw-parser";
 import type { RawStats } from "./genetic-raw-contract";
+import {
+  accountNotices,
+  markAccountNotices,
+  noticeReadInput,
+} from "./account-notifications.server";
 const scope = z.object({ patientId: z.string().uuid() });
 function guard() {
   const r = getRequest();
@@ -16,37 +21,36 @@ function guard() {
 export const listAccountNotifications = createServerFn({ method: "GET" }).handler(async () => {
   const account = await getAccountSession();
   if (!account) throw new Error("Entre na sua conta.");
-  return databaseRequest(
-    databaseConfig()!,
-    `inova_notifications?user_id=eq.${account.userId}&select=id,title,patient_id,created_at,read_at&order=created_at.desc&limit=100`,
-  ) as Promise<
-    { id: string; title: string; patient_id: string; created_at: string; read_at: string | null }[]
-  >;
+  return accountNotices(databaseConfig()!, account.userId);
 });
-export const readAccountNotifications = createServerFn({ method: "POST" }).handler(async () => {
-  guard();
-  const account = await getAccountSession();
-  if (!account) throw new Error("Entre na sua conta.");
-  return databaseRequest(databaseConfig()!, "rpc/inova_mark_notifications_read", {
-    p_user: account.userId,
+export const readAccountNotifications = createServerFn({ method: "POST" })
+  .validator(noticeReadInput)
+  .handler(async ({ data }) => {
+    guard();
+    const account = await getAccountSession();
+    if (!account) throw new Error("Entre na sua conta.");
+    return markAccountNotices(databaseConfig()!, account.userId, data?.ids);
   });
-});
 export const listRealGenetics = createServerFn({ method: "GET" })
   .validator(scope)
   .handler(async ({ data }) => {
     const { config, doctorId } = await authorize(data.patientId);
-    return databaseRequest(
+    const rows = (await databaseRequest(
       config,
-      `inova_real_genetics?patient_id=eq.${data.patientId}&doctor_id=eq.${doctorId}&select=id,filename,created_at,reviewed_at,stats&order=created_at.desc`,
-    ) as Promise<
-      {
-        id: string;
-        filename: string;
-        created_at: string;
-        reviewed_at: string | null;
-        stats: RawStats;
-      }[]
-    >;
+      `inova_real_genetics?patient_id=eq.${data.patientId}&doctor_id=eq.${doctorId}&select=id,filename,created_at,reviewed_at,sha256,author_id,stats&order=created_at.desc`,
+    )) as {
+      id: string;
+      filename: string;
+      created_at: string;
+      reviewed_at: string | null;
+      sha256: string;
+      author_id: string;
+      stats: RawStats;
+    }[];
+    return rows.map((row) => ({
+      ...row,
+      importedBy: row.author_id === doctorId ? ("doctor" as const) : ("patient" as const),
+    }));
   });
 export const importRealGenetics = createServerFn({ method: "POST" })
   .validator(
@@ -103,5 +107,17 @@ export const reviewRealGenetics = createServerFn({ method: "POST" })
     return databaseRequest(config, "rpc/inova_review_real_genetics", {
       p_id: data.id,
       p_doctor: doctorId,
+    });
+  });
+export const removeRealGenetics = createServerFn({ method: "POST" })
+  .validator(scope.extend({ id: z.string().uuid(), confirmed: z.literal(true) }))
+  .handler(async ({ data }) => {
+    guard();
+    const { config, account, doctorId } = await authorize(data.patientId);
+    return databaseRequest(config, "rpc/inova_remove_real_genetics", {
+      p_id: data.id,
+      p_patient: data.patientId,
+      p_doctor: doctorId,
+      p_author: account.userId,
     });
   });

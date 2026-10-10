@@ -26,8 +26,13 @@ const defaults: z.infer<typeof schema> = {
   pendingOnly: false,
 };
 
-export function DoctorSettingsPage() {
-  const state = useDemoPreferences("inova-demo-doctor-settings-v1", defaults, schema);
+export function DoctorSettingsPage({ account = false }: { account?: boolean }) {
+  const state = useDemoPreferences(
+    "inova-demo-doctor-settings-v1",
+    defaults,
+    schema,
+    account ? "settings" : undefined,
+  );
   const update = <K extends keyof typeof defaults>(key: K, value: (typeof defaults)[K]) =>
     state.setForm((form) => ({ ...form, [key]: value }));
   return (
@@ -36,8 +41,9 @@ export function DoctorSettingsPage() {
       description="Personalize suas preferências de notificações, visualização e acompanhamento."
     >
       <div className="surface p-4 text-sm leading-relaxed text-muted-foreground">
-        Preferências de demonstração salvas neste navegador. A visualização pode ser testada abaixo;
-        os ajustes não alteram as demais páginas nem enviam notificações.
+        {account
+          ? "Preferências salvas na sua conta. Os avisos ficam disponíveis no portal; a entrega por e-mail depende de integração própria."
+          : "Preferências de demonstração salvas neste navegador. A visualização pode ser testada abaixo; os ajustes não alteram as demais páginas nem enviam notificações."}
       </div>
       {state.storageError && (
         <p role="alert" className="surface p-4 text-sm text-destructive">

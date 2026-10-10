@@ -1,106 +1,17 @@
 import { useState } from "react";
-import {
-  CartesianGrid,
-  Line,
-  LineChart,
-  ResponsiveContainer,
-  Tooltip,
-  XAxis,
-  YAxis,
-} from "recharts";
 import { Button } from "@/components/ui/button";
 import { EmptyState } from "./Page";
-import type { MedicalResult } from "@/lib/medical-reports";
+import { Input } from "@/components/ui/input";
+import { FileText } from "lucide-react";
 import { openMedicalReport } from "@/lib/medical-reports";
 import { openPatientReviewedReport } from "@/lib/real-consultation";
-import { resultSeries } from "@/lib/account-records";
-
-export function AccountResults({
-  results,
-  charts = false,
-}: {
-  results: MedicalResult[];
-  charts?: boolean;
-}) {
-  if (!results.length)
-    return (
-      <EmptyState
-        title="Resultados ainda indisponíveis"
-        text="Os resultados aparecerão aqui quando forem registrados e liberados para sua conta."
-      />
-    );
-  if (charts)
-    return (
-      <div className="grid gap-5 lg:grid-cols-2">
-        {resultSeries(results).map((series) => (
-          <section key={`${series.name}:${series.unit}`} className="surface p-5">
-            <h2 className="font-semibold">{series.name}</h2>
-            <p className="mt-1 text-xs text-muted-foreground">Evolução · {series.unit}</p>
-            <p className="mt-5 text-3xl font-semibold">
-              {series.latest.value}{" "}
-              <span className="text-sm font-normal text-muted-foreground">{series.unit}</span>
-            </p>
-            <div className="mt-4 rounded-xl bg-brand-soft p-4 text-sm">
-              <p>Referência do laudo: {series.latest.reference || "Não informada"}</p>
-              <p className="mt-2 text-xs text-muted-foreground">
-                Coleta: {series.latest.collection_date} · Confira o contexto com seu médico.
-              </p>
-            </div>
-            {series.points.length > 1 ? (
-              <div className="mt-5 h-56">
-                <ResponsiveContainer width="100%" height="100%">
-                  <LineChart data={series.points}>
-                    <CartesianGrid strokeDasharray="3 5" vertical={false} />
-                    <XAxis dataKey="date" tick={{ fontSize: 10 }} />
-                    <YAxis domain={["auto", "auto"]} tick={{ fontSize: 10 }} />
-                    <Tooltip />
-                    <Line dataKey="value" stroke="var(--color-brand, #00a6bd)" strokeWidth={2} />
-                  </LineChart>
-                </ResponsiveContainer>
-              </div>
-            ) : (
-              <p className="mt-4 text-xs text-muted-foreground">
-                Mais coletas numéricas são necessárias para traçar a evolução.
-              </p>
-            )}
-          </section>
-        ))}
-      </div>
-    );
-  return (
-    <div className="surface overflow-x-auto">
-      <table className="data-table">
-        <thead>
-          <tr>
-            <th>Exame</th>
-            <th>Resultado</th>
-            <th>Unidade</th>
-            <th>Referência do laudo</th>
-            <th>Coleta</th>
-          </tr>
-        </thead>
-        <tbody>
-          {[...results]
-            .sort((a, b) => b.collection_date.localeCompare(a.collection_date))
-            .map((row) => (
-              <tr key={row.id}>
-                <td>{row.name}</td>
-                <td className="font-semibold">{row.value}</td>
-                <td>{row.unit}</td>
-                <td>{row.reference || "Não informada"}</td>
-                <td>{row.collection_date}</td>
-              </tr>
-            ))}
-        </tbody>
-      </table>
-    </div>
-  );
-}
+export { AccountResults } from "./AccountResultPanels";
 
 export function AccountDocuments({
   patientId,
   reports,
   doctor = false,
+  onNavigate,
 }: {
   patientId: string;
   reports: {
@@ -111,9 +22,16 @@ export function AccountDocuments({
     reviewed_at: string | null;
   }[];
   doctor?: boolean;
+  onNavigate?: (kind: "Laudos laboratoriais" | "Genética" | "Genômica", id: string) => void;
 }) {
   const [error, setError] = useState("");
   const [busy, setBusy] = useState("");
+  const [search, setSearch] = useState("");
+  const filtered = reports.filter((r) =>
+    `${r.filename} ${r.kind}`
+      .toLocaleLowerCase("pt-BR")
+      .includes(search.toLocaleLowerCase("pt-BR")),
+  );
   async function open(id: string) {
     setError("");
     setBusy(id);
@@ -135,34 +53,69 @@ export function AccountDocuments({
   }
   return (
     <section className="space-y-4">
+      <div>
+        <h2 className="font-display text-xl font-semibold">
+          {doctor ? "Documentos do paciente" : "Laudos liberados pelo médico"}
+        </h2>
+        <p className="mt-2 text-sm text-muted-foreground">
+          Laudos do prontuário, com origem e estado de revisão.
+        </p>
+      </div>
+      <Input
+        aria-label="Pesquisar documentos"
+        placeholder="Pesquisar laudo ou categoria"
+        value={search}
+        onChange={(e) => setSearch(e.target.value)}
+      />
       {error && (
         <p role="alert" className="surface p-4 text-sm text-destructive">
           {error}
         </p>
       )}
-      {!reports.length ? (
+      {!filtered.length ? (
         <EmptyState
           title="Nenhum documento disponível"
           text="Os laudos liberados no prontuário aparecerão aqui."
         />
       ) : (
-        reports.map((report) => (
-          <article
-            key={report.id}
-            className="surface flex flex-wrap items-center justify-between gap-4 p-5"
-          >
-            <div>
-              <h3 className="font-semibold">{report.filename}</h3>
-              <p className="mt-1 text-xs text-muted-foreground">
-                {report.kind} · {new Date(report.created_at).toLocaleDateString("pt-BR")} ·{" "}
-                {report.reviewed_at ? "Revisado" : "Aguardando revisão"}
-              </p>
-            </div>
-            <Button variant="outline" disabled={Boolean(busy)} onClick={() => void open(report.id)}>
-              Abrir PDF original
-            </Button>
-          </article>
-        ))
+        <div className="grid gap-4 md:grid-cols-2">
+          {filtered.map((report) => (
+            <article key={report.id} className="surface space-y-4 p-5">
+              <div>
+                <FileText className="mb-3 size-5 text-brand-deep" />
+                <h3 className="font-semibold">{report.filename}</h3>
+                <p className="mt-1 text-xs text-muted-foreground">
+                  {report.kind} · {new Date(report.created_at).toLocaleDateString("pt-BR")} ·{" "}
+                  {report.reviewed_at ? "Revisado" : "Aguardando revisão"}
+                </p>
+              </div>
+              {onNavigate && (
+                <Button
+                  variant="outline"
+                  onClick={() =>
+                    onNavigate(
+                      report.kind === "Laboratorial"
+                        ? "Laudos laboratoriais"
+                        : report.kind === "Genética"
+                          ? "Genética"
+                          : "Genômica",
+                      report.id,
+                    )
+                  }
+                >
+                  Abrir documento →
+                </Button>
+              )}
+              <Button
+                variant="outline"
+                disabled={Boolean(busy)}
+                onClick={() => void open(report.id)}
+              >
+                Abrir PDF original
+              </Button>
+            </article>
+          ))}
+        </div>
       )}
     </section>
   );

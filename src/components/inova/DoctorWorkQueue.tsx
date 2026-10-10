@@ -3,8 +3,15 @@ import { Link } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
 import { getDoctorWork } from "@/lib/care";
 import type { Patient } from "@/data/demo";
+import { getRealDoctorWork } from "@/lib/real-doctor-work";
 
-export function DoctorWorkQueue({ patients }: { patients: Patient[] }) {
+export function DoctorWorkQueue({
+  patients,
+  account = false,
+}: {
+  patients: Patient[];
+  account?: boolean;
+}) {
   const [data, setData] = useState<Awaited<ReturnType<typeof getDoctorWork>>>([]);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
@@ -14,7 +21,7 @@ export function DoctorWorkQueue({ patients }: { patients: Patient[] }) {
   useEffect(() => {
     let current = true;
     setLoading(true);
-    void getDoctorWork({ data: { patientIds: JSON.parse(ids) } })
+    void (account ? getRealDoctorWork() : getDoctorWork({ data: { patientIds: JSON.parse(ids) } }))
       .then((result) => {
         if (current) {
           setData(result);
@@ -30,7 +37,7 @@ export function DoctorWorkQueue({ patients }: { patients: Patient[] }) {
     return () => {
       current = false;
     };
-  }, [ids, version]);
+  }, [ids, version, account]);
   const rows = data
     .flatMap((item) => {
       const name =
@@ -107,7 +114,9 @@ export function DoctorWorkQueue({ patients }: { patients: Patient[] }) {
         <div>
           <h2 className="text-xl font-semibold">O que precisa da sua atenção</h2>
           <p className="mt-2 text-sm text-muted-foreground">
-            Pendências reais do ambiente demonstrativo, da mais antiga para a mais recente.
+            {account
+              ? "Pendências da sua conta, da mais antiga para a mais recente."
+              : "Pendências reais do ambiente demonstrativo, da mais antiga para a mais recente."}
           </p>
         </div>
         <Button
@@ -143,6 +152,7 @@ export function DoctorWorkQueue({ patients }: { patients: Patient[] }) {
               key={item.category + item.id}
               to="/patients/$patientId"
               params={{ patientId: item.patientId }}
+              search={account ? { workspace: "account" } : {}}
               hash={item.destination}
               className="block rounded-xl border border-border p-4 hover:bg-brand-soft"
             >

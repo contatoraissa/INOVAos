@@ -1,17 +1,27 @@
 import { useQuery } from "@tanstack/react-query";
 import { Link, useNavigate, useRouterState } from "@tanstack/react-router";
 import { useState } from "react";
-import { Check, Plus, Search } from "lucide-react";
+import { Check } from "lucide-react";
 import { getAccountSession } from "@/lib/account-session";
 import { listPatientRegistrations } from "@/lib/patient-identity";
 import { createMedicalPatient } from "@/lib/medical-workspace";
+import { listMedicalExamOverview } from "@/lib/medical-reports";
 import { patientRegistration } from "@/lib/medical-patient-contract";
 import { DemoAppShell } from "./AppShell";
+import { PatientDirectoryContext } from "./patient-directory";
 import { PatientRegistrationFields } from "./PatientRegistrationFields";
 import { AccountPatientDetail } from "./AccountPatientDetail";
+import { DashboardPage } from "./DashboardPage";
+import { PatientsPage } from "./PatientsPage";
+import { NewResultsPage } from "./NewResultsPage";
+import { HistoryPage, FollowUpPage } from "./SecondaryPages";
+import { DoctorProfilePage } from "./DoctorProfilePage";
+import { DoctorSettingsPage } from "./DoctorSettingsPage";
+import { DoctorReportsPage } from "./DoctorReportsPage";
+import { AnnualAgenda } from "./AnnualAgenda";
+import { AccountPortfolioComparison } from "./AccountComparison";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { EmptyState, Page, StatusBadge } from "./Page";
+import { EmptyState, Page } from "./Page";
 
 export function AccountDoctorWorkspace() {
   const account = useQuery({
@@ -25,12 +35,17 @@ export function AccountDoctorWorkspace() {
     enabled: Boolean(account.data?.canPreview),
     retry: false,
   });
+  const exams = useQuery({
+    queryKey: ["account-exams", account.data?.userId],
+    queryFn: () => listMedicalExamOverview(),
+    enabled: Boolean(account.data?.canPreview),
+    retry: false,
+    refetchOnWindowFocus: true,
+  });
   const path = useRouterState({ select: (s) => s.location.pathname });
   const navigate = useNavigate();
-  const [query, setQuery] = useState("");
   const [error, setError] = useState("");
   const [busy, setBusy] = useState(false);
-  const records = directory.data ?? [];
   if (account.isPending)
     return (
       <main className="min-h-screen bg-background p-8">
@@ -43,9 +58,7 @@ export function AccountDoctorWorkspace() {
         <EmptyState
           title="Acesso à conta médica"
           text={
-            account.error instanceof Error
-              ? account.error.message
-              : "Entre na conta médica com acesso de avaliação autorizado para continuar."
+            account.error?.message ?? "Entre na conta médica com acesso autorizado para continuar."
           }
         />
         <Button asChild className="mt-4">
@@ -53,6 +66,25 @@ export function AccountDoctorWorkspace() {
         </Button>
       </main>
     );
+  const identity = account.data;
+  const records = directory.data ?? [];
+  const patients = records.map((record) => {
+    const reports = exams.data?.reports.filter((r) => r.patient_id === record.id) ?? [];
+    const latest = reports[0];
+    return {
+      ...record,
+      birth: record.birth.split("-").reverse().join("/"),
+      exam: latest?.filename ?? "Nenhum exame integrado",
+      updated: latest
+        ? new Date(latest.created_at).toLocaleDateString("pt-BR")
+        : "Cadastro na sua conta",
+      status: reports.some((r) => !r.reviewed_at)
+        ? "Novo resultado"
+        : latest
+          ? "Disponível"
+          : "Sem exames",
+    };
+  });
   async function submit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setError("");
@@ -85,30 +117,13 @@ export function AccountDoctorWorkspace() {
       setBusy(false);
     }
   }
-  return (
-    <DemoAppShell
-      account={{
-        userId: account.data.userId,
-        name: account.data.full_name,
-        patients: records.map((record) => ({
-          ...record,
-          birth: record.birth.split("-").reverse().join("/"),
-          exam: "Prontuário cadastrado",
-          updated: "Cadastro na sua conta",
-          status: record.linked ? "Conta vinculada" : "Aguardando paciente",
-        })),
-      }}
-    >
-      {path === "/patients/new" ? (
+  function content() {
+    if (path === "/patients/new")
+      return (
         <Page
           title="Cadastrar paciente"
           description="Cadastre o paciente ou reutilize seu prontuário pelo CPF. A conta dele manterá o histórico já registrado."
         >
-          {directory.error && (
-            <p role="alert" className="surface p-4 text-sm text-destructive">
-              {directory.error.message}
-            </p>
-          )}
           <form onSubmit={submit} className="max-w-4xl border border-border bg-card">
             <PatientRegistrationFields realAccount disabled={busy} />
             {error && (
@@ -129,103 +144,103 @@ export function AccountDoctorWorkspace() {
             </div>
           </form>
         </Page>
-      ) : path.startsWith("/patients/") ? (
+      );
+    if (path.startsWith("/patients/"))
+      return (
         <AccountPatientDetail
+          key={identity.userId + path}
           patientId={path.slice("/patients/".length)}
-          userId={account.data.userId}
+          userId={identity.userId}
         />
-      ) : (
-        <Page
-          title="Pacientes"
-          description="Os cadastros e prontuários vinculados à sua conta médica."
-          actions={
-            <Button asChild>
-              <Link to="/patients/new" search={{ workspace: "account" }}>
-                <Plus />
-                Novo paciente
-              </Link>
-            </Button>
-          }
-        >
-          <div className="toolbar">
-            <div className="relative flex-1">
-              <Search className="absolute left-3 top-3 size-4 text-muted-foreground" />
-              <Input
-                className="pl-9"
-                value={query}
-                onChange={(event) => setQuery(event.target.value)}
-                placeholder="Pesquisar por nome, CPF, e-mail ou nascimento"
-              />
-            </div>
-            <Button variant="outline" onClick={() => void directory.refetch()}>
-              Atualizar pacientes
+      );
+    switch (path) {
+      case "/dashboard":
+        return (
+          <DashboardPage
+            account={{
+              name: identity.full_name,
+              detailedHistories: records.filter(
+                (r) =>
+                  new Set(
+                    exams.data?.results
+                      .filter((result) => result.patient_id === r.id)
+                      .map((result) => result.collection_date),
+                  ).size >= 2,
+              ).length,
+            }}
+          />
+        );
+      case "/agenda":
+        return (
+          <Page
+            title="Minha agenda"
+            description="Seu calendário de consultas, exames e retornos. Navegue pelos meses e confira cada dia."
+          >
+            <AnnualAgenda
+              audience="doctor"
+              account={{ patients, doctorName: identity.full_name }}
+            />
+          </Page>
+        );
+      case "/results":
+        return <NewResultsPage account />;
+      case "/history":
+        return <HistoryPage account />;
+      case "/comparison":
+        return (
+          <Page
+            title="Comparar resultados"
+            description="Entenda o que mudou entre duas coletas do mesmo paciente."
+          >
+            <AccountPortfolioComparison userId={identity.userId} patients={patients} />
+          </Page>
+        );
+      case "/doctors":
+        return (
+          <DoctorProfilePage
+            account={{
+              name: identity.full_name,
+              email: identity.email ?? "",
+              subscription: identity.subscription,
+            }}
+          />
+        );
+      case "/follow-up":
+        return <FollowUpPage account />;
+      case "/indicators":
+        return <DoctorReportsPage account />;
+      case "/settings":
+        return <DoctorSettingsPage account />;
+      default:
+        return <PatientsPage account />;
+    }
+  }
+  return (
+    <PatientDirectoryContext.Provider
+      value={{
+        patients,
+        addPatient: () => {
+          throw new Error("O cadastro real exige confirmação e gravação no banco.");
+        },
+      }}
+    >
+      <DemoAppShell account={{ userId: identity.userId, name: identity.full_name, patients }}>
+        {(directory.error || exams.error) && (
+          <div role="alert" className="surface space-y-3 p-4 text-sm text-destructive">
+            <p>{directory.error?.message ?? exams.error?.message}</p>
+            <Button
+              variant="outline"
+              onClick={() => {
+                void directory.refetch();
+                void exams.refetch();
+              }}
+            >
+              Tentar novamente
             </Button>
           </div>
-          {directory.error ? (
-            <p role="alert" className="surface p-5 text-sm text-destructive">
-              {directory.error.message}
-            </p>
-          ) : directory.isPending ? (
-            <p role="status">Carregando seus pacientes…</p>
-          ) : !records.length ? (
-            <EmptyState
-              title="Sua carteira está pronta para começar"
-              text="Cadastre o primeiro paciente. Os dados dele permanecerão neste prontuário quando criar sua conta."
-            />
-          ) : (
-            <div className="surface overflow-x-auto">
-              <table className="data-table">
-                <thead>
-                  <tr>
-                    <th>Nome</th>
-                    <th>Nascimento</th>
-                    <th>Contato</th>
-                    <th>Conta do paciente</th>
-                    <th>Ação</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {records
-                    .filter((record) =>
-                      `${record.name} ${record.cpf} ${record.email} ${record.birth}`
-                        .toLowerCase()
-                        .includes(query.toLowerCase()),
-                    )
-                    .map((record) => (
-                      <tr key={record.id}>
-                        <td>
-                          <p className="font-medium">{record.name}</p>
-                          <p className="text-xs text-muted-foreground">CPF {record.cpf}</p>
-                        </td>
-                        <td>{record.birth.split("-").reverse().join("/")}</td>
-                        <td>
-                          {record.email}
-                          <p className="text-xs text-muted-foreground">{record.phone}</p>
-                        </td>
-                        <td>
-                          <StatusBadge fresh={record.linked}>
-                            {record.linked ? "Conta vinculada" : "Aguardando confirmação"}
-                          </StatusBadge>
-                        </td>
-                        <td>
-                          <Button variant="outline" size="sm" asChild>
-                            <Link
-                              to="/patients/$patientId"
-                              params={{ patientId: record.id }}
-                              search={{ workspace: "account" }}
-                            >
-                              Abrir histórico
-                            </Link>
-                          </Button>
-                        </td>
-                      </tr>
-                    ))}
-                </tbody>
-              </table>
-            </div>
-          )}
-        </Page>
-      )}
-    </DemoAppShell>
+        )}
+        {directory.isPending ? <p role="status">Carregando seus pacientes…</p> : content()}
+      </DemoAppShell>
+    </PatientDirectoryContext.Provider>
   );
 }

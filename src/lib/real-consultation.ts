@@ -8,6 +8,7 @@ import { decodePdf } from "./gemini-core.server";
 import { audioMatches } from "./preparation-store.server";
 import type { MedicalResult, MedicalReport } from "./medical-reports";
 import { reviewedResults } from "./account-records";
+import { visiblePatientEntries } from "./account-patient-visibility";
 function guard() {
   const r = getRequest();
   if (r.headers.get("origin") !== new URL(r.url).origin)
@@ -76,9 +77,18 @@ export const listConsultationEntries = createServerFn({ method: "GET" })
     const { account, config, doctorId } = await authorize(data.patientId);
     const rows = (await databaseRequest(
       config,
-      `inova_consultation_entries?patient_id=eq.${data.patientId}&doctor_id=eq.${doctorId}${account.account_type === "patient" ? "&status=in.(published,reviewed)&kind=in.(preparation,order,guidance,return)" : ""}&select=*&order=created_at.desc`,
+      `inova_consultation_entries?patient_id=eq.${data.patientId}&doctor_id=eq.${doctorId}${account.account_type === "patient" ? "&status=in.(published,reviewed,cancelled)&kind=in.(preparation,order,guidance,return)" : ""}&select=*&order=created_at.desc`,
     )) as ConsultationEntry[];
-    return rows;
+    if (account.account_type !== "patient") return rows;
+    // A cancelled draft must never become visible. Only retain cancellations of
+    // records previously published to this patient (evidenced by their notification).
+    const published = rows.some((e) => e.status === "cancelled")
+      ? ((await databaseRequest(
+          config,
+          `inova_notifications?user_id=eq.${account.userId}&patient_id=eq.${data.patientId}&event=eq.published&entry_id=not.is.null&select=entry_id`,
+        )) as { entry_id: string }[])
+      : [];
+    return visiblePatientEntries(rows, new Set(published.map((n) => n.entry_id)));
   });
 export const saveConsultationEntry = createServerFn({ method: "POST" })
   .validator(consultationInput)
@@ -110,6 +120,24 @@ export const saveConsultationEntry = createServerFn({ method: "POST" })
       throw new Error("Escreva ou grave algo antes de enviar.");
     if (data.kind === "order" && !data.payload.exams.length)
       throw new Error("Selecione os exames do pedido.");
+    if (
+      data.kind === "guidance" &&
+      data.payload.category === "Preparo dos exames" &&
+      (!data.payload.orderId ||
+        !data.payload.sourceName ||
+        !data.payload.sourceUrl ||
+        !data.payload.sourceDate)
+    )
+      throw new Error(
+        "Preparo exige um pedido liberado, fonte, link e data da instrução conferida.",
+      );
+    if (data.payload.orderId) {
+      const orders = (await databaseRequest(
+        config,
+        `inova_consultation_entries?id=eq.${data.payload.orderId}&patient_id=eq.${data.patientId}&doctor_id=eq.${doctorId}&kind=eq.order&status=eq.published&select=id`,
+      )) as unknown[];
+      if (!orders.length) throw new Error("Pedido não encontrado ou retirado deste prontuário.");
+    }
     if (
       data.kind === "return" &&
       (!data.payload.date ||

@@ -89,6 +89,12 @@ const responses = {
   createMedicalPatient: serialize({ id: chartId, reused: true, linked: false }),
   getMedicalPatient: serialize(fixture),
   listMedicalReports: serialize({ reports: [report], results: [result] }),
+  listMedicalExamOverview: serialize({
+    reports: [{ ...report, patient_id: chartId }],
+    results: [{ ...result, patient_id: chartId }],
+  }),
+  getRealDoctorWork: serialize([]),
+  getWorkspacePreference: serialize(null),
   getRealPatientOverview: serialize({
     profile: { name: fixture.name, birth: fixture.birth },
     reports: [report],
@@ -131,8 +137,8 @@ try {
   await fill("[name=email]", "doctor@example.test");
   await fill("[name=password]", "SenhaFicticiaTeste123");
   await evaluate("document.querySelector('form').requestSubmit()");
-  await wait("location.pathname==='/patients' && location.search.includes('workspace=account')");
-  await wait(`document.body.innerText.includes(${JSON.stringify(fixture.name)})`);
+  await wait("location.pathname==='/dashboard' && location.search.includes('workspace=account')");
+  await wait("document.querySelector('h1')?.textContent==='Seu dia, com mais clareza.'");
   assert.equal(await evaluate("document.body.innerText.includes('Mariana Oliveira')"), false);
   await evaluate(
     "[...document.querySelectorAll('a')].find(a=>a.textContent.trim()==='Novo paciente' && a.href.includes('workspace=account')).click()",
@@ -156,7 +162,9 @@ try {
   );
   assert.equal(await evaluate("new URL(location.href).searchParams.get('workspace')"), "account");
   assert.equal(
-    await evaluate(`document.body.innerText.includes(${JSON.stringify(fixture.phone)})`),
+    await evaluate(
+      `document.body.innerText.includes(${JSON.stringify(fixture.phone)}) || document.querySelector('[name=phone]')?.value===${JSON.stringify(fixture.phone)}`,
+    ),
     true,
   );
   assert.equal(await evaluate("window.__enrollmentCalls.includes('createMedicalPatient')"), true);
@@ -185,7 +193,9 @@ try {
   await click("Meu perfil");
   await wait(`document.body.innerText.includes(${JSON.stringify(fixture.address)})`);
   assert.equal(
-    await evaluate(`document.body.innerText.includes(${JSON.stringify(fixture.phone)})`),
+    await evaluate(
+      `document.body.innerText.includes(${JSON.stringify(fixture.phone)}) || document.querySelector('[name=phone]')?.value===${JSON.stringify(fixture.phone)}`,
+    ),
     true,
   );
   assert.equal(

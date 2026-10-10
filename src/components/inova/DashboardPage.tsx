@@ -9,7 +9,11 @@ import { Page, StatusBadge } from "./Page";
 
 import { DoctorWorkQueue } from "./DoctorWorkQueue";
 
-export function DashboardPage() {
+export function DashboardPage({
+  account,
+}: {
+  account?: { name: string; detailedHistories?: number };
+}) {
   const { patients } = usePatientDirectory();
   const [query, setQuery] = useState("");
   const rows = patients
@@ -22,24 +26,24 @@ export function DashboardPage() {
       description="Uma visão organizada dos pacientes e resultados que você acompanha."
       actions={
         <Button asChild>
-          <Link to="/patients/new">
+          <Link to="/patients/new" search={account ? { workspace: "account" } : {}}>
             <Plus />
             Novo paciente
           </Link>
         </Button>
       }
     >
-      <DoctorWorkQueue patients={patients} />
+      <DoctorWorkQueue patients={patients} account={Boolean(account)} />
       <section className="overview-banner">
         <div>
           <span className="eyebrow">SEU ESPAÇO CLÍNICO</span>
-          <h2>Olá, Dr. Rafael Mendes</h2>
+          <h2>Olá, {account?.name ?? "Dr. Rafael Mendes"}</h2>
           <p>
             Cada resultado faz parte de uma história.
             <br className="hidden sm:block" /> Continue de onde parou e acompanhe o que mudou.
           </p>
           <Button asChild className="mt-6" variant="outline">
-            <Link to="/patients">
+            <Link to="/patients" search={account ? { workspace: "account" } : {}}>
               Explorar pacientes <ArrowRight />
             </Link>
           </Button>
@@ -84,7 +88,7 @@ export function DashboardPage() {
           },
           {
             label: "Históricos detalhados",
-            value: 0,
+            value: account?.detailedHistories ?? 0,
             note: "Com evolução dos marcadores",
             icon: Clock3,
           },
@@ -111,7 +115,7 @@ export function DashboardPage() {
               <p className="section-subtitle">Encontre um paciente e abra seu histórico.</p>
             </div>
             <Button asChild variant="ghost" size="sm">
-              <Link to="/patients">
+              <Link to="/patients" search={account ? { workspace: "account" } : {}}>
                 Ver todos <ArrowRight />
               </Link>
             </Button>
@@ -167,6 +171,7 @@ export function DashboardPage() {
                         <Link
                           to="/patients/$patientId"
                           params={{ patientId: p.id }}
+                          search={account ? { workspace: "account" } : {}}
                           aria-label={`Abrir ${p.name}`}
                         >
                           <ArrowRight className="size-4" />
@@ -197,6 +202,7 @@ export function DashboardPage() {
                   key={p.id}
                   to="/patients/$patientId"
                   params={{ patientId: p.id }}
+                  search={account ? { workspace: "account" } : {}}
                   className="group flex items-start justify-between gap-3"
                 >
                   <div>
@@ -210,7 +216,9 @@ export function DashboardPage() {
               ))}
             </div>
             <Button asChild variant="outline" className="mt-6 w-full">
-              <Link to="/results">Ver resultados</Link>
+              <Link to="/results" search={account ? { workspace: "account" } : {}}>
+                Ver resultados
+              </Link>
             </Button>
           </section>
           <section className="rounded-xl bg-brand-soft/70 p-5">

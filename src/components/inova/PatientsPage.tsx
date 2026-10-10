@@ -9,7 +9,7 @@ import { EmptyState, Page, StatusBadge } from "./Page";
 import { PatientDetailPage } from "./PatientDetailPage";
 import { NewPatientPage } from "./SecondaryPages";
 
-export function PatientsPage() {
+export function PatientsPage({ account = false }: { account?: boolean }) {
   const { patients } = usePatientDirectory();
   const navigate = useNavigate();
   const location = useLocation();
@@ -37,7 +37,7 @@ export function PatientsPage() {
       description="Consulte o histórico laboratorial consolidado dos seus pacientes."
       actions={
         <Button asChild>
-          <Link to="/patients/new">
+          <Link to="/patients/new" search={account ? { workspace: "account" } : {}}>
             <Plus />
             Novo paciente
           </Link>
@@ -109,7 +109,11 @@ export function PatientsPage() {
                       variant="outline"
                       size="sm"
                       onClick={() =>
-                        navigate({ to: "/patients/$patientId", params: { patientId: p.id } })
+                        navigate({
+                          to: "/patients/$patientId",
+                          params: { patientId: p.id },
+                          search: account ? { workspace: "account" } : {},
+                        })
                       }
                     >
                       Abrir histórico

@@ -74,10 +74,16 @@ médicos distintos não são misturados e observações privadas ficam com o mé
 As telas conectadas usam `?workspace=account`. A demonstração continua sem esse
 parâmetro. A documentação técnica está em `vinculo-cadastro-paciente.md`.
 
-**Pendente:** aplicar `supabase/INOVA_VINCULO_PACIENTE_SQL_EDITOR.sql` no Supabase
-remoto e validar o ciclo real depois disso. O SQL foi verificado em PostgreSQL
-local; os fluxos de interface foram exercitados com respostas controladas.
-Agenda, cotação e genética TXT reais ainda exigem integração própria.
+**Atualização posterior neste mesmo dia:** os portais reais agora oferecem os
+menus completos aprovados, agenda compartilhada, preferências, resultados,
+documentos, consultas, notificações e genética TXT. O usuário executou
+`supabase/INOVA_PORTAIS_COMPLETOS_SQL_EDITOR.sql`; as novas tabelas e funções
+foram confirmadas remotamente sem ler prontuários ou fazer envios reais.
+Detalhes em `paridade-portais-reais.md`. Os fluxos de interface usam respostas
+controladas nos testes e as regras SQL foram verificadas em PostgreSQL local.
+A cotação comercial S2 continua sem API: contas reais abrem o site externo.
+Uma validação de ponta a ponta com sessões reais de médico e paciente ainda
+deve distinguir autenticação, storage, envio e provedor de IA dos testes locais.
 As contas e os prontuários Supabase antigos foram preservados. Não executar
 scripts de seed ou apagar dados remotos como parte de uma retomada rotineira.
 

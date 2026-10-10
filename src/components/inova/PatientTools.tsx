@@ -68,44 +68,47 @@ export function PatientSearch({
   data,
   documents,
   onOpen,
+  accountRows,
 }: {
   data: PatientCareData | null;
   documents: { name: string; kind: string }[];
   onOpen: (destination: CareDestination | "results") => void;
+  accountRows?: { title: string; detail: string; destination: CareDestination | "results" }[];
 }) {
   const [query, setQuery] = useState("");
-  const rows: { title: string; detail: string; destination: CareDestination | "results" }[] = [
-    ...documents.map((item) => ({
-      title: item.name,
-      detail: `Documento local · ${item.kind}`,
-      destination: "documents" as const,
-    })),
-    ...(data?.orders
-      .filter((item) => item.status !== "draft")
-      .map((item) => ({
-        title: item.exams.map((exam) => exam.name).join(", "),
-        detail: `Pedido de exames · ${item.status === "cancelled" ? "Cancelado" : "Liberado"} · ${new Date(item.createdAt).toLocaleDateString("pt-BR")}`,
-        destination: "orders" as const,
-      })) ?? []),
-    ...(data?.guidance.map((item) => ({
-      title: item.title,
-      detail: `${item.category} · ${item.text}`,
-      destination:
-        item.category === "Preparo dos exames" ? ("preparation" as const) : ("guidance" as const),
-    })) ?? []),
-    ...(data?.submissions.map((item) => ({
-      title: "Envio ao médico",
-      detail: `${new Date(item.receivedAt).toLocaleDateString("pt-BR")} · ${item.documents.map((document) => document.name).join(", ")}`,
-      destination: "consultation" as const,
-    })) ?? []),
-    ...(patientHistoryById["mariana-oliveira"]?.history.flatMap((item) =>
-      ["Hemoglobina", "Glicemia", "Colesterol LDL", "Vitamina D"].map((name) => ({
-        title: name,
-        detail: `Resultado fictício · ${item.period}`,
-        destination: "results" as const,
+  const rows: { title: string; detail: string; destination: CareDestination | "results" }[] =
+    accountRows ?? [
+      ...documents.map((item) => ({
+        title: item.name,
+        detail: `Documento local · ${item.kind}`,
+        destination: "documents" as const,
       })),
-    ) ?? []),
-  ];
+      ...(data?.orders
+        .filter((item) => item.status !== "draft")
+        .map((item) => ({
+          title: item.exams.map((exam) => exam.name).join(", "),
+          detail: `Pedido de exames · ${item.status === "cancelled" ? "Cancelado" : "Liberado"} · ${new Date(item.createdAt).toLocaleDateString("pt-BR")}`,
+          destination: "orders" as const,
+        })) ?? []),
+      ...(data?.guidance.map((item) => ({
+        title: item.title,
+        detail: `${item.category} · ${item.text}`,
+        destination:
+          item.category === "Preparo dos exames" ? ("preparation" as const) : ("guidance" as const),
+      })) ?? []),
+      ...(data?.submissions.map((item) => ({
+        title: "Envio ao médico",
+        detail: `${new Date(item.receivedAt).toLocaleDateString("pt-BR")} · ${item.documents.map((document) => document.name).join(", ")}`,
+        destination: "consultation" as const,
+      })) ?? []),
+      ...(patientHistoryById["mariana-oliveira"]?.history.flatMap((item) =>
+        ["Hemoglobina", "Glicemia", "Colesterol LDL", "Vitamina D"].map((name) => ({
+          title: name,
+          detail: `Resultado fictício · ${item.period}`,
+          destination: "results" as const,
+        })),
+      ) ?? []),
+    ];
   const normalize = (value: string) =>
     value
       .normalize("NFD")

@@ -4,6 +4,13 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+} from "@/components/ui/dialog";
+import {
   listConsultationEntries,
   saveConsultationEntry,
   transitionConsultationEntry,
@@ -14,6 +21,9 @@ import { orderExams } from "@/data/order-exams";
 import { createSessionId } from "@/lib/session-id";
 import { patientDraft } from "@/lib/patient-draft";
 import { getAccountSession } from "@/lib/account-session";
+import { AccountAudioAnswer } from "./AccountAudioAnswer";
+import { PatientSubmissionStatus } from "./PatientSubmissionStatus";
+import { accountGuidance, accountSubmissions } from "@/lib/account-care-adapters";
 
 const empty = (): ConsultationPayload => ({
   title: "",
@@ -23,6 +33,11 @@ const empty = (): ConsultationPayload => ({
   medicines: "",
   questions: "",
   exams: [],
+  category: "Próximos passos",
+  sourceName: "",
+  sourceUrl: "",
+  sourceDate: "",
+  orderId: null,
   audios: [],
   documents: [],
   audio: null,
@@ -37,7 +52,17 @@ const labels = {
   family: "Histórico familiar",
   return: "Retorno planejado",
 };
-function Attachment({ data, mime, name }: { data: string; mime: string; name: string }) {
+export function Attachment({
+  data,
+  mime,
+  name,
+  preview = false,
+}: {
+  data: string;
+  mime: string;
+  name: string;
+  preview?: boolean;
+}) {
   const [url, setUrl] = useState("");
   useEffect(() => {
     const bytes = Uint8Array.from(atob(data), (c) => c.charCodeAt(0));
@@ -48,24 +73,39 @@ function Attachment({ data, mime, name }: { data: string; mime: string; name: st
   return mime.startsWith("audio/") ? (
     <audio className="mt-3 w-full" controls src={url} aria-label={name} />
   ) : (
-    <a
-      className="mt-3 block text-sm text-brand-deep underline"
-      href={url}
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      Abrir PDF: {name}
-    </a>
+    <>
+      <a
+        className="mt-3 block text-sm text-brand-deep underline"
+        href={url}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Abrir PDF: {name}
+      </a>
+      {preview && (
+        <iframe
+          title={`Laudo recebido: ${name}`}
+          src={url}
+          className="mt-4 h-[50dvh] w-full rounded-lg border"
+        />
+      )}
+    </>
   );
 }
 export function RealConsultation({
   patientId,
   kind,
   patient = false,
+  preparationOnly = false,
+  orderId,
+  onGuidance = () => {},
 }: {
   patientId: string;
   kind: ConsultationEntry["kind"];
   patient?: boolean;
+  preparationOnly?: boolean;
+  orderId?: string | undefined;
+  onGuidance?: () => void;
 }) {
   const account = useQuery({ queryKey: ["workspace-account"], queryFn: () => getAccountSession() });
   const query = useQuery({
@@ -86,9 +126,11 @@ export function RealConsultation({
     [email, setEmail] = useState(""),
     [confirmed, setConfirmed] = useState(false),
     [recording, setRecording] = useState(false);
-  const recorder = useRef<MediaRecorder | null>(null),
-    timer = useRef<ReturnType<typeof setTimeout> | null>(null),
-    stream = useRef<MediaStream | null>(null);
+  const [activeField, setActiveField] = useState("");
+  const [reviewSend, setReviewSend] = useState(false);
+  const [clearDraft, setClearDraft] = useState(false);
+  const [documentKind, setDocumentKind] =
+    useState<NonNullable<ConsultationPayload["documents"][number]["kind"]>>("Análises clínicas");
   const requestId = useRef(requestKey());
   useEffect(() => {
     if (!draftKey) return;
@@ -96,7 +138,7 @@ export function RealConsultation({
     void patientDraft<ConsultationPayload>(draftKey, "read")
       .then((saved) => {
         if (!active) return;
-        if (saved) setForm({ ...empty(), ...saved.value });
+        setForm({ ...empty(), ...saved?.value, orderId: orderId ?? saved?.value.orderId ?? null });
         setDraftReady(true);
         setDraftStatus(
           saved
@@ -115,7 +157,7 @@ export function RealConsultation({
     return () => {
       active = false;
     };
-  }, [draftKey]);
+  }, [draftKey, orderId]);
   useEffect(() => {
     if (!draftKey || !draftReady) return;
     const emptyDraft =
@@ -134,14 +176,6 @@ export function RealConsultation({
       )
       .catch(() => setDraftStatus("Não foi possível salvar o rascunho neste dispositivo."));
   }, [draftKey, draftReady, form]);
-  useEffect(
-    () => () => {
-      if (timer.current) clearTimeout(timer.current);
-      if (recorder.current?.state === "recording") recorder.current.stop();
-      stream.current?.getTracks().forEach((t) => t.stop());
-    },
-    [],
-  );
   const update = (key: keyof ConsultationPayload, value: unknown) => {
     setForm((p) => ({ ...p, [key]: value }));
     setConfirmed(false);
@@ -168,42 +202,9 @@ export function RealConsultation({
       s += String.fromCharCode(...bytes.subarray(i, i + 32768));
     return btoa(s);
   }
-  async function record() {
-    setError("");
-    try {
-      if (!navigator.mediaDevices?.getUserMedia)
-        throw new Error("Gravação exige HTTPS ou localhost. Você também pode anexar um áudio.");
-      const input = await navigator.mediaDevices.getUserMedia({ audio: true });
-      stream.current = input;
-      const media = new MediaRecorder(input),
-        chunks: Blob[] = [];
-      recorder.current = media;
-      media.ondataavailable = (e) => {
-        if (e.data.size) chunks.push(e.data);
-      };
-      media.onstop = () => {
-        if (timer.current) clearTimeout(timer.current);
-        input.getTracks().forEach((t) => t.stop());
-        setRecording(false);
-        setBusy(true);
-        const mime = media.mimeType.split(";")[0] ?? "audio/webm";
-        void encode(new Blob(chunks, { type: mime }), 5 * 1024 * 1024)
-          .then((data) => {
-            if (form.audios.length >= 3) throw new Error("Use até três áudios por envio.");
-            update("audios", [...form.audios, { mime, data }]);
-          })
-          .catch((e) => setError(e.message))
-          .finally(() => setBusy(false));
-      };
-      media.start();
-      setRecording(true);
-      timer.current = setTimeout(() => media.stop(), 180000);
-    } catch (cause) {
-      stream.current?.getTracks().forEach((t) => t.stop());
-      setError(cause instanceof Error ? cause.message : "Não foi possível gravar.");
-    }
-  }
-  const entries = (query.data ?? []).filter((e) => e.kind === kind);
+  const entries = (query.data ?? []).filter(
+    (e) => e.kind === kind && (!preparationOnly || e.payload.category === "Preparo dos exames"),
+  );
   return (
     <div className="space-y-5">
       {!patient && (
@@ -229,29 +230,62 @@ export function RealConsultation({
               Textos, áudios concluídos e PDFs ficam neste navegador e podem ser recuperados ao
               retornar. As informações chegam ao médico quando você confirma o envio.
             </p>
-          </section>
-          <section className="surface p-5">
-            <div className="flex flex-wrap items-center justify-between gap-3">
-              <h2 className="text-lg font-semibold">Meus envios ao médico</h2>
-              <Button variant="outline" onClick={() => void query.refetch()}>
-                Atualizar status
+            <div className="mt-3 flex flex-wrap gap-2">
+              <Button
+                type="button"
+                size="sm"
+                variant="outline"
+                disabled={busy || recording}
+                onClick={() => {
+                  if (!clearDraft) {
+                    setClearDraft(true);
+                    return;
+                  }
+                  void execute(async () => {
+                    if (draftKey) await patientDraft(draftKey, "remove");
+                    setForm(empty());
+                    setClearDraft(false);
+                    setMessage("Rascunho apagado neste navegador.");
+                  });
+                }}
+              >
+                {clearDraft
+                  ? "Confirmar exclusão do rascunho e anexos"
+                  : "Apagar rascunho deste navegador"}
               </Button>
+              {clearDraft && (
+                <Button
+                  type="button"
+                  size="sm"
+                  variant="ghost"
+                  onClick={() => setClearDraft(false)}
+                >
+                  Cancelar exclusão
+                </Button>
+              )}
             </div>
-            <p className="mt-2 text-xs text-muted-foreground">
-              Acompanhe o recebimento e a revisão das informações enviadas.
-            </p>
-            <p className="mt-4 text-sm text-muted-foreground">
-              {entries.length
-                ? `${entries.length} envio(s) disponível(is). Confira os detalhes abaixo.`
-                : "Nenhum envio disponível. Confira sua preparação abaixo e confirme o envio ao médico."}
-            </p>
           </section>
+          <PatientSubmissionStatus
+            account
+            data={
+              query.isSuccess
+                ? {
+                    submissions: accountSubmissions(query.data ?? []),
+                    guidance: accountGuidance(query.data ?? []).filter(
+                      (e) => e.publishedAt && !e.withdrawnAt,
+                    ),
+                  }
+                : null
+            }
+            loading={query.isFetching}
+            onRefresh={() => void query.refetch()}
+            onGuidance={onGuidance}
+          />
         </>
       )}
       {query.isError && (
         <div role="alert" className="surface p-5">
-          Não foi possível carregar os registros. Execute o SQL de consulta no Supabase e tente
-          novamente.{" "}
+          Não foi possível carregar os registros. Tente atualizar.{" "}
           <Button variant="outline" onClick={() => void query.refetch()}>
             Atualizar
           </Button>
@@ -296,9 +330,11 @@ export function RealConsultation({
       {((patient && kind === "preparation") || (!patient && kind !== "preparation")) && (
         <div className={patient ? "grid items-start gap-5 lg:grid-cols-[minmax(0,1fr)_320px]" : ""}>
           <form
-            className="surface space-y-4 p-6"
+            id="account-preparation-form"
+            className="patient-consultation-form surface space-y-4 p-6"
             onSubmit={(e) => {
               e.preventDefault();
+              if (patient && (!confirmed || !reviewSend || recording || busy)) return;
               void execute(async () => {
                 await saveConsultationEntry({
                   data: {
@@ -313,6 +349,7 @@ export function RealConsultation({
                   },
                 });
                 setForm(empty());
+                setReviewSend(false);
                 setConfirmed(false);
                 requestId.current = requestKey();
                 setMessage(
@@ -334,10 +371,7 @@ export function RealConsultation({
             )}
             <fieldset
               disabled={
-                busy ||
-                recording ||
-                !query.isSuccess ||
-                (patient && kind === "preparation" && !draftReady)
+                busy || !query.isSuccess || (patient && kind === "preparation" && !draftReady)
               }
               className="space-y-4"
             >
@@ -350,9 +384,11 @@ export function RealConsultation({
                       ["questions", "Perguntas para a consulta"],
                     ] as const
                   ).map(([key, label]) => (
-                    <label className="block text-sm" key={key}>
-                      {label}
+                    <div className="block text-sm" key={key}>
+                      <label htmlFor={`real-preparation-${key}`}>{label}</label>
                       <Textarea
+                        id={`real-preparation-${key}`}
+                        disabled={recording}
                         className="mt-2 min-h-28"
                         placeholder={
                           key === "symptoms"
@@ -365,8 +401,58 @@ export function RealConsultation({
                         value={form[key]}
                         onChange={(e) => update(key, e.target.value)}
                       />
-                    </label>
+                      {patient && (
+                        <AccountAudioAnswer
+                          field={key}
+                          label={label}
+                          item={form.audios.find((a) => a.field === key)}
+                          disabled={
+                            busy ||
+                            (recording && activeField !== key) ||
+                            (!form.audios.some((a) => a.field === key) && form.audios.length >= 3)
+                          }
+                          onRecordingChange={(value) => {
+                            setRecording(value);
+                            setActiveField(value ? key : "");
+                          }}
+                          onChange={(item) =>
+                            update("audios", [
+                              ...form.audios.filter((a) => a.field !== key),
+                              ...(item ? [item] : []),
+                            ])
+                          }
+                        />
+                      )}
+                    </div>
                   ))}
+                  <Button
+                    type="button"
+                    variant="outline"
+                    disabled={busy || recording}
+                    onClick={() =>
+                      setMessage("Anotações salvas neste navegador. Ainda não enviadas ao médico.")
+                    }
+                  >
+                    Salvar minhas anotações
+                  </Button>
+                  <label className="block text-sm">
+                    Vincular ao pedido de exames (opcional)
+                    <select
+                      aria-label="Pedido vinculado ao envio"
+                      value={form.orderId ?? ""}
+                      onChange={(e) => update("orderId", e.target.value || null)}
+                      className="mt-2 w-full rounded-lg border bg-white p-3"
+                    >
+                      <option value="">Envio geral para a consulta</option>
+                      {query.data
+                        ?.filter((e) => e.kind === "order" && e.status === "published")
+                        .map((e) => (
+                          <option key={e.id} value={e.id}>
+                            {e.payload.title} · {e.payload.exams.join(", ")}
+                          </option>
+                        ))}
+                    </select>
+                  </label>
                   <label className="block text-sm">
                     Anexar áudio · até 5 MB
                     <Input
@@ -394,6 +480,19 @@ export function RealConsultation({
                     />
                   </label>
                   <label className="block text-sm">
+                    Tipo de documento
+                    <select
+                      aria-label="Tipo de documento da preparação"
+                      className="mt-2 block rounded-lg border bg-white p-3"
+                      value={documentKind}
+                      onChange={(e) => setDocumentKind(e.target.value as typeof documentKind)}
+                    >
+                      {["Análises clínicas", "Genética", "Genômica", "Outros laudos"].map((v) => (
+                        <option key={v}>{v}</option>
+                      ))}
+                    </select>
+                  </label>
+                  <label className="block text-sm">
                     Anexar PDF · até 8 MB
                     <Input
                       type="file"
@@ -410,6 +509,7 @@ export function RealConsultation({
                         void Promise.all(
                           files.map(async (f) => ({
                             name: f.name,
+                            kind: documentKind,
                             data: await encode(f, 8 * 1024 * 1024),
                           })),
                         )
@@ -419,23 +519,26 @@ export function RealConsultation({
                       }}
                     />
                   </label>
-                  {form.audios.map((item, i) => (
-                    <div key={i}>
-                      <Attachment {...item} name={`Áudio ${i + 1}`} />
-                      <Button
-                        type="button"
-                        variant="ghost"
-                        onClick={() =>
-                          update(
-                            "audios",
-                            form.audios.filter((_, index) => index !== i),
-                          )
-                        }
-                      >
-                        Remover áudio {i + 1}
-                      </Button>
-                    </div>
-                  ))}
+                  {form.audios.map(
+                    (item, i) =>
+                      !item.field && (
+                        <div key={i}>
+                          <Attachment {...item} name={`Áudio ${i + 1}`} />
+                          <Button
+                            type="button"
+                            variant="ghost"
+                            onClick={() =>
+                              update(
+                                "audios",
+                                form.audios.filter((_, index) => index !== i),
+                              )
+                            }
+                          >
+                            Remover áudio {i + 1}
+                          </Button>
+                        </div>
+                      ),
+                  )}
                   {form.documents.map((item, i) => (
                     <div key={i}>
                       <Attachment data={item.data} mime="application/pdf" name={item.name} />
@@ -483,6 +586,72 @@ export function RealConsultation({
                 </>
               ) : (
                 <>
+                  {kind === "guidance" && (
+                    <div className="space-y-4">
+                      <label className="block text-sm">
+                        Tipo de orientação
+                        <select
+                          aria-label="Tipo de orientação"
+                          value={form.category}
+                          onChange={(e) =>
+                            update("category", e.target.value as ConsultationPayload["category"])
+                          }
+                          className="mt-2 w-full rounded-lg border bg-white p-3"
+                        >
+                          <option>Resultados</option>
+                          <option>Próximos passos</option>
+                          <option>Preparo dos exames</option>
+                        </select>
+                      </label>
+                      {form.category === "Preparo dos exames" && (
+                        <>
+                          <label className="block text-sm">
+                            Pedido vinculado
+                            <select
+                              aria-label="Pedido vinculado ao preparo"
+                              required
+                              value={form.orderId ?? ""}
+                              onChange={(e) => update("orderId", e.target.value || null)}
+                              className="mt-2 w-full rounded-lg border bg-white p-3"
+                            >
+                              <option value="">Selecione um pedido liberado</option>
+                              {query.data
+                                ?.filter((e) => e.kind === "order" && e.status === "published")
+                                .map((e) => (
+                                  <option key={e.id} value={e.id}>
+                                    {e.payload.title} · {e.payload.exams.join(", ")}
+                                  </option>
+                                ))}
+                            </select>
+                          </label>
+                          {[
+                            {
+                              key: "sourceName",
+                              label: "Laboratório / fonte da instrução",
+                              type: "text",
+                            },
+                            { key: "sourceUrl", label: "Link HTTPS da instrução", type: "url" },
+                            { key: "sourceDate", label: "Data da fonte conferida", type: "date" },
+                          ].map((field) => (
+                            <label key={field.key} className="block text-sm">
+                              {field.label}
+                              <Input
+                                required
+                                type={field.type}
+                                value={form[field.key as "sourceName" | "sourceUrl" | "sourceDate"]}
+                                onChange={(e) =>
+                                  update(
+                                    field.key as "sourceName" | "sourceUrl" | "sourceDate",
+                                    e.target.value,
+                                  )
+                                }
+                              />
+                            </label>
+                          ))}
+                        </>
+                      )}
+                    </div>
+                  )}
                   <label className="block text-sm">
                     {kind === "family" ? "Condição e parentesco" : "Título"}
                     <Input
@@ -548,30 +717,123 @@ export function RealConsultation({
                   ? "Revisei o texto e os anexos e autorizo o envio ao médico vinculado."
                   : "Conferi o conteúdo para este paciente."}
               </label>
-              <Button disabled={!confirmed}>
-                {patient
-                  ? "Enviar preparação ao médico"
-                  : kind === "family"
-                    ? "Salvar histórico familiar"
-                    : "Salvar rascunho"}
-              </Button>
+              {patient ? (
+                <Button
+                  type="button"
+                  disabled={
+                    !confirmed ||
+                    recording ||
+                    busy ||
+                    (![form.symptoms, form.medicines, form.questions].some((t) => t.trim()) &&
+                      !form.audios.length &&
+                      !form.documents.length &&
+                      !form.audio &&
+                      !form.document)
+                  }
+                  onClick={() => setReviewSend(true)}
+                >
+                  Revisar antes de enviar
+                </Button>
+              ) : (
+                <Button disabled={!confirmed || busy}>
+                  {kind === "family" ? "Salvar histórico familiar" : "Salvar rascunho"}
+                </Button>
+              )}
             </fieldset>
-            {patient && (
-              <Button
-                type="button"
-                variant="outline"
-                disabled={busy || !query.isSuccess}
-                onClick={() => {
-                  if (recording) recorder.current?.stop();
-                  else void record();
-                }}
-              >
-                {recording ? "Parar gravação" : "Gravar áudio · até 3 minutos"}
-              </Button>
-            )}
           </form>
           {patient && (
-            <aside className="surface p-6">
+            <Dialog
+              open={reviewSend}
+              onOpenChange={(open) => {
+                if (!busy) setReviewSend(open);
+              }}
+            >
+              <DialogContent
+                className="flex max-h-[90dvh] flex-col sm:max-w-2xl"
+                onEscapeKeyDown={(e) => {
+                  if (busy) e.preventDefault();
+                }}
+                onInteractOutside={(e) => {
+                  if (busy) e.preventDefault();
+                }}
+              >
+                <DialogHeader>
+                  <DialogTitle>Confira seu envio ao médico</DialogTitle>
+                  <DialogDescription>
+                    Nada foi enviado ainda. Revise as respostas, ouça os áudios e confira os PDFs
+                    selecionados.
+                  </DialogDescription>
+                </DialogHeader>
+                <div className="min-h-0 space-y-4 overflow-y-auto overscroll-contain pr-2">
+                  <div className="rounded-xl bg-brand-soft p-4 text-sm">
+                    <p className="font-semibold">
+                      Prontuário de {account.data?.full_name ?? "sua conta"}
+                    </p>
+                    <p className="mt-2">
+                      {form.orderId
+                        ? "Envio relacionado ao pedido de exames selecionado."
+                        : "Preparação geral da consulta."}
+                    </p>
+                    <p className="mt-2 text-xs">
+                      Destinatário: médico responsável por este prontuário.
+                    </p>
+                  </div>
+                  {[
+                    ["symptoms", "Como você tem se sentido?"],
+                    ["medicines", "Medicamentos e suplementos"],
+                    ["questions", "Perguntas para a consulta"],
+                  ].map(([key, label]) => (
+                    <article key={key} className="rounded-xl border p-4">
+                      <h3 className="font-semibold">{label}</h3>
+                      <p className="mt-2 whitespace-pre-wrap text-sm text-muted-foreground">
+                        {form[key as "symptoms" | "medicines" | "questions"] || "Sem anotação."}
+                      </p>
+                      {form.audios
+                        .filter((a) => a.field === key)
+                        .map((a, i) => (
+                          <Attachment key={i} {...a} name={label!} />
+                        ))}
+                    </article>
+                  ))}
+                  {form.audios
+                    .filter((a) => !a.field)
+                    .map((a, i) => (
+                      <Attachment key={i} {...a} name={`Áudio anexado ${i + 1}`} />
+                    ))}
+                  {form.documents.map((d, i) => (
+                    <Attachment key={i} data={d.data} mime="application/pdf" name={d.name} />
+                  ))}
+                  {form.audio && <Attachment {...form.audio} name="Áudio preparado" />}
+                  {form.document && (
+                    <Attachment
+                      data={form.document.data}
+                      mime="application/pdf"
+                      name={form.document.name}
+                    />
+                  )}
+                </div>
+                <div className="mt-4 flex flex-wrap justify-end gap-2">
+                  <Button
+                    type="button"
+                    variant="outline"
+                    disabled={busy}
+                    onClick={() => setReviewSend(false)}
+                  >
+                    Voltar e editar
+                  </Button>
+                  <Button
+                    type="submit"
+                    form="account-preparation-form"
+                    disabled={!confirmed || busy || recording}
+                  >
+                    {busy ? "Enviando preparação…" : "Enviar preparação ao médico"}
+                  </Button>
+                </div>
+              </DialogContent>
+            </Dialog>
+          )}
+          {patient && (
+            <aside className="patient-consultation-tips surface p-6">
               <h2 className="text-lg font-semibold">Antes da consulta</h2>
               <div className="mt-5 space-y-4 text-sm leading-relaxed text-muted-foreground">
                 <p>Tenha seus exames e laudos em mãos.</p>
@@ -582,7 +844,39 @@ export function RealConsultation({
                 Ouça seus áudios e confira os anexos antes de enviar. As respostas só chegam à área
                 médica quando você confirma o envio.
               </p>
+              <Button
+                type="button"
+                variant="outline"
+                className="mt-4"
+                disabled={recording}
+                onClick={() => window.print()}
+              >
+                Imprimir preparação
+              </Button>
             </aside>
+          )}
+          {patient && kind === "preparation" && (
+            <article className="patient-preparation-print hidden">
+              <h2 className="text-xl font-semibold">
+                Preparação para consulta · {account.data?.full_name}
+              </h2>
+              {(
+                [
+                  ["symptoms", "Como tenho me sentido"],
+                  ["medicines", "Medicamentos e suplementos"],
+                  ["questions", "Minhas perguntas"],
+                ] as const
+              ).map(([key, title]) => (
+                <section key={key} className="mt-6">
+                  <h3 className="font-semibold">{title}</h3>
+                  <p className="mt-2 whitespace-pre-wrap">{form[key] || "Não informado."}</p>
+                </section>
+              ))}
+              <p className="mt-6 text-sm">
+                {form.documents.length} PDF(s) e {form.audios.length} áudio(s) preparados. A
+                impressão não confirma envio ao médico.
+              </p>
+            </article>
           )}
         </div>
       )}
@@ -618,6 +912,24 @@ export function RealConsultation({
               </span>
             </div>
             <p className="whitespace-pre-wrap text-sm">{entry.payload.text}</p>
+            {entry.kind === "guidance" && entry.payload.category && (
+              <p className="text-xs font-medium text-brand-deep">{entry.payload.category}</p>
+            )}
+            {entry.payload.sourceName && (
+              <p className="text-xs text-muted-foreground">
+                Fonte informada: {entry.payload.sourceName} · {entry.payload.sourceDate}
+              </p>
+            )}
+            {entry.payload.sourceUrl && (
+              <a
+                href={entry.payload.sourceUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-sm text-brand-deep underline"
+              >
+                Consultar instrução na fonte original
+              </a>
+            )}
             {entry.payload.date && (
               <p className="text-sm">Data: {entry.payload.date.split("-").reverse().join("/")}</p>
             )}

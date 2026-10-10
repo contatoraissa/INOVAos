@@ -37,6 +37,7 @@ const cases = [
   ["smoke-workspace"],
   ["smoke-patient-identity"],
   ["smoke-account-enrollment"],
+  ["smoke-account-parity"],
   ["smoke-patient", "--audio"],
   ["smoke-orders"],
   ["smoke-care"],

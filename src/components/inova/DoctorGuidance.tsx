@@ -8,7 +8,23 @@ import { listExamOrders } from "@/lib/exam-orders";
 import { createSessionId } from "@/lib/session-id";
 import type { MedicalGuidance } from "@/lib/care-contract";
 import type { ExamOrder } from "@/lib/exam-order-contract";
-export function DoctorGuidance({ patientId }: { patientId: string }) {
+import {
+  listConsultationEntries,
+  saveConsultationEntry,
+  transitionConsultationEntry,
+} from "@/lib/real-consultation";
+import {
+  accountOrders,
+  accountGuidance,
+  emptyConsultationPayload,
+} from "@/lib/account-care-adapters";
+export function DoctorGuidance({
+  patientId,
+  account = false,
+}: {
+  patientId: string;
+  account?: boolean;
+}) {
   const [items, setItems] = useState<MedicalGuidance[]>([]);
   const [orders, setOrders] = useState<ExamOrder[]>([]);
   const [category, setCategory] = useState<MedicalGuidance["category"]>("Resultados");
@@ -19,6 +35,12 @@ export function DoctorGuidance({ patientId }: { patientId: string }) {
   const request = useRef({ signature: "", id: "" });
   const refresh = useCallback(async () => {
     try {
+      if (account) {
+        const entries = await listConsultationEntries({ data: { patientId } });
+        setItems(accountGuidance(entries));
+        setOrders(accountOrders(entries).filter((order) => order.status === "released"));
+        return;
+      }
       const [guidance, requests] = await Promise.all([
         listMedicalGuidance({ data: { patientId } }),
         listExamOrders({ data: { patientId, audience: "doctor" } }),
@@ -28,7 +50,7 @@ export function DoctorGuidance({ patientId }: { patientId: string }) {
     } catch {
       setError("Não foi possível atualizar as orientações e os pedidos.");
     }
-  }, [patientId]);
+  }, [patientId, account]);
   useEffect(() => {
     void refresh();
   }, [refresh]);
@@ -53,7 +75,18 @@ export function DoctorGuidance({ patientId }: { patientId: string }) {
       const signature = JSON.stringify(data);
       if (request.current.signature !== signature)
         request.current = { signature, id: createSessionId() };
-      await saveGuidance({ data: { ...data, requestId: request.current.id } });
+      if (account) {
+        const { patientId: scope, ...payload } = data;
+        await saveConsultationEntry({
+          data: {
+            patientId: scope,
+            requestId: request.current.id,
+            kind: "guidance",
+            confirmed: true,
+            payload: { ...emptyConsultationPayload(), ...payload },
+          },
+        });
+      } else await saveGuidance({ data: { ...data, requestId: request.current.id } });
       form.reset();
       request.current = { signature: "", id: "" };
       await refresh();
@@ -69,7 +102,16 @@ export function DoctorGuidance({ patientId }: { patientId: string }) {
     setError("");
     setMessage("");
     try {
-      if (action === "publish") await publishGuidance({ data: { id, reviewed: true } });
+      if (account)
+        await transitionConsultationEntry({
+          data: {
+            patientId,
+            id,
+            status: action === "publish" ? "published" : "cancelled",
+            confirmed: true,
+          },
+        });
+      else if (action === "publish") await publishGuidance({ data: { id, reviewed: true } });
       else await withdrawGuidance({ data: { id } });
       await refresh();
       setMessage(
@@ -104,9 +146,11 @@ export function DoctorGuidance({ patientId }: { patientId: string }) {
         </Button>
       </div>
       <p className="rounded-xl border border-border bg-white p-4 text-xs leading-relaxed text-muted-foreground">
-        Publicação demonstrativa pelo profissional. A síntese da IA não é liberada automaticamente.
-        Preparo de exames exige pedido ativo e instrução da unidade com fonte, link e data
-        conferidos.
+        {account
+          ? "Publicação revisada pelo profissional."
+          : "Publicação demonstrativa pelo profissional."}{" "}
+        A síntese da IA não é liberada automaticamente. Preparo de exames exige pedido ativo e
+        instrução da unidade com fonte, link e data conferidos.
       </p>
       {error && (
         <p role="alert" className="text-sm text-destructive">

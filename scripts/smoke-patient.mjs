@@ -105,7 +105,9 @@ try {
   await wait('document.querySelector("main").innerText.includes("104")');
   console.log("PASS: patient results follow the chosen collection");
   await click("Minha evolução");
-  await wait('document.querySelectorAll("[role=img]").length===4');
+  await wait(
+    `document.querySelectorAll('main [role="img"][aria-label^="Evolução de"]').length===4`,
+  );
   assert.equal(
     await evaluate('document.querySelector("main").innerText.includes("Revisão destacada")'),
     false,

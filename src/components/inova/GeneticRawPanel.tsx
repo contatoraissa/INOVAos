@@ -24,6 +24,13 @@ import {
   reviewRawGenetics,
   removeRawGenetics,
 } from "@/lib/genetic-raw";
+import {
+  listAccountGeneticRecords,
+  importAccountGeneticRecord,
+  originalAccountGeneticRecord,
+  reviewAccountGeneticRecord,
+  removeAccountGeneticRecord,
+} from "@/lib/real-genetic-adapter";
 const date = (value: string) =>
   new Date(value).toLocaleString("pt-BR", { timeZone: "America/Sao_Paulo" });
 const icons = [Brain, Activity, Shield, Apple];
@@ -63,12 +70,14 @@ export function GeneticRawPanel({
   compact = false,
   onOpen,
   onChanged,
+  account = false,
 }: {
   patientId: string;
   audience: "doctor" | "patient";
   compact?: boolean;
   onOpen?: () => void;
   onChanged?: () => void;
+  account?: boolean;
 }) {
   const [records, setRecords] = useState<RawGeneticRecord[]>([]);
   const [selected, setSelected] = useState("");
@@ -84,7 +93,9 @@ export function GeneticRawPanel({
   const refresh = useCallback(async () => {
     setError("");
     try {
-      const items = await listRawGenetics({ data: { patientId } });
+      const items = account
+        ? await listAccountGeneticRecords(patientId)
+        : await listRawGenetics({ data: { patientId } });
       setRecords(items);
       setSelected((current) =>
         items.some((item) => item.id === current) ? current : (items[0]?.id ?? ""),
@@ -96,7 +107,7 @@ export function GeneticRawPanel({
     } finally {
       setLoaded(true);
     }
-  }, [patientId]);
+  }, [patientId, account]);
   useEffect(() => {
     void refresh();
   }, [refresh]);
@@ -120,16 +131,21 @@ export function GeneticRawPanel({
     await act(async () => {
       if (!/\.txt$/i.test(file.name) || file.size > MAX_GENETIC_BYTES)
         throw new Error("Selecione o TXT extraído, de até 25 MB. ZIP e PDF não são aceitos aqui.");
-      const result = await importRawGenetics({
-        data: {
-          patientId,
-          name: file.name,
-          text: await file.text(),
-          audience,
-          fictionalConfirmed: true,
-          associationConfirmed: true,
-        },
-      });
+      const result = account
+        ? {
+            record: await importAccountGeneticRecord(patientId, file.name, await file.text()),
+            duplicate: false,
+          }
+        : await importRawGenetics({
+            data: {
+              patientId,
+              name: file.name,
+              text: await file.text(),
+              audience,
+              fictionalConfirmed: true,
+              associationConfirmed: true,
+            },
+          });
       await refresh();
       setSelected(result.record.id);
       setFile(null);
@@ -139,14 +155,18 @@ export function GeneticRawPanel({
       setMessage(
         result.duplicate
           ? "Este arquivo já está vinculado a este paciente. Nenhuma cópia duplicada foi criada."
-          : "Arquivo recebido e vinculado ao perfil demonstrativo. Disponível para revisão na área médica.",
+          : account
+            ? "Arquivo recebido e vinculado ao seu prontuário. Disponível para revisão médica."
+            : "Arquivo recebido e vinculado ao perfil demonstrativo. Disponível para revisão na área médica.",
       );
     });
   }
   async function download() {
     if (!record) return;
     await act(async () => {
-      const original = await getRawGeneticOriginal({ data: { id: record.id, patientId } });
+      const original = account
+        ? await originalAccountGeneticRecord(patientId, record.id)
+        : await getRawGeneticOriginal({ data: { id: record.id, patientId } });
       const url = URL.createObjectURL(
         new Blob([original.text], { type: "text/plain;charset=utf-8" }),
       );
@@ -214,10 +234,9 @@ export function GeneticRawPanel({
         </Button>
       </div>
       <p className="rounded-xl border border-brand/20 bg-brand-soft/40 p-4 text-xs leading-relaxed text-muted-foreground">
-        Armazenamento local demonstrativo: este módulo mantém cópias fictícias no servidor,
-        inclusive após reiniciar. Ainda não há autenticação real; use somente arquivos fictícios. O
-        TXT não é enviado ao Gemini. Recebimento automático por WhatsApp/e-mail ainda não está
-        conectado.
+        {account
+          ? "Arquivo armazenado no prontuário vinculado à sua conta e acessível ao médico responsável. O TXT não é enviado ao Gemini. Recebimento por WhatsApp/e-mail depende de importação manual."
+          : "Armazenamento local demonstrativo: este módulo mantém cópias fictícias no servidor, inclusive após reiniciar. Ainda não há autenticação real; use somente arquivos fictícios. O TXT não é enviado ao Gemini. Recebimento automático por WhatsApp/e-mail ainda não está conectado."}
       </p>
       <section className="surface p-5">
         <h3 className="font-semibold">
@@ -260,8 +279,9 @@ export function GeneticRawPanel({
             disabled={busy}
             onChange={(event) => setConfirmed(event.target.checked)}
           />
-          Confirmo que este TXT é fictício e que o perfil demonstrativo selecionado é o destinatário
-          correto.
+          {account
+            ? "Conferi o destinatário e autorizo vincular este arquivo ao prontuário e compartilhá-lo com o médico responsável."
+            : "Confirmo que este TXT é fictício e que o perfil demonstrativo selecionado é o destinatário correto."}
         </label>
         <div className="mt-4 flex flex-wrap items-center gap-4">
           <Button
@@ -325,7 +345,9 @@ export function GeneticRawPanel({
             ))}
           </select>
           <p className="mt-2 text-xs text-muted-foreground">
-            Até três versões por paciente; arquivos idênticos não são duplicados.
+            {account
+              ? "Arquivos idênticos não são duplicados no prontuário."
+              : "Até três versões por paciente; arquivos idênticos não são duplicados."}
           </p>
         </section>
       )}
@@ -446,9 +468,11 @@ export function GeneticRawPanel({
                 disabled={busy || !reviewConfirmed}
                 onClick={() => {
                   void act(async () => {
-                    await reviewRawGenetics({
-                      data: { id: record.id, patientId, associationConfirmed: true },
-                    });
+                    await (account
+                      ? reviewAccountGeneticRecord(patientId, record.id)
+                      : reviewRawGenetics({
+                          data: { id: record.id, patientId, associationConfirmed: true },
+                        }));
                     await refresh();
                     setMessage("Associação revisada. O cálculo dos scores permanece pendente.");
                   });
@@ -466,7 +490,8 @@ export function GeneticRawPanel({
           {removeId === record.id && (
             <div className="rounded-xl border border-red-200 bg-red-50 p-4">
               <p className="text-sm">
-                Excluir esta versão, sua cópia TXT e seus metadados do servidor demonstrativo?
+                Excluir esta versão, sua cópia TXT e seus metadados{" "}
+                {account ? "do prontuário" : "do servidor demonstrativo"}?
               </p>
               <div className="mt-3 flex flex-wrap gap-3">
                 <Button
@@ -474,12 +499,18 @@ export function GeneticRawPanel({
                   disabled={busy}
                   onClick={() => {
                     void act(async () => {
-                      await removeRawGenetics({
-                        data: { id: record.id, patientId, confirmed: true },
-                      });
+                      await (account
+                        ? removeAccountGeneticRecord(patientId, record.id)
+                        : removeRawGenetics({
+                            data: { id: record.id, patientId, confirmed: true },
+                          }));
                       setRemoveId("");
                       await refresh();
-                      setMessage("Arquivo e metadados excluídos do armazenamento demonstrativo.");
+                      setMessage(
+                        account
+                          ? "Arquivo e metadados excluídos do prontuário."
+                          : "Arquivo e metadados excluídos do armazenamento demonstrativo.",
+                      );
                     });
                   }}
                 >

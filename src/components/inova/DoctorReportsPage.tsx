@@ -15,8 +15,9 @@ import { getDoctorWork } from "@/lib/care";
 import { usePatientDirectory } from "./patient-directory";
 import { Page } from "./Page";
 import { Button } from "@/components/ui/button";
+import { getRealDoctorWork } from "@/lib/real-doctor-work";
 
-export function DoctorReportsPage() {
+export function DoctorReportsPage({ account = false }: { account?: boolean }) {
   const { patients } = usePatientDirectory();
   const ids = JSON.stringify(patients.map((p) => p.id));
   const [data, setData] = useState<Awaited<ReturnType<typeof getDoctorWork>>>([]);
@@ -27,7 +28,7 @@ export function DoctorReportsPage() {
   useEffect(() => {
     let current = true;
     setLoading(true);
-    void getDoctorWork({ data: { patientIds: JSON.parse(ids) } })
+    void (account ? getRealDoctorWork() : getDoctorWork({ data: { patientIds: JSON.parse(ids) } }))
       .then((result) => {
         if (current) {
           setData(result);
@@ -43,7 +44,7 @@ export function DoctorReportsPage() {
     return () => {
       current = false;
     };
-  }, [ids, version]);
+  }, [ids, version, account]);
   const cutoff = period === "all" ? 0 : Date.now() - Number(period) * 86400000;
   const within = (at: string | null | undefined) => !!at && Date.parse(at) >= cutoff;
   const submissions = data.flatMap((row) =>
@@ -92,7 +93,11 @@ export function DoctorReportsPage() {
     <div className="doctor-reports">
       <Page
         title="Meus relatórios"
-        description="Atividade e pendências da sua carteira de pacientes. Dados do Dr. Rafael Mendes na demonstração."
+        description={
+          account
+            ? "Atividade e pendências da sua carteira de pacientes, com dados da sua conta."
+            : "Atividade e pendências da sua carteira de pacientes. Dados do Dr. Rafael Mendes na demonstração."
+        }
       >
         <div className="surface flex flex-wrap items-end justify-between gap-4 p-4 print:hidden">
           <label className="text-xs font-medium" htmlFor="report-period">
@@ -203,6 +208,7 @@ export function DoctorReportsPage() {
                   key={item.id}
                   to="/patients/$patientId"
                   params={{ patientId: item.patientId }}
+                  search={account ? { workspace: "account" } : {}}
                   hash="Envios do paciente"
                   className="flex flex-wrap justify-between gap-3 rounded-xl border border-border p-4 hover:bg-brand-soft"
                 >

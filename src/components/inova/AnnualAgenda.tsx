@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { CalendarDays, ChevronLeft, ChevronRight, Plus } from "lucide-react";
 import { toast } from "sonner";
 import { listAgenda, createAgendaEvent, cancelAgendaEvent, confirmAgendaEvent } from "@/lib/agenda";
@@ -14,7 +14,13 @@ import {
   DialogDescription,
 } from "@/components/ui/dialog";
 import { usePatientDirectory } from "./patient-directory";
+import { createSessionId } from "@/lib/session-id";
 import { AgendaBriefing } from "./AgendaBriefing";
+import {
+  listRealAgenda,
+  createRealAgendaEvent,
+  transitionRealAgendaEvent,
+} from "@/lib/real-workspace";
 
 const months = [
   "Janeiro",
@@ -43,10 +49,21 @@ const colors = {
   Previsto: "bg-violet-400",
   Cancelado: "bg-slate-400",
 };
-export function AnnualAgenda({ audience }: { audience: "doctor" | "patient" }) {
+export function AnnualAgenda({
+  audience,
+  account,
+}: {
+  audience: "doctor" | "patient";
+  account?: { patients: { id: string; name: string }[]; doctorName: string };
+}) {
   const { patients } = usePatientDirectory();
-  const eligible =
-    audience === "patient" ? patients.filter((p) => p.id === "mariana-oliveira") : patients;
+  const eligible = account
+    ? account.patients
+    : audience === "patient"
+      ? patients.filter((p) => p.id === "mariana-oliveira")
+      : patients;
+  const real = Boolean(account);
+  const requestId = useRef("");
   const ids = JSON.stringify(eligible.map((p) => p.id));
   const [events, setEvents] = useState<AgendaEvent[]>([]);
   const [year, setYear] = useState(new Date().getFullYear());
@@ -62,7 +79,7 @@ export function AnnualAgenda({ audience }: { audience: "doctor" | "patient" }) {
   const [reason, setReason] = useState(reasons[0] ?? "");
   const [other, setOther] = useState("");
   const [draft, setDraft] = useState({
-    patientId: "mariana-oliveira",
+    patientId: eligible[0]?.id ?? "",
     title: "",
     kind: "Consulta" as (typeof agendaKinds)[number],
     date: "",
@@ -72,7 +89,11 @@ export function AnnualAgenda({ audience }: { audience: "doctor" | "patient" }) {
   });
   const refresh = useCallback(async () => {
     try {
-      const result = await listAgenda({ data: { patientIds: JSON.parse(ids), audience } });
+      const result = real
+        ? await listRealAgenda({
+            data: audience === "patient" ? { patientId: JSON.parse(ids)[0] } : {},
+          })
+        : await listAgenda({ data: { patientIds: JSON.parse(ids), audience } });
       setEvents(result);
       setError("");
     } catch {
@@ -80,7 +101,7 @@ export function AnnualAgenda({ audience }: { audience: "doctor" | "patient" }) {
     } finally {
       setLoading(false);
     }
-  }, [ids, audience]);
+  }, [ids, audience, real]);
   useEffect(() => {
     void refresh();
     const update = () => {
@@ -100,7 +121,7 @@ export function AnnualAgenda({ audience }: { audience: "doctor" | "patient" }) {
       await task();
       await refresh();
       window.dispatchEvent(new Event("focus"));
-      toast.success("Agenda demonstrativa atualizada.");
+      toast.success(real ? "Sua agenda foi atualizada." : "Agenda demonstrativa atualizada.");
       return true;
     } catch (e) {
       toast.error(e instanceof Error ? e.message : "Não foi possível salvar.");
@@ -147,10 +168,11 @@ export function AnnualAgenda({ audience }: { audience: "doctor" | "patient" }) {
   return (
     <div className="space-y-5">
       <div className="surface p-4 text-xs leading-relaxed text-muted-foreground">
-        Agenda compartilhada da demonstração · Dr. Rafael Mendes. Consulta confirmada, retorno
-        proposto e previsão de resultado são estados distintos. Datas são informadas manualmente;
-        não há integração com laboratório ou convênio. Cancelar aqui altera apenas o evento
-        demonstrativo.
+        {real
+          ? `Agenda compartilhada · ${account?.doctorName}. Eventos ficam vinculados ao prontuário e ao médico. `
+          : "Agenda compartilhada da demonstração · Dr. Rafael Mendes. "}
+        Consulta confirmada, retorno proposto e previsão de resultado são estados distintos. Datas
+        são informadas manualmente; não há integração com laboratório ou convênio.
       </div>
       <div className="surface flex flex-wrap items-center justify-between gap-4 p-4">
         <div className="flex flex-wrap items-center gap-2">
@@ -184,9 +206,17 @@ export function AnnualAgenda({ audience }: { audience: "doctor" | "patient" }) {
             Atualizar agenda
           </Button>
           <Button
+            disabled={loading || Boolean(error) || !eligible.length}
             onClick={() => {
+              requestId.current = createSessionId().replace(
+                /^(.{8})(.{4})(.{4})(.{4})(.{12})$/,
+                "$1-$2-$3-$4-$5",
+              );
               setDraft((d) => ({
                 ...d,
+                patientId: eligible.some((p) => p.id === d.patientId)
+                  ? d.patientId
+                  : (eligible[0]?.id ?? ""),
                 title: "",
                 date: day || `${year}-${String(month + 1).padStart(2, "0")}-01`,
                 time: "",
@@ -245,6 +275,7 @@ export function AnnualAgenda({ audience }: { audience: "doctor" | "patient" }) {
       )}
       {audience === "doctor" && (
         <AgendaBriefing
+          accountPatients={account?.patients}
           date={
             day ||
             `${year}-${String(month + 1).padStart(2, "0")}-${year === new Date().getFullYear() && month === new Date().getMonth() ? String(new Date().getDate()).padStart(2, "0") : "01"}`
@@ -436,9 +467,18 @@ export function AnnualAgenda({ audience }: { audience: "doctor" | "patient" }) {
                           disabled={busy}
                           onClick={() =>
                             void act(() =>
-                              confirmAgendaEvent({
-                                data: { id: event.id, patientId: event.patientId, audience },
-                              }),
+                              real
+                                ? transitionRealAgendaEvent({
+                                    data: {
+                                      id: event.id,
+                                      patientId: event.patientId,
+                                      status: "Confirmado",
+                                      confirmed: true,
+                                    },
+                                  })
+                                : confirmAgendaEvent({
+                                    data: { id: event.id, patientId: event.patientId, audience },
+                                  }),
                             )
                           }
                         >
@@ -484,7 +524,13 @@ export function AnnualAgenda({ audience }: { audience: "doctor" | "patient" }) {
             className="space-y-4"
             onSubmit={async (e) => {
               e.preventDefault();
-              if (await act(() => createAgendaEvent({ data: { ...draft, audience } })))
+              if (
+                await act(() =>
+                  real
+                    ? createRealAgendaEvent({ data: { ...draft, requestId: requestId.current } })
+                    : createAgendaEvent({ data: { ...draft, audience } }),
+                )
+              )
                 setAdd(false);
             }}
           >
@@ -622,14 +668,24 @@ export function AnnualAgenda({ audience }: { audience: "doctor" | "patient" }) {
               if (
                 cancel &&
                 (await act(() =>
-                  cancelAgendaEvent({
-                    data: {
-                      id: cancel.id,
-                      patientId: cancel.patientId,
-                      audience,
-                      reason: reason === "Outro motivo" ? other : reason,
-                    },
-                  }),
+                  real
+                    ? transitionRealAgendaEvent({
+                        data: {
+                          id: cancel.id,
+                          patientId: cancel.patientId,
+                          status: "Cancelado",
+                          reason: reason === "Outro motivo" ? other : reason,
+                          confirmed: true,
+                        },
+                      })
+                    : cancelAgendaEvent({
+                        data: {
+                          id: cancel.id,
+                          patientId: cancel.patientId,
+                          audience,
+                          reason: reason === "Outro motivo" ? other : reason,
+                        },
+                      }),
                 ))
               )
                 setCancel(null);

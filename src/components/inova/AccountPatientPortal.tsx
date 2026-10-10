@@ -8,9 +8,17 @@ import { AccountNotifications } from "./AccountNotifications";
 import { PatientPortalLayout } from "./PatientPortalLayout";
 import { AccountResults, AccountDocuments } from "./AccountClinicalPanels";
 import { RealConsultation } from "./RealConsultation";
-import { PatientAccessibility } from "./PatientTools";
+import { PatientAccessibility, PatientSearch } from "./PatientTools";
+import { AccountHealthOverview } from "./AccountHealthOverview";
+import { AnnualAgenda } from "./AnnualAgenda";
+import { GeneticRawPanel } from "./GeneticRawPanel";
+import { AccountPatientPreferences } from "./AccountPatientPreferences";
+import { AccountPatientOrders } from "./AccountPatientOrders";
+import { AccountPatientDocuments } from "./AccountPatientDocuments";
+import { AccountPatientHomeResources } from "./AccountPatientHomeResources";
+import { readLocalPatientState } from "@/lib/account-patient-local-state";
+import { AccountPatientCare } from "./AccountPatientCare";
 import { navigation, sectionHelp, type Section } from "./patient-navigation";
-import { resultSeries } from "@/lib/account-records";
 import { Button } from "@/components/ui/button";
 import { EmptyState } from "./Page";
 
@@ -21,6 +29,7 @@ export function AccountPatientPortal() {
     retry: false,
   });
   const [section, setSection] = useState<Section>("home");
+  const [orderId, setOrderId] = useState<string | undefined>(undefined);
   const [links, setLinks] = useState<Awaited<ReturnType<typeof synchronizePatientRegistration>>>(
     [],
   );
@@ -58,12 +67,21 @@ export function AccountPatientPortal() {
     queryFn: () => getRealPatientOverview({ data: { patientId: selected } }),
     enabled: Boolean(profile),
     retry: false,
+    refetchInterval: 30000,
   });
   const entries = useQuery({
     queryKey: ["real-consultation", selected, account.data?.userId],
     queryFn: () => listConsultationEntries({ data: { patientId: selected } }),
     enabled: Boolean(profile),
     retry: false,
+    refetchInterval: 30000,
+  });
+  const local = useQuery({
+    queryKey: ["account-local-care", account.data?.userId, selected, section],
+    queryFn: () => readLocalPatientState(account.data!.userId, selected),
+    enabled: Boolean(profile),
+    retry: false,
+    staleTime: 0,
   });
   if (account.isPending)
     return (
@@ -86,16 +104,69 @@ export function AccountPatientPortal() {
   const results = overview.data?.results ?? [];
   const reports = overview.data?.reports ?? [];
   const items = entries.data ?? [];
-  const latest = resultSeries(results);
+  const open = (next: Section) => {
+    setSection(next);
+    if (next !== "consultation") setOrderId(undefined);
+  };
+  const searchRows = [
+    ...results.map((r) => ({
+      title: r.name,
+      detail: `${r.value} ${r.unit} · ${r.collection_date}`,
+      destination: "results" as const,
+    })),
+    ...reports.map((r) => ({
+      title: r.filename,
+      detail: r.kind,
+      destination: "documents" as const,
+    })),
+    ...items.map((e) => ({
+      title: e.payload.title,
+      detail: e.payload.text || e.payload.symptoms || e.payload.exams.join(", "),
+      destination: (e.kind === "order"
+        ? "orders"
+        : e.kind === "guidance"
+          ? e.payload.category === "Preparo dos exames"
+            ? "preparation"
+            : "guidance"
+          : e.kind === "return"
+            ? "agenda"
+            : "consultation") as "orders" | "guidance" | "preparation" | "agenda" | "consultation",
+    })),
+  ];
+  const prepare = (id: string) => {
+    setOrderId(id);
+    setSection("consultation");
+  };
   return (
     <PatientPortalLayout
       name={profile?.name ?? account.data.full_name}
       section={section}
-      onOpen={setSection}
+      onOpen={open}
       onExit={() => {
         void signOutAccount().then(() => window.location.assign("/acesso-paciente"));
       }}
-      notifications={<AccountNotifications patient userId={account.data.userId} />}
+      notifications={
+        <AccountNotifications
+          patient
+          userId={account.data.userId}
+          onOpenNotification={(id, event) => {
+            if (linkedRecords.some((p) => p.id === id)) setSelected(id);
+            open(
+              event?.includes("agenda") || event?.includes("return")
+                ? "agenda"
+                : event?.includes("order")
+                  ? "orders"
+                  : event?.includes("guidance")
+                    ? "guidance"
+                    : event?.includes("genetic")
+                      ? "genetics"
+                      : event?.includes("report")
+                        ? "results"
+                        : "alerts",
+            );
+          }}
+        />
+      }
     >
       <div>
         <p className="eyebrow">INOVA · SEU ESPAÇO DE CUIDADO</p>
@@ -104,41 +175,45 @@ export function AccountPatientPortal() {
         </h1>
         <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{sectionHelp[section]}</p>
       </div>
-      <section className="surface flex flex-wrap items-center justify-between gap-3 p-5">
-        <div>
-          <p className="font-semibold">
-            {profile ? `Seu cadastro com ${profile.doctorName}` : "Seu cadastro no INOVA"}
-          </p>
-          <p className="mt-1 text-xs text-muted-foreground">
-            {profile
-              ? "Dados e histórico do prontuário cadastrado pelo médico."
-              : "Aguardando o vínculo autorizado pelo médico."}
-          </p>
-        </div>
-        <div className="flex flex-wrap gap-3">
-          {linkedRecords.length > 1 && (
+      {linkedRecords.length > 1 && (
+        <section className="surface p-4">
+          <label className="text-sm font-medium">
+            Prontuário e médico
             <select
               aria-label="Selecionar médico e prontuário"
               value={selected}
-              onChange={(event) => setSelected(event.target.value)}
-              className="max-w-full rounded-lg border bg-white px-3 py-2 text-sm"
+              onChange={(e) => {
+                setSelected(e.target.value);
+                setOrderId(undefined);
+              }}
+              className="ml-3 max-w-full rounded-lg border bg-white p-3 text-sm"
             >
-              {linkedRecords.map((link) => (
-                <option key={link.id} value={link.id}>
-                  {link.doctorName}
+              {linkedRecords.map((p) => (
+                <option key={p.id} value={p.id}>
+                  {p.doctorName}
                 </option>
               ))}
             </select>
-          )}
-          <Button variant="outline" disabled={busy} onClick={() => void synchronize()}>
-            Atualizar meu cadastro
+          </label>
+        </section>
+      )}
+      {(linkError || overview.error || entries.error || local.error) && (
+        <div role="alert" className="surface p-5 text-sm text-destructive">
+          {linkError ||
+            overview.error?.message ||
+            entries.error?.message ||
+            "Não foi possível recuperar seus arquivos locais neste navegador."}
+          <Button
+            variant="ghost"
+            onClick={() => {
+              void synchronize();
+              void overview.refetch();
+              void entries.refetch();
+            }}
+          >
+            Tentar atualizar
           </Button>
         </div>
-      </section>
-      {linkError && (
-        <p role="alert" className="surface p-5 text-sm text-destructive">
-          {linkError}
-        </p>
       )}
       {busy && <p role="status">Conferindo o vínculo do seu CPF…</p>}
       {!busy && !linkError && !profile && (
@@ -148,197 +223,232 @@ export function AccountPatientPortal() {
         />
       )}
       {profile && (
-        <div key={profile.id} className="space-y-6">
-          {(overview.error || entries.error) && (
-            <p role="alert" className="surface p-4 text-sm text-destructive">
-              {overview.error?.message ?? entries.error?.message}
-            </p>
+        <div key={account.data.userId + profile.id} className="space-y-6">
+          {section === "home" && (
+            <AccountHealthOverview
+              name={profile.name}
+              results={results}
+              entries={items}
+              onOpen={open}
+            />
+          )}
+          {section === "agenda" && (
+            <>
+              <AccountPatientOrders
+                compact
+                patientId={profile.id}
+                userId={account.data.userId}
+                email={profile.email}
+                doctorName={profile.doctorName}
+                entries={items}
+                onPrepare={prepare}
+                onOpen={open}
+                refresh={entries.refetch}
+              />
+              <AnnualAgenda
+                key={profile.id}
+                audience="patient"
+                account={{ patients: [profile], doctorName: profile.doctorName }}
+              />
+            </>
+          )}
+          <div className="grid items-start gap-3 lg:grid-cols-[minmax(0,1fr)_240px]">
+            <PatientSearch data={null} documents={[]} onOpen={open} accountRows={searchRows} />
+            <PatientAccessibility />
+          </div>
+          {(overview.isPending || entries.isPending) && (
+            <p role="status">Carregando seu acompanhamento…</p>
           )}
           {section === "home" && (
             <>
-              <section className="rounded-2xl border border-brand/20 bg-brand-soft p-6">
-                <p className="eyebrow">SEU PANORAMA · {profile.name}</p>
-                <h2 className="mt-3 font-display text-2xl font-semibold">
-                  Seu cuidado, com o histórico preservado
-                </h2>
-                <p className="mt-3 text-sm text-muted-foreground">
-                  O cadastro e os dados liberados por {profile.doctorName} já fazem parte do seu
-                  espaço.
-                </p>
-                <div className="mt-5 grid gap-4 sm:grid-cols-3">
+              <AccountPatientCare
+                primaryOnly
+                mode="next"
+                patientId={profile.id}
+                doctorName={profile.doctorName}
+                entries={items}
+                results={results}
+                localDocuments={local.data?.documents ?? []}
+                saved={local.data?.saved ?? false}
+                onOpen={open}
+                refresh={async () => {
+                  await entries.refetch();
+                }}
+              />
+              <section className="surface p-5" aria-label="Acesso rápido do paciente">
+                <h2 className="text-lg font-semibold">O que você quer fazer?</h2>
+                <div className="mt-4 grid gap-3 sm:grid-cols-2">
                   {[
-                    { label: "Resultados disponíveis", count: results.length },
-                    { label: "Laudos revisados", count: reports.length },
                     {
-                      label: "Orientações publicadas",
-                      count: items.filter((item) => item.kind === "guidance").length,
+                      id: "orders" as const,
+                      title: "Ver exames pedidos",
+                      detail: "Confira o pedido do médico e as opções de laboratório.",
+                    },
+                    {
+                      id: "consultation" as const,
+                      title: "Enviar informações ao médico",
+                      detail: "Escreva ou grave áudio e anexe seus laudos.",
+                    },
+                    {
+                      id: "results" as const,
+                      title: "Consultar meus resultados",
+                      detail: "Abra os valores dos exames e suas referências.",
+                    },
+                    {
+                      id: "guidance" as const,
+                      title: "Ler orientações do médico",
+                      detail: "Confira o que foi publicado para seu cuidado.",
                     },
                   ].map((item) => (
-                    <div key={item.label} className="rounded-xl border bg-white p-4">
-                      <p className="text-xs text-muted-foreground">{item.label}</p>
-                      <p className="mt-3 text-3xl font-semibold">{item.count}</p>
-                    </div>
+                    <button
+                      key={item.id}
+                      className="flex items-center justify-between gap-3 rounded-xl border border-border bg-muted/20 p-4 text-left transition-colors hover:border-brand hover:bg-brand-soft"
+                      onClick={() => open(item.id)}
+                    >
+                      <span>
+                        <span className="block text-sm font-semibold text-brand-deep">
+                          {item.title}
+                        </span>
+                        <span className="mt-1 block text-xs text-muted-foreground">
+                          {item.detail}
+                        </span>
+                      </span>
+                      <span className="text-brand-deep">→</span>
+                    </button>
                   ))}
                 </div>
               </section>
-              <section className="surface p-5">
-                <div className="flex items-center justify-between">
-                  <h2 className="font-semibold">Meus últimos resultados</h2>
-                  <Button variant="ghost" onClick={() => setSection("history")}>
-                    Ver minha evolução
-                  </Button>
-                </div>
-                {latest.length ? (
-                  <div className="mt-4 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
-                    {latest.map((series) => (
-                      <article
-                        key={`${series.name}:${series.unit}`}
-                        className="rounded-xl border p-4"
-                      >
-                        <h3 className="text-sm font-semibold">{series.name}</h3>
-                        <p className="mt-4 text-2xl font-semibold">
-                          {series.latest.value}{" "}
-                          <span className="text-xs font-normal text-muted-foreground">
-                            {series.unit}
-                          </span>
-                        </p>
-                        <p className="mt-3 text-xs text-muted-foreground">
-                          {series.latest.collection_date}
-                        </p>
-                      </article>
-                    ))}
-                  </div>
-                ) : (
-                  <p className="mt-4 text-sm text-muted-foreground">
-                    Os resultados aparecerão após registro e liberação pelo médico.
-                  </p>
-                )}
-              </section>
-              <section className="surface p-5">
-                <h2 className="font-semibold">O que você quer fazer?</h2>
-                <div className="mt-4 grid gap-3 sm:grid-cols-2">
-                  <Button variant="outline" onClick={() => setSection("consultation")}>
-                    Enviar informações ao médico
-                  </Button>
-                  <Button variant="outline" onClick={() => setSection("profile")}>
-                    Conferir meus dados cadastrados
-                  </Button>
-                  <Button variant="outline" onClick={() => setSection("orders")}>
-                    Ver exames pedidos
-                  </Button>
-                  <Button variant="outline" onClick={() => setSection("documents")}>
-                    Abrir meus laudos
-                  </Button>
-                </div>
-              </section>
+              <AccountPatientHomeResources
+                patientId={profile.id}
+                results={results}
+                documents={local.data?.documents.length ?? 0}
+                saved={local.data?.saved ?? false}
+                onOpen={open}
+              />
             </>
           )}
           {section === "profile" && (
-            <section className="surface max-w-2xl p-6">
-              <h2 className="text-xl font-semibold">Seus dados</h2>
-              <div className="mt-5 rounded-xl bg-muted/50 p-4">
-                <p className="font-semibold">{profile.name}</p>
-                <p className="mt-2 text-sm text-muted-foreground">
-                  CPF {profile.cpf} · Nascimento: {profile.birth.split("-").reverse().join("/")}
-                </p>
-              </div>
-              <dl className="mt-6 grid gap-4 sm:grid-cols-2">
-                {[
-                  { label: "E-mail de contato", value: profile.email },
-                  { label: "Telefone", value: profile.phone },
-                  { label: "RG", value: profile.rg },
-                  {
-                    label: "Sexo",
-                    value: (
-                      { f: "Feminino", m: "Masculino", o: "Outro" } as Record<string, string>
-                    )[profile.sex],
-                  },
-                  { label: "Endereço", value: profile.address },
-                ].map((item) => (
-                  <div key={item.label}>
-                    <dt className="label">{item.label}</dt>
-                    <dd className="break-words rounded-lg border px-3 py-3 text-sm">
-                      {item.value || "Não informado"}
-                    </dd>
-                  </div>
-                ))}
-              </dl>
-              <p className="mt-5 text-xs text-muted-foreground">
-                Dados do cadastro vinculado ao médico. Para corrigir informações de identidade, peça
-                a conferência do seu cadastro.
-              </p>
-            </section>
+            <AccountPatientPreferences userId={account.data.userId} profile={profile} />
           )}
-          {section === "results" && <AccountResults results={results} />}
-          {section === "history" && <AccountResults results={results} charts />}
-          {section === "documents" && <AccountDocuments patientId={profile.id} reports={reports} />}
-          {section === "genetics" && (
-            <AccountDocuments
+          {section === "favorites" && (
+            <AccountPatientPreferences userId={account.data.userId} profile={profile} favorites />
+          )}
+          {section === "results" && (
+            <>
+              <section className="surface p-5 sm:p-6">
+                <AccountResults
+                  results={results}
+                  name={profile.name}
+                  patientId={profile.id}
+                  audience="patient"
+                />
+              </section>
+            </>
+          )}
+          {section === "history" && (
+            <>
+              <AccountResults
+                results={results}
+                charts
+                name={profile.name}
+                birth={profile.birth}
+                patientId={profile.id}
+                audience="patient"
+              />
+            </>
+          )}
+          {section === "documents" && (
+            <AccountPatientDocuments
               patientId={profile.id}
-              reports={reports.filter((report) => report.kind !== "Laboratorial")}
+              userId={account.data.userId}
+              reports={reports}
+              entries={items}
+              onPrepare={() => open("consultation")}
             />
+          )}
+          {section === "genetics" && (
+            <>
+              <GeneticRawPanel account patientId={profile.id} audience="patient" />
+              <AccountDocuments
+                patientId={profile.id}
+                reports={reports.filter((r) => r.kind !== "Laboratorial")}
+              />
+            </>
           )}
           {section === "consultation" && (
-            <RealConsultation patientId={profile.id} kind="preparation" patient />
-          )}
-          {section === "orders" && <RealConsultation patientId={profile.id} kind="order" patient />}
-          {section === "guidance" && (
-            <RealConsultation patientId={profile.id} kind="guidance" patient />
-          )}
-          {section === "agenda" && (
-            <RealConsultation patientId={profile.id} kind="return" patient />
-          )}
-          {["next", "alerts", "timeline"].includes(section) && (
-            <section className="space-y-4">
-              {items.length ? (
-                items.map((item) => (
-                  <article key={item.id} className="surface p-5">
-                    <p className="text-xs text-muted-foreground">
-                      {new Date(item.created_at).toLocaleString("pt-BR")}
-                    </p>
-                    <h2 className="mt-2 font-semibold">{item.payload.title}</h2>
-                    <p className="mt-2 whitespace-pre-wrap text-sm text-muted-foreground">
-                      {item.payload.text || item.payload.symptoms}
-                    </p>
-                    <Button
-                      variant="ghost"
-                      className="mt-2"
-                      onClick={() =>
-                        setSection(
-                          item.kind === "order"
-                            ? "orders"
-                            : item.kind === "guidance"
-                              ? "guidance"
-                              : item.kind === "return"
-                                ? "agenda"
-                                : "consultation",
-                        )
-                      }
-                    >
-                      Abrir detalhes
-                    </Button>
-                  </article>
-                ))
-              ) : (
-                <EmptyState
-                  title="Nenhuma atualização disponível"
-                  text="Pedidos, orientações e envios aparecerão quando registrados no prontuário."
-                />
-              )}
-            </section>
-          )}
-          {["preparation", "favorites"].includes(section) && (
-            <EmptyState
-              title="Este recurso ainda não está conectado à sua conta"
-              text="O vínculo ao prontuário está disponível. Nesta etapa, consultas de laboratório e instruções de preparo precisam ser confirmadas com o médico e a unidade escolhida."
+            <RealConsultation
+              onGuidance={() => setSection("guidance")}
+              key={profile.id + String(orderId)}
+              patientId={profile.id}
+              kind="preparation"
+              patient
+              orderId={orderId}
             />
           )}
-          <PatientAccessibility />
+          {section === "orders" && (
+            <AccountPatientOrders
+              patientId={profile.id}
+              userId={account.data.userId}
+              email={profile.email}
+              doctorName={profile.doctorName}
+              entries={items}
+              onPrepare={prepare}
+              onOpen={open}
+              refresh={entries.refetch}
+            />
+          )}
+          {section === "alerts" && (
+            <AccountNotifications
+              patient
+              panel
+              userId={account.data.userId}
+              onOpenNotification={(id, event) => {
+                if (linkedRecords.some((p) => p.id === id)) setSelected(id);
+                open(
+                  event?.includes("agenda") || event?.includes("return")
+                    ? "agenda"
+                    : event?.includes("order")
+                      ? "orders"
+                      : event?.includes("guidance")
+                        ? "guidance"
+                        : event?.includes("genetic")
+                          ? "genetics"
+                          : event?.includes("report")
+                            ? "results"
+                            : "timeline",
+                );
+              }}
+            />
+          )}
+          {(["next", "guidance", "preparation", "timeline"] as const).map(
+            (mode) =>
+              section === mode && (
+                <AccountPatientCare
+                  key={mode}
+                  mode={mode}
+                  patientId={profile.id}
+                  doctorName={profile.doctorName}
+                  entries={items}
+                  results={results}
+                  localDocuments={local.data?.documents ?? []}
+                  saved={local.data?.saved ?? false}
+                  onOpen={open}
+                  refresh={async () => {
+                    await Promise.all([entries.refetch(), overview.refetch(), local.refetch()]);
+                  }}
+                />
+              ),
+          )}
         </div>
       )}
       <footer className="border-t pt-5 text-xs text-muted-foreground">
-        Seus dados são carregados do prontuário vinculado à sua conta.{" "}
-        <Link to="/minha-conta" className="text-brand-deep underline">
+        Seu espaço de cuidado · {profile?.doctorName ?? "INOVA"}. Dados do prontuário vinculado à
+        sua conta.{" "}
+        <Link
+          to="/minha-conta"
+          search={{ workspace: "account" }}
+          className="text-brand-deep underline"
+        >
           Dados da conta
         </Link>
       </footer>

@@ -172,12 +172,12 @@ export const openMedicalReport = createServerFn({ method: "POST" })
 const analyzing = new Set<string>();
 let attempts: number[] = [];
 export const analyzeMedicalReport = createServerFn({ method: "POST" })
-  .validator(documentInput.extend({ consent: z.literal(true) }))
+  .validator(documentInput.extend({ consent: z.literal(true), regenerate: z.boolean().optional() }))
   .handler(async ({ data }) => {
     mutation();
     const { config, account, report } = await document(data.patientId, data.id);
     if (report.reviewed_at) throw new Error("Este laudo já foi revisado.");
-    if (report.summary) return report;
+    if (report.summary && !data.regenerate) return report;
     attempts = attempts.filter((t) => Date.now() - t < 60000);
     if (analyzing.size >= 2 || analyzing.has(report.id) || attempts.length >= 10)
       throw new Error("Aguarde as análises em andamento antes de tentar novamente.");

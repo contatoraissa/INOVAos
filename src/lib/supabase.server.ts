@@ -31,10 +31,11 @@ export async function databaseRequest(
   path: string,
   body?: unknown,
   fetcher: typeof fetch = fetch,
+  method?: "PATCH",
 ) {
   try {
     const response = await fetcher(`${config.url}/rest/v1/${path}`, {
-      method: body === undefined ? "GET" : "POST",
+      method: method ?? (body === undefined ? "GET" : "POST"),
       headers: {
         apikey: config.key,
         ...(config.key.startsWith("sb_secret_") ? {} : { Authorization: `Bearer ${config.key}` }),
@@ -56,7 +57,7 @@ export async function databaseRequest(
         "Não foi possível acessar o banco Supabase. Confira configuração, conexão e migrações. Nenhum dado foi salvo apenas na memória como alternativa.",
       );
     }
-    return await response.json();
+    return response.status === 204 ? null : await response.json();
   } catch (cause) {
     if (
       cause instanceof Error &&

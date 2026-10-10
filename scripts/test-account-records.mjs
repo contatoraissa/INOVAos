@@ -7,7 +7,7 @@ test("login and email confirmation open the correct real portal without bypassin
   assert.equal(accountLanding({ role: "patient" }), "/portal-paciente?workspace=account");
   assert.equal(
     accountLanding({ role: "doctor", medicalAccess: true }),
-    "/patients?workspace=account",
+    "/dashboard?workspace=account",
   );
   assert.equal(accountLanding({ role: "doctor", medicalAccess: false }), "/minha-conta");
   assert.equal(accountLanding({ role: "doctor" }), "/minha-conta");
