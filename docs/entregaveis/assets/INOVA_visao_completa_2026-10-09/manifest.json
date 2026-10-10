@@ -1,0 +1,375 @@
+{
+  "date": "2026-10-09",
+  "version": "1e5cbbf",
+  "viewport": {
+    "width": 1440,
+    "height": 900
+  },
+  "source": "Demonstração local; dados fictícios",
+  "screens": [
+    {
+      "name": "home",
+      "label": "Página inicial",
+      "url": "/",
+      "cropped": false,
+      "scroll": 0
+    },
+    {
+      "name": "access-doctor",
+      "label": "Acesso médico",
+      "url": "/acesso",
+      "cropped": false,
+      "scroll": 0
+    },
+    {
+      "name": "access-patient",
+      "label": "Acesso paciente",
+      "url": "/acesso-paciente",
+      "cropped": false,
+      "scroll": 0
+    },
+    {
+      "name": "doctor-home",
+      "label": "Visão geral médica",
+      "url": "/dashboard",
+      "cropped": false,
+      "scroll": 0
+    },
+    {
+      "name": "doctor-patients",
+      "label": "Pacientes",
+      "url": "/patients",
+      "cropped": true,
+      "scroll": 0
+    },
+    {
+      "name": "doctor-new",
+      "label": "Novo paciente",
+      "url": "/patients/new",
+      "cropped": true,
+      "scroll": 0
+    },
+    {
+      "name": "doctor-results",
+      "label": "Novos resultados",
+      "url": "/results",
+      "cropped": true,
+      "scroll": 0
+    },
+    {
+      "name": "doctor-history",
+      "label": "Histórico de exames",
+      "url": "/history",
+      "cropped": true,
+      "scroll": 0
+    },
+    {
+      "name": "doctor-comparison",
+      "label": "Comparação",
+      "url": "/comparison",
+      "cropped": true,
+      "scroll": 0
+    },
+    {
+      "name": "doctor-profile",
+      "label": "Meu perfil médico",
+      "url": "/doctors",
+      "cropped": true,
+      "scroll": 0
+    },
+    {
+      "name": "doctor-followup",
+      "label": "Acompanhamento",
+      "url": "/follow-up",
+      "cropped": true,
+      "scroll": 0
+    },
+    {
+      "name": "doctor-reports",
+      "label": "Meus relatórios",
+      "url": "/indicators",
+      "cropped": true,
+      "scroll": 0
+    },
+    {
+      "name": "doctor-settings",
+      "label": "Configurações",
+      "url": "/settings",
+      "cropped": true,
+      "scroll": 0
+    },
+    {
+      "name": "doctor-agenda",
+      "label": "Agenda médica",
+      "url": "/agenda",
+      "cropped": true,
+      "scroll": 450
+    },
+    {
+      "name": "doctor-patient-header",
+      "label": "Prontuário e navegação",
+      "url": "/patients/mariana-oliveira",
+      "cropped": true,
+      "scroll": 0
+    },
+    {
+      "name": "doctor-summary",
+      "label": "Resumo da consulta",
+      "url": "/patients/mariana-oliveira",
+      "cropped": true,
+      "scroll": 380
+    },
+    {
+      "name": "doctor-inbox",
+      "label": "Envios do paciente",
+      "url": "/patients/mariana-oliveira",
+      "cropped": true,
+      "scroll": 380
+    },
+    {
+      "name": "doctor-orders",
+      "label": "Solicitar exames",
+      "url": "/patients/mariana-oliveira",
+      "cropped": true,
+      "scroll": 380
+    },
+    {
+      "name": "doctor-guidance",
+      "label": "Orientações ao paciente",
+      "url": "/patients/mariana-oliveira",
+      "cropped": true,
+      "scroll": 380
+    },
+    {
+      "name": "doctor-overview",
+      "label": "Visão geral",
+      "url": "/patients/mariana-oliveira",
+      "cropped": true,
+      "scroll": 380
+    },
+    {
+      "name": "doctor-patient-results",
+      "label": "Resultados",
+      "url": "/patients/mariana-oliveira",
+      "cropped": true,
+      "scroll": 380
+    },
+    {
+      "name": "doctor-patient-history",
+      "label": "Histórico",
+      "url": "/patients/mariana-oliveira",
+      "cropped": true,
+      "scroll": 380
+    },
+    {
+      "name": "doctor-patient-comparison",
+      "label": "Comparação",
+      "url": "/patients/mariana-oliveira",
+      "cropped": true,
+      "scroll": 380
+    },
+    {
+      "name": "doctor-family",
+      "label": "Histórico familiar",
+      "url": "/patients/mariana-oliveira",
+      "cropped": true,
+      "scroll": 380
+    },
+    {
+      "name": "doctor-lab",
+      "label": "Laudos laboratoriais",
+      "url": "/patients/mariana-oliveira",
+      "cropped": true,
+      "scroll": 380
+    },
+    {
+      "name": "doctor-genetics",
+      "label": "Genética",
+      "url": "/patients/mariana-oliveira",
+      "cropped": true,
+      "scroll": 380
+    },
+    {
+      "name": "doctor-genomics",
+      "label": "Genômica",
+      "url": "/patients/mariana-oliveira",
+      "cropped": true,
+      "scroll": 380
+    },
+    {
+      "name": "doctor-documents",
+      "label": "Documentos",
+      "url": "/patients/mariana-oliveira",
+      "cropped": true,
+      "scroll": 380
+    },
+    {
+      "name": "doctor-lab-preview",
+      "label": "Laudo PDF original e análise assistida",
+      "url": "/patients/mariana-oliveira",
+      "cropped": true,
+      "scroll": 410
+    },
+    {
+      "name": "patient-home",
+      "label": "Minha saúde",
+      "url": "/portal-paciente",
+      "cropped": false,
+      "scroll": 0
+    },
+    {
+      "name": "patient-agenda",
+      "label": "Minha agenda",
+      "url": "/portal-paciente",
+      "cropped": true,
+      "scroll": 380
+    },
+    {
+      "name": "patient-next",
+      "label": "Próximos passos",
+      "url": "/portal-paciente",
+      "cropped": true,
+      "scroll": 0
+    },
+    {
+      "name": "patient-alerts",
+      "label": "Avisos",
+      "url": "/portal-paciente",
+      "cropped": true,
+      "scroll": 0
+    },
+    {
+      "name": "patient-preparation",
+      "label": "Preparar consulta",
+      "url": "/portal-paciente",
+      "cropped": true,
+      "scroll": 190
+    },
+    {
+      "name": "patient-guidance",
+      "label": "Orientações do médico",
+      "url": "/portal-paciente",
+      "cropped": true,
+      "scroll": 0
+    },
+    {
+      "name": "patient-results",
+      "label": "Meus resultados",
+      "url": "/portal-paciente",
+      "cropped": true,
+      "scroll": 0
+    },
+    {
+      "name": "patient-orders",
+      "label": "Exames solicitados",
+      "url": "/portal-paciente",
+      "cropped": true,
+      "scroll": 0
+    },
+    {
+      "name": "patient-s2",
+      "label": "Cotação e comparação de laboratórios simuladas",
+      "url": "/portal-paciente",
+      "cropped": false,
+      "scroll": 0
+    },
+    {
+      "name": "patient-evolution",
+      "label": "Minha evolução",
+      "url": "/portal-paciente",
+      "cropped": true,
+      "scroll": 650
+    },
+    {
+      "name": "patient-exam-preparation",
+      "label": "Preparo dos exames",
+      "url": "/portal-paciente",
+      "cropped": true,
+      "scroll": 0
+    },
+    {
+      "name": "patient-favorites",
+      "label": "Laboratórios favoritos",
+      "url": "/portal-paciente",
+      "cropped": true,
+      "scroll": 0
+    },
+    {
+      "name": "patient-documents",
+      "label": "Meus documentos",
+      "url": "/portal-paciente",
+      "cropped": true,
+      "scroll": 0
+    },
+    {
+      "name": "patient-genetics",
+      "label": "Minha genética",
+      "url": "/portal-paciente",
+      "cropped": true,
+      "scroll": 0
+    },
+    {
+      "name": "patient-timeline",
+      "label": "Linha do tempo",
+      "url": "/portal-paciente",
+      "cropped": true,
+      "scroll": 0
+    },
+    {
+      "name": "patient-profile",
+      "label": "Meu perfil",
+      "url": "/portal-paciente",
+      "cropped": true,
+      "scroll": 0
+    },
+    {
+      "name": "admin-home",
+      "label": "Visão geral",
+      "url": "/admin-inova",
+      "cropped": false,
+      "scroll": 290
+    },
+    {
+      "name": "admin-users",
+      "label": "Usuários",
+      "url": "/admin-inova",
+      "cropped": true,
+      "scroll": 0
+    },
+    {
+      "name": "admin-activity",
+      "label": "Atividade",
+      "url": "/admin-inova",
+      "cropped": true,
+      "scroll": 0
+    },
+    {
+      "name": "admin-subscriptions",
+      "label": "Assinaturas",
+      "url": "/admin-inova",
+      "cropped": true,
+      "scroll": 0
+    },
+    {
+      "name": "admin-contacts",
+      "label": "Contatos e reativação",
+      "url": "/admin-inova",
+      "cropped": true,
+      "scroll": 0
+    },
+    {
+      "name": "admin-feedback",
+      "label": "Feedbacks",
+      "url": "/admin-inova",
+      "cropped": true,
+      "scroll": 0
+    },
+    {
+      "name": "admin-ai",
+      "label": "Resumo com IA",
+      "url": "/admin-inova",
+      "cropped": true,
+      "scroll": 0
+    }
+  ]
+}

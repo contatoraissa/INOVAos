@@ -14,7 +14,7 @@ import { createSessionId } from "@/lib/session-id";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
+import { PatientRegistrationFields } from "./PatientRegistrationFields";
 import {
   Select,
   SelectContent,
@@ -68,36 +68,7 @@ export function NewPatientPage() {
       description="Cadastre um paciente fictício para explorar a plataforma. Dados mantidos apenas nesta sessão."
     >
       <form onSubmit={submit} className="max-w-4xl border border-border bg-card">
-        <div className="grid gap-5 p-6 md:grid-cols-2">
-          <Field label="Nome completo" required />
-          <Field label="CPF" placeholder="000.000.000-00" required />
-          <Field label="RG" />
-          <Field label="Data de nascimento" type="date" required />
-          <div>
-            <label className="label">Sexo</label>
-            <Select name="sex">
-              <SelectTrigger>
-                <SelectValue placeholder="Selecione" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="f">Feminino</SelectItem>
-                <SelectItem value="m">Masculino</SelectItem>
-                <SelectItem value="o">Outro</SelectItem>
-              </SelectContent>
-            </Select>
-          </div>
-          <Field label="Telefone" />
-          <Field label="E-mail" type="email" />
-          <Field label="Endereço" />
-          <div className="md:col-span-2">
-            <label className="label">Observações</label>
-            <Textarea
-              name="notes"
-              className="min-h-24"
-              placeholder="Informações adicionais relevantes para o cadastro"
-            />
-          </div>
-        </div>
+        <PatientRegistrationFields />
         <div className="flex justify-end gap-3 border-t border-border bg-muted/40 px-6 py-4">
           <Button variant="outline" asChild>
             <Link to="/patients">Cancelar</Link>

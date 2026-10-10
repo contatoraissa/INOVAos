@@ -1,4 +1,5 @@
 import { signInAccount } from "@/lib/account-session";
+import { accountLanding } from "@/lib/account-landing";
 import { AccountRegistration } from "./AccountRegistration";
 import { Link, useNavigate } from "@tanstack/react-router";
 import { useState } from "react";
@@ -16,10 +17,10 @@ export function PatientLoginPage() {
     event.preventDefault();
     const values = new FormData(event.currentTarget);
     try {
-      await signInAccount({
+      const account = await signInAccount({
         data: { email: String(values.get("email")), password: String(values.get("password")) },
       });
-      window.location.assign("/minha-conta");
+      window.location.assign(accountLanding(account));
     } catch (cause) {
       setError(cause instanceof Error ? cause.message : "Não foi possível entrar.");
     }

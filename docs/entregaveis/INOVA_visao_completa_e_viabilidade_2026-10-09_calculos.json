@@ -1,0 +1,150 @@
+{
+  "ticket": 199,
+  "fixed": 25000,
+  "variable": 25,
+  "rate": 0.12,
+  "contribution": 150.12,
+  "breakEven": 167,
+  "setup": 40000,
+  "scenarios": [
+    {
+      "name": "Inicial",
+      "doctors": 100,
+      "fixedCosts": 25000,
+      "revenue": 19900,
+      "deductions": 1592,
+      "payment": 796,
+      "usage": 2500,
+      "contribution": 15012,
+      "ebitda": -9988,
+      "margin": -0.5019095477386935
+    },
+    {
+      "name": "Equilíbrio e expansão",
+      "doctors": 250,
+      "fixedCosts": 25000,
+      "revenue": 49750,
+      "deductions": 3980,
+      "payment": 1990,
+      "usage": 6250,
+      "contribution": 37530,
+      "ebitda": 12530,
+      "margin": 0.25185929648241207
+    },
+    {
+      "name": "Escala com reforço de equipe",
+      "doctors": 500,
+      "fixedCosts": 35000,
+      "revenue": 99500,
+      "deductions": 7960,
+      "payment": 3980,
+      "usage": 12500,
+      "contribution": 75060,
+      "ebitda": 40060,
+      "margin": 0.40261306532663316
+    }
+  ],
+  "ramp": [
+    {
+      "month": 1,
+      "doctors": 10,
+      "revenue": 1990,
+      "ebitda": -23498.8,
+      "cumulativeBeforeFunding": -63498.8,
+      "cashAfterFunding": 161501.2
+    },
+    {
+      "month": 2,
+      "doctors": 15,
+      "revenue": 2985,
+      "ebitda": -22748.2,
+      "cumulativeBeforeFunding": -86247,
+      "cashAfterFunding": 138753
+    },
+    {
+      "month": 3,
+      "doctors": 25,
+      "revenue": 4975,
+      "ebitda": -21247,
+      "cumulativeBeforeFunding": -107494,
+      "cashAfterFunding": 117506
+    },
+    {
+      "month": 4,
+      "doctors": 35,
+      "revenue": 6965,
+      "ebitda": -19745.8,
+      "cumulativeBeforeFunding": -127239.8,
+      "cashAfterFunding": 97760.2
+    },
+    {
+      "month": 5,
+      "doctors": 50,
+      "revenue": 9950,
+      "ebitda": -17494,
+      "cumulativeBeforeFunding": -144733.8,
+      "cashAfterFunding": 80266.20000000001
+    },
+    {
+      "month": 6,
+      "doctors": 70,
+      "revenue": 13930,
+      "ebitda": -14491.6,
+      "cumulativeBeforeFunding": -159225.4,
+      "cashAfterFunding": 65774.6
+    },
+    {
+      "month": 7,
+      "doctors": 90,
+      "revenue": 17910,
+      "ebitda": -11489.199999999999,
+      "cumulativeBeforeFunding": -170714.6,
+      "cashAfterFunding": 54285.399999999994
+    },
+    {
+      "month": 8,
+      "doctors": 110,
+      "revenue": 21890,
+      "ebitda": -8486.8,
+      "cumulativeBeforeFunding": -179201.4,
+      "cashAfterFunding": 45798.600000000006
+    },
+    {
+      "month": 9,
+      "doctors": 135,
+      "revenue": 26865,
+      "ebitda": -4733.799999999999,
+      "cumulativeBeforeFunding": -183935.19999999998,
+      "cashAfterFunding": 41064.80000000002
+    },
+    {
+      "month": 10,
+      "doctors": 160,
+      "revenue": 31840,
+      "ebitda": -980.7999999999993,
+      "cumulativeBeforeFunding": -184915.99999999997,
+      "cashAfterFunding": 40084.00000000003
+    },
+    {
+      "month": 11,
+      "doctors": 190,
+      "revenue": 37810,
+      "ebitda": 3522.7999999999993,
+      "cumulativeBeforeFunding": -181393.19999999998,
+      "cashAfterFunding": 43606.80000000002
+    },
+    {
+      "month": 12,
+      "doctors": 220,
+      "revenue": 43780,
+      "ebitda": 8026.4000000000015,
+      "cumulativeBeforeFunding": -173366.8,
+      "cashAfterFunding": 51633.20000000001
+    }
+  ],
+  "yearRevenue": 220890,
+  "yearEbitda": -133366.8,
+  "peakNeed": 184915.99999999997,
+  "requiredWithReserve": 221899.19999999995,
+  "illustrativeFunding": 225000
+}

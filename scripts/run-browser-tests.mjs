@@ -35,6 +35,8 @@ const before = new Map(files(store).map((path) => [path, readFileSync(path)]));
 const cases = [
   ["smoke-access"],
   ["smoke-workspace"],
+  ["smoke-patient-identity"],
+  ["smoke-account-enrollment"],
   ["smoke-patient", "--audio"],
   ["smoke-orders"],
   ["smoke-care"],

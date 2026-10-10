@@ -24,13 +24,19 @@ export const createMedicalPatient = createServerFn({ method: "POST" })
     if (request.headers.get("origin") !== new URL(request.url).origin)
       throw new Error("Solicitação não autorizada.");
     const account = await owner();
-    return databaseRequest(databaseConfig()!, "rpc/inova_create_medical_patient", {
+    return databaseRequest(databaseConfig()!, "rpc/inova_register_patient_identity", {
       p_doctor: account.userId,
       p_name: data.name,
       p_cpf: data.cpf,
       p_birth: data.birth,
       p_notes: data.notes,
-    });
+      p_email: data.email,
+      p_phone: data.phone,
+      p_rg: data.rg,
+      p_sex: data.sex,
+      p_address: data.address,
+      p_identity_confirmed: data.identityConfirmed,
+    }) as Promise<{ id: string; reused: boolean; linked: boolean }>;
   });
 export const getMedicalPatient = createServerFn({ method: "GET" })
   .validator(z.object({ id: z.string().uuid() }))
@@ -38,8 +44,19 @@ export const getMedicalPatient = createServerFn({ method: "GET" })
     const account = await owner();
     const rows = (await databaseRequest(
       databaseConfig()!,
-      `inova_medical_patients?id=eq.${data.id}&doctor_id=eq.${account.userId}&select=id,name,cpf,birth,notes&limit=1`,
-    )) as { id: string; name: string; cpf: string; birth: string; notes: string }[];
+      `inova_medical_patients?id=eq.${data.id}&doctor_id=eq.${account.userId}&select=id,name,cpf,birth,notes,email,phone,rg,sex,address&limit=1`,
+    )) as {
+      id: string;
+      name: string;
+      cpf: string;
+      birth: string;
+      notes: string;
+      email: string;
+      phone: string;
+      rg: string;
+      sex: string;
+      address: string;
+    }[];
     if (!rows[0]) throw new Error("Paciente não encontrado na sua conta.");
     return rows[0];
   });

@@ -1,4 +1,5 @@
 import { signInAccount, recoverAccount } from "@/lib/account-session";
+import { accountLanding } from "@/lib/account-landing";
 import { AccountRegistration } from "./AccountRegistration";
 import { Link } from "@tanstack/react-router";
 import { Eye, EyeOff, LockKeyhole, ShieldCheck } from "lucide-react";
@@ -19,10 +20,10 @@ export function LoginPage() {
     setError("");
     const values = new FormData(e.currentTarget);
     try {
-      await signInAccount({
+      const account = await signInAccount({
         data: { email: String(values.get("email")), password: String(values.get("password")) },
       });
-      window.location.assign("/minha-conta");
+      window.location.assign(accountLanding(account));
     } catch (cause) {
       setError(cause instanceof Error ? cause.message : "Não foi possível entrar.");
       setLoading(false);

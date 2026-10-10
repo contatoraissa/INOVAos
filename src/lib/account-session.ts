@@ -40,7 +40,14 @@ async function establish(token: string) {
     path: "/",
     maxAge: 3600,
   });
-  return { role: records[0].account_type };
+  return {
+    role: records[0].account_type,
+    medicalAccess: canAccessMedicalPreview(
+      user.email,
+      records[0].account_type,
+      process.env["INOVA_MEDICAL_PREVIEW_EMAIL"],
+    ),
+  };
 }
 const attempts = new Map<string, { count: number; expires: number }>();
 export const signInAccount = createServerFn({ method: "POST" })

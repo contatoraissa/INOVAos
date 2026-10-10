@@ -19,5 +19,12 @@ export const Route = createFileRoute("/patients/$patientId")({
 });
 function PatientRoute() {
   const { patientId } = Route.useParams();
+  const { workspace } = Route.useSearch();
+  if (workspace === "account")
+    return (
+      <AppShell>
+        <PatientDetailPage patientId={patientId} />
+      </AppShell>
+    );
   return <PatientDetailPage patientId={patientId} />;
 }

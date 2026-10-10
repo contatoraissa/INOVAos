@@ -186,3 +186,48 @@ foi preservado. Contas e prontuários reais do Supabase não foram alterados.
 O comando `npm.cmd run test:browser` executa a bateria local. Consulte
 [testes-funcionais-2026-10-09.md](testes-funcionais-2026-10-09.md) para evidências,
 pré-requisitos, comandos de repetição e limites do que foi verificado.
+
+## Apresentação completa para investidores — 09/10/2026
+
+Entregue em PDF: `docs/entregaveis/INOVA_visao_completa_e_viabilidade_2026-10-09.pdf`.
+Inclui 49 páginas, 52 capturas da demonstração, explicações dos acessos e dos
+portais médico, paciente e administrativo, gráficos e modelo financeiro.
+Nenhuma interface ou rota foi alterada para produzir o material.
+
+R$ 149 e R$ 249 foram autorizados pelo usuário como exemplos de mensalidade,
+com explicação de sua escolha. Continuam hipóteses, não preços oficiais. O
+modelo usa ticket de R$ 199 por mix arbitrado 50/50, custo fixo proposto de
+R$ 25 mil/mês e custos variáveis/deduções explícitos. Cenários, EBITDA, projeção
+de 12 meses e capital ilustrativo são estimativas, não receita ou tração real.
+As premissas e os cálculos ficam nos arquivos `_premissas.json` e `_calculos.json`
+ao lado do PDF. Tarifas de fornecedores têm fontes oficiais e data de consulta.
+Não reutilizar as projeções como metas aprovadas ou orçamento contratado.
+
+
+## 10/10/2026: identidade e cadastro de pacientes
+
+- Cadastro real e conta do paciente podem ser vinculados preservando o prontuario existente, em ambas as ordens de cadastro. CPF, nascimento, e-mail confirmado e autorizacao medica precisam coincidir.
+- Minha conta apresenta cadastros vinculados; o medico autorizado pode cadastrar ou reutilizar pacientes. Campos visuais compartilhados com a demonstracao, que continua separada.
+- SQL aditivo preparado em supabase/INOVA_VINCULO_PACIENTE_SQL_EDITOR.sql; validado em PostgreSQL local, ainda nao instalado remotamente por falta de credencial de administracao SQL.
+- Detalhes, limites e ativacao em docs/vinculo-cadastro-paciente.md. A primeira etapa tratou de identidade/vinculo; a integracao das telas esta descrita abaixo.
+
+### Integração das telas de cadastro e prontuário — 10/10/2026
+
+O login médico autorizado abre a carteira real nas rotas existentes com
+`?workspace=account`. Novo paciente exige e-mail e conferência de identidade;
+um CPF já cadastrado reutiliza o prontuário original. O login e a confirmação
+de e-mail do paciente abrem seu portal vinculado, com dados cadastrais, contatos,
+resultados liberados, laudos revisados e orientações publicadas. Observações
+privadas permanecem restritas ao médico.
+
+A demonstração de Rafael, Mariana e administração continua nos mesmos acessos,
+com seus layouts e recursos preservados. Esta etapa conecta cadastro e
+prontuário, não todas as funcionalidades de demonstração a contas reais.
+Agenda anual, cotação e genética TXT ainda precisam de integração própria.
+
+Validação: 86 testes de contrato/regras, TypeScript, build e lint dos arquivos
+alterados. Foram verificados 21 fluxos de navegador; o acesso passou após
+corrigir a espera de hidratação no teste. O novo fluxo de login/cadastro/herança
+foi exercitado com respostas controladas; o SQL foi testado em PostgreSQL local.
+O SQL `supabase/INOVA_VINCULO_PACIENTE_SQL_EDITOR.sql` ainda precisa ser aplicado
+ao Supabase remoto. Não afirmar que a migração ou o ciclo remoto já foi validado.

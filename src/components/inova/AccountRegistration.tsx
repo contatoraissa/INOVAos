@@ -62,7 +62,7 @@ export function AccountRegistration({
         <p className="mt-2 text-xs text-muted-foreground">
           {role === "doctor"
             ? "Cadastro sem cobrança. Assinatura ativada após contratação."
-            : "Crie sua conta com seus dados. A demonstração utiliza um perfil fictício separado."}
+            : "Se seu médico já cadastrou você, use o mesmo CPF, nascimento e e-mail informado a ele. Após confirmar o e-mail, sua conta será vinculada ao prontuário autorizado pelo médico. A demonstração continua separada."}
         </p>
         <Button
           type="button"

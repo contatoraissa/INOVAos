@@ -4,11 +4,17 @@ import { Link } from "@tanstack/react-router";
 import { Bell } from "lucide-react";
 import { listAccountNotifications, readAccountNotifications } from "@/lib/real-complements";
 import { Button } from "@/components/ui/button";
-export function AccountNotifications({ patient = false }: { patient?: boolean }) {
+export function AccountNotifications({
+  patient = false,
+  userId,
+}: {
+  patient?: boolean;
+  userId?: string;
+}) {
   const [open, setOpen] = useState(false),
     [error, setError] = useState("");
   const query = useQuery({
-    queryKey: ["account-notifications"],
+    queryKey: ["account-notifications", userId],
     queryFn: () => listAccountNotifications(),
     refetchInterval: 30000,
   });
@@ -48,13 +54,18 @@ export function AccountNotifications({ patient = false }: { patient?: boolean })
                     {new Date(item.created_at).toLocaleString("pt-BR")}
                   </p>
                   {patient ? (
-                    <Link to="/portal-paciente" className="text-xs text-brand-deep">
+                    <Link
+                      to="/portal-paciente"
+                      search={{ workspace: "account" }}
+                      className="text-xs text-brand-deep"
+                    >
                       Abrir meu espaço
                     </Link>
                   ) : (
                     <Link
                       to="/patients/$patientId"
                       params={{ patientId: item.patient_id }}
+                      search={{ workspace: "account" }}
                       className="text-xs text-brand-deep"
                     >
                       Abrir prontuário

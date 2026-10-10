@@ -24,6 +24,9 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Logo } from "./Logo";
 import { DoctorNotificationBell } from "./DoctorNotificationBell";
+import { AccountNotifications } from "./AccountNotifications";
+import { AccountDoctorWorkspace } from "./AccountDoctorWorkspace";
+import type { Patient } from "@/data/demo";
 import { signOutAccount } from "@/lib/account-session";
 
 import { cn } from "@/lib/utils";
@@ -61,10 +64,33 @@ const groups = [
 ] as const;
 
 export function AppShell({ children }: { children: ReactNode }) {
+  const real = useRouterState({ select: (s) => s.location.search.workspace === "account" });
+  if (real) return <AccountDoctorWorkspace />;
   return <DemoAppShell>{children}</DemoAppShell>;
 }
-export function DemoAppShell({ children }: { children: ReactNode }) {
-  const { patients } = usePatientDirectory();
+export function DemoAppShell({
+  children,
+  account,
+}: {
+  children: ReactNode;
+  account?: { userId: string; name: string; patients: Patient[] };
+}) {
+  const directory = usePatientDirectory();
+  const patients = account?.patients ?? directory.patients;
+  const scopedGroups = account
+    ? [
+        {
+          label: "Atendimento",
+          links: groups[0].links.filter(
+            (item) => item.to === "/patients" || item.to === "/patients/new",
+          ),
+        },
+        {
+          label: "Minha conta",
+          links: [{ to: "/minha-conta" as const, text: "Dados da conta", icon: Settings }],
+        },
+      ]
+    : groups;
   const [query, setQuery] = useState("");
   const [collapsed, setCollapsed] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -87,7 +113,8 @@ export function DemoAppShell({ children }: { children: ReactNode }) {
       >
         <div className="flex h-20 items-center justify-between border-b border-sidebar-border px-5">
           <Link
-            to="/dashboard"
+            to={account ? "/patients" : "/dashboard"}
+            search={account ? { workspace: "account" } : {}}
             aria-label="INOVA · voltar ao início do médico"
             onClick={() => setMobileOpen(false)}
             className="rounded-md focus-visible:outline-2 focus-visible:outline-brand"
@@ -104,7 +131,7 @@ export function DemoAppShell({ children }: { children: ReactNode }) {
           </Button>
         </div>
         <nav className="flex-1 overflow-y-auto px-3 py-5">
-          {groups.map((group) => (
+          {scopedGroups.map((group) => (
             <div key={group.label} className="mb-5">
               <p
                 className={cn(
@@ -126,6 +153,7 @@ export function DemoAppShell({ children }: { children: ReactNode }) {
                     <Link
                       key={item.to}
                       to={item.to}
+                      search={account ? { workspace: "account" } : {}}
                       title={collapsed ? item.text : undefined}
                       onClick={() => setMobileOpen(false)}
                       className={cn(
@@ -159,9 +187,11 @@ export function DemoAppShell({ children }: { children: ReactNode }) {
           </Button>
           {!collapsed && (
             <div className="mb-3 rounded-md bg-sidebar-accent/60 p-3">
-              <p className="text-sm font-medium">Dr. Rafael Mendes</p>
+              <p className="text-sm font-medium">{account?.name ?? "Dr. Rafael Mendes"}</p>
               <p className="mt-1 text-[11px] text-sidebar-muted">
-                Perfil demonstrativo · dados fictícios
+                {account
+                  ? "Conta médica · prontuários vinculados"
+                  : "Perfil demonstrativo · dados fictícios"}
               </p>
             </div>
           )}
@@ -210,6 +240,7 @@ export function DemoAppShell({ children }: { children: ReactNode }) {
                       key={p.id}
                       to="/patients/$patientId"
                       params={{ patientId: p.id }}
+                      search={account ? { workspace: "account" } : {}}
                       onClick={() => setQuery("")}
                       className="block rounded-lg px-3 py-3 hover:bg-brand-soft"
                     >
@@ -226,9 +257,13 @@ export function DemoAppShell({ children }: { children: ReactNode }) {
             )}
           </div>
           <div className="ml-auto flex items-center gap-3">
-            <DoctorNotificationBell />
+            {account ? (
+              <AccountNotifications userId={account.userId} />
+            ) : (
+              <DoctorNotificationBell />
+            )}
             <div className="hidden border-l border-border pl-4 sm:block">
-              <p className="text-xs font-semibold">Dr. Rafael Mendes</p>
+              <p className="text-xs font-semibold">{account?.name ?? "Dr. Rafael Mendes"}</p>
               <p className="text-[11px] text-muted-foreground">Médico</p>
             </div>
           </div>
@@ -236,7 +271,9 @@ export function DemoAppShell({ children }: { children: ReactNode }) {
         <main className="mx-auto max-w-[1440px] p-5 md:p-8 lg:px-10">
           <div className="mb-5 flex items-center gap-2 text-[11px] text-muted-foreground">
             <span className="size-1.5 rounded-full bg-brand" />
-            Ambiente demonstrativo · dados fictícios
+            {account
+              ? "Sua conta médica · dados do seu prontuário"
+              : "Ambiente demonstrativo · dados fictícios"}
           </div>
           {children}
         </main>

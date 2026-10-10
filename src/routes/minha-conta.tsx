@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { getAccountSession, signOutAccount } from "@/lib/account-session";
 import { Logo } from "@/components/inova/Logo";
 import { Button } from "@/components/ui/button";
+import { PatientAccountLinking } from "@/components/inova/PatientAccountLinking";
 export const Route = createFileRoute("/minha-conta")({
   loader: () => getAccountSession(),
   component: Account,
@@ -32,6 +33,9 @@ function Account() {
                 conectados; a demonstração utiliza dados fictícios.
               </p>
             </div>
+            {(account.canPreview || account.account_type === "patient") && (
+              <PatientAccountLinking doctor={account.account_type === "doctor"} />
+            )}
             {account.canPreview && (
               <div className="mt-5 rounded-xl border border-brand/20 p-5">
                 <h2 className="font-semibold">Seu acesso de avaliação está liberado</h2>
@@ -41,13 +45,17 @@ function Account() {
                   cobrança nem verifica seu CRM.
                 </p>
                 <Button asChild className="mt-4">
-                  <Link to="/dashboard">Entrar no espaço médico</Link>
+                  <Link to="/patients" search={{ workspace: "account" }}>
+                    Entrar no espaço médico
+                  </Link>
                 </Button>
               </div>
             )}
             {account.account_type === "patient" && (
               <Button asChild className="mt-5">
-                <Link to="/portal-paciente">Entrar no meu espaço de cuidado</Link>
+                <Link to="/portal-paciente" search={{ workspace: "account" }}>
+                  Entrar no meu espaço de cuidado
+                </Link>
               </Button>
             )}
             <Button

@@ -1,0 +1,73 @@
+{
+  "referenceDate": "2026-10-09",
+  "status": "Exercício gerencial hipotético; sem clientes, receitas ou custos realizados comprovados neste material.",
+  "pricesBRL": [149, 249],
+  "mix": [0.5, 0.5],
+  "operatingRevenueDeductionsRate": 0.08,
+  "paymentFeesRate": 0.04,
+  "variableCostPerDoctorBRL": 25,
+  "variableCostBreakdown": [
+    { "name": "Uso de IA", "value": 10 },
+    { "name": "Armazenamento e tráfego incremental", "value": 8 },
+    { "name": "Suporte operacional incremental", "value": 7 }
+  ],
+  "fixedMonthlyCosts": [
+    { "name": "Desenvolvimento e manutenção", "value": 10000 },
+    { "name": "Gestão e pró-labore", "value": 5000 },
+    { "name": "Suporte e implantação", "value": 3500 },
+    { "name": "Aquisição e relacionamento", "value": 3000 },
+    { "name": "Infraestrutura base e monitoramento", "value": 1200 },
+    { "name": "Ferramentas operacionais", "value": 500 },
+    { "name": "Contabilidade", "value": 800 },
+    { "name": "Privacidade e assessoria", "value": 1000 }
+  ],
+  "steadyScenarios": [
+    { "name": "Inicial", "doctors": 100, "fixedCosts": 25000 },
+    { "name": "Equilíbrio e expansão", "doctors": 250, "fixedCosts": 25000 },
+    { "name": "Escala com reforço de equipe", "doctors": 500, "fixedCosts": 35000 }
+  ],
+  "monthlyAveragePayingDoctors": [10, 15, 25, 35, 50, 70, 90, 110, 135, 160, 190, 220],
+  "setupInvestment": [
+    { "name": "Preparação técnica de produção", "value": 25000 },
+    { "name": "Verificação de segurança e privacidade", "value": 10000 },
+    { "name": "Materiais e implantação do piloto", "value": 5000 }
+  ],
+  "bufferRate": 0.2,
+  "illustrativeFundingBRL": 225000,
+  "planningExchangeRateBRLPerUSD": 5.5,
+  "illustrativeCACBRL": 400,
+  "sources": [
+    {
+      "title": "Supabase — Pricing",
+      "url": "https://supabase.com/pricing",
+      "consulted": "2026-10-09",
+      "reference": "Pro a partir de US$ 25/mês; uso e projetos adicionais podem gerar cobranças."
+    },
+    {
+      "title": "Vercel — Pricing",
+      "url": "https://vercel.com/pricing",
+      "consulted": "2026-10-09",
+      "reference": "Pro US$ 20/mês; assentos e consumo dependem da configuração."
+    },
+    {
+      "title": "Google — Gemini API Pricing",
+      "url": "https://ai.google.dev/gemini-api/docs/pricing",
+      "consulted": "2026-10-09",
+      "reference": "Gemini 2.5 Flash Standard: US$ 0,30/1M tokens de entrada texto/imagem/vídeo; US$ 2,50/1M tokens de saída, incluindo raciocínio."
+    }
+  ],
+  "notes": [
+    "Valores de equipe, aquisição, suporte, implantação e uso são premissas propostas, não contratos ou despesas atuais.",
+    "8% é uma reserva hipotética de deduções operacionais sobre receita; não é alíquota oficial nem recomendação de enquadramento tributário. IRPJ/CSLL sobre lucro não estão modelados.",
+    "4% é uma provisão hipotética para cobrança, não uma cotação de gateway.",
+    "R$ 199 é o ticket ponderado do mix 50/50; não é média de mercado nem preço oficial.",
+    "As bases mensais são entradas arbitradas para testar o caixa; não foram estimadas por funil, contratos ou dados de retenção. Representam médias pagantes no mês, já líquidas de eventuais cancelamentos.",
+    "EBITDA recorrente é uma aproximação gerencial: receita menos deduções e despesas operacionais recorrentes, antes de juros, tributos sobre lucro, depreciação e amortização. Implantação é segregada no caixa; sua classificação contábil precisa ser validada.",
+    "Caixa simplificado supõe recebimento e pagamento no mesmo mês. Exclui dívida, capital de giro adicional, inadimplência extraordinária e distribuição de lucros.",
+    "Aquisição de clientes e pró-labore já estão nos custos fixos. CAC ilustrativo é um diagnóstico separado, não uma segunda despesa deduzida do modelo.",
+    "A infraestrutura indicada é uma referência de fornecedores possíveis; não representa a fatura atual nem define hospedagem de produção.",
+    "A taxa cambial de R$ 5,50/US$ é premissa de planejamento, não cotação de mercado.",
+    "Nenhuma receita de laboratório, genética, publicidade ou comissão S2 foi incluída.",
+    "R$ 225 mil é um exemplo de dimensionamento de capital com reserva, não uma captação aprovada, valuation ou promessa de retorno."
+  ]
+}

@@ -67,11 +67,12 @@ export function RealConsultation({
   kind: ConsultationEntry["kind"];
   patient?: boolean;
 }) {
+  const account = useQuery({ queryKey: ["workspace-account"], queryFn: () => getAccountSession() });
   const query = useQuery({
-    queryKey: ["real-consultation", patientId],
+    queryKey: ["real-consultation", patientId, account.data?.userId],
     queryFn: () => listConsultationEntries({ data: { patientId } }),
+    enabled: Boolean(account.data),
   });
-  const account = useQuery({ queryKey: ["medical-account"], queryFn: () => getAccountSession() });
   const draftKey =
     patient && kind === "preparation" && account.data
       ? `real:${account.data.userId}:${patientId}:preparation`

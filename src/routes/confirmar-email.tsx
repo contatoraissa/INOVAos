@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { confirmAccountSession, updateAccountPassword } from "@/lib/account-session";
+import { accountLanding } from "@/lib/account-landing";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Logo } from "@/components/inova/Logo";
@@ -20,11 +21,11 @@ function Confirmation() {
       return;
     }
     void confirmAccountSession({ data: { token } })
-      .then(() => {
+      .then((account) => {
         if (params.get("type") === "recovery") {
           setRecovery(true);
           setMessage("Escolha uma nova senha para sua conta.");
-        } else window.location.replace("/minha-conta");
+        } else window.location.replace(accountLanding(account));
       })
       .catch(() =>
         setMessage("Não foi possível abrir a sessão. Entre com seu e-mail e senha para continuar."),

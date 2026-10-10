@@ -7,6 +7,7 @@ import { consultationInput, type ConsultationEntry } from "./real-consultation-c
 import { decodePdf } from "./gemini-core.server";
 import { audioMatches } from "./preparation-store.server";
 import type { MedicalResult, MedicalReport } from "./medical-reports";
+import { reviewedResults } from "./account-records";
 function guard() {
   const r = getRequest();
   if (r.headers.get("origin") !== new URL(r.url).origin)
@@ -176,7 +177,7 @@ export const transitionConsultationEntry = createServerFn({ method: "POST" })
 export const getRealPatientOverview = createServerFn({ method: "GET" })
   .validator(z.object({ patientId: z.string().uuid() }))
   .handler(async ({ data }) => {
-    const { config, doctorId } = await authorize(data.patientId);
+    const { account, config, doctorId } = await authorize(data.patientId);
     const patients = (await databaseRequest(
       config,
       `inova_medical_patients?id=eq.${data.patientId}&doctor_id=eq.${doctorId}&select=name,birth&limit=1`,
@@ -189,7 +190,18 @@ export const getRealPatientOverview = createServerFn({ method: "GET" })
       config,
       `inova_medical_reports?patient_id=eq.${data.patientId}&doctor_id=eq.${doctorId}&reviewed_at=not.is.null&select=id,filename,kind,created_at,reviewed_at&order=created_at.desc`,
     )) as Pick<MedicalReport, "id" | "filename" | "kind" | "created_at" | "reviewed_at">[];
-    return { profile: patients[0], results, reports };
+    // Patients see only values from reports already released by medical review.
+    return {
+      profile: patients[0],
+      results:
+        account.account_type === "patient"
+          ? reviewedResults(
+              results,
+              reports.map((report) => report.id),
+            )
+          : results,
+      reports,
+    };
   });
 export const openPatientReviewedReport = createServerFn({ method: "POST" })
   .validator(z.object({ patientId: z.string().uuid(), id: z.string().uuid() }))

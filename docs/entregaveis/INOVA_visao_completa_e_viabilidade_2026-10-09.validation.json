@@ -1,0 +1,463 @@
+{
+  "date": "2026-10-09",
+  "pages": 49,
+  "images": [
+    "home",
+    "access-doctor",
+    "access-patient",
+    "doctor-home",
+    "doctor-patients",
+    "doctor-new",
+    "doctor-patient-header",
+    "doctor-summary",
+    "doctor-inbox",
+    "doctor-lab-document",
+    "doctor-lab-ai",
+    "doctor-results",
+    "doctor-patient-results",
+    "doctor-history",
+    "doctor-patient-history",
+    "doctor-comparison",
+    "doctor-patient-comparison",
+    "doctor-overview",
+    "doctor-family",
+    "doctor-orders",
+    "doctor-guidance",
+    "doctor-followup",
+    "doctor-agenda",
+    "doctor-reports",
+    "doctor-profile",
+    "doctor-settings",
+    "doctor-genetics",
+    "doctor-genomics",
+    "doctor-documents",
+    "patient-home",
+    "patient-preparation",
+    "patient-agenda",
+    "patient-orders",
+    "patient-s2",
+    "patient-results",
+    "patient-evolution-charts",
+    "patient-next",
+    "patient-alerts",
+    "patient-guidance",
+    "patient-exam-preparation",
+    "patient-favorites",
+    "patient-timeline",
+    "patient-documents",
+    "patient-genetics",
+    "patient-profile",
+    "admin-home",
+    "admin-users",
+    "admin-activity",
+    "admin-subscriptions",
+    "admin-contacts",
+    "admin-feedback",
+    "admin-ai-result"
+  ],
+  "financials": {
+    "ticket": 199,
+    "fixed": 25000,
+    "breakEven": 167,
+    "contribution": 150.12,
+    "yearRevenue": 220890,
+    "yearEbitda": -133366.8,
+    "peakNeed": 184915.99999999997,
+    "requiredWithReserve": 221899.19999999995
+  },
+  "validImages": true,
+  "layout": [
+    {
+      "page": 1,
+      "title": "Uma história de saúde.Uma visão mais clara.",
+      "height": 900,
+      "contentBottom": 503,
+      "footerTop": 852,
+      "outside": []
+    },
+    {
+      "page": 2,
+      "title": "O produto está demonstrado.O negócio será validado.",
+      "height": 900,
+      "contentBottom": 694,
+      "footerTop": 852,
+      "outside": []
+    },
+    {
+      "page": 3,
+      "title": "Uma jornada conectada.Quatro capítulos para explorar.",
+      "height": 900,
+      "contentBottom": 730,
+      "footerTop": 852,
+      "outside": []
+    },
+    {
+      "page": 4,
+      "title": "O primeiro contato vende clareza.",
+      "height": 900,
+      "contentBottom": 828,
+      "footerTop": 852,
+      "outside": []
+    },
+    {
+      "page": 5,
+      "title": "Uma entrada para cada perfil.",
+      "height": 900,
+      "contentBottom": 787,
+      "footerTop": 852,
+      "outside": []
+    },
+    {
+      "page": 6,
+      "title": "O que precisa da atenção do Rafael?",
+      "height": 900,
+      "contentBottom": 828,
+      "footerTop": 852,
+      "outside": []
+    },
+    {
+      "page": 7,
+      "title": "Organizar a carteira e iniciar um cadastro.",
+      "height": 900,
+      "contentBottom": 787,
+      "footerTop": 852,
+      "outside": []
+    },
+    {
+      "page": 8,
+      "title": "Um perfil, várias formas de conferir.",
+      "height": 900,
+      "contentBottom": 787,
+      "footerTop": 852,
+      "outside": []
+    },
+    {
+      "page": 9,
+      "title": "A preparação chega à caixa do médico.",
+      "height": 900,
+      "contentBottom": 828,
+      "footerTop": 852,
+      "outside": []
+    },
+    {
+      "page": 10,
+      "title": "Laudo original e síntese lado a lado.",
+      "height": 900,
+      "contentBottom": 787,
+      "footerTop": 852,
+      "outside": []
+    },
+    {
+      "page": 11,
+      "title": "Encontrar o resultado e conferir os valores.",
+      "height": 900,
+      "contentBottom": 787,
+      "footerTop": 852,
+      "outside": []
+    },
+    {
+      "page": 12,
+      "title": "A história aparece ao longo do tempo.",
+      "height": 900,
+      "contentBottom": 787,
+      "footerTop": 852,
+      "outside": []
+    },
+    {
+      "page": 13,
+      "title": "Comparar duas coletas com contexto.",
+      "height": 900,
+      "contentBottom": 787,
+      "footerTop": 852,
+      "outside": []
+    },
+    {
+      "page": 14,
+      "title": "Resultados e histórico familiar se complementam.",
+      "height": 900,
+      "contentBottom": 787,
+      "footerTop": 852,
+      "outside": []
+    },
+    {
+      "page": 15,
+      "title": "O pedido vira um próximo passo para o paciente.",
+      "height": 900,
+      "contentBottom": 828,
+      "footerTop": 852,
+      "outside": []
+    },
+    {
+      "page": 16,
+      "title": "Orientar e acompanhar depois da consulta.",
+      "height": 900,
+      "contentBottom": 787,
+      "footerTop": 852,
+      "outside": []
+    },
+    {
+      "page": 17,
+      "title": "Uma agenda para preparar o próximo encontro.",
+      "height": 900,
+      "contentBottom": 828,
+      "footerTop": 852,
+      "outside": []
+    },
+    {
+      "page": 18,
+      "title": "O médico vê a própria atividade.",
+      "height": 900,
+      "contentBottom": 828,
+      "footerTop": 852,
+      "outside": []
+    },
+    {
+      "page": 19,
+      "title": "Perfil profissional e preferências pessoais.",
+      "height": 900,
+      "contentBottom": 787,
+      "footerTop": 852,
+      "outside": []
+    },
+    {
+      "page": 20,
+      "title": "Genética e genômica têm papéis distintos.",
+      "height": 900,
+      "contentBottom": 787,
+      "footerTop": 852,
+      "outside": []
+    },
+    {
+      "page": 21,
+      "title": "Localizar os documentos para revisar.",
+      "height": 900,
+      "contentBottom": 828,
+      "footerTop": 852,
+      "outside": []
+    },
+    {
+      "page": 22,
+      "title": "Mariana entende por onde começar.",
+      "height": 900,
+      "contentBottom": 828,
+      "footerTop": 852,
+      "outside": []
+    },
+    {
+      "page": 23,
+      "title": "A consulta começa antes da consulta.",
+      "height": 900,
+      "contentBottom": 828,
+      "footerTop": 852,
+      "outside": []
+    },
+    {
+      "page": 24,
+      "title": "Pedido pendente e compromisso marcado são diferentes.",
+      "height": 900,
+      "contentBottom": 787,
+      "footerTop": 852,
+      "outside": []
+    },
+    {
+      "page": 25,
+      "title": "Comparar opções antes de combinar a coleta.",
+      "height": 900,
+      "contentBottom": 828,
+      "footerTop": 852,
+      "outside": []
+    },
+    {
+      "page": 26,
+      "title": "Ver o resultado e acompanhar mudanças.",
+      "height": 900,
+      "contentBottom": 787,
+      "footerTop": 852,
+      "outside": []
+    },
+    {
+      "page": 27,
+      "title": "Saber o próximo passo e perceber uma atualização.",
+      "height": 900,
+      "contentBottom": 787,
+      "footerTop": 852,
+      "outside": []
+    },
+    {
+      "page": 28,
+      "title": "Orientações e preparo devem ter uma origem.",
+      "height": 900,
+      "contentBottom": 787,
+      "footerTop": 852,
+      "outside": []
+    },
+    {
+      "page": 29,
+      "title": "Guardar preferências e reencontrar a história.",
+      "height": 900,
+      "contentBottom": 787,
+      "footerTop": 852,
+      "outside": []
+    },
+    {
+      "page": 30,
+      "title": "Um lugar para organizar os laudos.",
+      "height": 900,
+      "contentBottom": 828,
+      "footerTop": 852,
+      "outside": []
+    },
+    {
+      "page": 31,
+      "title": "Importar genética sem inventar um score.",
+      "height": 900,
+      "contentBottom": 828,
+      "footerTop": 852,
+      "outside": []
+    },
+    {
+      "page": 32,
+      "title": "Dados de contato e navegação acessível.",
+      "height": 900,
+      "contentBottom": 828,
+      "footerTop": 852,
+      "outside": []
+    },
+    {
+      "page": 33,
+      "title": "Entender quem chega. Acompanhar quem fica.",
+      "height": 900,
+      "contentBottom": 842,
+      "footerTop": 852,
+      "outside": []
+    },
+    {
+      "page": 34,
+      "title": "Saber quem é a pessoa antes de agir.",
+      "height": 900,
+      "contentBottom": 828,
+      "footerTop": 852,
+      "outside": []
+    },
+    {
+      "page": 35,
+      "title": "Uso recente é uma evidência de participação.",
+      "height": 900,
+      "contentBottom": 828,
+      "footerTop": 852,
+      "outside": []
+    },
+    {
+      "page": 36,
+      "title": "Separar assinatura ativa de dinheiro recebido.",
+      "height": 900,
+      "contentBottom": 828,
+      "footerTop": 852,
+      "outside": []
+    },
+    {
+      "page": 37,
+      "title": "Entrar em contato e ouvir a resposta.",
+      "height": 900,
+      "contentBottom": 787,
+      "footerTop": 852,
+      "outside": []
+    },
+    {
+      "page": 38,
+      "title": "Resumo para investigar e decidir.",
+      "height": 900,
+      "contentBottom": 828,
+      "footerTop": 852,
+      "outside": []
+    },
+    {
+      "page": 39,
+      "title": "Uma demonstração testada.Um caminho definido para produção.",
+      "height": 900,
+      "contentBottom": 666,
+      "footerTop": 852,
+      "outside": []
+    },
+    {
+      "page": 40,
+      "title": "Por que testar R$ 149 e R$ 249?",
+      "height": 900,
+      "contentBottom": 716,
+      "footerTop": 852,
+      "outside": []
+    },
+    {
+      "page": 41,
+      "title": "Custos fixos para uma operação enxuta.",
+      "height": 900,
+      "contentBottom": 803,
+      "footerTop": 852,
+      "outside": []
+    },
+    {
+      "page": 42,
+      "title": "A viabilidade muda com a base pagante.",
+      "height": 900,
+      "contentBottom": 805,
+      "footerTop": 852,
+      "outside": []
+    },
+    {
+      "page": 43,
+      "title": "Quantos médicos cobrem a operação?",
+      "height": 900,
+      "contentBottom": 833,
+      "footerTop": 852,
+      "outside": []
+    },
+    {
+      "page": 44,
+      "title": "Receita e resultado ao longo de 12 meses.",
+      "height": 900,
+      "contentBottom": 808,
+      "footerTop": 852,
+      "outside": []
+    },
+    {
+      "page": 45,
+      "title": "Dimensionar caixa com margem para aprender.",
+      "height": 900,
+      "contentBottom": 828,
+      "footerTop": 852,
+      "outside": []
+    },
+    {
+      "page": 46,
+      "title": "O custo da IA precisa ser medido por uso.",
+      "height": 900,
+      "contentBottom": 728,
+      "footerTop": 852,
+      "outside": []
+    },
+    {
+      "page": 47,
+      "title": "O investidor precisa de evidência de valor.",
+      "height": 900,
+      "contentBottom": 617,
+      "footerTop": 852,
+      "outside": []
+    },
+    {
+      "page": 48,
+      "title": "Transparência para apresentar com confiança.",
+      "height": 900,
+      "contentBottom": 774,
+      "footerTop": 852,
+      "outside": []
+    },
+    {
+      "page": 49,
+      "title": "Do sistema demonstradoao valor comprovado.",
+      "height": 900,
+      "contentBottom": 687,
+      "footerTop": 852,
+      "outside": []
+    }
+  ]
+}

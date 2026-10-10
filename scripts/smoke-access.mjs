@@ -30,6 +30,14 @@ const evaluate = async (expression) => {
   return result.result.value;
 };
 const pause = (ms) => new Promise((r) => setTimeout(r, ms));
+async function wait(expression) {
+  const deadline = Date.now() + 30000;
+  while (Date.now() < deadline) {
+    if (await evaluate(`Boolean(${expression})`)) return;
+    await pause(100);
+  }
+  throw new Error("Timed out waiting for hydration: " + expression);
+}
 const base = process.env.INOVA_TEST_URL ?? "http://192.168.0.2:8080";
 try {
   await command("Emulation.setDeviceMetricsOverride", {
@@ -39,10 +47,14 @@ try {
     mobile: false,
   });
   await command("Page.navigate", { url: base + "/" });
-  await pause(1500);
+  await wait(
+    "document.querySelector('#produto') && Object.keys(document.querySelector('#product-tab-1') ?? {}).some(key=>key.startsWith('__reactProps'))",
+  );
   assert.equal(await evaluate("!!document.querySelector('#produto')"), true);
   await evaluate("document.querySelector('#product-tab-1').click()");
-  await pause(100);
+  await wait(
+    "document.querySelector('#product-preview')?.textContent.includes('Síntese do documento')",
+  );
   assert.equal(
     await evaluate(
       "document.querySelector('#product-preview').textContent.includes('Síntese do documento')",
@@ -65,7 +77,9 @@ try {
   });
   for (const path of ["/acesso", "/acesso-paciente"]) {
     await command("Page.navigate", { url: base + path });
-    await pause(1200);
+    await wait(
+      "document.querySelector('form') && Object.keys(document.querySelector('form')).some(key=>key.startsWith('__reactProps'))",
+    );
     if (path === "/acesso-paciente")
       assert.equal(
         await evaluate("document.documentElement.scrollHeight <= innerHeight + 1"),
@@ -87,7 +101,7 @@ try {
     await evaluate(
       "[...document.querySelectorAll('button, a')].find(b=>b.textContent.includes('Criar minha conta')).click()",
     );
-    await pause(150);
+    await wait("document.querySelector('[name=fullName]')");
     assert.equal(await evaluate("document.forms.length"), 1);
     assert.equal(await evaluate("!!document.querySelector('[name=fullName]')"), true);
     if (path === "/acesso-paciente")
@@ -99,20 +113,24 @@ try {
     await evaluate(
       "[...document.querySelectorAll('button, a')].find(b=>b.textContent.includes('Voltar para entrar')).click()",
     );
-    await pause(100);
+    await wait("!document.querySelector('[name=fullName]') && document.querySelector('form')");
     assert.equal(await evaluate("!!document.querySelector('[name=fullName]')"), false);
   }
   await command("Page.navigate", { url: base + "/acesso" });
-  await pause(900);
+  await wait(
+    "document.querySelector('form') && Object.keys(document.querySelector('form')).some(key=>key.startsWith('__reactProps'))",
+  );
   await evaluate(
     "[...document.querySelectorAll('a')].find(a=>a.textContent.includes('Ver demonstração médica')).click()",
   );
-  await pause(1200);
+  await wait(
+    "location.pathname==='/dashboard' && document.body.textContent.includes('Dr. Rafael Mendes')",
+  );
   assert.equal(await evaluate("location.pathname"), "/dashboard");
   assert.equal(await evaluate("document.body.textContent.includes('Dr. Rafael Mendes')"), true);
   for (const path of ["/dashboard", "/patients", "/results"]) {
     await command("Page.navigate", { url: base + path });
-    await pause(900);
+    await wait("document.body.textContent.includes('Ambiente demonstrativo')");
     assert.equal(await evaluate("location.pathname"), path);
     assert.equal(
       await evaluate("document.body.textContent.includes('Ambiente demonstrativo')"),
@@ -120,7 +138,7 @@ try {
     );
   }
   await command("Page.navigate", { url: base + "/confirmar-email" });
-  await pause(1200);
+  await wait("document.body.textContent.includes('entre com sua senha')");
   assert.equal(await evaluate("document.body.textContent.includes('entre com sua senha')"), true);
   console.log(
     "PASS: sales preview, mobile width, separate real/demo logins, card switching, confirmation without token. No account or email created.",
